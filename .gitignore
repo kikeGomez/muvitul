@@ -1,0 +1,11 @@
+*.class
+*.settings
+*.project
+*.classpath
+target
+received-emails
+
+# Package Files #
+*.jar
+*.war
+*.ear
