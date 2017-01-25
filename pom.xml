@@ -6,5 +6,9 @@
   <packaging>pom</packaging>
   <modules>
 
+  <module>muvitul-infraestructura</module>
+  <module>muvitul-service</module>
+  <module>muvitul-seguridad</module>
+  <module>muvitul-web</module>
   </modules>
 </project>
