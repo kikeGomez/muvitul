@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+	
+	<!-- Estas propiedades para conectarse a la base de datos    -->
+<!-- 	
+	<bean id="negocioDataSource" class="org.springframework.jndi.JndiObjectFactoryBean" >
+       <property name="jndiName" value="java:jboss/datasources/MuvitulDS" />       
+    </bean>        
+ -->
+ 
+	<!-- Estas propiedades son utilizadas en la definicion del SessionFactory de Hibernate       -->
+<!--  <bean id="hibernateProperties" class="java.util.Properties">
+		<constructor-arg>
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${show.sql}</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+				<prop key="hibernate.cach.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+			</props>
+		</constructor-arg>
+	</bean>
+	 -->
+	 
+     <!-- Configuracion de sesion y conexion a base de datos con hibernate    -->
+ <!-- 	  <bean id="hibernateSessionFactory" 
+	        class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		   <property name="dataSource" ref="negocioDataSource"/>
+		   <property name="hibernateProperties" ref="hibernateProperties" />  
+		   <property name="annotatedClasses">
+		     <list>
+				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.auditoria.dto.AuditoriaAtributoObjeto</value>
+				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.auditoria.dto.AuditoriaConfigMetodo</value>
+				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.auditoria.dto.AuditoriaConfigAtributo</value>
+				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.auditoria.dto.AuditoriaConfigExpresion</value>
+				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.auditoria.dto.AuditoriaObjeto</value>				
+				
+		     </list>
+		   </property>
+	 </bean>
+ --> 
+ 
+	<!-- CONFIGURACION JASYPT PARA ENCRIPTAR TIPOS DE DATOS CON HIBERNATE -->
+<!-- <bean id="stringEncryptor"  class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor" lazy-init="false">
+		  <property name="algorithm" value="PBEWithMD5AndDES" />
+		  <property name="password" value="${jasypt.password}" />
+		</bean>
+		 
+		<bean id="hibernateEncryptor" class="org.jasypt.hibernate4.encryptor.HibernatePBEStringEncryptor" lazy-init="false">
+		  <property name="registeredName" value="jasyptHibernateEncryptor" />
+		  <property name="encryptor" ref="stringEncryptor" />
+		</bean>	
+-->			
+			  
+ 	<!--  CONFIGURACION PARA PODER UTILIZAR IBATIS -->	
+<!-- <bean id="ibatisSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="negocioDataSource" />		
+	</bean>
+ -->	
+ 	
+	<!-- TERMINA CONFIGURACION DE IBATIS -->	
+		
+	<!-- Este interceptor sirve para manejar (i.e. abrir y cerrar) una sesion -->
+	  <!-- de Hibernate cuando algÃºn servicio no es invocado desde un http      -->
+	  <!-- request.  Es una especie de patron "open session in view".           -->
+<!-- 	
+	  <bean id="hibernateInterceptor" class="mx.com.tecnetia.muvitul.infraservices.negocio.auditoria.business.HibernateInterceptorBO">
+		   <property name="sessionFactory" ref="hibernateSessionFactory" />
+	  </bean>	
+	 -->
+</beans>
