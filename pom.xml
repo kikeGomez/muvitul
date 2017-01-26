@@ -11,4 +11,19 @@
   <module>muvitul-seguridad</module>
   <module>muvitul-web</module>
   </modules>
+  
+  	<build>
+		<defaultGoal>install</defaultGoal>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+  
 </project>
