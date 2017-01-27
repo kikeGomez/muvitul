@@ -43,7 +43,7 @@
 
 	</dependencies>
 	<build>
-		<finalName>muvitul-web</finalName>
+<!-- 		<finalName>muvitul-web</finalName> -->
 
 		<plugins>
 			<plugin>

@@ -11,6 +11,7 @@
 		<module>muvitul-service</module>
 		<module>muvitul-seguridad</module>
 		<module>muvitul-web</module>
+		<module>muvitul-ear</module>
 	</modules>
 
 	<build>

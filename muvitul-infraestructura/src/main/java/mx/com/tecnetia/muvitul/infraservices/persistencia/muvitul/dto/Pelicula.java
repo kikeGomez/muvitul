@@ -28,9 +28,12 @@ public class Pelicula  implements java.io.Serializable {
 
      private Integer idPelicula;
      private Cine cine;
-     private String titulo;
+     private Distribuidora distribuidora;
+     private Pais pais;
+          private String titulo;
      private String clasificacion;
      private int duracion;
+     private String sinopsis;
      private boolean activo;
      private Set<Programacion> programacions = new HashSet<Programacion>(0);
 
@@ -74,6 +77,26 @@ public class Pelicula  implements java.io.Serializable {
         this.cine = cine;
     }
     
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="id_distribuidora", nullable=false)
+    public Distribuidora getDistribuidora() {
+        return this.distribuidora;
+    }
+    
+    public void setDistribuidora(Distribuidora distribuidora) {
+        this.distribuidora = distribuidora;
+    }
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="id_pais", nullable=false)
+    public Pais getPais() {
+        return this.pais;
+    }
+    
+    public void setPais(Pais pais) {
+        this.pais = pais;
+    }
+    
     @Column(name="titulo", nullable=false, length=250)
     public String getTitulo() {
         return this.titulo;
@@ -81,6 +104,15 @@ public class Pelicula  implements java.io.Serializable {
     
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+    
+    @Column(name="sinopsis", nullable=false)
+    public String getSinopsis() {
+        return this.sinopsis;
+    }
+    
+    public void setSinopsis(String sinopsis) {
+        this.sinopsis = sinopsis;
     }
     
     @Column(name="clasificacion", nullable=false, length=3)

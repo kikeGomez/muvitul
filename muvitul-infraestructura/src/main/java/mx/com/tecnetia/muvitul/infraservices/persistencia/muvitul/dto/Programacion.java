@@ -27,7 +27,8 @@ public class Programacion  implements java.io.Serializable {
 
      private Integer idProgramacion;
      private Formato formato;
-     private Sala sala;
+     private Version version;
+         private Sala sala;
      private Pelicula pelicula;
      private String diaSemana;
      private Date horario;
@@ -62,6 +63,17 @@ public class Programacion  implements java.io.Serializable {
     public void setFormato(Formato formato) {
         this.formato = formato;
     }
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="id_version", nullable=false)
+    public Version getVersion() {
+        return this.version;
+    }
+    
+    public void setVersion(Version version) {
+        this.version = version;
+    }
+    
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="id_sala", nullable=false)
     public Sala getSala() {

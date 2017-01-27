@@ -76,6 +76,9 @@
 			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.BoletosXTicket</value>
 			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.MovimientoInventario</value>
 			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ProductosXTicket</value>	
+			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Distribuidora</value>		
+			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Pais</value>		
+			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Version</value>	
 		     </list>
 		   </property>
 	 </bean>

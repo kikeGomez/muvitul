@@ -26,7 +26,7 @@
 			<groupId>com.tecnetia</groupId>
 			<artifactId>muvitul-infraestructura</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-			<scope>compile</scope>
+			<scope>provided</scope>
 		</dependency>
 		<!-- JWT -->
 		<dependency>
@@ -256,7 +256,7 @@
 
 	</dependencies>
 	<build>
-		<finalName>muvitul-service</finalName>
+<!-- 		<finalName>muvitul-service</finalName> -->
 
 		<plugins>
 			<plugin>
