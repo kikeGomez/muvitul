@@ -5,49 +5,7 @@
 	
         <!-- page content -->
         		<!-- bloque de wizard -->
-			    <div id="wizard" class="form_wizard wizard_horizontal">
-        			<ul class="wizard_steps">
-                        <li>
-                          <a href="" class="selected">
-                            <span class="step_no">1</span>
-                            <span class="step_descr">
-                                              Elige la pel&iacute;cula<br />
-                                          </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="">
-                            <span class="step_no">2</span>
-                            <span class="step_descr">
-                                              Selecciona la promoci&oacute;n<br />
-                                          </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="">
-                            <span class="step_no">3</span>
-                            <span class="step_descr">
-                                              Selecciona la cantidad<br />
-                                          </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="">
-                            <span class="step_no">4</span>
-                            <span class="step_descr">
-                                              Registra el pago<br />
-                                          </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="">
-                            <span class="step_no">5</span>
-                            <span class="step_descr">
-                                              Confirma la venta<br />
-                                          </span>
-                          </a>
-                        </li>
-                      </ul> 	
+	
 				     <!-- bloque de PASO de wizard - CARTELERA -->					  
 					  <div id="step-1">
 
@@ -90,15 +48,13 @@
 															<button type="button" class="btn btn-round btn-info">95 min</button>
 														</p>
 														<p>ESP 
-														   <a href="#/ventaBoletos2">
-														      <button type="button" class="btn btn-round btn-warning" title="Disponibles: 10">20:30</button>
-														   </a>
-														   <button type="button" class="btn btn-round btn-default">22:30</button>
+ 														      <button type="button" ng-click ="seleccionarPelicula()" class="btn btn-round btn-warning" title="Disponibles: 10">20:30</button>
+ 														   <button type="button" ng-click ="seleccionarPelicula()" class="btn btn-round btn-default">22:30</button>
 														</p>   
 														<p>3D
 															<button type="button" class="btn btn-round btn-danger" title="Disponibles: 0">18:10</button>
 															<button type="button" class="btn btn-round btn-default">20:00</button>
-															<button type="button" class="btn btn-round btn-default">22:10</button>
+															<button type="button" class="btn btn-round btn-default" ng-click ="consultarPromociones()">22:10</button>
 														</p>
 													  </div>
 													</div><!-- /row -->  
@@ -191,6 +147,5 @@
 					   </div>
 					  </div> 
 					  <!-- /bloque de PASO de wizard -->
- 				</div>
  				<!-- /bloque de wizard -->
 			    	 

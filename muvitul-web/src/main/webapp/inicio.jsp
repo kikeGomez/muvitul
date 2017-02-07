@@ -243,17 +243,23 @@
     <!-- Select2 -->
     <script src="<c:url value='/resources/js/vendors/select2/dist/js/select2.full.min.js' />"></script>
 	
-
+	<script src="<c:url value='/resources/js/comun/global.js' />"></script> 
+	<script src="<c:url value='/resources/js/comun/service/globalService.js' />"></script>
+	
 	<!---------- LIBRERIAS DEL MODULO DE INDEX PARA LA APLICACION ------------>
     <script src="<c:url value='/resources/js/aplicacion/comun/index.js' />"></script>
     <script src="<c:url value='/resources/js/aplicacion/comun/controller/indexController.js' />"></script>
  
     <!-- Controller del modulo de taquilla - venta boletos -->
+    <script src="<c:url value='/resources/js/aplicacion/taquilla/service/taquillaAngularService.js'/>"></script>
+     
     <script src="<c:url value='/resources/js/aplicacion/taquilla/controller/ventaBoletosPaso1Controller.js' />"></script>
     <script src="<c:url value='/resources/js/aplicacion/taquilla/controller/ventaBoletosPaso2Controller.js' />"></script>
     <script src="<c:url value='/resources/js/aplicacion/taquilla/controller/ventaBoletosPaso3Controller.js' />"></script>
     <script src="<c:url value='/resources/js/aplicacion/taquilla/controller/ventaBoletosPaso4Controller.js' />"></script>
     <script src="<c:url value='/resources/js/aplicacion/taquilla/controller/ventaBoletosPaso5Controller.js' />"></script>
+    <script src="<c:url value='/resources/js/comun/directivas/directivasVentaBoleto.js' />"></script> 
+
 
 	<!-- Controller del modulo de dulceria -->
 	<script src="<c:url value='/resources/js/aplicacion/dulceria/controller/ventaProductoPaso1Controller.js' />"></script>

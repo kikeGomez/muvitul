@@ -17,7 +17,7 @@ import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/seguridad")
 public interface SeguridadFacadeI {
 	
