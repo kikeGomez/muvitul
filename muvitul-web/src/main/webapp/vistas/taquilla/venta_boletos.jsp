@@ -9,8 +9,7 @@
 <div id="wizard" class="form_wizard wizard_horizontal">
 	<ul class="wizard_steps">
 		<li><a href="" ng-class="statusVenta.elegirPelicula"> <span
-				class="step_no">1</span> <span class="step_descr"> Elige la
-					pel&iacute;cula<br />
+				class="step_no">1</span> <span class="step_descr"> Elige la pel&iacute;cula<br />
 			</span>
 		</a></li>
 		<li><a href="" ng-class="statusVenta.elegirPromocion"> <span class="step_no">2</span> <span

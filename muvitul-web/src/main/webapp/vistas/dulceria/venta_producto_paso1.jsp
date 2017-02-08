@@ -1,33 +1,6 @@
  <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  
-  <div id="wizard" class="form_wizard wizard_horizontal">
-      <ul class="wizard_steps">
-                        <li>
-                          <a href="" class="selected">
-                            <span class="step_no">1</span>
-                            <span class="step_descr">
-                                              Elige el Producto<br />
-                                          </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="" >
-                            <span class="step_no">2</span>
-                            <span class="step_descr">
-                                              Registra el Pago<br />
-                                          </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="">
-                            <span class="step_no">3</span>
-                            <span class="step_descr">
-                                              Confirma la venta<br />
-                                          </span>
-                          </a>
-                        </li>
-     </ul> 	
 
     <!-- bloque de PASO de wizard -->					  
     <div id="step-1">
@@ -36,9 +9,9 @@
 			<h2><i class="fa fa-shopping-cart"></i> Selecciona el Producto </h2>			
 			<div class="title_right">
                   <div class="row pull-right">
-													<a href="#/ventaProducto2">
-													   <button type="button" class="btn btn-success">Registrar el Pago <i class="fa fa-credit-card"></i> </button>
-													</a>
+													
+													   <button type="button" ng-click="asignarPaso(2)" class="btn btn-success">Registrar el Pago <i class="fa fa-credit-card"></i> </button>
+													
 			     </div>                 
             			
 			    <div class="clearfix"></div>
@@ -283,4 +256,4 @@
               </div> <!-- /content -->
         </div> <!-- /x panel global -->
      </div> <!-- /step div	 -->   
-  </div> <!-- /wizard -->   
+ 

@@ -31,20 +31,21 @@ angular.module('indexModule').config(function($routeProvider){
 //                templateUrl: "vistas/taquilla/venta_boletos_paso5.jsp"
 //            })
             .when("/ventaProducto", {
-                controller: "VentaProductoPaso1Controller",
+                controller: "ventaProductoController",
                 controllerAs: "vm",
-                templateUrl: "vistas/dulceria/venta_producto_paso1.jsp"
+                templateUrl: "vistas/dulceria/venta_producto.jsp"
             })
-            .when("/ventaProducto2", {
-                controller: "VentaProductoPaso2Controller",
-                controllerAs: "vm",
-                templateUrl: "vistas/dulceria/venta_producto_paso2.jsp"
-            })
-            .when("/ventaProducto3", {
-                controller: "VentaProductoPaso3Controller",
-                controllerAs: "vm",
-                templateUrl: "vistas/dulceria/venta_producto_paso3.jsp"
-            })
+//            .when("/ventaProducto2", {
+//                controller: "VentaProductoPaso2Controller",
+//                controllerAs: "vm",
+//                templateUrl: "vistas/dulceria/venta_producto_paso2.jsp"
+//            })
+//            .when("/ventaProducto3", {
+//                controller: "VentaProductoPaso3Controller",
+//                controllerAs: "vm",
+//                templateUrl: "vistas/dulceria/venta_producto_paso3.jsp"
+//            })
+            
             .when("/cupoSala", {
                 controller: "CupoSalaController",
                 controllerAs: "vm",

@@ -2,32 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
   <div id="wizard" class="form_wizard wizard_horizontal">
-      <ul class="wizard_steps">
-                        <li>
-                          <a href="" class="done">
-                            <span class="step_no">1</span>
-                            <span class="step_descr">
-                                              Elige el Producto<br />
-                                          </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="" class="done">
-                            <span class="step_no">2</span>
-                            <span class="step_descr">
-                                              Registra el Pago<br />
-                                          </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="" class="selected">
-                            <span class="step_no">3</span>
-                            <span class="step_descr">
-                                              Confirma la venta<br />
-                                          </span>
-                          </a>
-                        </li>
-     </ul> 	
 
     <!-- bloque de PASO de wizard -->					  
     <div id="step-1">
@@ -36,9 +10,9 @@
 			<h2><i class="fa fa-thumbs-o-up"></i> Confirma la Venta </h2>			
 			<div class="title_right">
                   <div class="row pull-right">
-                  									<a href="#/ventaProducto2">													  
-													   <button type="button" class="btn btn-primary"><i class="fa fa-credit-card"></i> Regresar al Pago</button>
-													</a>
+                  																		  
+													   <button type="button" ng-click="asignarPaso(2)" class="btn btn-primary"><i class="fa fa-credit-card"></i> Regresar al Pago</button>
+													
 			     </div>                 
             			
 			    <div class="clearfix"></div>
