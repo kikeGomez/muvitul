@@ -14,8 +14,7 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 	}
 	
 	$scope.seleccionarPromocion =function(){
-		alert();
-	}
+ 	}
 	
 	$scope.asignarPaso =function( paso){
 		$scope.statusVenta.numeroPaso = paso;
@@ -26,19 +25,13 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 	//	CONSULTA CATALOGOS
 	
 	$scope.consultarPromociones =function(){
-		alert();
-		taquillaService.consultarPromociones().success(function(data) {	
+ 		taquillaService.consultarPromociones().success(function(data) {	
  			 console.log(data);
 		  }).error(function(data) {
 		  	 
 		  });
 	}
-	
-	
-	
-	
-	
-	
+ 
 	function  estatusPaso (paso){
 		
 		switch(paso) {

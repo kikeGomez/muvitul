@@ -9,31 +9,7 @@ import mx.com.tecnetia.muvitul.infraservices.negocio.seguridad.vo.RecursoVO;
 
 public interface RecursoIbatisDAOI {
 		
-	@Select("select "
-			+ " id_recurso,nombre,recurso_url,activo,permitir_a_todos " +
-		    " from recurso "+
-		    " where activo=#{activo} "+
-			    " and "+
-			    " case "+
-			    " when substring(rtrim(recurso_url),len(recurso_url)-1,2) = '**' "+ 
-			    " then "+
-				    " convert( "+
-				    " varchar(200), "+
-				    " charindex( "+
-				    " substring(rtrim(recurso_url),0,len(recurso_url)-1) "+
-				    " ,#{url}) "+
-				    " ) "+
-			    " else "+
-						" recurso_url "+
-					" end "+
-					" = "+
-					" case "+ 
-					" when substring(rtrim(recurso_url),len(recurso_url)-1,2) = '**' "+
-						" then "+
-							" 	'1' "+
-							" else "+
-							" #{url} "+ 
-					" end")
+	@Select("select  id_recurso,nombre,recurso_url,activo,permitir_a_todos   from recurso    where  recurso_url =#{url} and activo=#{activo}")
 	@Results(value = {
 	@Result(property="idRecurso", column="id_recurso"),	
 	@Result(property="nombre", column="nombre"),
