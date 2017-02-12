@@ -21,7 +21,6 @@ public class VentaBoletoRestController {
 	public ResponseEntity<Promocion> historicoDetalleInfraccion() {
 		Promocion promocion = new Promocion();
 		promocion.setFechaFin(new Date());
-		promocion.setNombre(1);
 		promocion.setIdPromocion(1);
 		System.out.println("/ventaBoleto: "+usuarioFirmadoBean.getUser());
 		return new ResponseEntity<Promocion>(promocion, HttpStatus.OK);
