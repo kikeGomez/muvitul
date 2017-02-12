@@ -34,7 +34,9 @@ import mx.com.tecnetia.muvitul.infraservices.servicios.CustomHttpServletRequestW
 @PropertySource({"classpath:config/${ENV_VAR}/global.properties","classpath:config/aplicacion/aplicacion.properties"})
 public class JwtServicesFilterFController extends GenericFilterBean {
 	final protected Log log = LogFactory.getLog(getClass().getName());
-
+	
+	@Autowired
+	UsuarioFirmadoBean usuarioFirmadoBean;
 	@Autowired
 	SeguridadDelegate seguridadDelegate;
 	@Autowired
@@ -75,7 +77,8 @@ public class JwtServicesFilterFController extends GenericFilterBean {
 	        catch (final SignatureException e) {
 	            throw new ServletException("Error al entrar a la aplicacion. El token NO es valido.");
 	        }	        
-
+	        System.out.println(claims);
+	        usuarioFirmadoBean.setUser(claims.getSubject());
 	        //validamos (por medio del ws de seguridad) si este acceso al recurso es valido
 	        Boolean esAccesoValido = this.seguridadDelegate.accesoValidoUsuario(wrapper);
 	        if(!esAccesoValido){
