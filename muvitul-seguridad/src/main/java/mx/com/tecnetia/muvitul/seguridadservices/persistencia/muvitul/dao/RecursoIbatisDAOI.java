@@ -8,8 +8,25 @@ import org.apache.ibatis.annotations.Select;
 import mx.com.tecnetia.muvitul.infraservices.negocio.seguridad.vo.RecursoVO;
 
 public interface RecursoIbatisDAOI {
-		
-	@Select("select  id_recurso,nombre,recurso_url,activo,permitir_a_todos   from recurso    where  recurso_url =#{url} and activo=#{activo}")
+
+	@Select("select id_recurso,nombre,recurso_url,activo,permitir_a_todos " +
+			" from recurso "+
+			" where "+
+			" activo=#{activo} and "+
+			" case when "+
+			   " substring( "+
+			        " rtrim(recurso_url),length(recurso_url)-1,2 "+
+			    " ) = '**' "+
+			     " then convert( "+                  
+			                  " instr( "+ 
+					             " substring( "+
+						                   " rtrim(recurso_url),1,length(recurso_url)-1 "+
+							       " ) "+
+			                       " ,#{url} "+
+						       " ), "+
+			                   " char(200) "+
+				       " ) "+
+			     " else recurso_url end = case when substring(rtrim(recurso_url),length(recurso_url)-1,2) = '**' then '1' else #{url} end")
 	@Results(value = {
 	@Result(property="idRecurso", column="id_recurso"),	
 	@Result(property="nombre", column="nombre"),
@@ -18,5 +35,17 @@ public interface RecursoIbatisDAOI {
 	@Result(property="activo", column="activo")
 	})
 	RecursoVO getRecursoPorUrl(@Param("url")String url, @Param("activo")boolean activo);
-		
+//		
+//	
+//	
+//	@Select("select  id_recurso,nombre,recurso_url,activo,permitir_a_todos   from recurso    where  recurso_url =#{url} and activo=#{activo}")
+//	@Results(value = {
+//	@Result(property="idRecurso", column="id_recurso"),	
+//	@Result(property="nombre", column="nombre"),
+//	@Result(property="url", column="recurso_url"),
+//	@Result(property="permitirATodos", column="permitir_a_todos"),
+//	@Result(property="activo", column="activo")
+//	})
+//	RecursoVO getRecursoPorUrl(@Param("url")String url, @Param("activo")boolean activo);
+//		
 }
