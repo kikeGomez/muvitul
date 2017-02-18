@@ -5,6 +5,16 @@
 	      version="3.0">
   <display-name>Archetype Created Web Application</display-name>
 <!--   <display-name>MuvitulServices</display-name> -->
+
+  	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:log4j.properties</param-value>
+	</context-param>
+	
+	  	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
@@ -21,6 +31,10 @@
     <filter-name>JwtServicesFilter</filter-name>
     <url-pattern>/rest/*</url-pattern>
   </filter-mapping>
+  
+
+	
+	
   <listener>
     <listener-class>
 		org.springframework.web.context.ContextLoaderListener
