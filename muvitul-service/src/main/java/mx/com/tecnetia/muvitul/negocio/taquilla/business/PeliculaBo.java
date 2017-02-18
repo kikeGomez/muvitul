@@ -7,7 +7,5 @@ import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Programaci
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 
 public interface PeliculaBo {
-	List<Pelicula> findAll() throws BusinessGlobalException;
-	List<Programacion> getProgramacionByCine() throws BusinessGlobalException;
-	
+
 }

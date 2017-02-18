@@ -254,9 +254,15 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>net.sf.dozer</groupId>
+			<artifactId>dozer</artifactId>
+			<version>5.5.1</version>
+		</dependency>
+
 	</dependencies>
 	<build>
-<!-- 		<finalName>muvitul-service</finalName> -->
+		<!-- <finalName>muvitul-service</finalName> -->
 
 		<plugins>
 			<plugin>
