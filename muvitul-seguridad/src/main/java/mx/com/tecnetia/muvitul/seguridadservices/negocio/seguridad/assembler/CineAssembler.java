@@ -9,7 +9,7 @@ import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Cine;
 public class CineAssembler {
 	final static Log log = LogFactory.getLog(CineAssembler.class);
 
-	public static CineVO getUsuarioFirmadoVO(Cine cine){
+	public static CineVO getCineVO(Cine cine){
 
 		if(cine==null)
 			return null;
