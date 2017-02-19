@@ -77,8 +77,7 @@ public class JwtServicesFilterFController extends GenericFilterBean {
 	        catch (final SignatureException e) {
 	            throw new ServletException("Error al entrar a la aplicacion. El token NO es valido.");
 	        }	        
-	        System.out.println(claims);
-	        usuarioFirmadoBean.setUser(claims.getSubject());
+		        
 	        //validamos (por medio del ws de seguridad) si este acceso al recurso es valido
 	        Boolean esAccesoValido = this.seguridadDelegate.accesoValidoUsuario(wrapper);
 	        if(!esAccesoValido){
@@ -88,6 +87,8 @@ public class JwtServicesFilterFController extends GenericFilterBean {
 	        	   httpResponse.sendRedirect(request.getContextPath()+invalidAccessPage);
 				throw new ServletException("EL USUARIO "+claims.getSubject()+" NO CUENTA CON PERMISOS PARA ENTRAR A ESTE RECURSO: "+request.getServletPath());
 	        }
+	        
+	        usuarioFirmadoBean.setUser(seguridadDelegate.getUsuarioFirmado(claims.getSubject()));
         }
         
         chain.doFilter(wrapper, res);

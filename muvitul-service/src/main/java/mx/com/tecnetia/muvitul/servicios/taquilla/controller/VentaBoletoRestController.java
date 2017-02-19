@@ -17,7 +17,7 @@ public class VentaBoletoRestController {
 	@Autowired
 	UsuarioFirmadoBean usuarioFirmadoBean;
 	
-	@RequestMapping(value = "/ventaBoleto", method = RequestMethod.GET)
+	@RequestMapping(value = "/ventaBoletos", method = RequestMethod.GET)
 	public ResponseEntity<Promocion> historicoDetalleInfraccion() {
 		Promocion promocion = new Promocion();
 		promocion.setFechaFin(new Date());

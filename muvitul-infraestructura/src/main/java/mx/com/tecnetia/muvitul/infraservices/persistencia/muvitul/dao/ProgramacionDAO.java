@@ -8,7 +8,7 @@ import mx.com.tecnetia.muvitul.infraservices.persistencia.GlobalHibernateDAO;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Programacion;
 
 @Repository
-public class ProgramacionDaoImpl extends GlobalHibernateDAO<Programacion> implements ProgramacionDao {
+public class ProgramacionDAO extends GlobalHibernateDAO<Programacion> implements ProgramacionDAOI {
 
 	@Override
 	public List<Programacion> findByCineAndDay() {

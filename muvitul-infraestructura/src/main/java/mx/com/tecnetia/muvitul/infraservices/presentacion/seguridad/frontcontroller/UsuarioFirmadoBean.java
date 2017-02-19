@@ -2,16 +2,18 @@ package mx.com.tecnetia.muvitul.infraservices.presentacion.seguridad.frontcontro
 
 import org.springframework.stereotype.Component;
 
+import mx.com.tecnetia.muvitul.infraservices.negocio.seguridad.vo.UsuarioFirmadoVO;
+
 @Component
  public class UsuarioFirmadoBean  {
-	private String user;
+	private UsuarioFirmadoVO usuario;
 
-	public String getUser() {
-		return user;
+	public UsuarioFirmadoVO getUser() {
+		return usuario;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setUser(UsuarioFirmadoVO usuario) {
+		this.usuario = usuario;
 	}
 	 
 	

@@ -28,7 +28,8 @@ public interface SeguridadFacadeI {
 	Boolean accesoValidoUsuario(@RequestBody HttpRequestVO requestVO) throws BusinessGlobalException, Exception;
 	@RequestMapping(value = "actualizarTk", method = RequestMethod.GET)
     LoginResponseVO actualizarToken(HttpServletRequest request) throws BusinessGlobalException, Exception;		
+	@RequestMapping(value = "firmado", method = RequestMethod.GET)
+	UsuarioFirmadoVO getUsuarioFirmadoVO(UsuarioVO usuarioVO) throws BusinessGlobalException, Exception;
 	
 	void guardarUsuario(UsuarioVO usuarioVO) throws BusinessGlobalException, Exception;
-	UsuarioFirmadoVO getUsuarioFirmadoVO(UsuarioVO usuarioVO) throws BusinessGlobalException, Exception;
 }
