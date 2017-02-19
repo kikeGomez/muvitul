@@ -32,6 +32,9 @@ public class VentaBoletoController {
 	@RequestMapping(value = "/ventaBoleto", method = RequestMethod.GET)
 	public ResponseEntity<List<PeliculaVO>> historico() throws BusinessGlobalException {
 		logger.info("USUARIO: "+usuarioFirmadoBean.getUser().getNombre());
+		logger.info("ID CINE: "+usuarioFirmadoBean.getUser().getCineVO().getIdCine());
+		logger.info("CINE: "+usuarioFirmadoBean.getUser().getCineVO().getNombre());
+
 		List<PeliculaVO> peliculas= new ArrayList<PeliculaVO>();
 		//programacionBO.findByCineAndDay();
 		return new ResponseEntity<List<PeliculaVO>>(peliculas, HttpStatus.OK);

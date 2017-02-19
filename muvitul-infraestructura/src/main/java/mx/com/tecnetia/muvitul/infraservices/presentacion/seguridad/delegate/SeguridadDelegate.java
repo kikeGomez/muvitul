@@ -1,8 +1,6 @@
 package mx.com.tecnetia.muvitul.infraservices.presentacion.seguridad.delegate;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -51,11 +49,9 @@ public class SeguridadDelegate {
 	public UsuarioFirmadoVO getUsuarioFirmado(String email) {
 		String urlServicesSeguridad = env.getProperty("url.services.seguridad");
 		UsuarioVO usuarioVO = new UsuarioVO();
-		usuarioVO.setCorreo(email);
-		Map<String, UsuarioVO> vars = new HashMap<String, UsuarioVO>();
-		vars.put("email", usuarioVO);
-		
-		return restTemplate.getForObject(urlServicesSeguridad + "/rest/seguridad/firmado/{email}", UsuarioFirmadoVO.class, vars);
+		usuarioVO.setCorreo(email); 
+	 
+		return this.restTemplate.postForObject(urlServicesSeguridad + "/rest/seguridad/firmado",usuarioVO, UsuarioFirmadoVO.class );
 	}
 
 }

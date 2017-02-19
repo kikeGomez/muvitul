@@ -48,7 +48,7 @@ public class SeguridadFacade implements SeguridadFacadeI,UserDetailsService{
 	
 	@Override
 	@Transactional(readOnly = true)
-	public UsuarioFirmadoVO getUsuarioFirmadoVO(UsuarioVO usuarioVO) throws BusinessGlobalException, Exception{
+	public UsuarioFirmadoVO getUsuarioFirmadoVO(@RequestBody UsuarioVO usuarioVO) throws BusinessGlobalException, Exception{
 		return this.usuarioController.getUsuarioFirmadoVO(usuarioVO);
 	}
 

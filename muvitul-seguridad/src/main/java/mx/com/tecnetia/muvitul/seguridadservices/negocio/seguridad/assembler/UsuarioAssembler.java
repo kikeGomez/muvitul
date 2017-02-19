@@ -28,7 +28,7 @@ public class UsuarioAssembler {
 		usuarioFirmadoVO.setUsername(usuario.getCorreo());
 		usuarioFirmadoVO.setId(usuario.getIdUsuario());
 		usuarioFirmadoVO.setNombre(usuario.getNombre());		
-		
+		usuarioFirmadoVO.setCineVO(CineAssembler.getUsuarioFirmadoVO(usuario.getCine()));
 		usuarioFirmadoVO.setRoles(new HashSet<PerfilVO>(PerfilAssembler.getPerfilesVO(usuario.getPerfils())));
 		usuarioFirmadoVO.setAccountNonLocked(usuario.getEstatusUsuario().getIdEstatus().equals(UsuarioEstatusEnum.ACTIVO));
 		usuarioFirmadoVO.setEnabled(usuario.getEstatusUsuario().getIdEstatus().equals(UsuarioEstatusEnum.ACTIVO));
