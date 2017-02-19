@@ -1,6 +1,5 @@
 package mx.com.tecnetia.muvitul.servicios.taquilla.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import mx.com.tecnetia.muvitul.infraservices.presentacion.seguridad.frontcontroller.UsuarioFirmadoBean;
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
-import mx.com.tecnetia.muvitul.negocio.taquilla.business.ProgramacionBOI;
+import mx.com.tecnetia.muvitul.negocio.taquilla.business.PeliculaBOI;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PeliculaVO;
 
 @RestController
@@ -27,16 +26,12 @@ public class VentaBoletoController {
 	UsuarioFirmadoBean usuarioFirmadoBean;
 	
 	@Autowired
-	private ProgramacionBOI programacionBO;
+	private PeliculaBOI peliculaBo;
 	
 	@RequestMapping(value = "/ventaBoleto", method = RequestMethod.GET)
 	public ResponseEntity<List<PeliculaVO>> historico() throws BusinessGlobalException {
-		logger.info("USUARIO: "+usuarioFirmadoBean.getUser().getNombre());
-		logger.info("ID CINE: "+usuarioFirmadoBean.getUser().getCineVO().getIdCine());
-		logger.info("CINE: "+usuarioFirmadoBean.getUser().getCineVO().getNombre());
-
-		List<PeliculaVO> peliculas= new ArrayList<PeliculaVO>();
-		//programacionBO.findByCineAndDay();
+		logger.info("ID CINE: "+ usuarioFirmadoBean.getUser().getCineVO().getIdCine());
+		List<PeliculaVO> peliculas= peliculaBo.findByCineAndDay(usuarioFirmadoBean.getUser().getCineVO().getIdCine(),"L");
 		return new ResponseEntity<List<PeliculaVO>>(peliculas, HttpStatus.OK);
 	}
 

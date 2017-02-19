@@ -2,6 +2,7 @@ package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import mx.com.tecnetia.muvitul.infraservices.persistencia.GlobalHibernateDAO;
@@ -11,13 +12,16 @@ import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Programaci
 public class ProgramacionDAO extends GlobalHibernateDAO<Programacion> implements ProgramacionDAOI {
 
 	@Override
-	public List<Programacion> findByCineAndDay() {
+	public List<Programacion> findByCineAndDay(Integer idCine, String diaSemana) {
 		StringBuilder hql = new StringBuilder();
 		hql.append("select pgr from Programacion pgr inner join pgr.pelicula plc inner join pgr.formato frm inner join pgr.version vrs inner join pgr.sala sla ");
-		hql.append("where plc.cine.idCine=1 and pgr.diaSemana='L'  and plc.activo=1 ");
-		hql.append("order by plc.cine.idCine asc ");
+		hql.append("where plc.cine.idCine=:idCine and pgr.diaSemana=:diaSemana  and plc.activo=1 ");
+		hql.append("order by pgr.horario desc");
 		
-		return (List<Programacion>)getSession().createQuery(hql.toString()).list();
+		Query query = getSession().createQuery(hql.toString());
+		query.setParameter("idCine", idCine);
+		query.setParameter("diaSemana", diaSemana);	
+		return query.list();
 	}
 
 }
