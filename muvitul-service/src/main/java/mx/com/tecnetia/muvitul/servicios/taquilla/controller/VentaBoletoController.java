@@ -16,6 +16,7 @@ import mx.com.tecnetia.muvitul.infraservices.presentacion.seguridad.frontcontrol
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 import mx.com.tecnetia.muvitul.negocio.taquilla.business.PeliculaBOI;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PeliculaVO;
+import mx.com.tecnetia.muvitul.servicios.util.Fecha;
 
 @RestController
 @Transactional
@@ -29,9 +30,9 @@ public class VentaBoletoController {
 	private PeliculaBOI peliculaBo;
 	
 	@RequestMapping(value = "/ventaBoleto", method = RequestMethod.GET)
-	public ResponseEntity<List<PeliculaVO>> historico() throws BusinessGlobalException {
+	public ResponseEntity<List<PeliculaVO>> findPeliculasByCine() throws BusinessGlobalException {
 		logger.info("ID CINE: "+ usuarioFirmadoBean.getUser().getCineVO().getIdCine());
-		List<PeliculaVO> peliculas= peliculaBo.findByCineAndDay(usuarioFirmadoBean.getUser().getCineVO().getIdCine(),"L");
+		List<PeliculaVO> peliculas= peliculaBo.findByCineAndDay(usuarioFirmadoBean.getUser().getCineVO().getIdCine(),Fecha.getDayOfWeek());
 		return new ResponseEntity<List<PeliculaVO>>(peliculas, HttpStatus.OK);
 	}
 

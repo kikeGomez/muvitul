@@ -17,6 +17,7 @@ public class PeliculaAssembler {
 		peliculaVO.setDuracion(pelicula.getDuracion());
 		peliculaVO.setSinopsis(pelicula.getSinopsis());
 		peliculaVO.setActivo(pelicula.isActivo());
+		peliculaVO.setIcono(pelicula.getIcono());
 		return peliculaVO;
 	}
 

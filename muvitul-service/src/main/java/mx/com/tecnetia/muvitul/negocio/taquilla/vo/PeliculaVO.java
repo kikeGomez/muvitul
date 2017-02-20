@@ -22,6 +22,16 @@ public class PeliculaVO {
 	private int duracion;
 	private String sinopsis;
 	private boolean activo;
+	private byte[] icono;
+	
+	public byte[] getIcono() {
+		return icono;
+	}
+
+	public void setIcono(byte[] icono) {
+		this.icono = icono;
+	}
+
 	private Set<ProgramacionVO> espanol = new HashSet<ProgramacionVO>();
 	private Set<ProgramacionVO> ingles = new HashSet<ProgramacionVO>();
 	private Set<ProgramacionVO> subtitulado = new HashSet<ProgramacionVO>();

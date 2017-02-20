@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 12/02/2017 04:03:11 PM by Hibernate Tools 4.3.1.Final
+// Generated 18/02/2017 10:59:11 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -30,13 +30,14 @@ public class Pelicula implements java.io.Serializable {
 	private int duracion;
 	private String sinopsis;
 	private boolean activo;
+	private byte[] icono;
 	private Set<Programacion> programacions = new HashSet<Programacion>(0);
 
 	public Pelicula() {
 	}
 
 	public Pelicula(Cine cine, Distribuidora distribuidora, Pais pais, String titulo, String clasificacion,
-			int duracion, String sinopsis, boolean activo) {
+			int duracion, String sinopsis, boolean activo, byte[] icono) {
 		this.cine = cine;
 		this.distribuidora = distribuidora;
 		this.pais = pais;
@@ -45,10 +46,11 @@ public class Pelicula implements java.io.Serializable {
 		this.duracion = duracion;
 		this.sinopsis = sinopsis;
 		this.activo = activo;
+		this.icono = icono;
 	}
 
 	public Pelicula(Cine cine, Distribuidora distribuidora, Pais pais, String titulo, String clasificacion,
-			int duracion, String sinopsis, boolean activo, Set<Programacion> programacions) {
+			int duracion, String sinopsis, boolean activo, byte[] icono, Set<Programacion> programacions) {
 		this.cine = cine;
 		this.distribuidora = distribuidora;
 		this.pais = pais;
@@ -57,6 +59,7 @@ public class Pelicula implements java.io.Serializable {
 		this.duracion = duracion;
 		this.sinopsis = sinopsis;
 		this.activo = activo;
+		this.icono = icono;
 		this.programacions = programacions;
 	}
 
@@ -145,6 +148,15 @@ public class Pelicula implements java.io.Serializable {
 
 	public void setActivo(boolean activo) {
 		this.activo = activo;
+	}
+
+	@Column(name = "icono", nullable = false)
+	public byte[] getIcono() {
+		return this.icono;
+	}
+
+	public void setIcono(byte[] icono) {
+		this.icono = icono;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pelicula")
