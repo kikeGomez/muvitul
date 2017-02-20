@@ -12,8 +12,8 @@ public class CineAssembler {
 		CineVO cineVO = new CineVO();
 		cineVO.setIdCine(cine.getIdCine());
 		cineVO.setNombre(cine.getNombre());
+		
 		return cineVO;
 	}
-	
 	
 }
