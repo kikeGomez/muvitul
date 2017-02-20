@@ -1,6 +1,6 @@
 'use strict';
  
-var IndexModule = angular.module('indexModule',['ngRoute','globalModule']);
+var IndexModule = angular.module('indexModule',['ngRoute','globalModule','angularUtils.directives.dirPagination']);
 
 angular.module('indexModule').config(function($routeProvider){
 	
@@ -10,42 +10,13 @@ angular.module('indexModule').config(function($routeProvider){
                 controllerAs: "vm",
                 templateUrl: "vistas/taquilla/venta_boletos.jsp"
             })
-//            .when("/ventaBoletos2", {
-//                controller: "VentaBoletosPaso2Controller",
-//                controllerAs: "vm",
-//                templateUrl: "vistas/taquilla/venta_boletos_paso2.jsp"
-//            })
-//            .when("/ventaBoletos3", {
-//                controller: "VentaBoletosPaso3Controller",
-//                controllerAs: "vm",
-//                templateUrl: "vistas/taquilla/venta_boletos_paso3.jsp"
-//            })
-//            .when("/ventaBoletos4", {
-//                controller: "VentaBoletosPaso4Controller",
-//                controllerAs: "vm",
-//                templateUrl: "vistas/taquilla/venta_boletos_paso4.jsp"
-//            })
-//            .when("/ventaBoletos5", {
-//                controller: "VentaBoletosPaso5Controller",
-//                controllerAs: "vm",
-//                templateUrl: "vistas/taquilla/venta_boletos_paso5.jsp"
-//            })
+
             .when("/ventaProducto", {
                 controller: "ventaProductoController",
                 controllerAs: "vm",
                 templateUrl: "vistas/dulceria/venta_producto.jsp"
             })
-//            .when("/ventaProducto2", {
-//                controller: "VentaProductoPaso2Controller",
-//                controllerAs: "vm",
-//                templateUrl: "vistas/dulceria/venta_producto_paso2.jsp"
-//            })
-//            .when("/ventaProducto3", {
-//                controller: "VentaProductoPaso3Controller",
-//                controllerAs: "vm",
-//                templateUrl: "vistas/dulceria/venta_producto_paso3.jsp"
-//            })
-            
+ 
             .when("/cupoSala", {
                 controller: "CupoSalaController",
                 controllerAs: "vm",

@@ -15,62 +15,103 @@
 							<div class="clearfix"></div>
 						  </div>
 						  <div class="x_content">
+						  
+						  
 							  <!-- bloque de pelicula -->
+							  <div dir-paginate="pelicula in listaPeliculas | itemsPerPage: 5">
 							  <div class="col-md-12 col-sm-12 col-xs-12">
 								<div class="x_panel">
 								  <div class="x_title">
-									<h2><i class="fa fa-film"></i> La Era de Hielo: Choque de Mundos</h2>
+									<h2><i class="fa fa-film"></i> {{pelicula.titulo}}</h2>
 									<div class="clearfix"></div>
 								  </div>
 								  <div class="x_content">
 									<div class="" role="tabpanel" data-example-id="togglable-tabs">
 									  <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-										<li role="presentation" class="active"><a href="ventaBoletos#tab_cont_horarios1" id="horarios1-tab" role="tab" data-toggle="tab" aria-expanded="true">Horarios</a>
+										<li role="presentation" class="active"><a ng-href="ventaBoletos#tab_horarios{{pelicula.idPelicula}}" id="horarios1-tab" role="tab" data-toggle="tab" aria-expanded="true">Horarios</a>
 										</li>
-										<li role="presentation" class=""><a href="ventaBoletos#tab_cont_sinopsis1" role="tab" id="sinopsis1-tab" data-toggle="tab" aria-expanded="false">Sinopsis</a>
+										<li role="presentation" class=""><a href="ventaBoletos#tab_sinopsis{{pelicula.idPelicula}}" role="tab" id="sinopsis1-tab" data-toggle="tab" aria-expanded="false">Sinopsis</a>
 										</li>
 									  </ul>
 									  <div id="myTabContent1" class="tab-content">
-										<div role="tabpanel" class="tab-pane fade active in" id="tab_cont_horarios1" aria-labelledby="horarios1-tab">
+										<div role="tabpanel" class="tab-pane fade active in" id="tab_horarios{{pelicula.idPelicula}}" aria-labelledby="horarios1-tab">
 											<div class="col-md-3">
 												<div class="profile_img">
 													 <div id="crop-avatar">
-														<img class="img-responsive avatar-view" src="<c:url value='resources/img/pelicula1.jpg' />" >
+														<img class="img-responsive avatar-view" ng-src="data:image/png;base64,{{pelicula.icono}}" width="90%">
 													 </div>
 												</div>
 											  </div>
-											  <div class="col-md-9">
+ 											  <div class="col-md-9">
 											  		<br/>
-													<div class="row">
+													<div class="row col-md-12">
 											  		  <div class="form-group pull-left">
+											  		  		
 														<p>
-															<button type="button" class="btn btn-round btn-info">AA</button>
-															<button type="button" class="btn btn-round btn-info">95 min</button>
+															<button type="button" class="btn btn-round btn-info">{{pelicula.clasificacion}}</button>
+															<button type="button" class="btn btn-round btn-info">{{pelicula.duracion}} min</button>
 														</p>
-														<p>ESP 
- 														      <button type="button" ng-click ="seleccionarPelicula()" class="btn btn-round btn-warning" title="Disponibles: 10">20:30</button>
- 														   <button type="button" ng-click ="seleccionarPelicula()" class="btn btn-round btn-default">22:30</button>
-														</p>   
-														<p>3D
-															<button type="button" class="btn btn-round btn-danger" title="Disponibles: 0">18:10</button>
-															<button type="button" class="btn btn-round btn-default">20:00</button>
-															<button type="button" class="btn btn-round btn-default" ng-click ="consultarPromociones()">22:10</button>
-														</p>
-													  </div>
+														<div class="row col-md-12">
+															<p ng-if ="pelicula.esp2d.length > 0">ESP 2D 
+ 																<ul id="1" class="col-md-2 col-xs-6" ng-repeat="esp2d in pelicula.esp2d">
+													        		<button type="button" ng-click ="seleccionarPelicula(pelicula,esp2d)" class="btn btn-round btn-warning" title="Disponibles: 10">{{esp2d.horario}}</button>											           
+												        		</ul>
+												        	</p>
+ 											  		  	</div>
+											  		  	<div class="row col-md-12">
+ 											  		  		<p ng-if ="pelicula.esp3d.length > 0">ESP 3D
+  											  		  		 	<ul id="2" class="col-md-2 col-xs-6" ng-repeat="esp3d in pelicula.esp3d">
+													         		<button type="button" ng-click ="seleccionarPelicula(pelicula,esp3d)" class="btn btn-round btn-warning" title="Disponibles: 10">{{esp3d.horario}}</button>											           
+												        		</ul>
+												        	</p>
+ 											  		     </div>
+ 											  		     
+ 											  		     <div class="row col-md-12">
+ 											  		  		<p ng-if ="pelicula.esp4d.length > 0">ESP 4D
+  											  		  		 	<ul id="2" class="col-md-2 col-xs-6" ng-repeat="esp4d in pelicula.esp4d">
+													         		<button type="button" ng-click ="seleccionarPelicula(pelicula,esp4d)" class="btn btn-round btn-warning" title="Disponibles: 10">{{esp4d.horario}}</button>											           
+												        		</ul>
+												        	</p>
+ 											  		     </div>
+ 											  		     
+ 											  		     
+ 											  		    <div class="row col-md-12">
+ 											  		  		<p ng-if ="pelicula.sub2d.length > 0">SUB 2D 
+  											  		  		 	<ul id="2" class="col-md-2 col-xs-6" ng-repeat="sub2d in pelicula.sub2d">
+													         		<button type="button" ng-click ="seleccionarPelicula(pelicula,sub2d)" class="btn btn-round btn-warning" title="Disponibles: 10">{{sub2d.horario}}</button>											           
+												        		</ul>
+												        	</p>
+ 											  		     </div>
+     													<div class="row col-md-12">
+ 											  		  		<p ng-if ="pelicula.sub3d.length > 0">SUB 3D  
+  											  		  		 	<ul id="2" class="col-md-2 col-xs-6" ng-repeat="sub3d in pelicula.sub3d">
+													         		<button type="button" ng-click ="seleccionarPelicula(pelicula,sub3d)" class="btn btn-round btn-warning" title="Disponibles: 10">{{sub3d.horario}}</button>											           
+												        		</ul>
+												        	</p>
+ 											  		     </div>
+ 											  		     <div class="row col-md-12">
+ 											  		  		<p ng-if ="pelicula.sub4d.length > 0">SUB 4D  
+  											  		  		 	<ul id="2" class="col-md-2 col-xs-6" ng-repeat="sub4d in pelicula.sub4d">
+													         		<button type="button" ng-click ="seleccionarPelicula(pelicula,sub4d)" class="btn btn-round btn-warning" title="Disponibles: 10">{{sub4d.horario}}</button>											           
+												        		</ul>
+												        	</p>
+ 											  		     </div>
+											  		  	 
+  													  </div>
 													</div><!-- /row -->  
 											</div>									
 										</div>
-										<div role="tabpanel" class="tab-pane fade" id="tab_cont_sinopsis1" aria-labelledby="sinopsis1-tab">
+										<div role="tabpanel" class="tab-pane fade" id="tab_sinopsis{{pelicula.idPelicula}}" aria-labelledby="sinopsis1-tab">
 										  <div class="col-md-55">
 												<div class="profile_img">
 													 <div id="crop-avatar">
-														<img class="img-responsive avatar-view" src="<c:url value='resources/img/pelicula1.jpg' />" >
+														<img class="img-responsive avatar-view" ng-src="data:image/png;base64,{{pelicula.icono}}" >
 													 </div>
 												</div>
 										  </div>
 										  <div class="col-md-6">
 											  <br/><br/>
-											  <p>La &eacute;pica persecuci&oacute;n de Scrat de la escurridiza bellota, lo catapulta a un universo donde accidentalmente desata una serie de eventos c&oacute;smicos que transforman y amenazan al mundo de La Era de Hielo. Para salvarse, Sid, Manny, Diego y el resto de la manada deben abandonar su hogar y embarcarse en una b&uacute;squeda llena de comedia y aventura, viajando a tierras ex&oacute;ticas nuevas y encontrando una colecci&oacute;n de coloridos nuevos personajes.</p>
+											  <p>{{pelicula.sinopsis}}</p>
 										  </div>	  
 										</div>
 									  </div>
@@ -79,69 +120,10 @@
 								  </div>
 								</div>
 							  </div>
-							  <!-- /bloque de pelicula -->
+							  </div>
+							  <dir-pagination-controls></dir-pagination-controls>
 							  
-							  <!-- bloque de pelicula -->
-							  <div class="col-md-12 col-sm-12 col-xs-12">
-								<div class="x_panel">
-								  <div class="x_title">
-									<h2><i class="fa fa-film"></i> Yo Antes de Ti</h2>
-									<div class="clearfix"></div>
-								  </div>
-								  <div class="x_content">
-									<div class="" role="tabpanel" data-example-id="togglable-tabs">
-									  <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-										<li role="presentation" class="active"><a href="ventaBoletos#tab_cont_horarios2" id="horarios2-tab" role="tab" data-toggle="tab" aria-expanded="true">Horarios</a>
-										</li>
-										<li role="presentation" class=""><a href="ventaBoletos#tab_cont_sinopsis2" role="tab" id="sinopsis2-tab" data-toggle="tab" aria-expanded="false">Sinopsis</a>
-										</li>
-									  </ul>
-									  <div id="myTabContent1" class="tab-content">
-										<div role="tabpanel" class="tab-pane fade active in" id="tab_cont_horarios2" aria-labelledby="horarios2-tab">
-											<div class="col-md-3">
-												<div class="profile_img">
-													 <div id="crop-avatar">
-													 	<img class="img-responsive avatar-view" src="<c:url value='resources/img/pelicula2.jpg' />" >
-													 </div>
-												</div>
-											  </div>
-											  <div class="col-md-9">
-											  		<br/>
-													<div class="row">											  
-													  <div class="form-group pull-left">														
-														<p>
-															<button type="button" class="btn btn-round btn-info">B</button>
-															<button type="button" class="btn btn-round btn-info">110 min</button>
-														</p>
-														<p>ESP <button type="button" class="btn btn-round btn-default">19:50</button><button type="button" class="btn btn-round btn-default">22:30</button></p>
-														<p>SUB
-															<button type="button" class="btn btn-round btn-default">18:10</button>
-															<button type="button" class="btn btn-round btn-warning" title="Disponibles: 10">20:10</button>
-															<button type="button" class="btn btn-round btn-default">22:40</button>
-														</p>
-													</div>
-												  </div><!-- /row -->	
-											</div>									
-										</div>
-										<div role="tabpanel" class="tab-pane fade" id="tab_cont_sinopsis2" aria-labelledby="sinopsis2-tab">
-										  <div class="col-md-55">
-												<div class="profile_img">
-													 <div id="crop-avatar">
-													   <img class="img-responsive avatar-view" src="<c:url value='resources/img/pelicula2.jpg' />" >
-													 </div>
-												</div>
-										  </div>
-										  <div class="col-md-6">
-											  <p>Louisa Clark vive en un pintoresco pueblo campestre de Inglaterra. Sin una direcci&oacute;n clara para su vida, la exc&eacute;ntrica y creativa joven de 26 a&ntilde;os va de un trabajo a otro para ayudar a su muy unida familia. Sin embargo, su actitud generalmente alegre ser&aacute; puesta a prueba cuando se encuentre frente a su m&aacute;s reciente desaf&iacute;o laboral. Al comenzar a trabajar en el castillo del lugar, se convierte en cuidadora y compa&ntilde;era de Will Traynor (Claflin), un joven y adinerado banquero que qued&oacute; en silla de ruedas por culpa de un accidente sucedido dos a&ntilde;os atr&aacute;s, y cuyo mundo cambi&oacute; dram&aacute;ticamente en un abrir y cerrar de ojos. Ya no es el alma aventurera que supo ser, y el hoy c&iacute;nico Will se ha rendido. Hasta que Lou decide demostrarle que vale la pena vivir la vida. Lou y Will se embarcar&aacute;n en una serie de aventuras, obtendr&aacute;n de ellas m&aacute;s de lo que esperaban y sus vidas (y corazones) cambiar&aacute;n de maneras en las que ninguno de los dos podr&iacute;an haber imaginado.</p>
-										  </div>	  
-										</div>
-									  </div>
-									</div>
-
-								  </div>
-								</div>
-							  </div>
-							  <!-- /bloque de pelicula -->
+							  
 
 						  </div>
 					   </div>

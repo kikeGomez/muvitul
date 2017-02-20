@@ -35,7 +35,7 @@
 				<div class="x_panel">
 					<div class="x_title">
 						<h2>
-							<i class="fa fa-film"></i> La Era de Hielo: Choque de Mundos
+							<i class="fa fa-film"></i> {{peliculaSeleccionada.titulo}}
 						</h2>
 						<div class="row pull-right">
 							<h3>TOTAL = $95.00</h3>
@@ -56,8 +56,8 @@
 						<div class="row">
 							<div class="profile_img">
 								<div id="crop-avatar">
-									<img class="img-responsive avatar-view"
-										src="<c:url value='resources/img/pelicula1.jpg' />">
+								<img class="img-responsive avatar-view" ng-src="data:image/png;base64,{{peliculaSeleccionada.icono}}" width="90%">
+									 
 								</div>
 							</div>
 						</div>
@@ -70,7 +70,7 @@
 								<br />
 								<div class="row">
 									<div class="col-md-12 col-sm-12 col-xs-12">
-										<label>CINE: San Miguel </label>
+										<label>CINE: {{peliculaSeleccionada.cineVO.nombre}} </label>
 									</div>
 								</div>
 								<div class="row">
@@ -80,7 +80,7 @@
 								</div>
 								<div class="row">
 									<div class="col-md-12 col-sm-12 col-xs-12">
-										<label>HORARIO: 20:30 ESP </label>
+										<label>HORARIO: {{programacionSeleccionada.horario}} {{programacionSeleccionada.versionVO.nombre}} {{programacionSeleccionada.formatoVO.nombre}}</label>
 									</div>
 								</div>
 							</div>
