@@ -10,6 +10,7 @@ public class ProgramacionVO {
 	private VersionVO versionVO;
 	private String diaSemana;
 	private Date horario;
+	
 	public Integer getIdProgramacion() {
 		return idProgramacion;
 	}
@@ -46,8 +47,4 @@ public class ProgramacionVO {
 	public void setHorario(Date horario) {
 		this.horario = horario;
 	}
-	
-
-	
-	
 }

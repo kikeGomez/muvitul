@@ -1,11 +1,11 @@
 package mx.com.tecnetia.muvitul.negocio.taquilla.vo;
 
 public class CineVO {
-
 	private Integer idCine;
 //	private Contacto contacto;
 //	private Empresa empresa;
 	private String nombre;
+	
 	public Integer getIdCine() {
 		return idCine;
 	}
@@ -18,5 +18,4 @@ public class CineVO {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
 }

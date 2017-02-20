@@ -4,6 +4,7 @@ public class VersionVO {
 	private Integer idVersion;
 	private String nombre;
 	private boolean activo;
+	
 	public Integer getIdVersion() {
 		return idVersion;
 	}

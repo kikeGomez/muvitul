@@ -1,10 +1,11 @@
 package mx.com.tecnetia.muvitul.negocio.taquilla.vo;
 
-import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Cine;
-
 public class SalaVO {
 	private Integer idSala;
 	private CineVO cineVO;
+	private String nombre;
+	private boolean activo;
+	
 	public Integer getIdSala() {
 		return idSala;
 	}
@@ -29,7 +30,4 @@ public class SalaVO {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-	private String nombre;
-	private boolean activo;
-	
 }

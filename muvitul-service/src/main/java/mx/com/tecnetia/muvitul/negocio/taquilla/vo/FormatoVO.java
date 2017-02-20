@@ -3,6 +3,9 @@ package mx.com.tecnetia.muvitul.negocio.taquilla.vo;
 public class FormatoVO {
 	private Integer idFormato;
 	private CineVO cineVO;
+	private String nombre;
+	private boolean activo;
+	
 	public Integer getIdFormato() {
 		return idFormato;
 	}
@@ -26,8 +29,5 @@ public class FormatoVO {
 	}
 	public void setActivo(boolean activo) {
 		this.activo = activo;
-	}
-	private String nombre;
-	private boolean activo;
-	
+	}	
 }
