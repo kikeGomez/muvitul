@@ -39,7 +39,7 @@ public class VentaBoletoController {
 		logger.info("ID CINE: "+ usuarioFirmadoBean.getUser().getCineVO().getIdCine());
 		List<PeliculaVO> peliculas= peliculaBO.findByCineAndDay(usuarioFirmadoBean.getUser().getCineVO().getIdCine(),Fecha.getDayOfWeek());
 
-		if (peliculas.isEmpty()) {
+		if (peliculas == null || peliculas.isEmpty()) {
 			throw new NotFoundException("No encontrado");
 		}
 
@@ -51,7 +51,7 @@ public class VentaBoletoController {
 		
 		List<PromocionVO> promociones= promocionBO.findByCineAndDate(usuarioFirmadoBean.getUser().getCineVO().getIdCine(), new Date());
 
-		if (promociones.isEmpty()) {
+		if (promociones==null || promociones.isEmpty()) {
 			throw new NotFoundException("No encontrado");
 		}
 
