@@ -29,7 +29,8 @@
 				                  <div class="input-group">
 				                    <input type="text" class="form-control" placeholder="Buscar producto...">
 				                    <span class="input-group-btn">
-				                      <button class="btn btn-default" type="button">Ir!</button>
+				                      <button class="btn btn-default" type="button" ng-click="consultar()" >Ir!</button>
+				                      
 				                    </span>
 				                  </div>
 			                   </div>

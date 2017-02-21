@@ -18,7 +18,7 @@ import mx.com.tecnetia.muvitul.negocio.taquilla.assembler.PeliculaAssembler;
 import mx.com.tecnetia.muvitul.negocio.taquilla.assembler.ProgramacionAssembler;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PeliculaVO;
 
-@Service ("peliculaBo")
+@Service
 @Transactional
 public class PeliculaBO implements PeliculaBOI {
 	final static Log log = LogFactory.getLog(PeliculaBO.class);
