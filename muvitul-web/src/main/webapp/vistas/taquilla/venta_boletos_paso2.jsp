@@ -14,15 +14,17 @@
 				Aplicar
 			</h2>
 			<div class="row pull-right">
-				 
-					<button type="button" class="btn btn-primary" ng-click="asignarPaso(1)">
-						<i class="fa fa-film"></i> Regresar a Cartelera
-					</button>
-			 
-					<button type="button" class="btn btn-success" ng-click="asignarPaso(3)">
-						Elegir Cantidad <i class="fa fa-calculator"></i>
-					</button>
-				 
+
+				<button type="button" class="btn btn-primary"
+					ng-click="asignarPaso(1)">
+					<i class="fa fa-film"></i> Regresar a Cartelera
+				</button>
+
+				<button type="button" class="btn btn-success"
+					ng-click="asignarPaso(3)">
+					Elegir Cantidad <i class="fa fa-calculator"></i>
+				</button>
+
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -34,71 +36,33 @@
 
 						<!-- Tabla de Promociones -->
 						<div class="row">
+							<div ng-repeat="promocion in listaPromociones ">
+								<div
+									class="animated flipInY col-lg-4 col-md-4 col-sm-4 col-xs-6">
+									<a href="javascript:void(0)" ng-click="seleccionarPromocion(promocion )">
+										<div class="tile-stats" style="background-color: #F2F2F2">
+											<div style="position: absolute; top: 10px; right: 10px">
+												<img src="<c:url value='resources/img/ticket_icon.jpeg' />"
+													width="50px" height="50px">
+											</div>
+											<div class="count">
+												<img src="<c:url value='resources/img/check_icon.jpeg' />"
+													width="50px" height="50px" ng-if="promocion.check">
+													<img src="<c:url value='resources/img/uncheck_icon.jpeg' />"
+													width="50px" height="50px" ng-if="!promocion.check">
+											</div>
+											<br />
+											<h3>{{promocion.nombre}}</h3>
+											<br />
+											<p>{{promocion.descripcion}}</p>
+											<div class="text-center mtop20">
+												<h2 ng-if="promocion.detallePromocionesVO">{{promocion.detallePromocionesVO[0].precio}}</h2>
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
 
-							<div class="animated flipInY col-lg-4 col-md-4 col-sm-4 col-xs-6">
-								<a href="javascript:void(0)" ng-click="seleccionarPromocion()">
-									<div class="tile-stats" style="background-color: #F2F2F2">
-										<div style="position: absolute; top: 10px; right: 10px">
-											<img src="<c:url value='resources/img/ticket_icon.jpeg' />"
-												width="50px" height="50px">
-										</div>
-										<div class="count">
-											<img src="<c:url value='resources/img/check_icon.jpeg' />"
-												width="50px" height="50px">
-										</div>
-										<br />
-										<h3>2 X 1</h3>
-										<br />
-										<p>2 X 1 todos los mi&eacute;rcoles</p>
-										<div class="text-center mtop20">
-											<h2>$60.00</h2>
-										</div>
-									</div>
-								</a>
-							</div>
-							<div class="animated flipInY col-lg-4 col-md-4 col-sm-4 col-xs-6">
-								<a href="javascript:void(0)">
-									<div class="tile-stats">
-										<div style="position: absolute; top: 10px; right: 10px">
-											<img src="<c:url value='resources/img/ticket_icon.jpeg' />"
-												width="50px" height="50px">
-										</div>
-										<div class="count">
-											<img src="<c:url value='resources/img/uncheck_icon.jpeg' />"
-												width="50px" height="50px">
-										</div>
-										<br />
-										<h3>Ni&ntilde;os Gratis</h3>
-										<br />
-										<p>Compra 1 adulto y entra 1 ni&ntilde;o gratis.</p>
-										<div class="text-center mtop20">
-											<h2>$55.00</h2>
-										</div>
-									</div>
-								</a>
-							</div>
-							<div class="animated flipInY col-lg-4 col-md-4 col-sm-4 col-xs-6">
-								<a href="javascript:void(0)">
-									<div class="tile-stats">
-										<div style="position: absolute; top: 10px; right: 10px">
-											<img src="<c:url value='resources/img/ticket_icon.jpeg' />"
-												width="50px" height="50px">
-
-										</div>
-										<div class="count">
-											<img src="<c:url value='resources/img/uncheck_icon.jpeg' />"
-												width="50px" height="50px">
-										</div>
-										<br />
-										<h3>2 ni&ntilde;os X $70</h3>
-										<br />
-										<p>Compra 2 boletos de ni&ntilde;o por $70.00</p>
-										<div class="text-center mtop20">
-											<h2>$70.00</h2>
-										</div>
-									</div>
-								</a>
-							</div>
 						</div>
 
 						<!-- /Tabla de Promociones -->

@@ -252,7 +252,8 @@
 	<!---------- LIBRERIAS DEL MODULO DE INDEX PARA LA APLICACION ------------>
     <script src="<c:url value='/resources/js/aplicacion/comun/index.js' />"></script>
     <script src="<c:url value='/resources/js/aplicacion/comun/controller/indexController.js' />"></script>
-    <script src="<c:url value='/resources/js/aplicacion/comun/directivas/pagination.js' />"></script>
+    <script src="<c:url value='/resources/js/comun/directivas/pagination.js' />"></script>
+ 	<script src="<c:url value='/resources/js/comun/constantes/constanteConfig.js'/>"></script>
  
     <!-- Controller del modulo de taquilla - venta boletos -->
     <script src="<c:url value='/resources/js/aplicacion/taquilla/service/taquillaAngularService.js'/>"></script>

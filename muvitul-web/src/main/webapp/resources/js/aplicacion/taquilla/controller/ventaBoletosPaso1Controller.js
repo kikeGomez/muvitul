@@ -7,7 +7,8 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 			elegirCantidad	:"", registrarPago	:"", 
 			confirmarVenta  :"", numeroPaso:1
 			}
-	
+	$scope.listaPromociones={};
+
 	$scope.listaPeliculas={};
 	$scope.peliculaSeleccionada={}
 	$scope.programacionSeleccionada={}
@@ -15,15 +16,17 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 	$scope.seleccionarPelicula =function(pelicula,programacion){
 		$scope.peliculaSeleccionada=pelicula;
 		$scope.programacionSeleccionada=programacion;
-		console.log($scope.programacionSeleccionada)
-				console.log($scope.peliculaSeleccionada)
+ 
 
 		$scope.statusVenta.numeroPaso=2;
-		$scope.statusVenta.elegirPelicula="done"
+		$scope.statusVenta.elegirPelicula="done";
+		$scope.consultarPromociones();
 	}
 	
-	$scope.seleccionarPromocion =function(){
- 	}
+	$scope.seleccionarPromocion =function(promocion){
+		promocion.check = true;
+
+  	}
 	
 	$scope.asignarPaso =function( paso){
 		$scope.statusVenta.numeroPaso = paso;
@@ -33,9 +36,19 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 	
 	//	CONSULTA CATALOGOS
 	
+	$scope.consultarPeliculas =function(){
+ 		taquillaService.consultarPeliculas().success(function(data) {	
+ 			$scope.listaPeliculas=data;
+ 		  }).error(function(data) {
+		  	 
+		  });
+	}
+ 
+	
 	$scope.consultarPromociones =function(){
  		taquillaService.consultarPromociones().success(function(data) {	
- 			$scope.listaPeliculas=data;
+ 			$scope.listaPromociones=data;
+ 			console.log($scope.listaPromociones)
  		  }).error(function(data) {
 		  	 
 		  });
@@ -82,7 +95,7 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
  	        break;
  	        }
 		}
-  
+	$scope.consultarPeliculas();
 	
-	$scope.consultarPromociones();
+	
  });
