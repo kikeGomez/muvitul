@@ -14,11 +14,10 @@ import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PromocionVO;
 
 @Service
 @Transactional
-public class PromocionBO implements PromocionBOI {
+public class PromocionBO {
 	@Autowired
 	private PromocionDAOI promocionDAO;
 
-	@Override
 	public List<PromocionVO> findByCineAndDate(Integer idCine, Date today) throws BusinessGlobalException {
 		return PromocionAssembler.getPromocionesVO(promocionDAO.findByCineAndDate(idCine, today));
 	}

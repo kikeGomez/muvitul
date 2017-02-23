@@ -20,19 +20,18 @@ import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PeliculaVO;
 
 @Service
 @Transactional
-public class PeliculaBO implements PeliculaBOI {
+public class PeliculaBO {
 	final static Log log = LogFactory.getLog(PeliculaBO.class);
 	@Autowired
 	private ProgramacionDAO programacionDAO;
-	@Override
+
 	
 	public List<PeliculaVO> findByCineAndDay(Integer idCine, String diaSemana) throws BusinessGlobalException {
 
 		Map <Integer, PeliculaVO> mapPeliculas= new HashMap<Integer,PeliculaVO>();
 		
 		for (Programacion programacion : programacionDAO.findByCineAndDay(idCine,diaSemana)) {
-			log.debug("Titulo: "+programacion.getPelicula().getTitulo()+ " --> "+ programacion.getHorario());
-			
+
 			if (!mapPeliculas.containsKey(programacion.getPelicula().getIdPelicula())){
 				mapPeliculas.put(programacion.getPelicula().getIdPelicula(), PeliculaAssembler.getPeliculaVO(programacion.getPelicula()));
 			}

@@ -20,11 +20,9 @@
 	<!-- CONFIGURACION PARA DAOS DE REPOSITORIO -->
      <context:component-scan base-package="mx.com.tecnetia.muvitul.servicios.facade" /> 	
      <context:component-scan base-package="mx.com.tecnetia.muvitul.servicios.ventas.controller" /> 	
-     <context:component-scan base-package="mx.com.tecnetia.muvitul.negocio.ventas.business" /> 
-     
-     
-     <context:component-scan base-package="mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dao" /> 
-     <context:component-scan base-package="mx.com.tecnetia.muvitul.negocio.taquilla.business" /> 
-     
-  
+     <context:component-scan base-package="mx.com.tecnetia.muvitul.servicios.taquilla.controller" /> 	
+     <context:component-scan base-package="mx.com.tecnetia.muvitul.negocio.ventas.business" />
+     <context:component-scan base-package="mx.com.tecnetia.muvitul.negocio.taquilla.business" />
+     <context:component-scan base-package="mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dao" />  
+ 
  </beans>
