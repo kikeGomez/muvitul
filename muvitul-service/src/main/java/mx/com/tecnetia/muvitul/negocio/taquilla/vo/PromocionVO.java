@@ -1,6 +1,7 @@
 package mx.com.tecnetia.muvitul.negocio.taquilla.vo;
 
 import java.util.Date;
+import java.util.List;
 
 public class PromocionVO {
 	private Integer idPromocion;
@@ -11,6 +12,7 @@ public class PromocionVO {
 	private String descripcion;
 	private Date fechaInicio;
 	private Date fechaFin;
+	private List<DetallePromocionVO> detallePromocionesVO;
 	
 	public Integer getIdPromocion() {
 		return idPromocion;
@@ -59,5 +61,11 @@ public class PromocionVO {
 	}
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
+	}
+	public List<DetallePromocionVO> getDetallePromocionesVO() {
+		return detallePromocionesVO;
+	}
+	public void setDetallePromocionesVO(List<DetallePromocionVO> detallePromocionesVO) {
+		this.detallePromocionesVO = detallePromocionesVO;
 	}
 }
