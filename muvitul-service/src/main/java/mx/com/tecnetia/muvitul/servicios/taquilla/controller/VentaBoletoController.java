@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 import mx.com.tecnetia.muvitul.negocio.taquilla.business.PeliculaBO;
+import mx.com.tecnetia.muvitul.negocio.taquilla.business.PrecioXFormatoBO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.business.PromocionBO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PeliculaVO;
+import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PrecioXFormatoVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PromocionVO;
 import mx.com.tecnetia.muvitul.servicios.util.Fecha;
 
@@ -20,14 +22,20 @@ public class VentaBoletoController {
 	private PeliculaBO peliculaBO;
 	@Autowired
 	private PromocionBO promocionBO;
+	@Autowired
+	private PrecioXFormatoBO precioXFormatoBO;
 	
 	
-	public List<PeliculaVO> findPeliculasByCine(Integer idCine, String diaSemana ) throws BusinessGlobalException {
+	public List<PeliculaVO> getPeliculasByCine(Integer idCine, String diaSemana ) throws BusinessGlobalException {
 		return peliculaBO.findByCineAndDay(idCine,Fecha.getDayOfWeek());
 	}
 	
-	public List<PromocionVO> findPromocionesByCine(Integer idCine, Date today) throws BusinessGlobalException {
+	public List<PromocionVO> getPromocionesByCine(Integer idCine, Date today) throws BusinessGlobalException {
 		return promocionBO.findByCineAndDate(idCine, new Date());
+	}
+
+	public List<PrecioXFormatoVO> getPreciosByFormato(Integer idCine, Integer idFormato) throws BusinessGlobalException {
+		return precioXFormatoBO.findPreciosByFormatoCine(idCine,idFormato);
 	}
 	
 }

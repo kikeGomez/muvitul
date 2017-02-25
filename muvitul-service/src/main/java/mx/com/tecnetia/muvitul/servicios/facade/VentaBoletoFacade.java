@@ -13,12 +13,14 @@ import mx.com.tecnetia.muvitul.infraservices.presentacion.seguridad.frontcontrol
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 import mx.com.tecnetia.muvitul.infraservices.servicios.NotFoundException;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PeliculaVO;
+import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PrecioXFormatoVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PromocionVO;
+import mx.com.tecnetia.muvitul.negocio.taquilla.vo.VentaVO;
 import mx.com.tecnetia.muvitul.servicios.taquilla.controller.VentaBoletoController;
 import mx.com.tecnetia.muvitul.servicios.util.Fecha;
 
 @Service
-public class VentaBoletoFacade implements VentaBoletoFacadeI{
+public class VentaBoletoFacade implements VentaBoletoFacadeI {
 	@Autowired
 	UsuarioFirmadoBean usuarioFirmadoBean;
 	@Autowired
@@ -26,10 +28,10 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI{
 
 	@Override
 	@Transactional(readOnly = true)
-	public ResponseEntity<List<PeliculaVO>> findPeliculasByCine() throws BusinessGlobalException, NotFoundException {
-		List<PeliculaVO> peliculas= ventaBoletoController.findPeliculasByCine(usuarioFirmadoBean.
-				getUser().getCineVO().getIdCine(),Fecha.getDayOfWeek());
-		
+	public ResponseEntity<List<PeliculaVO>> getPeliculasByCine() throws BusinessGlobalException, NotFoundException {
+		List<PeliculaVO> peliculas = ventaBoletoController
+				.getPeliculasByCine(usuarioFirmadoBean.getUser().getCineVO().getIdCine(), Fecha.getDayOfWeek());
+
 		if (peliculas == null || peliculas.isEmpty()) {
 			throw new NotFoundException("No encontrado");
 		}
@@ -40,16 +42,35 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI{
 
 	@Override
 	@Transactional(readOnly = true)
-	public ResponseEntity<List<PromocionVO>> findPromocionesByCine() throws BusinessGlobalException, NotFoundException {
-		
-		List<PromocionVO> promociones= ventaBoletoController.findPromocionesByCine(usuarioFirmadoBean.getUser().getCineVO().getIdCine(), new Date());
+	public ResponseEntity<List<PromocionVO>> getPromocionesByCine() throws BusinessGlobalException, NotFoundException {
 
-		if (promociones==null || promociones.isEmpty()) {
+		List<PromocionVO> promociones = ventaBoletoController
+				.getPromocionesByCine(usuarioFirmadoBean.getUser().getCineVO().getIdCine(), new Date());
+
+		if (promociones == null || promociones.isEmpty()) {
 			throw new NotFoundException("No encontrado");
 		}
 
 		return new ResponseEntity<List<PromocionVO>>(promociones, HttpStatus.OK);
 
+	}
+
+	@Override
+	public ResponseEntity<List<PrecioXFormatoVO>> getPreciosByFormato(Integer idFormato)
+			throws BusinessGlobalException, NotFoundException {
+		List<PrecioXFormatoVO> precios = ventaBoletoController
+				.getPreciosByFormato(usuarioFirmadoBean.getUser().getCineVO().getIdCine(), idFormato);
+
+		if (precios == null || precios.isEmpty()) {
+			throw new NotFoundException("No encontrado");
+		}
+
+		return new ResponseEntity<List<PrecioXFormatoVO>>(precios, HttpStatus.OK);
+	}
+
+	@Override
+	public ResponseEntity<VentaVO> createVenta(VentaVO ventaVO) throws BusinessGlobalException, NotFoundException {
+		return new ResponseEntity<VentaVO>(ventaVO, HttpStatus.CREATED);
 	}
 
 }
