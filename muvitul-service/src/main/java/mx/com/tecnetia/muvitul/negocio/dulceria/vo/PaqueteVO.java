@@ -1,19 +1,15 @@
 package mx.com.tecnetia.muvitul.negocio.dulceria.vo;
 
-import java.util.Set;
-
-import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PrecioXPaquete;
-import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Producto;
-import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PuntoVenta;
+import java.util.List;
 
 public class PaqueteVO {
 	private Integer idPaquete;
-	private PuntoVenta puntoVenta;
+	private PuntoVentaVO puntoVentaVO;
 	private String nombre;
 	private byte[] icono;
 	private boolean activo;
-	private Set<Producto> productos;
-	private Set<PrecioXPaquete> precioXPaquetes;
+	private List<ProductoVO> productos;
+	private List<PrecioXPaqueteVO> preciosXPaquete;
 	
 	public Integer getIdPaquete() {
 		return idPaquete;
@@ -21,11 +17,11 @@ public class PaqueteVO {
 	public void setIdPaquete(Integer idPaquete) {
 		this.idPaquete = idPaquete;
 	}
-	public PuntoVenta getPuntoVenta() {
-		return puntoVenta;
+	public PuntoVentaVO getPuntoVentaVO() {
+		return puntoVentaVO;
 	}
-	public void setPuntoVenta(PuntoVenta puntoVenta) {
-		this.puntoVenta = puntoVenta;
+	public void setPuntoVentaVO(PuntoVentaVO puntoVentaVO) {
+		this.puntoVentaVO = puntoVentaVO;
 	}
 	public String getNombre() {
 		return nombre;
@@ -45,19 +41,17 @@ public class PaqueteVO {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-	public Set<Producto> getProductos() {
+	public List<ProductoVO> getProductos() {
 		return productos;
 	}
-	public void setProductos(Set<Producto> productos) {
+	public void setProductos(List<ProductoVO> productos) {
 		this.productos = productos;
 	}
-	public Set<PrecioXPaquete> getPrecioXPaquetes() {
-		return precioXPaquetes;
+	public List<PrecioXPaqueteVO> getPreciosXPaquete() {
+		return preciosXPaquete;
 	}
-	public void setPrecioXPaquetes(Set<PrecioXPaquete> precioXPaquetes) {
-		this.precioXPaquetes = precioXPaquetes;
+	public void setPreciosXPaquete(List<PrecioXPaqueteVO> preciosXPaquete) {
+		this.preciosXPaquete = preciosXPaquete;
 	}
-	
-	
-	
+
 }

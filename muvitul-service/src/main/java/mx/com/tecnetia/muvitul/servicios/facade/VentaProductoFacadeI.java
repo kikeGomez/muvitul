@@ -19,7 +19,7 @@ import mx.com.tecnetia.muvitul.negocio.dulceria.vo.VentaVO;
 @RequestMapping("/ventaProducto")
 public interface VentaProductoFacadeI {
 	@RequestMapping(value = "/paquetes", method = RequestMethod.GET)
-	public ResponseEntity<List<PaqueteVO>> getPaquetes() throws BusinessGlobalException, NotFoundException;
+	public ResponseEntity<List<PaqueteVO>> getByPuntoVenta(Integer idPuntoVenta) throws BusinessGlobalException, NotFoundException;
 
 	@RequestMapping(value = "/pagos", method = RequestMethod.POST)
 	public ResponseEntity<VentaVO> createVenta(@RequestBody VentaVO ventaVO)

@@ -19,14 +19,14 @@ import mx.com.tecnetia.muvitul.servicios.dulceria.controller.VentaProductoContro
 public class VentaProductoFacade implements VentaProductoFacadeI {
 	@Autowired
 	UsuarioFirmadoBean usuarioFirmadoBean;
+	
 	@Autowired
 	VentaProductoController ventaProductoController;
 
 	@Override
 	@Transactional(readOnly = true)
-	public ResponseEntity<List<PaqueteVO>> getPaquetes() throws BusinessGlobalException, NotFoundException {
-		List<PaqueteVO> paquetes = ventaProductoController
-				.getPaquetes(usuarioFirmadoBean.getUser().getCineVO().getIdCine());
+	public ResponseEntity<List<PaqueteVO>> getByPuntoVenta(Integer idPuntoVenta) throws BusinessGlobalException, NotFoundException {
+		List<PaqueteVO> paquetes = ventaProductoController.getByPuntoVenta(idPuntoVenta);
 
 		if (paquetes == null || paquetes.isEmpty()) {
 			throw new NotFoundException("No encontrado");
@@ -37,6 +37,7 @@ public class VentaProductoFacade implements VentaProductoFacadeI {
 
 	@Override
 	public ResponseEntity<VentaVO> createVenta(VentaVO ventaVO) throws BusinessGlobalException, NotFoundException {
+		
 		return new ResponseEntity<VentaVO>(ventaVO, HttpStatus.CREATED);
 	}
 

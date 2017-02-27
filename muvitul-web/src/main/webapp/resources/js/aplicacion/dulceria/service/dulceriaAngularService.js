@@ -17,10 +17,18 @@ angular.module('indexModule').service('dulceriaService', ['$http','GlobalFactory
 	}
 
 	 this.consultarFormasPago = function(){
-			console.log("consultar");
+			console.log("consultar formas pago");
 		 return $http.get(config.baseUrl+"/catalogo/formaspago");
 	 }
 	 
+		this.consultarPaquetes = function(){
+			console.log("consultar paquetes");
+			return $http.get(config.baseUrl+"/ventaProducto/paquetes", {
+				params : {
+					"idPuntoVenta" : 1
+				}
+			});
+		}
  
 }]);
 
