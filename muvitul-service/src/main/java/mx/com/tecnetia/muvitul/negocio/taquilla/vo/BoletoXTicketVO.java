@@ -2,7 +2,7 @@ package mx.com.tecnetia.muvitul.negocio.taquilla.vo;
 
 import java.math.BigDecimal;
 
-public class BoletosVO {
+public class BoletoXTicketVO {
 	private FormatoVO formatoVO;
 	private TipoClienteVO tipoClienteVO;
 	private int cantidad;

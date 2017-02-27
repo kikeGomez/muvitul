@@ -17,4 +17,17 @@ public class FormatoAssembler {
 		formatoVO.setActivo(formato.isActivo());
 		return formatoVO;
 	}
+	
+	public static Formato getFormato(FormatoVO formatoVO){
+
+		if(formatoVO==null)
+			return null;
+		
+		Formato formato = new Formato();
+		formato.setIdFormato(formatoVO.getIdFormato());
+
+		return formato;
+	}
+	
+	
 }

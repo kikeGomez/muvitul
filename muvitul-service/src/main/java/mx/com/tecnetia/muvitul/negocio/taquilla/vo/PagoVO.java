@@ -3,8 +3,6 @@ package mx.com.tecnetia.muvitul.negocio.taquilla.vo;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import mx.com.tecnetia.muvitul.negocio.configuracion.vo.FormaPagoVO;
-
 public class PagoVO {
 	private Integer idPago;
 	private EstatusPagoVO estatusPagoVO;

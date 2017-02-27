@@ -14,7 +14,7 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller("ven
 	
 	
 	$scope.consultar =function(){
-		dulceriaService.consultarFormasPago().success(function(data) {	
+		dulceriaService.consultarPrecios().success(function(data) {	
  			 console.log(data);
 		  }).error(function(data) {
 		  	 
