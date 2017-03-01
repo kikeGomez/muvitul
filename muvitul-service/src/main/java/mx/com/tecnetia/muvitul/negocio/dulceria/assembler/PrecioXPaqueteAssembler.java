@@ -16,7 +16,7 @@ public class PrecioXPaqueteAssembler {
 		
 		PrecioXPaqueteVO precioXPaqueteVO = new PrecioXPaqueteVO();
 		precioXPaqueteVO.setIdPrecioXPaquete(precioXPaquete.getIdPrecioXPaquete());
-		precioXPaqueteVO.setPaqueteVO(PaqueteAssembler.getPaqueteVO(precioXPaquete.getPaquete()));
+		//precioXPaqueteVO.setPaqueteVO(PaqueteAssembler.getPaqueteVO(precioXPaquete.getPaquete()));
 		precioXPaqueteVO.setPrecio(precioXPaquete.getPrecio());
 		precioXPaqueteVO.setActivo(precioXPaquete.isActivo());
 		
