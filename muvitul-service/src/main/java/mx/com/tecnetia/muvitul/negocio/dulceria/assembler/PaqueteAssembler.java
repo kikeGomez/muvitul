@@ -23,7 +23,6 @@ public class PaqueteAssembler {
 		paqueteVO.setProductos(ProductoAssembler.getProductosVO(paquete.getProductos()));
 		paqueteVO.setPreciosXPaquete(PrecioXPaqueteAssembler.getPreciosXPaqueteVO(paquete.getPrecioXPaquetes()));
 
-
 		return paqueteVO;
 	}
 	

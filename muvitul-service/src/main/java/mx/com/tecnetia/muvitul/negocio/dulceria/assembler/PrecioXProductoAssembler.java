@@ -2,6 +2,7 @@ package mx.com.tecnetia.muvitul.negocio.dulceria.assembler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PrecioXProducto;
 import mx.com.tecnetia.muvitul.negocio.dulceria.vo.PrecioXProductoVO;
@@ -15,14 +16,14 @@ public class PrecioXProductoAssembler {
 		
 		PrecioXProductoVO precioXProductoVO = new PrecioXProductoVO();
 		precioXProductoVO.setIdPrecioXProducto(precioXProducto.getIdPrecioXProducto());
-		precioXProductoVO.setProductoVO(ProductoAssembler.getProductoVO(precioXProducto.getProducto()));
+		//precioXProductoVO.setProductoVO(ProductoAssembler.getProductoVO(precioXProducto.getProducto()));
 		precioXProductoVO.setPrecio(precioXProducto.getPrecio());
 		precioXProductoVO.setActivo(precioXProducto.isActivo());
 		
 		return precioXProductoVO;
 	}
 	
-	public static List<PrecioXProductoVO> getPreciosXProductoVO(List<PrecioXProducto> preciosXProducto){
+	public static List<PrecioXProductoVO> getPreciosXProductoVO(Set<PrecioXProducto> preciosXProducto){
 
 		if(preciosXProducto==null || preciosXProducto.isEmpty())
 			return null;
