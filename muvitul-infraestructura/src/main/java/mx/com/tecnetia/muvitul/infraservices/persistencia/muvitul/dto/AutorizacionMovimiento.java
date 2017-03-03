@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 12/02/2017 04:03:11 PM by Hibernate Tools 4.3.1.Final
+// Generated 2/03/2017 11:59:13 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -23,6 +23,7 @@ public class AutorizacionMovimiento implements java.io.Serializable {
 
 	private Integer idAutorizacionMovimiento;
 	private MovimientoInventario movimientoInventario;
+	private TipoAutorizacionMov tipoAutorizacionMov;
 	private Usuario usuario;
 	private Date fecha;
 	private String comentarios;
@@ -30,9 +31,10 @@ public class AutorizacionMovimiento implements java.io.Serializable {
 	public AutorizacionMovimiento() {
 	}
 
-	public AutorizacionMovimiento(MovimientoInventario movimientoInventario, Usuario usuario, Date fecha,
-			String comentarios) {
+	public AutorizacionMovimiento(MovimientoInventario movimientoInventario, TipoAutorizacionMov tipoAutorizacionMov,
+			Usuario usuario, Date fecha, String comentarios) {
 		this.movimientoInventario = movimientoInventario;
+		this.tipoAutorizacionMov = tipoAutorizacionMov;
 		this.usuario = usuario;
 		this.fecha = fecha;
 		this.comentarios = comentarios;
@@ -58,6 +60,16 @@ public class AutorizacionMovimiento implements java.io.Serializable {
 
 	public void setMovimientoInventario(MovimientoInventario movimientoInventario) {
 		this.movimientoInventario = movimientoInventario;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_tipo_autorizacion_mov", nullable = false)
+	public TipoAutorizacionMov getTipoAutorizacionMov() {
+		return this.tipoAutorizacionMov;
+	}
+
+	public void setTipoAutorizacionMov(TipoAutorizacionMov tipoAutorizacionMov) {
+		this.tipoAutorizacionMov = tipoAutorizacionMov;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)

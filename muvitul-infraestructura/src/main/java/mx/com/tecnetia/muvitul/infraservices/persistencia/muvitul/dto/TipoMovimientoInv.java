@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 12/02/2017 04:03:11 PM by Hibernate Tools 4.3.1.Final
+// Generated 2/03/2017 11:59:13 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,19 +21,23 @@ public class TipoMovimientoInv implements java.io.Serializable {
 
 	private Integer idTipoMovimientoInv;
 	private String nombre;
+	private boolean esEntrada;
 	private boolean activo;
 	private Set<MovimientoInventario> movimientoInventarios = new HashSet<MovimientoInventario>(0);
 
 	public TipoMovimientoInv() {
 	}
 
-	public TipoMovimientoInv(String nombre, boolean activo) {
+	public TipoMovimientoInv(String nombre, boolean esEntrada, boolean activo) {
 		this.nombre = nombre;
+		this.esEntrada = esEntrada;
 		this.activo = activo;
 	}
 
-	public TipoMovimientoInv(String nombre, boolean activo, Set<MovimientoInventario> movimientoInventarios) {
+	public TipoMovimientoInv(String nombre, boolean esEntrada, boolean activo,
+			Set<MovimientoInventario> movimientoInventarios) {
 		this.nombre = nombre;
+		this.esEntrada = esEntrada;
 		this.activo = activo;
 		this.movimientoInventarios = movimientoInventarios;
 	}
@@ -57,6 +61,15 @@ public class TipoMovimientoInv implements java.io.Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	@Column(name = "es_entrada", nullable = false)
+	public boolean isEsEntrada() {
+		return this.esEntrada;
+	}
+
+	public void setEsEntrada(boolean esEntrada) {
+		this.esEntrada = esEntrada;
 	}
 
 	@Column(name = "activo", nullable = false)

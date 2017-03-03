@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 12/02/2017 04:03:11 PM by Hibernate Tools 4.3.1.Final
+// Generated 2/03/2017 11:59:13 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,7 +26,6 @@ public class Formato implements java.io.Serializable {
 	private String nombre;
 	private boolean activo;
 	private Set<PrecioXFormato> precioXFormatos = new HashSet<PrecioXFormato>(0);
-	private Set<BoletosXTicket> boletosXTickets = new HashSet<BoletosXTicket>(0);
 	private Set<Programacion> programacions = new HashSet<Programacion>(0);
 
 	public Formato() {
@@ -39,12 +38,11 @@ public class Formato implements java.io.Serializable {
 	}
 
 	public Formato(Cine cine, String nombre, boolean activo, Set<PrecioXFormato> precioXFormatos,
-			Set<BoletosXTicket> boletosXTickets, Set<Programacion> programacions) {
+			Set<Programacion> programacions) {
 		this.cine = cine;
 		this.nombre = nombre;
 		this.activo = activo;
 		this.precioXFormatos = precioXFormatos;
-		this.boletosXTickets = boletosXTickets;
 		this.programacions = programacions;
 	}
 
@@ -95,15 +93,6 @@ public class Formato implements java.io.Serializable {
 
 	public void setPrecioXFormatos(Set<PrecioXFormato> precioXFormatos) {
 		this.precioXFormatos = precioXFormatos;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "formato")
-	public Set<BoletosXTicket> getBoletosXTickets() {
-		return this.boletosXTickets;
-	}
-
-	public void setBoletosXTickets(Set<BoletosXTicket> boletosXTickets) {
-		this.boletosXTickets = boletosXTickets;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "formato")

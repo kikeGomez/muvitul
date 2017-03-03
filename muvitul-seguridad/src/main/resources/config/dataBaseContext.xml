@@ -39,8 +39,7 @@
 			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Sala</value>
 			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ProductosXTicketId</value>
 			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.CupoXSala</value>
-			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ExistenciaMatPrima</value>
-			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Promocion</value>
+ 			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Promocion</value>
 			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PromocionPara</value>
 			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.AutorizacionMovimiento</value>
 			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Perfil</value>

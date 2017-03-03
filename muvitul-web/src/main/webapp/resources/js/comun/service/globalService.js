@@ -78,12 +78,12 @@ angular.module('globalModule').factory('ResponseInterceptorFactory', ['$q', '$in
         	var responseUrlArray = response.config.url.split('/');
         	var responseService = responseUrlArray[responseUrlArray.length-1];
         	
-        	console.log('ActualizarToken? ',responseService!=='actualizarTk');
-        	console.log('Token: ',token);        	        	
+        	//console.log('ActualizarToken? ',responseService!=='actualizarTk');
+        	//console.log('Token: ',token);        	        	
             	//validamos si ya esta firmado el usuario y ademas que no sea la invocacion al servicio de actualizacion del token (sino se ciclaria)
         	if(token && responseService!=='actualizarTk'){
         		//actualizamos la fecha de expiracion del token
-            	console.log('Actualizamos el token:: ',token);        	        	
+            	//console.log('Actualizamos el token:: ',token);        	        	
         		GlobalFactory.actualizarToken()
                 .then(
 	                function(responseLogin) {

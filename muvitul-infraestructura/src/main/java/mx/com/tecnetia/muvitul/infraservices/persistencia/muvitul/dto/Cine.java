@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 12/02/2017 04:03:11 PM by Hibernate Tools 4.3.1.Final
+// Generated 2/03/2017 11:59:13 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -26,13 +28,21 @@ public class Cine implements java.io.Serializable {
 	private Empresa empresa;
 	private String nombre;
 	private boolean activo;
-	private Set<Formato> formatos = new HashSet<Formato>(0);
+	private Set<ClasificacionArt> clasificacionArts = new HashSet<ClasificacionArt>(0);
 	private Set<Usuario> usuarios = new HashSet<Usuario>(0);
+	private Set<Articulo> articulos = new HashSet<Articulo>(0);
+	private Set<Sala> salas = new HashSet<Sala>(0);
+	private Set<PuntoVenta> puntoVentas = new HashSet<PuntoVenta>(0);
+	private Set<Formato> formatos = new HashSet<Formato>(0);
+	private Set<Usuario> usuarios_1 = new HashSet<Usuario>(0);
+	private Set<Proveedor> proveedors = new HashSet<Proveedor>(0);
 	private Set<Promocion> promocions = new HashSet<Promocion>(0);
 	private Set<Pelicula> peliculas = new HashSet<Pelicula>(0);
 	private Set<MateriaPrima> materiaPrimas = new HashSet<MateriaPrima>(0);
-	private Set<Sala> salas = new HashSet<Sala>(0);
-	private Set<PuntoVenta> puntoVentas = new HashSet<PuntoVenta>(0);
+	private Set<Paquete> paquetes = new HashSet<Paquete>(0);
+	private Set<ImpuestoBoleto> impuestoBoletos = new HashSet<ImpuestoBoleto>(0);
+	private Set<ImpuestoXProducto> impuestoXProductos = new HashSet<ImpuestoXProducto>(0);
+	private Set<Producto> productos = new HashSet<Producto>(0);
 
 	public Cine() {
 	}
@@ -44,20 +54,30 @@ public class Cine implements java.io.Serializable {
 		this.activo = activo;
 	}
 
-	public Cine(Contacto contacto, Empresa empresa, String nombre, boolean activo, Set<Formato> formatos,
-			Set<Usuario> usuarios, Set<Promocion> promocions, Set<Pelicula> peliculas, Set<MateriaPrima> materiaPrimas,
-			Set<Sala> salas, Set<PuntoVenta> puntoVentas) {
+	public Cine(Contacto contacto, Empresa empresa, String nombre, boolean activo,
+			Set<ClasificacionArt> clasificacionArts, Set<Usuario> usuarios, Set<Articulo> articulos, Set<Sala> salas,
+			Set<PuntoVenta> puntoVentas, Set<Formato> formatos, Set<Usuario> usuarios_1, Set<Proveedor> proveedors,
+			Set<Promocion> promocions, Set<Pelicula> peliculas, Set<MateriaPrima> materiaPrimas, Set<Paquete> paquetes,
+			Set<ImpuestoBoleto> impuestoBoletos, Set<ImpuestoXProducto> impuestoXProductos, Set<Producto> productos) {
 		this.contacto = contacto;
 		this.empresa = empresa;
 		this.nombre = nombre;
 		this.activo = activo;
-		this.formatos = formatos;
+		this.clasificacionArts = clasificacionArts;
 		this.usuarios = usuarios;
+		this.articulos = articulos;
+		this.salas = salas;
+		this.puntoVentas = puntoVentas;
+		this.formatos = formatos;
+		this.usuarios_1 = usuarios_1;
+		this.proveedors = proveedors;
 		this.promocions = promocions;
 		this.peliculas = peliculas;
 		this.materiaPrimas = materiaPrimas;
-		this.salas = salas;
-		this.puntoVentas = puntoVentas;
+		this.paquetes = paquetes;
+		this.impuestoBoletos = impuestoBoletos;
+		this.impuestoXProductos = impuestoXProductos;
+		this.productos = productos;
 	}
 
 	@Id
@@ -111,6 +131,54 @@ public class Cine implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cine")
+	public Set<ClasificacionArt> getClasificacionArts() {
+		return this.clasificacionArts;
+	}
+
+	public void setClasificacionArts(Set<ClasificacionArt> clasificacionArts) {
+		this.clasificacionArts = clasificacionArts;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "usuarios_x_cine", catalog = "muvitul", joinColumns = {
+			@JoinColumn(name = "id_cine", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "id_usuario", nullable = false, updatable = false) })
+	public Set<Usuario> getUsuarios() {
+		return this.usuarios;
+	}
+
+	public void setUsuarios(Set<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cine")
+	public Set<Articulo> getArticulos() {
+		return this.articulos;
+	}
+
+	public void setArticulos(Set<Articulo> articulos) {
+		this.articulos = articulos;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cine")
+	public Set<Sala> getSalas() {
+		return this.salas;
+	}
+
+	public void setSalas(Set<Sala> salas) {
+		this.salas = salas;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cine")
+	public Set<PuntoVenta> getPuntoVentas() {
+		return this.puntoVentas;
+	}
+
+	public void setPuntoVentas(Set<PuntoVenta> puntoVentas) {
+		this.puntoVentas = puntoVentas;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cine")
 	public Set<Formato> getFormatos() {
 		return this.formatos;
 	}
@@ -120,12 +188,21 @@ public class Cine implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cine")
-	public Set<Usuario> getUsuarios() {
-		return this.usuarios;
+	public Set<Usuario> getUsuarios_1() {
+		return this.usuarios_1;
 	}
 
-	public void setUsuarios(Set<Usuario> usuarios) {
-		this.usuarios = usuarios;
+	public void setUsuarios_1(Set<Usuario> usuarios_1) {
+		this.usuarios_1 = usuarios_1;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cine")
+	public Set<Proveedor> getProveedors() {
+		return this.proveedors;
+	}
+
+	public void setProveedors(Set<Proveedor> proveedors) {
+		this.proveedors = proveedors;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cine")
@@ -156,21 +233,39 @@ public class Cine implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cine")
-	public Set<Sala> getSalas() {
-		return this.salas;
+	public Set<Paquete> getPaquetes() {
+		return this.paquetes;
 	}
 
-	public void setSalas(Set<Sala> salas) {
-		this.salas = salas;
+	public void setPaquetes(Set<Paquete> paquetes) {
+		this.paquetes = paquetes;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cine")
-	public Set<PuntoVenta> getPuntoVentas() {
-		return this.puntoVentas;
+	public Set<ImpuestoBoleto> getImpuestoBoletos() {
+		return this.impuestoBoletos;
 	}
 
-	public void setPuntoVentas(Set<PuntoVenta> puntoVentas) {
-		this.puntoVentas = puntoVentas;
+	public void setImpuestoBoletos(Set<ImpuestoBoleto> impuestoBoletos) {
+		this.impuestoBoletos = impuestoBoletos;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cine")
+	public Set<ImpuestoXProducto> getImpuestoXProductos() {
+		return this.impuestoXProductos;
+	}
+
+	public void setImpuestoXProductos(Set<ImpuestoXProducto> impuestoXProductos) {
+		this.impuestoXProductos = impuestoXProductos;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cine")
+	public Set<Producto> getProductos() {
+		return this.productos;
+	}
+
+	public void setProductos(Set<Producto> productos) {
+		this.productos = productos;
 	}
 
 }

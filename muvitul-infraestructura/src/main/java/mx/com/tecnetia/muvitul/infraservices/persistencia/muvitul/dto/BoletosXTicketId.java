@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 12/02/2017 04:03:11 PM by Hibernate Tools 4.3.1.Final
+// Generated 2/03/2017 11:59:13 PM by Hibernate Tools 4.3.1.Final
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -11,14 +11,14 @@ import javax.persistence.Embeddable;
 public class BoletosXTicketId implements java.io.Serializable {
 
 	private int idTicket;
-	private int idFormato;
+	private int idTipoCliente;
 
 	public BoletosXTicketId() {
 	}
 
-	public BoletosXTicketId(int idTicket, int idFormato) {
+	public BoletosXTicketId(int idTicket, int idTipoCliente) {
 		this.idTicket = idTicket;
-		this.idFormato = idFormato;
+		this.idTipoCliente = idTipoCliente;
 	}
 
 	@Column(name = "id_ticket", nullable = false)
@@ -30,13 +30,13 @@ public class BoletosXTicketId implements java.io.Serializable {
 		this.idTicket = idTicket;
 	}
 
-	@Column(name = "id_formato", nullable = false)
-	public int getIdFormato() {
-		return this.idFormato;
+	@Column(name = "id_tipo_cliente", nullable = false)
+	public int getIdTipoCliente() {
+		return this.idTipoCliente;
 	}
 
-	public void setIdFormato(int idFormato) {
-		this.idFormato = idFormato;
+	public void setIdTipoCliente(int idTipoCliente) {
+		this.idTipoCliente = idTipoCliente;
 	}
 
 	public boolean equals(Object other) {
@@ -48,14 +48,15 @@ public class BoletosXTicketId implements java.io.Serializable {
 			return false;
 		BoletosXTicketId castOther = (BoletosXTicketId) other;
 
-		return (this.getIdTicket() == castOther.getIdTicket()) && (this.getIdFormato() == castOther.getIdFormato());
+		return (this.getIdTicket() == castOther.getIdTicket())
+				&& (this.getIdTipoCliente() == castOther.getIdTipoCliente());
 	}
 
 	public int hashCode() {
 		int result = 17;
 
 		result = 37 * result + this.getIdTicket();
-		result = 37 * result + this.getIdFormato();
+		result = 37 * result + this.getIdTipoCliente();
 		return result;
 	}
 

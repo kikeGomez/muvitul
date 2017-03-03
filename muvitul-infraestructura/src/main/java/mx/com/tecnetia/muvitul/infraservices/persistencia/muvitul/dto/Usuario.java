@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 12/02/2017 04:03:11 PM by Hibernate Tools 4.3.1.Final
+// Generated 2/03/2017 11:59:13 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -32,6 +32,7 @@ public class Usuario implements java.io.Serializable {
 	private String correo;
 	private String contrasenia;
 	private String foto;
+	private Set<Cine> cines = new HashSet<Cine>(0);
 	private Set<TicketVenta> ticketVentas = new HashSet<TicketVenta>(0);
 	private Set<Perfil> perfils = new HashSet<Perfil>(0);
 	private Set<CancelacionPago> cancelacionPagos = new HashSet<CancelacionPago>(0);
@@ -52,9 +53,9 @@ public class Usuario implements java.io.Serializable {
 	}
 
 	public Usuario(Cine cine, EstatusUsuario estatusUsuario, String nombre, String paterno, String materno,
-			String correo, String contrasenia, String foto, Set<TicketVenta> ticketVentas, Set<Perfil> perfils,
-			Set<CancelacionPago> cancelacionPagos, Set<AutorizacionMovimiento> autorizacionMovimientos,
-			Set<MovimientoInventario> movimientoInventarios) {
+			String correo, String contrasenia, String foto, Set<Cine> cines, Set<TicketVenta> ticketVentas,
+			Set<Perfil> perfils, Set<CancelacionPago> cancelacionPagos,
+			Set<AutorizacionMovimiento> autorizacionMovimientos, Set<MovimientoInventario> movimientoInventarios) {
 		this.cine = cine;
 		this.estatusUsuario = estatusUsuario;
 		this.nombre = nombre;
@@ -63,6 +64,7 @@ public class Usuario implements java.io.Serializable {
 		this.correo = correo;
 		this.contrasenia = contrasenia;
 		this.foto = foto;
+		this.cines = cines;
 		this.ticketVentas = ticketVentas;
 		this.perfils = perfils;
 		this.cancelacionPagos = cancelacionPagos;
@@ -154,6 +156,15 @@ public class Usuario implements java.io.Serializable {
 
 	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "usuarios")
+	public Set<Cine> getCines() {
+		return this.cines;
+	}
+
+	public void setCines(Set<Cine> cines) {
+		this.cines = cines;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")

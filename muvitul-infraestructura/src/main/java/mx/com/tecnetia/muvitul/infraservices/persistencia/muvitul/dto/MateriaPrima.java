@@ -1,8 +1,6 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 12/02/2017 04:03:11 PM by Hibernate Tools 4.3.1.Final
+// Generated 2/03/2017 11:59:13 PM by Hibernate Tools 4.3.1.Final
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,9 +8,7 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -26,9 +22,6 @@ public class MateriaPrima implements java.io.Serializable {
 	private Cine cine;
 	private String nombre;
 	private boolean activo;
-	private Set<Producto> productos = new HashSet<Producto>(0);
-	private Set<ExistenciaMatPrima> existenciaMatPrimas = new HashSet<ExistenciaMatPrima>(0);
-	private Set<MovimientoInventario> movimientoInventarios = new HashSet<MovimientoInventario>(0);
 
 	public MateriaPrima() {
 	}
@@ -37,16 +30,6 @@ public class MateriaPrima implements java.io.Serializable {
 		this.cine = cine;
 		this.nombre = nombre;
 		this.activo = activo;
-	}
-
-	public MateriaPrima(Cine cine, String nombre, boolean activo, Set<Producto> productos,
-			Set<ExistenciaMatPrima> existenciaMatPrimas, Set<MovimientoInventario> movimientoInventarios) {
-		this.cine = cine;
-		this.nombre = nombre;
-		this.activo = activo;
-		this.productos = productos;
-		this.existenciaMatPrimas = existenciaMatPrimas;
-		this.movimientoInventarios = movimientoInventarios;
 	}
 
 	@Id
@@ -87,33 +70,6 @@ public class MateriaPrima implements java.io.Serializable {
 
 	public void setActivo(boolean activo) {
 		this.activo = activo;
-	}
-
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "materiaPrimas")
-	public Set<Producto> getProductos() {
-		return this.productos;
-	}
-
-	public void setProductos(Set<Producto> productos) {
-		this.productos = productos;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "materiaPrima")
-	public Set<ExistenciaMatPrima> getExistenciaMatPrimas() {
-		return this.existenciaMatPrimas;
-	}
-
-	public void setExistenciaMatPrimas(Set<ExistenciaMatPrima> existenciaMatPrimas) {
-		this.existenciaMatPrimas = existenciaMatPrimas;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "materiaPrima")
-	public Set<MovimientoInventario> getMovimientoInventarios() {
-		return this.movimientoInventarios;
-	}
-
-	public void setMovimientoInventarios(Set<MovimientoInventario> movimientoInventarios) {
-		this.movimientoInventarios = movimientoInventarios;
 	}
 
 }

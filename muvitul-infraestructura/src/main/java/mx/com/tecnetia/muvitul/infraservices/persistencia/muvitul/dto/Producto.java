@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 12/02/2017 04:03:11 PM by Hibernate Tools 4.3.1.Final
+// Generated 2/03/2017 11:59:13 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -24,38 +23,43 @@ import javax.persistence.Table;
 public class Producto implements java.io.Serializable {
 
 	private Integer idProducto;
-	private PuntoVenta puntoVenta;
+	private Cine cine;
 	private String nombre;
 	private byte[] icono;
 	private boolean activo;
-	private Set<Paquete> paquetes = new HashSet<Paquete>(0);
-	private Set<MateriaPrima> materiaPrimas = new HashSet<MateriaPrima>(0);
+	private Set<ProductosXPaquete> productosXPaquetes = new HashSet<ProductosXPaquete>(0);
 	private Set<PrecioXProducto> precioXProductos = new HashSet<PrecioXProducto>(0);
 	private Set<ProductosXTicket> productosXTickets = new HashSet<ProductosXTicket>(0);
 	private Set<DetallePromocion> detallePromocions = new HashSet<DetallePromocion>(0);
+	private Set<PuntoVenta> puntoVentas = new HashSet<PuntoVenta>(0);
+	private Set<ArticulosXProducto> articulosXProductos = new HashSet<ArticulosXProducto>(0);
+	private Set<ImpuestoXProducto> impuestoXProductos = new HashSet<ImpuestoXProducto>(0);
 
 	public Producto() {
 	}
 
-	public Producto(PuntoVenta puntoVenta, String nombre, byte[] icono, boolean activo) {
-		this.puntoVenta = puntoVenta;
+	public Producto(Cine cine, String nombre, byte[] icono, boolean activo) {
+		this.cine = cine;
 		this.nombre = nombre;
 		this.icono = icono;
 		this.activo = activo;
 	}
 
-	public Producto(PuntoVenta puntoVenta, String nombre, byte[] icono, boolean activo, Set<Paquete> paquetes,
-			Set<MateriaPrima> materiaPrimas, Set<PrecioXProducto> precioXProductos,
-			Set<ProductosXTicket> productosXTickets, Set<DetallePromocion> detallePromocions) {
-		this.puntoVenta = puntoVenta;
+	public Producto(Cine cine, String nombre, byte[] icono, boolean activo, Set<ProductosXPaquete> productosXPaquetes,
+			Set<PrecioXProducto> precioXProductos, Set<ProductosXTicket> productosXTickets,
+			Set<DetallePromocion> detallePromocions, Set<PuntoVenta> puntoVentas,
+			Set<ArticulosXProducto> articulosXProductos, Set<ImpuestoXProducto> impuestoXProductos) {
+		this.cine = cine;
 		this.nombre = nombre;
 		this.icono = icono;
 		this.activo = activo;
-		this.paquetes = paquetes;
-		this.materiaPrimas = materiaPrimas;
+		this.productosXPaquetes = productosXPaquetes;
 		this.precioXProductos = precioXProductos;
 		this.productosXTickets = productosXTickets;
 		this.detallePromocions = detallePromocions;
+		this.puntoVentas = puntoVentas;
+		this.articulosXProductos = articulosXProductos;
+		this.impuestoXProductos = impuestoXProductos;
 	}
 
 	@Id
@@ -71,13 +75,13 @@ public class Producto implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_punto_venta", nullable = false)
-	public PuntoVenta getPuntoVenta() {
-		return this.puntoVenta;
+	@JoinColumn(name = "id_Cine", nullable = false)
+	public Cine getCine() {
+		return this.cine;
 	}
 
-	public void setPuntoVenta(PuntoVenta puntoVenta) {
-		this.puntoVenta = puntoVenta;
+	public void setCine(Cine cine) {
+		this.cine = cine;
 	}
 
 	@Column(name = "nombre", nullable = false, length = 200)
@@ -107,25 +111,13 @@ public class Producto implements java.io.Serializable {
 		this.activo = activo;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "productos")
-	public Set<Paquete> getPaquetes() {
-		return this.paquetes;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "producto")
+	public Set<ProductosXPaquete> getProductosXPaquetes() {
+		return this.productosXPaquetes;
 	}
 
-	public void setPaquetes(Set<Paquete> paquetes) {
-		this.paquetes = paquetes;
-	}
-
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "materias_primas_x_producto", catalog = "muvitul", joinColumns = {
-			@JoinColumn(name = "id_producto", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "id_materia_prima", nullable = false, updatable = false) })
-	public Set<MateriaPrima> getMateriaPrimas() {
-		return this.materiaPrimas;
-	}
-
-	public void setMateriaPrimas(Set<MateriaPrima> materiaPrimas) {
-		this.materiaPrimas = materiaPrimas;
+	public void setProductosXPaquetes(Set<ProductosXPaquete> productosXPaquetes) {
+		this.productosXPaquetes = productosXPaquetes;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "producto")
@@ -153,6 +145,33 @@ public class Producto implements java.io.Serializable {
 
 	public void setDetallePromocions(Set<DetallePromocion> detallePromocions) {
 		this.detallePromocions = detallePromocions;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "productos")
+	public Set<PuntoVenta> getPuntoVentas() {
+		return this.puntoVentas;
+	}
+
+	public void setPuntoVentas(Set<PuntoVenta> puntoVentas) {
+		this.puntoVentas = puntoVentas;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "producto")
+	public Set<ArticulosXProducto> getArticulosXProductos() {
+		return this.articulosXProductos;
+	}
+
+	public void setArticulosXProductos(Set<ArticulosXProducto> articulosXProductos) {
+		this.articulosXProductos = articulosXProductos;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "producto")
+	public Set<ImpuestoXProducto> getImpuestoXProductos() {
+		return this.impuestoXProductos;
+	}
+
+	public void setImpuestoXProductos(Set<ImpuestoXProducto> impuestoXProductos) {
+		this.impuestoXProductos = impuestoXProductos;
 	}
 
 }

@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 12/02/2017 04:03:11 PM by Hibernate Tools 4.3.1.Final
+// Generated 2/03/2017 11:59:13 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -28,6 +30,7 @@ public class PuntoVenta implements java.io.Serializable {
 	private Set<Paquete> paquetes = new HashSet<Paquete>(0);
 	private Set<TicketVenta> ticketVentas = new HashSet<TicketVenta>(0);
 	private Set<Producto> productos = new HashSet<Producto>(0);
+	private Set<Articulo> articulos = new HashSet<Articulo>(0);
 
 	public PuntoVenta() {
 	}
@@ -39,13 +42,14 @@ public class PuntoVenta implements java.io.Serializable {
 	}
 
 	public PuntoVenta(Cine cine, TipoPuntoVenta tipoPuntoVenta, String nombre, Set<Paquete> paquetes,
-			Set<TicketVenta> ticketVentas, Set<Producto> productos) {
+			Set<TicketVenta> ticketVentas, Set<Producto> productos, Set<Articulo> articulos) {
 		this.cine = cine;
 		this.tipoPuntoVenta = tipoPuntoVenta;
 		this.nombre = nombre;
 		this.paquetes = paquetes;
 		this.ticketVentas = ticketVentas;
 		this.productos = productos;
+		this.articulos = articulos;
 	}
 
 	@Id
@@ -89,7 +93,10 @@ public class PuntoVenta implements java.io.Serializable {
 		this.nombre = nombre;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "puntoVenta")
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "paquetes_x_punto_venta", catalog = "muvitul", joinColumns = {
+			@JoinColumn(name = "id_punto_venta", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "id_paquete", nullable = false, updatable = false) })
 	public Set<Paquete> getPaquetes() {
 		return this.paquetes;
 	}
@@ -107,13 +114,28 @@ public class PuntoVenta implements java.io.Serializable {
 		this.ticketVentas = ticketVentas;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "puntoVenta")
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "productos_x_punto_venta", catalog = "muvitul", joinColumns = {
+			@JoinColumn(name = "id_punto_venta", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "id_producto", nullable = false, updatable = false) })
 	public Set<Producto> getProductos() {
 		return this.productos;
 	}
 
 	public void setProductos(Set<Producto> productos) {
 		this.productos = productos;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "articulos_x_punto_venta", catalog = "muvitul", joinColumns = {
+			@JoinColumn(name = "id_punto_venta", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "id_articulo", nullable = false, updatable = false) })
+	public Set<Articulo> getArticulos() {
+		return this.articulos;
+	}
+
+	public void setArticulos(Set<Articulo> articulos) {
+		this.articulos = articulos;
 	}
 
 }

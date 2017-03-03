@@ -1,7 +1,9 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 12/02/2017 04:03:11 PM by Hibernate Tools 4.3.1.Final
+// Generated 2/03/2017 11:59:13 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,18 +31,35 @@ public class Programacion implements java.io.Serializable {
 	private Version version;
 	private String diaSemana;
 	private Date horario;
+	private Date fechaVigencia;
+	private Set<ExistenciaBoletos> existenciaBoletoses = new HashSet<ExistenciaBoletos>(0);
+	private Set<BoletosXTicket> boletosXTickets = new HashSet<BoletosXTicket>(0);
 
 	public Programacion() {
 	}
 
-	public Programacion(Formato formato, Pelicula pelicula, Sala sala, Version version, String diaSemana,
-			Date horario) {
+	public Programacion(Formato formato, Pelicula pelicula, Sala sala, Version version, String diaSemana, Date horario,
+			Date fechaVigencia) {
 		this.formato = formato;
 		this.pelicula = pelicula;
 		this.sala = sala;
 		this.version = version;
 		this.diaSemana = diaSemana;
 		this.horario = horario;
+		this.fechaVigencia = fechaVigencia;
+	}
+
+	public Programacion(Formato formato, Pelicula pelicula, Sala sala, Version version, String diaSemana, Date horario,
+			Date fechaVigencia, Set<ExistenciaBoletos> existenciaBoletoses, Set<BoletosXTicket> boletosXTickets) {
+		this.formato = formato;
+		this.pelicula = pelicula;
+		this.sala = sala;
+		this.version = version;
+		this.diaSemana = diaSemana;
+		this.horario = horario;
+		this.fechaVigencia = fechaVigencia;
+		this.existenciaBoletoses = existenciaBoletoses;
+		this.boletosXTickets = boletosXTickets;
 	}
 
 	@Id
@@ -111,6 +131,34 @@ public class Programacion implements java.io.Serializable {
 
 	public void setHorario(Date horario) {
 		this.horario = horario;
+	}
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "fecha_vigencia", nullable = false, length = 10)
+	public Date getFechaVigencia() {
+		return this.fechaVigencia;
+	}
+
+	public void setFechaVigencia(Date fechaVigencia) {
+		this.fechaVigencia = fechaVigencia;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "programacion")
+	public Set<ExistenciaBoletos> getExistenciaBoletoses() {
+		return this.existenciaBoletoses;
+	}
+
+	public void setExistenciaBoletoses(Set<ExistenciaBoletos> existenciaBoletoses) {
+		this.existenciaBoletoses = existenciaBoletoses;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "programacion")
+	public Set<BoletosXTicket> getBoletosXTickets() {
+		return this.boletosXTickets;
+	}
+
+	public void setBoletosXTickets(Set<BoletosXTicket> boletosXTickets) {
+		this.boletosXTickets = boletosXTickets;
 	}
 
 }

@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 12/02/2017 04:03:11 PM by Hibernate Tools 4.3.1.Final
+// Generated 2/03/2017 11:59:13 PM by Hibernate Tools 4.3.1.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -31,44 +31,46 @@ public class TicketVenta implements java.io.Serializable {
 	private Date fecha;
 	private BigDecimal descuento;
 	private BigDecimal importe;
-	private BigDecimal iva;
 	private BigDecimal total;
 	private Set<ProductosXTicket> productosXTickets = new HashSet<ProductosXTicket>(0);
+	private Set<ImpuestosXTicketTaquilla> impuestosXTicketTaquillas = new HashSet<ImpuestosXTicketTaquilla>(0);
 	private Set<PromocionesXTicket> promocionesXTickets = new HashSet<PromocionesXTicket>(0);
 	private Set<BoletosXTicket> boletosXTickets = new HashSet<BoletosXTicket>(0);
 	private Set<Pago> pagos = new HashSet<Pago>(0);
 	private Set<PaquetesXTicket> paquetesXTickets = new HashSet<PaquetesXTicket>(0);
+	private Set<ImpuestosXTicketProducto> impuestosXTicketProductos = new HashSet<ImpuestosXTicketProducto>(0);
 
 	public TicketVenta() {
 	}
 
 	public TicketVenta(PuntoVenta puntoVenta, Usuario usuario, Date fecha, BigDecimal descuento, BigDecimal importe,
-			BigDecimal iva, BigDecimal total) {
+			BigDecimal total) {
 		this.puntoVenta = puntoVenta;
 		this.usuario = usuario;
 		this.fecha = fecha;
 		this.descuento = descuento;
 		this.importe = importe;
-		this.iva = iva;
 		this.total = total;
 	}
 
 	public TicketVenta(PuntoVenta puntoVenta, Usuario usuario, Date fecha, BigDecimal descuento, BigDecimal importe,
-			BigDecimal iva, BigDecimal total, Set<ProductosXTicket> productosXTickets,
-			Set<PromocionesXTicket> promocionesXTickets, Set<BoletosXTicket> boletosXTickets, Set<Pago> pagos,
-			Set<PaquetesXTicket> paquetesXTickets) {
+			BigDecimal total, Set<ProductosXTicket> productosXTickets,
+			Set<ImpuestosXTicketTaquilla> impuestosXTicketTaquillas, Set<PromocionesXTicket> promocionesXTickets,
+			Set<BoletosXTicket> boletosXTickets, Set<Pago> pagos, Set<PaquetesXTicket> paquetesXTickets,
+			Set<ImpuestosXTicketProducto> impuestosXTicketProductos) {
 		this.puntoVenta = puntoVenta;
 		this.usuario = usuario;
 		this.fecha = fecha;
 		this.descuento = descuento;
 		this.importe = importe;
-		this.iva = iva;
 		this.total = total;
 		this.productosXTickets = productosXTickets;
+		this.impuestosXTicketTaquillas = impuestosXTicketTaquillas;
 		this.promocionesXTickets = promocionesXTickets;
 		this.boletosXTickets = boletosXTickets;
 		this.pagos = pagos;
 		this.paquetesXTickets = paquetesXTickets;
+		this.impuestosXTicketProductos = impuestosXTicketProductos;
 	}
 
 	@Id
@@ -131,15 +133,6 @@ public class TicketVenta implements java.io.Serializable {
 		this.importe = importe;
 	}
 
-	@Column(name = "iva", nullable = false, precision = 15)
-	public BigDecimal getIva() {
-		return this.iva;
-	}
-
-	public void setIva(BigDecimal iva) {
-		this.iva = iva;
-	}
-
 	@Column(name = "total", nullable = false, precision = 15)
 	public BigDecimal getTotal() {
 		return this.total;
@@ -156,6 +149,15 @@ public class TicketVenta implements java.io.Serializable {
 
 	public void setProductosXTickets(Set<ProductosXTicket> productosXTickets) {
 		this.productosXTickets = productosXTickets;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "ticketVenta")
+	public Set<ImpuestosXTicketTaquilla> getImpuestosXTicketTaquillas() {
+		return this.impuestosXTicketTaquillas;
+	}
+
+	public void setImpuestosXTicketTaquillas(Set<ImpuestosXTicketTaquilla> impuestosXTicketTaquillas) {
+		this.impuestosXTicketTaquillas = impuestosXTicketTaquillas;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "ticketVenta")
@@ -192,6 +194,15 @@ public class TicketVenta implements java.io.Serializable {
 
 	public void setPaquetesXTickets(Set<PaquetesXTicket> paquetesXTickets) {
 		this.paquetesXTickets = paquetesXTickets;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "ticketVenta")
+	public Set<ImpuestosXTicketProducto> getImpuestosXTicketProductos() {
+		return this.impuestosXTicketProductos;
+	}
+
+	public void setImpuestosXTicketProductos(Set<ImpuestosXTicketProducto> impuestosXTicketProductos) {
+		this.impuestosXTicketProductos = impuestosXTicketProductos;
 	}
 
 }

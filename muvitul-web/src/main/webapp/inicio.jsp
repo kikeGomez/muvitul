@@ -242,18 +242,20 @@
     <script src="<c:url value='/resources/js/vendors/bootstrap/locales/es.js' />"></script>
     <!-- Select2 -->
     <script src="<c:url value='/resources/js/vendors/select2/dist/js/select2.full.min.js' />"></script>
+	<!-- Underscore.js -->
+	<script src="<c:url value='/resources/js/vendors/underscore/underscore.js'/>"></script>
+	
+	
 	
 	<script src="<c:url value='/resources/js/comun/global.js' />"></script> 
 	<script src="<c:url value='/resources/js/comun/service/globalService.js' />"></script>
-	
-	
-	
 	
 	<!---------- LIBRERIAS DEL MODULO DE INDEX PARA LA APLICACION ------------>
     <script src="<c:url value='/resources/js/aplicacion/comun/index.js' />"></script>
     <script src="<c:url value='/resources/js/aplicacion/comun/controller/indexController.js' />"></script>
     <script src="<c:url value='/resources/js/comun/directivas/pagination.js' />"></script>
  	<script src="<c:url value='/resources/js/comun/constantes/constanteConfig.js'/>"></script>
+  	<script src="<c:url value='/resources/js/comun/factory/calculaTotalesFactory.js'/>"></script>
  
     <!-- Controller del modulo de taquilla - venta boletos -->
     <script src="<c:url value='/resources/js/aplicacion/taquilla/service/taquillaAngularService.js'/>"></script>

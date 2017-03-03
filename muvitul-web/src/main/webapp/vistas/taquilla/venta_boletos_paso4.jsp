@@ -65,16 +65,12 @@
 								</thead>
 
 								<tbody>
-									<tr class="even pointer">
-										<td class=" ">Cr&eacute;dito</td>
-										<td class="text-center">$50.00</td>
-										<td class="text-center">4356</td>
+									<tr class="even pointer" ng-repeat="pago in listaPagos" >
+										<td class=" ">{{pago.formaPago.nombre}}</td>
+										<td class="text-center">{{pago.importe}}</td>
+										<td class="text-center">{{pago.numeroCta}}</td>
 									</tr>
-									<tr class="odd pointer">
-										<td class=" ">D&eacute;bito</td>
-										<td class="text-center">$30.00</td>
-										<td class="text-center">4565</td>
-									</tr>
+									 
 								</tbody>
 							</table>
 						</div>
@@ -93,19 +89,14 @@
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<div class="btn-group btn-group-justified" data-toggle="buttons">
-									<label class="btn btn-primary active"> <input
-										type="radio" class="sr-only" id="fp-efectivo"
-										name="forma-pago" value="0" checked> <span
-										class="docs-tooltip" title="Pago en Efectivo"> Efectivo
-									</span>
-									</label> <label class="btn btn-primary"> <input type="radio"
-										class="sr-only" id="fp-tarjeta-debito" name="forma-pago"
-										value="1"> <span class="docs-tooltip"
-										title="Tarjeta de D&eacute;bito"> D&eacute;bito </span>
-									</label> <label class="btn btn-primary"> <input type="radio"
-										class="sr-only" id="fp-tarjeta-credito" name="forma-pago"
-										value="2"> <span class="docs-tooltip"
-										title="Tarjeta de Cr&eacute;dito"> Cr&eacute;dito </span>
+
+
+									<label class="btn btn-primary active"
+										ng-repeat="formaPago in listaFormasPago" 
+										ng-click="seleccionarFormaPago(formaPago)"> <input
+										type="radio" class="sr-only" id="fp-efectivo" name="forma-pago"
+										 checked > <span class="docs-tooltip"
+										title="Pago {{formaPago.nombre}}"  > {{formaPago.nombre}} </span>
 									</label>
 								</div>
 							</div>
@@ -114,24 +105,43 @@
 							<label class="control-label col-md-3 col-sm-3 col-xs-12"
 								for="monto">Importe <span class="required">*</span></label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input type="text" id="importe" required="required"
+								<input type="text" id="importe" required="required" ng-model="pago.importe"
 									class="form-control col-md-7 col-xs-12" placeholder=" 00.00 ">
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group"
+							ng-if="!pago.formaPago.requiereNumCuenta ">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12"
+								for="monto">Pago Con <span class="required">*</span></label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<input type="text" id="importe" required="required" ng-model="pago.pagoCon"
+									class="form-control col-md-7 col-xs-12" placeholder=" 00.00 ">
+							</div>
+						</div>
+						<div class="form-group"
+							ng-if="!pago.formaPago.requiereNumCuenta ">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12"
+								for="monto">Cambio <span class="required">*</span></label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<input type="text" id="importe" required="required" disabled  
+									class="form-control col-md-7 col-xs-12" placeholder="  ">
+							</div>
+						</div>
+						<div class="form-group"
+							ng-if="pago.formaPago.requiereNumCuenta ">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12"
 								for="numero-cuenta">N&uacute;mero de Cuenta <span
 								class="required">*</span>
 							</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<input type="text" id="numero-cuenta" required="required"
-									class="form-control col-md-7 col-xs-12"
+									class="form-control col-md-7 col-xs-12" ng-model="pago.numeroCta"
 									placeholder=" &Uacute;ltimos 4 d&iacute;gitos ">
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-								<button type="submit" class="btn btn-success">Guardar
+								<button type="submit" class="btn btn-success" ng-click="guardarPago(pago)" ng-init="validaFormaPago()">Guardar
 									Pago</button>
 							</div>
 						</div>

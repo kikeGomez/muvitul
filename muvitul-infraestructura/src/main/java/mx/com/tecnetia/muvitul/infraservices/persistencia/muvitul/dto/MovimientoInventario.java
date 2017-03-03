@@ -1,6 +1,7 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 12/02/2017 04:03:11 PM by Hibernate Tools 4.3.1.Final
+// Generated 2/03/2017 11:59:13 PM by Hibernate Tools 4.3.1.Final
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,32 +26,44 @@ import javax.persistence.TemporalType;
 public class MovimientoInventario implements java.io.Serializable {
 
 	private Integer idMovimiento;
-	private MateriaPrima materiaPrima;
+	private Articulo articulo;
+	private Proveedor proveedor;
 	private TipoMovimientoInv tipoMovimientoInv;
 	private Usuario usuario;
 	private long cantidad;
 	private Date fecha;
+	private BigDecimal importe;
+	private String documentoRespaldo;
+	private long existenciaActual;
 	private Set<AutorizacionMovimiento> autorizacionMovimientos = new HashSet<AutorizacionMovimiento>(0);
 
 	public MovimientoInventario() {
 	}
 
-	public MovimientoInventario(MateriaPrima materiaPrima, TipoMovimientoInv tipoMovimientoInv, Usuario usuario,
-			long cantidad, Date fecha) {
-		this.materiaPrima = materiaPrima;
+	public MovimientoInventario(Articulo articulo, Proveedor proveedor, TipoMovimientoInv tipoMovimientoInv,
+			Usuario usuario, long cantidad, Date fecha, BigDecimal importe, long existenciaActual) {
+		this.articulo = articulo;
+		this.proveedor = proveedor;
 		this.tipoMovimientoInv = tipoMovimientoInv;
 		this.usuario = usuario;
 		this.cantidad = cantidad;
 		this.fecha = fecha;
+		this.importe = importe;
+		this.existenciaActual = existenciaActual;
 	}
 
-	public MovimientoInventario(MateriaPrima materiaPrima, TipoMovimientoInv tipoMovimientoInv, Usuario usuario,
-			long cantidad, Date fecha, Set<AutorizacionMovimiento> autorizacionMovimientos) {
-		this.materiaPrima = materiaPrima;
+	public MovimientoInventario(Articulo articulo, Proveedor proveedor, TipoMovimientoInv tipoMovimientoInv,
+			Usuario usuario, long cantidad, Date fecha, BigDecimal importe, String documentoRespaldo,
+			long existenciaActual, Set<AutorizacionMovimiento> autorizacionMovimientos) {
+		this.articulo = articulo;
+		this.proveedor = proveedor;
 		this.tipoMovimientoInv = tipoMovimientoInv;
 		this.usuario = usuario;
 		this.cantidad = cantidad;
 		this.fecha = fecha;
+		this.importe = importe;
+		this.documentoRespaldo = documentoRespaldo;
+		this.existenciaActual = existenciaActual;
 		this.autorizacionMovimientos = autorizacionMovimientos;
 	}
 
@@ -67,13 +80,23 @@ public class MovimientoInventario implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_materia_prima", nullable = false)
-	public MateriaPrima getMateriaPrima() {
-		return this.materiaPrima;
+	@JoinColumn(name = "id_articulo", nullable = false)
+	public Articulo getArticulo() {
+		return this.articulo;
 	}
 
-	public void setMateriaPrima(MateriaPrima materiaPrima) {
-		this.materiaPrima = materiaPrima;
+	public void setArticulo(Articulo articulo) {
+		this.articulo = articulo;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_proveedor", nullable = false)
+	public Proveedor getProveedor() {
+		return this.proveedor;
+	}
+
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -113,6 +136,33 @@ public class MovimientoInventario implements java.io.Serializable {
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+
+	@Column(name = "importe", nullable = false, precision = 15)
+	public BigDecimal getImporte() {
+		return this.importe;
+	}
+
+	public void setImporte(BigDecimal importe) {
+		this.importe = importe;
+	}
+
+	@Column(name = "documento_respaldo", length = 20)
+	public String getDocumentoRespaldo() {
+		return this.documentoRespaldo;
+	}
+
+	public void setDocumentoRespaldo(String documentoRespaldo) {
+		this.documentoRespaldo = documentoRespaldo;
+	}
+
+	@Column(name = "existencia_actual", nullable = false)
+	public long getExistenciaActual() {
+		return this.existenciaActual;
+	}
+
+	public void setExistenciaActual(long existenciaActual) {
+		this.existenciaActual = existenciaActual;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "movimientoInventario")

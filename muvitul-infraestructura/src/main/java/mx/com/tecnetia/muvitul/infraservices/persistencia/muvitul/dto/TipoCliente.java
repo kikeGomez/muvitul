@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 12/02/2017 04:03:11 PM by Hibernate Tools 4.3.1.Final
+// Generated 2/03/2017 11:59:13 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,21 +22,24 @@ public class TipoCliente implements java.io.Serializable {
 	private Integer idTipoCliente;
 	private String nombre;
 	private boolean activo;
+	private byte[] icono;
 	private Set<PrecioXFormato> precioXFormatos = new HashSet<PrecioXFormato>(0);
 	private Set<BoletosXTicket> boletosXTickets = new HashSet<BoletosXTicket>(0);
 
 	public TipoCliente() {
 	}
 
-	public TipoCliente(String nombre, boolean activo) {
+	public TipoCliente(String nombre, boolean activo, byte[] icono) {
 		this.nombre = nombre;
 		this.activo = activo;
+		this.icono = icono;
 	}
 
-	public TipoCliente(String nombre, boolean activo, Set<PrecioXFormato> precioXFormatos,
+	public TipoCliente(String nombre, boolean activo, byte[] icono, Set<PrecioXFormato> precioXFormatos,
 			Set<BoletosXTicket> boletosXTickets) {
 		this.nombre = nombre;
 		this.activo = activo;
+		this.icono = icono;
 		this.precioXFormatos = precioXFormatos;
 		this.boletosXTickets = boletosXTickets;
 	}
@@ -69,6 +72,15 @@ public class TipoCliente implements java.io.Serializable {
 
 	public void setActivo(boolean activo) {
 		this.activo = activo;
+	}
+
+	@Column(name = "icono", nullable = false)
+	public byte[] getIcono() {
+		return this.icono;
+	}
+
+	public void setIcono(byte[] icono) {
+		this.icono = icono;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoCliente")
