@@ -16,7 +16,7 @@ public class TicketVentaAssembler {
 		ticketVenta.setFecha(ticketVenta.getFecha());
 		ticketVenta.setDescuento(ticketVenta.getDescuento());
 		ticketVenta.setImporte(ticketVenta.getImporte());
-		ticketVenta.setIva(ticketVenta.getIva());
+		//ticketVenta.setIva(ticketVenta.getIva());
 		ticketVenta.setTotal(ticketVenta.getTotal());
 		return ticketVenta;
 		

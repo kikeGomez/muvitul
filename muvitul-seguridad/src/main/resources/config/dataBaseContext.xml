@@ -32,8 +32,8 @@
 		   <property name="dataSource" ref="negocioDataSource"/>
 		   <property name="hibernateProperties" ref="hibernateProperties" />  
 		   <property name="annotatedClasses">
-		     <list>
-			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PuntoVenta</value>
+<list>
+				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PuntoVenta</value>
 			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PromocionesXTicket</value>
 			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Usuario</value>
 			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Sala</value>
@@ -75,7 +75,7 @@
 			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Contacto</value>
 			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.BoletosXTicket</value>
 			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.MovimientoInventario</value>
-			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ProductosXTicket</value>	
+			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ProductosXTicket</value>		
 			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Distribuidora</value>		
 			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Pais</value>		
 			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Version</value>
@@ -83,8 +83,22 @@
 			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.DetallePromocion</value>
 			    <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Regalo</value>
 			    
-			    
-			    	
+			     <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ExistenciaBoletos</value>
+			     <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ImpuestoBoleto</value>
+			     <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ImpuestoXProducto</value>
+			     <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ImpuestosXTicketTaquilla</value>
+			     <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ImpuestosXTicketProducto</value>
+			     <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.UnidadMedida</value>
+			     <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ClasificacionArt</value>
+			     <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Articulo</value>
+			     <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ArticulosXProducto</value>
+			     <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.TipoMovimientoInv </value>
+			     <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.MovimientoInventario </value>
+			     <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.AutorizacionMovimiento </value>
+			     <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.TipoAutorizacionMov </value>
+ 	 			 <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Proveedor </value>
+ 	  	 	     <value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ProductosXPaquete </value>
+ 	 
 		     </list>
 		   </property>
 	 </bean>

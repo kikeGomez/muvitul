@@ -6,15 +6,15 @@ import java.util.Set;
 public class PeliculaVO {
 	private Integer idPelicula;
 	private CineVO cineVO;
+//	private Distribuidora distribuidora;
+//	private Pais pais;
 	private String titulo;
 	private String clasificacion;
 	private int duracion;
 	private String sinopsis;
 	private boolean activo;
 	private byte[] icono;
-	// private Distribuidora distribuidora;
-	// private Pais pais;
-	
+//	private Set<Programacion> programacions = new HashSet<Programacion>(0);
 	private Set<ProgramacionVO> esp2d = new HashSet<ProgramacionVO>();
 	private Set<ProgramacionVO> esp3d = new HashSet<ProgramacionVO>();
 	private Set<ProgramacionVO> esp4d = new HashSet<ProgramacionVO>();

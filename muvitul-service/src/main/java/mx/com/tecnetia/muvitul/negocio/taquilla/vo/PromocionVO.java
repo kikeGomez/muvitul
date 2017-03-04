@@ -13,7 +13,9 @@ public class PromocionVO {
 	private Date fechaInicio;
 	private Date fechaFin;
 	private List<DetallePromocionVO> detallePromocionesVO;
-	
+//	private Set<DetallePromocion> detallePromocions = new HashSet<DetallePromocion>(0);
+//	private Set<PromocionesXTicket> promocionesXTickets = new HashSet<PromocionesXTicket>(0);
+//	
 	public Integer getIdPromocion() {
 		return idPromocion;
 	}

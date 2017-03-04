@@ -5,6 +5,7 @@ public class FormaPagoVO {
 	private String nombre;
 	private boolean requiereNumCuenta;
 	private boolean activo;
+//	private Set<Pago> pagos = new HashSet<Pago>(0);
 	
 	public Integer getIdFormaPago() {
 		return idFormaPago;

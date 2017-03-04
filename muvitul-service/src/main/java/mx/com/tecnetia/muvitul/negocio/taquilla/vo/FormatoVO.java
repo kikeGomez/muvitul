@@ -5,6 +5,8 @@ public class FormatoVO {
 	private CineVO cineVO;
 	private String nombre;
 	private boolean activo;
+//	private Set<PrecioXFormato> precioXFormatos = new HashSet<PrecioXFormato>(0);
+//	private Set<Programacion> programacions = new HashSet<Programacion>(0);
 	
 	public Integer getIdFormato() {
 		return idFormato;
@@ -29,5 +31,6 @@ public class FormatoVO {
 	}
 	public void setActivo(boolean activo) {
 		this.activo = activo;
-	}	
+	}
+	
 }

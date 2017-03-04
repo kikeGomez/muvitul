@@ -14,7 +14,7 @@ public class BoletoXTicketAssembler {
 			return null;
 
 		BoletosXTicket boletoXTicket= new BoletosXTicket();
-		boletoXTicket.setFormato(FormatoAssembler.getFormato(boletoXTicketVO.getFormatoVO()));
+		//boletoXTicket.setFormato(FormatoAssembler.getFormato(boletoXTicketVO.getFormatoVO()));
 		boletoXTicket.setTipoCliente(TipoClienteAssembler.getTipoCliente(boletoXTicketVO.getTipoClienteVO()));
 		boletoXTicket.setCantidad(boletoXTicketVO.getCantidad());
 		boletoXTicket.setImporte(boletoXTicketVO.getImporte());

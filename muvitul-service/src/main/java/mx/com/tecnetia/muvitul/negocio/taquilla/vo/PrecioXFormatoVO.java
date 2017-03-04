@@ -8,7 +8,7 @@ public class PrecioXFormatoVO {
 	private TipoClienteVO tipoClienteVO;
 	private BigDecimal precio;
 	private boolean activo;
-	
+
 	public Integer getIdPrecioXFormato() {
 		return idPrecioXFormato;
 	}

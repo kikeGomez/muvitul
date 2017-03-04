@@ -14,6 +14,7 @@ public class TipoClienteAssembler {
 		tipoClienteVO.setIdTipoCliente(tipoCliente.getIdTipoCliente());
 		tipoClienteVO.setNombre(tipoCliente.getNombre());
 		tipoClienteVO.setActivo(tipoCliente.isActivo());
+		tipoClienteVO.setIcono(tipoCliente.getIcono());
 
 		return tipoClienteVO;
 	}

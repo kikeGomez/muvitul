@@ -16,6 +16,7 @@ public class DetallePromocionAssembler {
 		
 		DetallePromocionVO detallePromocionVO = new DetallePromocionVO();
 		detallePromocionVO.setIdDetallePromocion(detallePromocion.getIdDetallePromocion());
+		detallePromocionVO.setProductoVO(ProductoAssembler.getProductoVO(detallePromocion.getProducto()));
 		detallePromocionVO.setRegaloVO(RegaloAssembler.getRegaloVO(detallePromocion.getRegalo()));
 		detallePromocionVO.setVarN(detallePromocion.getVarN());
 		detallePromocionVO.setVarM(detallePromocion.getVarM());

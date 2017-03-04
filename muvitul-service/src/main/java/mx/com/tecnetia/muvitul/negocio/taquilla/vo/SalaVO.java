@@ -5,6 +5,8 @@ public class SalaVO {
 	private CineVO cineVO;
 	private String nombre;
 	private boolean activo;
+//	private Set<Programacion> programacions = new HashSet<Programacion>(0);
+//	private Set<CupoXSala> cupoXSalas = new HashSet<CupoXSala>(0);
 	
 	public Integer getIdSala() {
 		return idSala;

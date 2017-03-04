@@ -4,6 +4,7 @@ public class VersionVO {
 	private Integer idVersion;
 	private String nombre;
 	private boolean activo;
+//	private Set<Programacion> programacions = new HashSet<Programacion>(0);
 	
 	public Integer getIdVersion() {
 		return idVersion;

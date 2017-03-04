@@ -2,23 +2,27 @@ package mx.com.tecnetia.muvitul.negocio.taquilla.vo;
 
 import java.math.BigDecimal;
 
-import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Producto;
-import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Regalo;
-
 public class DetallePromocionVO {
 	private Integer idDetallePromocion;
-	//private Producto producto;
+	private ProductoVO productoVO;
 	private RegaloVO regaloVO;
 	private BigDecimal varN;
 	private BigDecimal varM;
 	private BigDecimal precio;
 	private BigDecimal porcentaje;
+//	private Set<Promocion> promocions = new HashSet<Promocion>(0);
 	
 	public Integer getIdDetallePromocion() {
 		return idDetallePromocion;
 	}
 	public void setIdDetallePromocion(Integer idDetallePromocion) {
 		this.idDetallePromocion = idDetallePromocion;
+	}
+	public ProductoVO getProductoVO() {
+		return productoVO;
+	}
+	public void setProductoVO(ProductoVO productoVO) {
+		this.productoVO = productoVO;
 	}
 	public RegaloVO getRegaloVO() {
 		return regaloVO;
@@ -50,6 +54,5 @@ public class DetallePromocionVO {
 	public void setPorcentaje(BigDecimal porcentaje) {
 		this.porcentaje = porcentaje;
 	}
-	
-	
+
 }

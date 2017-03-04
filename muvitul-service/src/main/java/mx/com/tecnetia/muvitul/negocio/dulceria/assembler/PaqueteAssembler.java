@@ -16,11 +16,11 @@ public class PaqueteAssembler {
 		
 		PaqueteVO paqueteVO = new PaqueteVO();
 		paqueteVO.setIdPaquete(paquete.getIdPaquete());
-		paqueteVO.setPuntoVentaVO(PuntoVentaAssembler.getPuntoVentaVO(paquete.getPuntoVenta()));
+		//paqueteVO.setPuntoVentaVO(PuntoVentaAssembler.getPuntoVentaVO(paquete.getPuntoVenta()));
 		paqueteVO.setNombre(paquete.getNombre());
 		paqueteVO.setIcono(paquete.getIcono());
 		paqueteVO.setActivo(paquete.isActivo());
-		paqueteVO.setProductos(ProductoAssembler.getProductosVO(paquete.getProductos()));
+		//paqueteVO.setProductos(ProductoAssembler.getProductosVO(paquete.getProductos()));
 		paqueteVO.setPreciosXPaquete(PrecioXPaqueteAssembler.getPreciosXPaqueteVO(paquete.getPrecioXPaquetes()));
 
 		return paqueteVO;

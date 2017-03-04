@@ -17,6 +17,8 @@ public class ProgramacionAssembler {
 		programacionVO.setVersionVO(VersionAssembler.getVersionVO(programacion.getVersion()));
 		programacionVO.setDiaSemana(programacion.getDiaSemana());
 		programacionVO.setHorario(programacion.getHorario());
+		programacionVO.setFechaVigencia(programacion.getFechaVigencia());
+		
 		return programacionVO;
 	}
 }

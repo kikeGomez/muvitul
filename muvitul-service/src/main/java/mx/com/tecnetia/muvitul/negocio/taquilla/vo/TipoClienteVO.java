@@ -4,6 +4,9 @@ public class TipoClienteVO {
 	private Integer idTipoCliente;
 	private String nombre;
 	private boolean activo;
+	private byte[] icono;
+//	private Set<PrecioXFormato> precioXFormatos = new HashSet<PrecioXFormato>(0);
+//	private Set<BoletosXTicket> boletosXTickets = new HashSet<BoletosXTicket>(0);
 	
 	public Integer getIdTipoCliente() {
 		return idTipoCliente;
@@ -23,5 +26,11 @@ public class TipoClienteVO {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-
+	public byte[] getIcono() {
+		return icono;
+	}
+	public void setIcono(byte[] icono) {
+		this.icono = icono;
+	}
+	
 }

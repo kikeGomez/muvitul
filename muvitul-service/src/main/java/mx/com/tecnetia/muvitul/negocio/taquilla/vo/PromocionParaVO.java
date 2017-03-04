@@ -3,6 +3,7 @@ package mx.com.tecnetia.muvitul.negocio.taquilla.vo;
 public class PromocionParaVO {
 	private Integer idPromocionPara;
 	private String nombre;
+	//private Set<Promocion> promocions = new HashSet<Promocion>(0);
 	
 	public Integer getIdPromocionPara() {
 		return idPromocionPara;

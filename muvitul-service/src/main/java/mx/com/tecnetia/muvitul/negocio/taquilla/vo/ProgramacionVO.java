@@ -5,11 +5,14 @@ import java.util.Date;
 public class ProgramacionVO {
 	private Integer idProgramacion;
 	private FormatoVO formatoVO;
-	//private Pelicula pelicula;
+//	private Pelicula pelicula;
 	private SalaVO salaVO;
 	private VersionVO versionVO;
 	private String diaSemana;
 	private Date horario;
+	private Date fechaVigencia;
+//	private Set<ExistenciaBoletos> existenciaBoletoses = new HashSet<ExistenciaBoletos>(0);
+//	private Set<BoletosXTicket> boletosXTickets = new HashSet<BoletosXTicket>(0);
 	
 	public Integer getIdProgramacion() {
 		return idProgramacion;
@@ -46,5 +49,12 @@ public class ProgramacionVO {
 	}
 	public void setHorario(Date horario) {
 		this.horario = horario;
+	}
+
+	public Date getFechaVigencia() {
+		return fechaVigencia;
+	}
+	public void setFechaVigencia(Date fechaVigencia) {
+		this.fechaVigencia = fechaVigencia;
 	}
 }

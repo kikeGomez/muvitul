@@ -4,6 +4,7 @@ public class TipoPromocionVO {
 	private Integer idTipoPromocion;
 	private String nombre;
 	private String descripcion;
+//	private Set<Promocion> promocions = new HashSet<Promocion>(0);
 	
 	public Integer getIdTipoPromocion() {
 		return idTipoPromocion;
