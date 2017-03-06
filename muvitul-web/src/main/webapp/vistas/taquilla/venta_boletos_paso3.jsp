@@ -21,7 +21,8 @@
 				</button>
 
 
-				<button type="button" class="btn btn-success"  ng-disabled="pago.subtotal == 0 "
+				<button type="button" class="btn btn-success"
+					ng-disabled="pago.subtotal == 0 "
 					ng-click="asignarPaso(4);consultarFormasPago()">
 					Registrar el Pago <i class="fa fa-credit-card"></i>
 				</button>
@@ -76,7 +77,8 @@
 								</div>
 								<div class="row">
 									<div class="col-md-12 col-sm-12 col-xs-12">
-										<label>FECHA: {{objetosVenta.fechaVenta | date:'dd-MM-yyyy'}} </label>
+										<label>FECHA: {{objetosVenta.fechaVenta |
+											date:'dd-MM-yyyy'}} </label>
 									</div>
 								</div>
 								<div class="row">
@@ -114,13 +116,14 @@
 										</thead>
 
 										<tbody>
-											<tr class="odd pointer"	ng-repeat="boleto in  boletos  " ng-if="boleto.cantidad >0">
-												<td class=" ">{{boleto.tipoCliente}}
-												</td>
+											<tr class="odd pointer" ng-repeat="boleto in  boletos  "
+												ng-if="boleto.cantidad >0">
+												<td class=" ">{{boleto.tipoCliente}}</td>
 												<td class="text-center">{{boleto.cantidad}}</td>
 												<td class="text-center">{{boleto.subtotal}}</td>
-												<td class="text-center"><a href="" ng-click="quitarBoleto(boleto)"
-													title="Quitar Boleto"><i class="success fa fa-minus-square-o"></i></a></td>
+												<td class="text-center"><a href=""
+													ng-click="quitarBoleto(boleto)" title="Quitar Boleto"><i
+														class="success fa fa-minus-square-o"></i></a></td>
 
 											</tr>
 
@@ -140,19 +143,24 @@
 								<div ng-repeat="precio in listaPreciosXFormato track by $index">
 									<div
 										class="animated flipInY col-lg-4 col-md-4 col-sm-4 col-xs-4">
-										<a href="#/ventaBoletos" ng-click="agregarBoleto(precio,$index)">
+										<a href="#/ventaBoletos"
+											ng-click="agregarBoleto(precio,$index)">
 											<div class="tile-stats">
 												<div style="position: absolute; top: 10px; right: 10px">
-													<img width="50px" height="50px"
-														ng-if="precio.tipoClienteVO.idTipoCliente === 1"
-														src="<c:url value='resources/img/kids_icon.jpeg' />" /> <img
-														width="50px" height="50px"
-														ng-if="precio.tipoClienteVO.idTipoCliente === 3"
-														src="<c:url value='resources/img/thirdage_icon.jpeg' />" />
+													<img class="img-responsive avatar-view" width="50px"
+														height="50px"
+														ng-src="data:image/png;base64,{{precio.tipoClienteVO.icono}}">
+													<!-- 													<img width="50px" height="50px" -->
+													<!-- 														ng-if="precio.tipoClienteVO.idTipoCliente === 1" -->
+													<%-- 														src="<c:url value='resources/img/kids_icon.jpeg' />" />  --%>
+													<!-- 														<img -->
+													<!-- 														width="50px" height="50px" -->
+													<!-- 														ng-if="precio.tipoClienteVO.idTipoCliente === 3" -->
+													<%-- 														src="<c:url value='resources/img/thirdage_icon.jpeg' />" /> --%>
 
-													<img width="50px" height="50px"
-														ng-if="precio.tipoClienteVO.idTipoCliente === 2"
-														src="<c:url value='resources/img/adults_icon.jpeg' />" />
+													<!-- 													<img width="50px" height="50px" -->
+													<!-- 														ng-if="precio.tipoClienteVO.idTipoCliente === 2" -->
+													<%-- 														src="<c:url value='resources/img/adults_icon.jpeg' />" /> --%>
 												</div>
 												<div ng-if="precio.tipoClienteVO.idTipoCliente === 2"
 													class="count">{{precio.boletosSeleccionados}}</div>
