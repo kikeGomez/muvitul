@@ -1,6 +1,6 @@
 'use strict';
 
-var VentaBoletosPaso1Controller = angular.module('indexModule').controller('ventaBoletos', function($controller,$scope,$filter,taquillaService,calculosFactory){
+var VentaBoletosPaso1Controller = angular.module('indexModule').controller('ventaBoletos', function($controller,$scope,$rootScope,$filter,taquillaService,calculosFactory){
 	
 	$scope.statusVenta			= { elegirPelicula	:"selected", elegirPromocion :"", elegirCantidad	:"", 
 						 		   registrarPago	:"", confirmarVenta  :"", numeroPaso:1	}
@@ -9,7 +9,7 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 	$scope.listaPeliculas		={};
 	$scope.listaPreciosXFormato	={};
 	$scope.boletos			    =[];
- 	$scope.pago				    ={};
+ 	$scope.pago				    ={subtotal:0, porPagar:0, pagado:0};
 	$scope.listaPagos			=[];
 	$scope.objetosVenta			={};
 	$scope.promocion			={ cantidad:0, tipoCliente:"Promocion", subtotal:0, precio:0, };
@@ -17,7 +17,7 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 
 	
  	$scope.seleccionarPelicula =function(pelicula,programacion){
-
+ 		$scope.listaPreciosXFormato ={};
  		$scope.statusVenta.numeroPaso		= 2;
 		$scope.statusVenta.elegirPelicula	= "done";
     	$scope.statusVenta.elegirPromocion  = "selected";
@@ -26,6 +26,8 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 		$scope.objetosVenta.fechaVenta		= new Date();
 		$scope.consultarPromociones();
 		$scope.consultarPreciosFormato();
+		$scope.pago.subtotal =0;
+
 //		$scope.init();
 	}
 	
@@ -50,25 +52,28 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
     }
 	
 	$scope.quitarBoleto = function(boleto) { 
-		boleto.cantidad = boleto.cantidad-1;
+ 		boleto.cantidad = boleto.cantidad-1;
 		boleto.subtotal= calculosFactory.calcularSubtotal(boleto.cantidad,boleto.precio);
-   
+ 		$scope.pago.subtotal -=boleto.precio;
+
 		angular.forEach($scope.listaPreciosXFormato, function(value, key){
 			if(value.tipoClienteVO.nombre ===boleto.tipoCliente) 
 				value.boletosSeleccionados =value.boletosSeleccionados-1;
+
 		});
-		$scope.pago.subtotal -= value.subtotal;
+//		$scope.pago.subtotal -= value.subtotal;
 	}
 	
 	$scope.agregarBoleto =function(tipoClienteVO, index){
- 
+		$scope.pago.subtotal =0;
+
 		tipoClienteVO.boletosSeleccionados = tipoClienteVO.boletosSeleccionados +1;
   		angular.forEach($scope.boletos, function(value, key){
- 			 
   			if(tipoClienteVO.tipoClienteVO.nombre ===value.tipoCliente)
   				value.cantidad =value.cantidad + 1;
-  				value.subtotal =calculosFactory.calcularSubtotal(value.cantidad,value.precio);
-  				$scope.pago.subtotal += value.subtotal;
+  			
+  			value.subtotal =calculosFactory.calcularSubtotal(value.cantidad,value.precio);
+  			$scope.pago.subtotal += value.subtotal;
   		}); 
    	}
 
@@ -79,16 +84,17 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 
 	}
  
-	$scope.seleccionarFormaPago =function( formaPago){
-		$scope.pago.formaPago = formaPago;
-	}
+	
 	
 	//Consulta de programacion de peliculas
 	$scope.consultarPeliculas =function(){
  		taquillaService.consultarPeliculas().success(function(data) {	
  			$scope.listaPeliculas=data;
+			 $scope.errorPeliculas=false;
+
  		  }).error(function(data) {
-		  });
+ 			 $scope.errorPeliculas=true;
+ 		  });
 	}
 	//Consulta de promociones
 	$scope.consultarPromociones =function(){
@@ -118,9 +124,25 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
  		  }).error(function(data) {
 		  });
 	}
-	
-	$scope.guardarPago =function(pago){
+	//Formas de pagos
+	$scope.seleccionarFormaPago =function( formaPago, formPagos){
+		formPagos.$setPristine();
+ 		$scope.pago.formaPago = formaPago;
+	}
+	$scope.guardarPago =function(pago,formPagos){
+		if ( formPagos.$invalid) {
+            angular.forEach( formPagos.$error, function (field) {
+              angular.forEach(field, function(errorField){
+            	  errorField.$setDirty();
+              })
+            });
+            return;
+        }
 		$scope.listaPagos.push(angular.copy(pago));
+		console.log($scope.listaPagos)
+	}
+	$scope.calcularCambio =function(pagoCon,pagoImporte){
+		$scope.pago.cambio=pagoCon-pagoImporte;
 	}
 	
 	$scope.init =function(){

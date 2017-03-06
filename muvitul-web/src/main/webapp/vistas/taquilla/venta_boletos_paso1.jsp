@@ -16,7 +16,9 @@
 			<div class="clearfix"></div>
 		</div>
 		<div class="x_content">
-
+			<div class="alert   alert-danger" ng-if="errorPeliculas">
+				<strong>Cuidado! </strong> No se encuentran funciones en cartelera.
+			</div>
 			<!-- bloque de pelicula -->
 			<div dir-paginate="pelicula in listaPeliculas | itemsPerPage: 5">
 				<div class="col-md-12 col-sm-12 col-xs-12">
@@ -143,12 +145,13 @@
 										<div class="col-md-4 col-xs-12">
 											<div class="profile_img">
 												<div id="crop-avatar">
-													<img class="img-responsive avatar-view" width="250px" height="200px"
+													<img class="img-responsive avatar-view" width="250px"
+														height="200px"
 														ng-src="data:image/png;base64,{{pelicula.icono}}">
 												</div>
 											</div>
 										</div>
-										<div class="col-md-6 col-xs-12"> 
+										<div class="col-md-6 col-xs-12">
 											<br /> <br />
 											<p>{{pelicula.sinopsis}}</p>
 										</div>

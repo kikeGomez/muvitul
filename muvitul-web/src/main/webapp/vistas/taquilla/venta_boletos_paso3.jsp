@@ -21,7 +21,7 @@
 				</button>
 
 
-				<button type="button" class="btn btn-success"
+				<button type="button" class="btn btn-success"  ng-disabled="pago.subtotal == 0 "
 					ng-click="asignarPaso(4);consultarFormasPago()">
 					Registrar el Pago <i class="fa fa-credit-card"></i>
 				</button>
@@ -38,7 +38,7 @@
 							<i class="fa fa-film"></i> {{objetosVenta.pelicula.titulo}}
 						</h2>
 						<div class="row pull-right">
-							<h3>TOTAL = $95.00</h3>
+							<h3>TOTAL = {{pago.subtotal}}</h3>
 						</div>
 						<div class="clearfix"></div>
 					</div>

@@ -256,6 +256,7 @@
     <script src="<c:url value='/resources/js/comun/directivas/pagination.js' />"></script>
  	<script src="<c:url value='/resources/js/comun/constantes/constanteConfig.js'/>"></script>
   	<script src="<c:url value='/resources/js/comun/factory/calculaTotalesFactory.js'/>"></script>
+     <script src="<c:url value='/resources/js/comun/directivas/integerNumberDirective.js' />"></script> 
  
     <!-- Controller del modulo de taquilla - venta boletos -->
     <script src="<c:url value='/resources/js/aplicacion/taquilla/service/taquillaAngularService.js'/>"></script>
