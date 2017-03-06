@@ -17,4 +17,16 @@ public class PuntoVentaAssembler {
 		return puntoVentaVO;
 	}
 	
+	
+	public static PuntoVenta getPuntoVenta(PuntoVentaVO puntoVentaVO){
+
+		if(puntoVentaVO==null )
+			return null;
+
+		PuntoVenta puntoVenta= new PuntoVenta();
+		puntoVenta.setIdPuntoVenta(puntoVenta.getIdPuntoVenta());
+		
+		return puntoVenta;
+	}
+	
 }

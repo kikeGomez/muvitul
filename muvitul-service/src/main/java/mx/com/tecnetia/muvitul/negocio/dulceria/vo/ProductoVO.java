@@ -4,11 +4,19 @@ import java.util.List;
 
 public class ProductoVO {
 	private Integer idProducto;
-	private PuntoVentaVO puntoVentaVO;
+	private CineVO cineVO;
 	private String nombre;
 	private byte[] icono;
 	private boolean activo;
 	private List<PrecioXProductoVO> preciosXProductoVO;
+	
+//	private Set<ProductosXPaquete> productosXPaquetes = new HashSet<ProductosXPaquete>(0);
+//	private Set<ProductosXTicket> productosXTickets = new HashSet<ProductosXTicket>(0);
+//	private Set<DetallePromocion> detallePromocions = new HashSet<DetallePromocion>(0);
+//	private Set<PuntoVenta> puntoVentas = new HashSet<PuntoVenta>(0);
+//	private Set<ArticulosXProducto> articulosXProductos = new HashSet<ArticulosXProducto>(0);
+//	private Set<ImpuestoXProducto> impuestoXProductos = new HashSet<ImpuestoXProducto>(0);
+	
 	
 	public Integer getIdProducto() {
 		return idProducto;
@@ -16,11 +24,11 @@ public class ProductoVO {
 	public void setIdProducto(Integer idProducto) {
 		this.idProducto = idProducto;
 	}
-	public PuntoVentaVO getPuntoVentaVO() {
-		return puntoVentaVO;
+	public CineVO getCineVO() {
+		return cineVO;
 	}
-	public void setPuntoVentaVO(PuntoVentaVO puntoVentaVO) {
-		this.puntoVentaVO = puntoVentaVO;
+	public void setCineVO(CineVO cineVO) {
+		this.cineVO = cineVO;
 	}
 	public String getNombre() {
 		return nombre;
@@ -46,5 +54,5 @@ public class ProductoVO {
 	public void setPreciosXProductoVO(List<PrecioXProductoVO> preciosXProductoVO) {
 		this.preciosXProductoVO = preciosXProductoVO;
 	}
-	
+
 }

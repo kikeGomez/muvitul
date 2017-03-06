@@ -13,7 +13,7 @@ public class SalaAssembler {
 		
 		SalaVO salaVO = new SalaVO();
 		salaVO.setIdSala(sala.getIdSala());
-		salaVO.setCineVO(CineAssembler.getcineVO(sala.getCine()));
+		salaVO.setCineVO(CineAssembler.getCineVO(sala.getCine()));
 		salaVO.setNombre(sala.getNombre());
 		salaVO.setActivo(sala.isActivo());
 		return salaVO;

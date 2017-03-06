@@ -18,8 +18,8 @@ public class PromocionBO {
 	@Autowired
 	private PromocionDAOI promocionDAO;
 
-	public List<PromocionVO> findByCineAndDate(Integer idCine, Date today) throws BusinessGlobalException {
-		return PromocionAssembler.getPromocionesVO(promocionDAO.findByCineAndDate(idCine, today));
+	public List<PromocionVO> findByCineAndDate(Integer idCine,Integer idPromocionPara,Date today) throws BusinessGlobalException {
+		return PromocionAssembler.getPromocionesVO(promocionDAO.findByCineAndDate(idCine,idPromocionPara,today));
 	}
 
 }

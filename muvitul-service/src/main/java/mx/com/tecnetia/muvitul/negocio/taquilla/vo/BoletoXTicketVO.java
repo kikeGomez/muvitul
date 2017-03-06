@@ -1,19 +1,15 @@
 package mx.com.tecnetia.muvitul.negocio.taquilla.vo;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 public class BoletoXTicketVO {
-	private FormatoVO formatoVO;
 	private TipoClienteVO tipoClienteVO;
 	private int cantidad;
 	private BigDecimal importe;
+	private ProgramacionVO pagramacionVO;
+	private Date fechaExhibicion;
 	
-	public FormatoVO getFormatoVO() {
-		return formatoVO;
-	}
-	public void setFormatoVO(FormatoVO formatoVO) {
-		this.formatoVO = formatoVO;
-	}
 	public TipoClienteVO getTipoClienteVO() {
 		return tipoClienteVO;
 	}
@@ -31,6 +27,18 @@ public class BoletoXTicketVO {
 	}
 	public void setImporte(BigDecimal importe) {
 		this.importe = importe;
+	}
+	public ProgramacionVO getPagramacionVO() {
+		return pagramacionVO;
+	}
+	public void setPagramacionVO(ProgramacionVO pagramacionVO) {
+		this.pagramacionVO = pagramacionVO;
+	}
+	public Date getFechaExhibicion() {
+		return fechaExhibicion;
+	}
+	public void setFechaExhibicion(Date fechaExhibicion) {
+		this.fechaExhibicion = fechaExhibicion;
 	}
 	
 }

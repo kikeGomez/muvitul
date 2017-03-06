@@ -6,7 +6,7 @@ import mx.com.tecnetia.muvitul.infraservices.persistencia.GlobalHibernateDAO;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ProductosXTicket;
 
 @Repository 
-public class ProductosXTicketDAO extends GlobalHibernateDAO<ProductosXTicket> implements ProductosXTicketDAOI {
+public class ProductoXTicketDAO extends GlobalHibernateDAO<ProductosXTicket> implements ProductoXTicketDAOI {
 
 
 }

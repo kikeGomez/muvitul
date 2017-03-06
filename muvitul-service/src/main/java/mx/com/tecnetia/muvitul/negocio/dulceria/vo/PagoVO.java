@@ -1,4 +1,4 @@
-package mx.com.tecnetia.muvitul.negocio.taquilla.vo;
+package mx.com.tecnetia.muvitul.negocio.dulceria.vo;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -9,6 +9,7 @@ public class PagoVO {
 	private BigDecimal importe;
 	private EstatusPagoVO estatusPagoVO;
 	private Date fecha;
+	
 	
 	public FormaPagoVO getFormaPagoVO() {
 		return formaPagoVO;

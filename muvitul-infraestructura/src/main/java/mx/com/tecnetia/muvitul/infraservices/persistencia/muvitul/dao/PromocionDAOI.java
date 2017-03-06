@@ -7,5 +7,5 @@ import mx.com.tecnetia.muvitul.infraservices.persistencia.GlobalHibernateDAOI;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Promocion;
 
 public interface PromocionDAOI extends GlobalHibernateDAOI<Promocion>  {
-	List<Promocion> findByCineAndDate(Integer idCine, Date today);
+	List<Promocion> findByCineAndDate(Integer idCine,Integer idPromocionPara,Date today);
 }

@@ -37,7 +37,7 @@ public class VentaProductoFacade implements VentaProductoFacadeI {
 
 	@Override
 	public ResponseEntity<VentaVO> createVenta(VentaVO ventaVO) throws BusinessGlobalException, NotFoundException {
-		
+		ventaProductoController.createVenta(ventaVO);
 		return new ResponseEntity<VentaVO>(ventaVO, HttpStatus.CREATED);
 	}
 

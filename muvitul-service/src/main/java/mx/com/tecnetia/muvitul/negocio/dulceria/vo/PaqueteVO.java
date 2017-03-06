@@ -4,11 +4,11 @@ import java.util.List;
 
 public class PaqueteVO {
 	private Integer idPaquete;
-	private PuntoVentaVO puntoVentaVO;
+	private CineVO cineVO;
 	private String nombre;
 	private byte[] icono;
 	private boolean activo;
-	private List<ProductoVO> productos;
+	private List<ProductoXPaqueteVO> productosXPaquete;
 	private List<PrecioXPaqueteVO> preciosXPaquete;
 	
 	public Integer getIdPaquete() {
@@ -17,11 +17,11 @@ public class PaqueteVO {
 	public void setIdPaquete(Integer idPaquete) {
 		this.idPaquete = idPaquete;
 	}
-	public PuntoVentaVO getPuntoVentaVO() {
-		return puntoVentaVO;
+	public CineVO getCineVO() {
+		return cineVO;
 	}
-	public void setPuntoVentaVO(PuntoVentaVO puntoVentaVO) {
-		this.puntoVentaVO = puntoVentaVO;
+	public void setCineVO(CineVO cineVO) {
+		this.cineVO = cineVO;
 	}
 	public String getNombre() {
 		return nombre;
@@ -41,11 +41,11 @@ public class PaqueteVO {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-	public List<ProductoVO> getProductos() {
-		return productos;
+	public List<ProductoXPaqueteVO> getProductosXPaquete() {
+		return productosXPaquete;
 	}
-	public void setProductos(List<ProductoVO> productos) {
-		this.productos = productos;
+	public void setProductosXPaquete(List<ProductoXPaqueteVO> productosXPaquete) {
+		this.productosXPaquete = productosXPaquete;
 	}
 	public List<PrecioXPaqueteVO> getPreciosXPaquete() {
 		return preciosXPaquete;
@@ -53,5 +53,5 @@ public class PaqueteVO {
 	public void setPreciosXPaquete(List<PrecioXPaqueteVO> preciosXPaquete) {
 		this.preciosXPaquete = preciosXPaquete;
 	}
-
+	
 }

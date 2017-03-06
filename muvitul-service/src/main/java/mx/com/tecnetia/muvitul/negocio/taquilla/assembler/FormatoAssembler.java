@@ -12,7 +12,7 @@ public class FormatoAssembler {
 		
 		FormatoVO formatoVO = new FormatoVO();
 		formatoVO.setIdFormato(formato.getIdFormato());
-		formatoVO.setCineVO(CineAssembler.getcineVO( formato.getCine()));
+		formatoVO.setCineVO(CineAssembler.getCineVO( formato.getCine()));
 		formatoVO.setNombre(formato.getNombre());
 		formatoVO.setActivo(formato.isActivo());
 		return formatoVO;

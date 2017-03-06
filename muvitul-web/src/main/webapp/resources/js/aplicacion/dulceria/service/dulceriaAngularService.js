@@ -2,7 +2,7 @@
 
 angular.module('indexModule').service('dulceriaService', ['$http','GlobalFactory','config', function($http,GlobalFactory,config) {
  
-	 this.consultar = function(){
+	 this.consultarPromociones = function(){
 			console.log("consultar");
 		 return $http.get(config.baseUrl+"/ventaBoleto/promociones");
 	 }

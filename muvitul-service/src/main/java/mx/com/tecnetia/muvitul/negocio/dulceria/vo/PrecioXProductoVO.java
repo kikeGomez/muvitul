@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class PrecioXProductoVO {
 	private Integer idPrecioXProducto;
-	private ProductoVO productoVO;
+	//private Producto producto;
 	private BigDecimal precio;
 	private boolean activo;
 	
@@ -13,12 +13,6 @@ public class PrecioXProductoVO {
 	}
 	public void setIdPrecioXProducto(Integer idPrecioXProducto) {
 		this.idPrecioXProducto = idPrecioXProducto;
-	}
-	public ProductoVO getProductoVO() {
-		return productoVO;
-	}
-	public void setProductoVO(ProductoVO productoVO) {
-		this.productoVO = productoVO;
 	}
 	public BigDecimal getPrecio() {
 		return precio;

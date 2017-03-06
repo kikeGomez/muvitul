@@ -25,7 +25,7 @@ import mx.com.tecnetia.muvitul.negocio.taquilla.vo.VentaVO;
 
 @Service
 @Transactional
-public class VentaBO {
+public class VentaBoletoBO {
 	final static Log log = LogFactory.getLog(PeliculaBO.class);
 
 	@Autowired

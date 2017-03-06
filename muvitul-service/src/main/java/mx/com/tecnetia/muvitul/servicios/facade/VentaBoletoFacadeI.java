@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 import mx.com.tecnetia.muvitul.infraservices.servicios.NotFoundException;
+import mx.com.tecnetia.muvitul.negocio.taquilla.vo.ExistenciaBoletoVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PeliculaVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PrecioXFormatoVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PromocionVO;
@@ -31,7 +32,14 @@ public interface VentaBoletoFacadeI {
 	public ResponseEntity<List<PrecioXFormatoVO>> getPreciosByFormato(
 			@RequestParam(value = "idFormato") Integer idFormato) throws BusinessGlobalException, NotFoundException;
 
-	@RequestMapping(value = "/pagos", method = RequestMethod.POST)
-	public ResponseEntity<VentaVO> createVenta(@RequestBody VentaVO ventaVO)
+	@RequestMapping(value = "/existencias", method = RequestMethod.GET)
+	public ResponseEntity<ExistenciaBoletoVO> getExistenciaBoleto(@RequestParam(value = "idProgramacion") Integer idProgramacion,
+			@RequestParam(value = "idSala") Integer idSala) throws BusinessGlobalException, NotFoundException;
+
+	@RequestMapping(value = "/existencias", method = RequestMethod.PUT)
+	public ResponseEntity<ExistenciaBoletoVO> updateExistenciaBoleto(@RequestBody ExistenciaBoletoVO existenciaBoletoVO) 
 			throws BusinessGlobalException, NotFoundException;
+
+	@RequestMapping(value = "/pagos", method = RequestMethod.POST)
+	public ResponseEntity<VentaVO> createVenta(@RequestBody VentaVO ventaVO) throws BusinessGlobalException, NotFoundException;
 }

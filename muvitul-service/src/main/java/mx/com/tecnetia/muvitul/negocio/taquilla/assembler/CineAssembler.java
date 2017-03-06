@@ -5,7 +5,7 @@ import mx.com.tecnetia.muvitul.negocio.taquilla.vo.CineVO;
 
 public class CineAssembler {
 
-	public static CineVO getcineVO(Cine cine){
+	public static CineVO getCineVO(Cine cine){
 		if(cine==null)
 			return null;
 		

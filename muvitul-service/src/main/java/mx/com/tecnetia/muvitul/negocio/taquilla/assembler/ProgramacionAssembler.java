@@ -21,4 +21,18 @@ public class ProgramacionAssembler {
 		
 		return programacionVO;
 	}
+	
+	
+
+	public static Programacion getProgramacion(Integer idProgramacion){
+
+		if(idProgramacion==null)
+			return null;
+		
+		Programacion programacion= new Programacion();
+		programacion.setIdProgramacion(idProgramacion);
+
+		return programacion;
+	}
+	
 }

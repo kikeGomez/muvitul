@@ -8,7 +8,6 @@ import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PromocionVO;
 
 public class PromocionAssembler {
 	
-	
 	public static PromocionVO getPromocionVO(Promocion promocion){
 
 		if(promocion==null )
@@ -16,7 +15,7 @@ public class PromocionAssembler {
 		
 		PromocionVO promocionVO = new PromocionVO();
 		promocionVO.setIdPromocion(promocion.getIdPromocion());
-		promocionVO.setCineVO(CineAssembler.getcineVO(promocion.getCine()));
+		promocionVO.setCineVO(CineAssembler.getCineVO(promocion.getCine()));
 		promocionVO.setPromocionParaVO(PromocionParaAssembler.getPromocionPara(promocion.getPromocionPara()));
 		promocionVO.setTipoPromocionVO(TipoPromocionAssembler.getTipoPromocion(promocion.getTipoPromocion()));
 		promocionVO.setNombre(promocion.getNombre());

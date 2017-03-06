@@ -36,170 +36,189 @@
 			                   </div>
 					   </div>
                   	 <div class="row">
-
+	
+					  <div dir-paginate="paquete in paquetes | itemsPerPage: 20">
                       <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6">
                         <a href="#combo">
 	                        <div class="tile-stats" style="background-color: #F6CECE" >
 	                          <div style="position: absolute; top:10px; right:10px" >
-	                          	<img src="<c:url value='resources/img/combo_icon.jpeg' />" width="50px" height="50px"  >	                          	
+<%-- 	                          	<img src="<c:url value='resources/img/combo_icon.jpeg' />" width="50px" height="50px"  > --%>
+	                          	<img class="img-responsive avatar-view" ng-src="data:image/png;base64,{{paquete.icono}}" width="50px" height="50px" >	                          	
 	                          </div>
 	                          <div class="count">1</div>
-	                          <h3>Combo 1</h3>
+	                          <h3>{{paquete.nombre}}</h3>
 	                          <p>2 Refrescos J, 1 Palomitas J</p>
 							  <div class="text-center mtop20"><h2>$120.00</h2></div>
 	                        </div>
                         </a>
                       </div>
-                      <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                        <a href="#combo">
-	                        <div class="tile-stats">
-	                          <div style="position: absolute; top:10px; right:10px" >
-	                          	<img src="<c:url value='resources/img/combo_icon.jpeg' />" width="50px" height="50px"  >
-	                          </div>
-	                          <div class="count">0</div>
+                      </div>
+                       <dir-pagination-controls></dir-pagination-controls>
+                      
 
-	                          <h3>Combo 2</h3>
-	                          <p>2 Refrescos J, 1 Nachos</p>
-	                		  <div class="text-center mtop20"><h2>$110.00</h2></div>
-	                        </div>
-                        </a>
-                      </div>
-                      <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                        <a href="#combo">
-	                        <div class="tile-stats"  style="background-color: #F5F6CE">
-	                          <div style="position: absolute; top:10px; right:10px" >
-	                          	<img src="<c:url value='resources/img/combo_icon.jpeg' />" width="50px" height="50px"  >
-	                          </div>
-	                          <div class="count">0</div>
+<!--                       <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6"> -->
+<!--                         <a href="#combo"> -->
+<!-- 	                        <div class="tile-stats" style="background-color: #F6CECE" > -->
+<!-- 	                          <div style="position: absolute; top:10px; right:10px" > -->
+<%-- 	                          	<img src="<c:url value='resources/img/combo_icon.jpeg' />" width="50px" height="50px"  >	                          	 --%>
+<!-- 	                          </div> -->
+<!-- 	                          <div class="count">1</div> -->
+<!-- 	                          <h3>Combo 1</h3> -->
+<!-- 	                          <p>2 Refrescos J, 1 Palomitas J</p> -->
+<!-- 							  <div class="text-center mtop20"><h2>$120.00</h2></div> -->
+<!-- 	                        </div> -->
+<!--                         </a> -->
+<!--                       </div> -->
+<!--                       <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6"> -->
+<!--                         <a href="#combo"> -->
+<!-- 	                        <div class="tile-stats"> -->
+<!-- 	                          <div style="position: absolute; top:10px; right:10px" > -->
+<%-- 	                          	<img src="<c:url value='resources/img/combo_icon.jpeg' />" width="50px" height="50px"  > --%>
+<!-- 	                          </div> -->
+<!-- 	                          <div class="count">0</div> -->
 
-	                          <h3>Combo 3</h3>
-	                          <p>2 Refrescos J, 1 Palomitas J, 1 Hot Dog</p>
-	                		  <div class="text-center mtop20"><h2>$125.00</h2></div>
-	                        </div>
-                        </a>
-                      </div>                                            
-                  	  <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                        <a href="#combo">
-	                        <div class="tile-stats">
-	                          <div style="position: absolute; top:10px; right:10px" >
-	                          	<img src="<c:url value='resources/img/combo_icon.jpeg' />" width="50px" height="50px"  >
-	                          </div>
-	                          <div class="count">1</div>
-	                          <h3>Combo 4</h3>
-	                          <p>2 Icee, 1 Palomitas</p>
-	                		  <div class="text-center mtop20"><h2>$150.00</h2></div>
-	                        </div>
-                        </a>
-                      </div>                  	  	
-                      <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                        <a href="#refresco">
-	                        <div class="tile-stats">
-	                          <div style="position: absolute; top:10px; right:10px" >
-	                          	<img src="<c:url value='resources/img/refresco_icon.jpeg' />" width="50px" height="50px"  >
-	                          </div>
-	                          <div class="count">0</div>
-	                          <h3>Refresco Ch</h3>
-	                          <p>-</p>
-	                		  <div class="text-center mtop20"><h2>$30.00</h2></div>
-	                        </div>
-                        </a>
-                      </div>
-                      <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                        <a href="#refresco">
-	                        <div class="tile-stats">
-	                          <div style="position: absolute; top:10px; right:10px" >
-	                          	<img src="<c:url value='resources/img/refresco_icon.jpeg' />" width="50px" height="50px"  >
-	                          </div>
-	                          <div class="count">0</div>
-	                          <h3>Refresco M</h3>
-	                          <p>-</p>
-	                		  <div class="text-center mtop20"><h2>$35.00</h2></div>
-	                        </div>
-                        </a>
-                      </div>
-                   	  <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                        <a href="#refresco">
-	                        <div class="tile-stats">
-	                          <div style="position: absolute; top:10px; right:10px" >
-	                          	<img src="<c:url value='resources/img/refresco_icon.jpeg' />" width="50px" height="50px"  >
-	                          </div>
-	                          <div class="count">1</div>
+<!-- 	                          <h3>Combo 2</h3> -->
+<!-- 	                          <p>2 Refrescos J, 1 Nachos</p> -->
+<!-- 	                		  <div class="text-center mtop20"><h2>$110.00</h2></div> -->
+<!-- 	                        </div> -->
+<!--                         </a> -->
+<!--                       </div> -->
+<!--                       <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6"> -->
+<!--                         <a href="#combo"> -->
+<!-- 	                        <div class="tile-stats"  style="background-color: #F5F6CE"> -->
+<!-- 	                          <div style="position: absolute; top:10px; right:10px" > -->
+<%-- 	                          	<img src="<c:url value='resources/img/combo_icon.jpeg' />" width="50px" height="50px"  > --%>
+<!-- 	                          </div> -->
+<!-- 	                          <div class="count">0</div> -->
 
-	                          <h3>Refresco G</h3>
-	                          <p>-</p>
-	                		  <div class="text-center mtop20"><h2>$39.00</h2></div>
-	                        </div>
-                        </a>
-                      </div>
-                      <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                        <a href="#refresco">
-	                        <div class="tile-stats">
-	                          <div style="position: absolute; top:10px; right:10px" >
-	                          	<img src="<c:url value='resources/img/refresco_icon.jpeg' />" width="50px" height="50px"  >
-	                          </div>
-	                          <div class="count">0</div>
+<!-- 	                          <h3>Combo 3</h3> -->
+<!-- 	                          <p>2 Refrescos J, 1 Palomitas J, 1 Hot Dog</p> -->
+<!-- 	                		  <div class="text-center mtop20"><h2>$125.00</h2></div> -->
+<!-- 	                        </div> -->
+<!--                         </a> -->
+<!--                       </div>                                             -->
+<!--                   	  <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6"> -->
+<!--                         <a href="#combo"> -->
+<!-- 	                        <div class="tile-stats"> -->
+<!-- 	                          <div style="position: absolute; top:10px; right:10px" > -->
+<%-- 	                          	<img src="<c:url value='resources/img/combo_icon.jpeg' />" width="50px" height="50px"  > --%>
+<!-- 	                          </div> -->
+<!-- 	                          <div class="count">1</div> -->
+<!-- 	                          <h3>Combo 4</h3> -->
+<!-- 	                          <p>2 Icee, 1 Palomitas</p> -->
+<!-- 	                		  <div class="text-center mtop20"><h2>$150.00</h2></div> -->
+<!-- 	                        </div> -->
+<!--                         </a> -->
+<!--                       </div>                  	  	 -->
+<!--                       <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6"> -->
+<!--                         <a href="#refresco"> -->
+<!-- 	                        <div class="tile-stats"> -->
+<!-- 	                          <div style="position: absolute; top:10px; right:10px" > -->
+<%-- 	                          	<img src="<c:url value='resources/img/refresco_icon.jpeg' />" width="50px" height="50px"  > --%>
+<!-- 	                          </div> -->
+<!-- 	                          <div class="count">0</div> -->
+<!-- 	                          <h3>Refresco Ch</h3> -->
+<!-- 	                          <p>-</p> -->
+<!-- 	                		  <div class="text-center mtop20"><h2>$30.00</h2></div> -->
+<!-- 	                        </div> -->
+<!--                         </a> -->
+<!--                       </div> -->
+<!--                       <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6"> -->
+<!--                         <a href="#refresco"> -->
+<!-- 	                        <div class="tile-stats"> -->
+<!-- 	                          <div style="position: absolute; top:10px; right:10px" > -->
+<%-- 	                          	<img src="<c:url value='resources/img/refresco_icon.jpeg' />" width="50px" height="50px"  > --%>
+<!-- 	                          </div> -->
+<!-- 	                          <div class="count">0</div> -->
+<!-- 	                          <h3>Refresco M</h3> -->
+<!-- 	                          <p>-</p> -->
+<!-- 	                		  <div class="text-center mtop20"><h2>$35.00</h2></div> -->
+<!-- 	                        </div> -->
+<!--                         </a> -->
+<!--                       </div> -->
+<!--                    	  <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6"> -->
+<!--                         <a href="#refresco"> -->
+<!-- 	                        <div class="tile-stats"> -->
+<!-- 	                          <div style="position: absolute; top:10px; right:10px" > -->
+<%-- 	                          	<img src="<c:url value='resources/img/refresco_icon.jpeg' />" width="50px" height="50px"  > --%>
+<!-- 	                          </div> -->
+<!-- 	                          <div class="count">1</div> -->
 
-	                          <h3>Refresco J</h3>
-	                          <p>-</p>
-	                		  <div class="text-center mtop20"><h2>$43.00</h2></div>
-	                        </div>
-                        </a>
-                      </div>                  	  
-                      <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                        <a href="#palomitas">
-	                        <div class="tile-stats">
-	                          <div style="position: absolute; top:10px; right:10px" >
-	                          	<img src="<c:url value='resources/img/popcorn_icon.jpeg' />" width="50px" height="50px"  >
-	                          </div>
-	                          <div class="count">2</div>
-	                          <h3>Palomitas Ch</h3>
-	                          <p>-</p>
-	                		  <div class="text-center mtop20"><h2>$30.00</h2></div>
-	                        </div>
-                        </a>
-                      </div>
-                       <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                         <a href="#palomitas">
-	                        <div class="tile-stats">
-	                          <div style="position: absolute; top:10px; right:10px" >
-	                          	<img src="<c:url value='resources/img/popcorn_icon.jpeg' />" width="50px" height="50px"  >
-	                          </div>
-	                          <div class="count">0</div>
+<!-- 	                          <h3>Refresco G</h3> -->
+<!-- 	                          <p>-</p> -->
+<!-- 	                		  <div class="text-center mtop20"><h2>$39.00</h2></div> -->
+<!-- 	                        </div> -->
+<!--                         </a> -->
+<!--                       </div> -->
+<!--                       <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6"> -->
+<!--                         <a href="#refresco"> -->
+<!-- 	                        <div class="tile-stats"> -->
+<!-- 	                          <div style="position: absolute; top:10px; right:10px" > -->
+<%-- 	                          	<img src="<c:url value='resources/img/refresco_icon.jpeg' />" width="50px" height="50px"  > --%>
+<!-- 	                          </div> -->
+<!-- 	                          <div class="count">0</div> -->
 
-	                          <h3>Palomitas M</h3>
-	                          <p>-</p>
-	                		  <div class="text-center mtop20"><h2>$35.00</h2></div>
-	                        </div>
-                        </a>
-                      </div>
-                      <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                        <a href="#palomitas">
-	                        <div class="tile-stats">
-	                          <div style="position: absolute; top:10px; right:10px" >
-	                          	<img src="<c:url value='resources/img/popcorn_icon.jpeg' />" width="50px" height="50px"  >
-	                          </div>
-	                          <div class="count">0</div>
+<!-- 	                          <h3>Refresco J</h3> -->
+<!-- 	                          <p>-</p> -->
+<!-- 	                		  <div class="text-center mtop20"><h2>$43.00</h2></div> -->
+<!-- 	                        </div> -->
+<!--                         </a> -->
+<!--                       </div>                  	   -->
+<!--                       <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6"> -->
+<!--                         <a href="#palomitas"> -->
+<!-- 	                        <div class="tile-stats"> -->
+<!-- 	                          <div style="position: absolute; top:10px; right:10px" > -->
+<%-- 	                          	<img src="<c:url value='resources/img/popcorn_icon.jpeg' />" width="50px" height="50px"  > --%>
+<!-- 	                          </div> -->
+<!-- 	                          <div class="count">2</div> -->
+<!-- 	                          <h3>Palomitas Ch</h3> -->
+<!-- 	                          <p>-</p> -->
+<!-- 	                		  <div class="text-center mtop20"><h2>$30.00</h2></div> -->
+<!-- 	                        </div> -->
+<!--                         </a> -->
+<!--                       </div> -->
+<!--                        <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6"> -->
+<!--                          <a href="#palomitas"> -->
+<!-- 	                        <div class="tile-stats"> -->
+<!-- 	                          <div style="position: absolute; top:10px; right:10px" > -->
+<%-- 	                          	<img src="<c:url value='resources/img/popcorn_icon.jpeg' />" width="50px" height="50px"  > --%>
+<!-- 	                          </div> -->
+<!-- 	                          <div class="count">0</div> -->
 
-	                          <h3>Palomitas G</h3>
-	                          <p>-</p>
-	                		  <div class="text-center mtop20"><h2>$39.00</h2></div>
-	                        </div>
-                        </a>
-                      </div>
-                      <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                        <a href="#palomitas">
-	                        <div class="tile-stats">
-	                          <div style="position: absolute; top:10px; right:10px" >
-	                          	<img src="<c:url value='resources/img/popcorn_icon.jpeg' />" width="50px" height="50px"  >
-	                          </div>
-	                          <div class="count">0</div>
+<!-- 	                          <h3>Palomitas M</h3> -->
+<!-- 	                          <p>-</p> -->
+<!-- 	                		  <div class="text-center mtop20"><h2>$35.00</h2></div> -->
+<!-- 	                        </div> -->
+<!--                         </a> -->
+<!--                       </div> -->
+<!--                       <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6"> -->
+<!--                         <a href="#palomitas"> -->
+<!-- 	                        <div class="tile-stats"> -->
+<!-- 	                          <div style="position: absolute; top:10px; right:10px" > -->
+<%-- 	                          	<img src="<c:url value='resources/img/popcorn_icon.jpeg' />" width="50px" height="50px"  > --%>
+<!-- 	                          </div> -->
+<!-- 	                          <div class="count">0</div> -->
 
-	                          <h3>Palomitas J</h3>
-	                          <p>-</p>
-	                		  <div class="text-center mtop20"><h2>$43.00</h2></div>
-	                        </div>
-                        </a>
-                      </div>
+<!-- 	                          <h3>Palomitas G</h3> -->
+<!-- 	                          <p>-</p> -->
+<!-- 	                		  <div class="text-center mtop20"><h2>$39.00</h2></div> -->
+<!-- 	                        </div> -->
+<!--                         </a> -->
+<!--                       </div> -->
+<!--                       <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-6"> -->
+<!--                         <a href="#palomitas"> -->
+<!-- 	                        <div class="tile-stats"> -->
+<!-- 	                          <div style="position: absolute; top:10px; right:10px" > -->
+<%-- 	                          	<img src="<c:url value='resources/img/popcorn_icon.jpeg' />" width="50px" height="50px"  > --%>
+<!-- 	                          </div> -->
+<!-- 	                          <div class="count">0</div> -->
+
+<!-- 	                          <h3>Palomitas J</h3> -->
+<!-- 	                          <p>-</p> -->
+<!-- 	                		  <div class="text-center mtop20"><h2>$43.00</h2></div> -->
+<!-- 	                        </div> -->
+<!--                         </a> -->
+<!--                       </div> -->
                      </div> <!-- /row -->
                        
                     </div>
