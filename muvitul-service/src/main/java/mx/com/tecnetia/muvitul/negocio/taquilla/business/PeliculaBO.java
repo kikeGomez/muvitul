@@ -28,17 +28,18 @@ public class PeliculaBO {
 
 	
 	public List<PeliculaVO> findByCineAndDay(Integer idCine, String diaSemana, Date today) throws BusinessGlobalException {
-
 		Map <Integer, PeliculaVO> mapPeliculas= new HashMap<Integer,PeliculaVO>();
 		
 		for (Programacion programacion : programacionDAO.findByCineAndDay(idCine,diaSemana,today)) {
 
 			if (!mapPeliculas.containsKey(programacion.getPelicula().getIdPelicula())){
-				mapPeliculas.put(programacion.getPelicula().getIdPelicula(), PeliculaAssembler.getPeliculaVO(programacion.getPelicula()));
+				mapPeliculas.put(programacion.getPelicula().getIdPelicula(),PeliculaAssembler.getPeliculaVO(programacion.getPelicula()));
 			}
 			
 			PeliculaVO peliculaVO = mapPeliculas.get(programacion.getPelicula().getIdPelicula());
 			peliculaVO.addProgramacion(ProgramacionAssembler.getProgramacionVO(programacion));
+			
+			
 		}
 		List <PeliculaVO> peliculas = new ArrayList<PeliculaVO>(mapPeliculas.values());
 		return peliculas;

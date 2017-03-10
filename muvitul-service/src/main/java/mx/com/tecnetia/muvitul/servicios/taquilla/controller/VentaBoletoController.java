@@ -46,8 +46,8 @@ public class VentaBoletoController {
 		return precioXFormatoBO.findPreciosByFormatoCine(idCine,idFormato);
 	}
 
-	public ExistenciaBoletoVO getExistenciaBoleto(Integer idProgramacion, Integer idSala) throws BusinessGlobalException{
-		return existenciaBoletoBO.findByIdProgramacion(idProgramacion, idSala);
+	public ExistenciaBoletoVO getExistenciaBoleto(Integer idProgramacion, Integer idSala, Date today) throws BusinessGlobalException{
+		return existenciaBoletoBO.findByIdProgramacion(idProgramacion, idSala, today);
 	}
 	
 	public ExistenciaBoletoVO updateExistenciaBoleto(ExistenciaBoletoVO existenciaBoletoVO) throws BusinessGlobalException {

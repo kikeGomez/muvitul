@@ -3,7 +3,6 @@ package mx.com.tecnetia.muvitul.negocio.taquilla.business;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +12,6 @@ import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.CupoXSala;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ExistenciaBoletos;
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 import mx.com.tecnetia.muvitul.negocio.taquilla.assembler.ExistenciaBoletoAssembler;
-import mx.com.tecnetia.muvitul.negocio.taquilla.assembler.ProgramacionAssembler;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.ExistenciaBoletoVO;
 
 @Service
@@ -25,12 +23,7 @@ public class ExistenciaBoletoBO {
 	@Autowired
 	private CupoXSalaDAOI cupoXSalaDAO;
 
-	public ExistenciaBoletoVO findByIdProgramacion(Integer idProgramacion, Integer idSala) throws BusinessGlobalException  {
-		ExistenciaBoletos existenciaBoleto =existenciaBoletoDAO.findByIdProgramacion(idProgramacion);
-		
-		if (existenciaBoleto!=null){
-			return ExistenciaBoletoAssembler.getExistenciaBoletoVO(existenciaBoleto);
-		}
+	public ExistenciaBoletoVO findByIdProgramacion(Integer idProgramacion, Integer idSala, Date today) throws BusinessGlobalException  {
 		
 		CupoXSala cupoXSala = cupoXSalaDAO.findByIdSala(idSala);
 		
@@ -38,21 +31,45 @@ public class ExistenciaBoletoBO {
 			throw new  BusinessGlobalException("Error al consultar existencia boletos.");
 		}
 		
-		existenciaBoleto = new ExistenciaBoletos();
-		existenciaBoleto.setProgramacion(ProgramacionAssembler.getProgramacion(idProgramacion));
-		existenciaBoleto.setFechaExhibicion(new Date());
-		existenciaBoleto.setBoletosReservados(cupoXSala.getNoAsientos());
+		ExistenciaBoletos existenciaBoleto =existenciaBoletoDAO.findByIdProgramacion(idProgramacion,today);
 		
-		existenciaBoletoDAO.save(existenciaBoleto);
+		if (existenciaBoleto==null){
+			existenciaBoleto = ExistenciaBoletoAssembler.getExistenciaBoleto(idProgramacion);
+			existenciaBoletoDAO.save(existenciaBoleto);
+		}
 		
-		return ExistenciaBoletoAssembler.getExistenciaBoletoVO(existenciaBoleto);
+		ExistenciaBoletoVO existenciaBoletoVO= ExistenciaBoletoAssembler.getExistenciaBoletoVO(existenciaBoleto);
+		existenciaBoletoVO.setDisponbles(cupoXSala.getNoAsientos()-existenciaBoleto.getBoletosReservados());
+		
+		return  existenciaBoletoVO;
 	}
 
 	public ExistenciaBoletoVO update(ExistenciaBoletoVO existenciaBoletoVO)  throws BusinessGlobalException {
-		ExistenciaBoletos existenciaBoletos= new ExistenciaBoletos();
 		
-		existenciaBoletoDAO.update(existenciaBoletos);
-		return ExistenciaBoletoAssembler.getExistenciaBoletoVO(existenciaBoletos);
+		CupoXSala cupoXSala = cupoXSalaDAO.findByIdSala(existenciaBoletoVO.getProgramacionVO().getSalaVO().getIdSala());
+		
+		if (cupoXSala==null){
+			throw new  BusinessGlobalException("Error al actualizar existencia boletos.");
+		}
+		
+//		if (cupoXSala.getNoAsientos()<=existenciaBoleto.getBoletosReservados() ){
+//		throw new  BusinessGlobalException("Sala no disponible");
+//	}
+		
+		
+		ExistenciaBoletos existenciaBoleto =existenciaBoletoDAO.findByIdProgramacion(
+				existenciaBoletoVO.getProgramacionVO().getIdProgramacion(),existenciaBoletoVO.getFechaExhibicion());
+		
+		if (existenciaBoleto==null){
+			existenciaBoleto= ExistenciaBoletoAssembler.getExistenciaBoleto(existenciaBoletoVO);
+		}
+		
+		existenciaBoleto.setBoletosReservados(existenciaBoleto.getBoletosReservados()+existenciaBoletoVO.getReservar());
+		existenciaBoletoDAO.saveOrUpdate(existenciaBoleto);
+		
+		//existenciaBoletoVO.setDisponbles(cupoXSala.getNoAsientos()-existenciaBoleto.getBoletosReservados());
+		
+		return existenciaBoletoVO;
 	}
 
 }

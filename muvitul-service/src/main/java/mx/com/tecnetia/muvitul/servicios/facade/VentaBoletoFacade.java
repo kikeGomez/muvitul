@@ -73,7 +73,7 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 	public ResponseEntity<ExistenciaBoletoVO> getExistenciaBoleto(Integer idProgramacion, Integer idSala)
 			throws BusinessGlobalException, NotFoundException {
 
-		ExistenciaBoletoVO existenciaBoletoVO = ventaBoletoController.getExistenciaBoleto(idProgramacion, idSala);
+		ExistenciaBoletoVO existenciaBoletoVO = ventaBoletoController.getExistenciaBoleto(idProgramacion, idSala, new Date());
 
 		if (existenciaBoletoVO == null) {
 			throw new NotFoundException("No encontrado");
