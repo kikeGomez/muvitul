@@ -1,9 +1,9 @@
 'use strict';
 
 var VentaProductoPaso1Controller = angular.module('indexModule').controller(
-		"ventaProductoController", function($scope, dulceriaService) {
-			$scope.paquetes={};
-			
+		"ventaProductoController", function($scope,$filter,dulceriaService) {
+			$scope.paquetes = {};
+			$scope.existenciaBoletoVo;
 			
 			$scope.statusVenta = {
 				elegirProducto : "selected",
@@ -12,7 +12,6 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 				numeroPaso : 1
 			}
 
-			
 			$scope.asignarPaso = function(paso) {
 				$scope.statusVenta.numeroPaso = paso;
 				estatusPaso(paso);
@@ -39,27 +38,72 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 					break;
 				}
 			}
-
-			$scope.consultar = function() {
+			
+			$scope.consultarPeliculas = function() {
+				dulceriaService.consultarPeliculas().success(function(data) {
+					console.log(data);
+				}).error(function(data) {
+					
+				});
+			}
+				 
+			$scope.consultarPromociones = function() {
 				dulceriaService.consultarPromociones().success(function(data) {
 					console.log(data);
-					$scope.paquetes=data;
 				}).error(function(data) {
 
 				});
 			}
 			
-			
-			$scope.consultarPaquetes = function() {
-				dulceriaService.consultarPaquetes().success(function(data) {
+			$scope.consultarPrecios = function(idFormato) {
+				dulceriaService.consultarPrecios(idFormato).success(function(data) {
 					console.log(data);
-					$scope.paquetes=data;
 				}).error(function(data) {
 
 				});
 			}
 			
-			
-			$scope.consultarPaquetes();
+			$scope.consultarFormasPago = function() {
+				dulceriaService.consultarFormasPago().success(function(data) {
+					console.log(data);
+				}).error(function(data) {
 
-});
+				});
+			}
+
+			$scope.consultarExistencias = function(idProgramacion, idSala, fechaExhibicion) {
+				// console.log("consultar existencias"+ getFechaActual());
+				dulceriaService.consultarExistencias(idProgramacion,idSala,fechaExhibicion).success(function(data) {
+					console.log(data);
+				}).error(function(data) {
+
+				});
+			}
+
+			$scope.actualizarExistenciaBoleto = function(existenciaBoletoVo) {
+				// console.log("consultar existencias"+ getFechaActual());
+				dulceriaService.actualizarExistenciaBoleto(existenciaBoletoVo).success(function(data) {
+					console.log(data);
+					existenciaBoletoVo=data;
+				}).error(function(data) {
+
+				});
+			}
+			
+			$scope.consultarPaquetes = function(idPuntoVenta) {
+				dulceriaService.consultarPaquetes(idPuntoVenta).success(function(data) {
+					console.log(data);
+					$scope.paquetes = data;
+				}).error(function(data) {
+
+				});
+			}
+
+			$scope.consultarPeliculas();
+			$scope.consultarPromociones();
+			$scope.consultarPrecios(1);
+			$scope.consultarFormasPago();
+			$scope.consultarExistencias(1,1,new Date());
+			$scope.actualizarExistenciaBoleto($scope.existenciaBoletoVo);
+			//$scope.consultarPaquetes();
+		});

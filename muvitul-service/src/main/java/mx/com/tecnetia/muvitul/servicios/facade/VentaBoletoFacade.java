@@ -3,6 +3,8 @@ package mx.com.tecnetia.muvitul.servicios.facade;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,16 +14,20 @@ import org.springframework.transaction.annotation.Transactional;
 import mx.com.tecnetia.muvitul.infraservices.presentacion.seguridad.frontcontroller.UsuarioFirmadoBean;
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 import mx.com.tecnetia.muvitul.infraservices.servicios.NotFoundException;
+import mx.com.tecnetia.muvitul.negocio.taquilla.business.PeliculaBO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.ExistenciaBoletoVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PeliculaVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PrecioXFormatoVO;
+import mx.com.tecnetia.muvitul.negocio.taquilla.vo.ProgramacionVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PromocionVO;
+import mx.com.tecnetia.muvitul.negocio.taquilla.vo.SalaVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.VentaVO;
 import mx.com.tecnetia.muvitul.servicios.taquilla.controller.VentaBoletoController;
 import mx.com.tecnetia.muvitul.servicios.util.Fecha;
 
 @Service
 public class VentaBoletoFacade implements VentaBoletoFacadeI {
+	final static Log log = LogFactory.getLog(VentaBoletoFacade.class);
 	@Autowired
 	UsuarioFirmadoBean usuarioFirmadoBean;
 	@Autowired
@@ -59,6 +65,7 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 	@Override
 	public ResponseEntity<List<PrecioXFormatoVO>> getPreciosByFormato(Integer idFormato)
 			throws BusinessGlobalException, NotFoundException {
+		log.info("getPreciosByFormato::"+idFormato);
 		List<PrecioXFormatoVO> precios = ventaBoletoController
 				.getPreciosByFormato(usuarioFirmadoBean.getUser().getCineVO().getIdCine(), idFormato);
 
@@ -72,7 +79,7 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 	@Override
 	public ResponseEntity<ExistenciaBoletoVO> getExistenciaBoleto(Integer idProgramacion, Integer idSala, Date fechaExhibicion)
 			throws BusinessGlobalException, NotFoundException {
-
+		log.info("getExistenciaBoleto::"+idProgramacion+"::"+idSala+"::"+fechaExhibicion);
 		ExistenciaBoletoVO existenciaBoletoVO = ventaBoletoController.getExistenciaBoleto(idProgramacion, idSala, fechaExhibicion);
 
 		if (existenciaBoletoVO == null) {
@@ -85,7 +92,9 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 	@Override
 	public ResponseEntity<ExistenciaBoletoVO> updateExistenciaBoleto(ExistenciaBoletoVO existenciaBoletoVO)
 			throws BusinessGlobalException, NotFoundException {
-		return new ResponseEntity<ExistenciaBoletoVO>(ventaBoletoController.updateExistenciaBoleto(existenciaBoletoVO),
+		log.info("updateExistenciaBoleto::"+existenciaBoletoVO.getDisponibles());
+		//ventaBoletoController.updateExistenciaBoleto(existenciaBoletoVO);
+		return new ResponseEntity<ExistenciaBoletoVO>(existenciaBoletoVO,
 				HttpStatus.OK);
 
 	}
