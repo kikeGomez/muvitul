@@ -7,7 +7,7 @@ public class ExistenciaBoletoVO {
 	private ProgramacionVO programacionVO;
 	private Date fechaExhibicion;
 	private long boletosReservados;
-	private long disponbles;
+	private long disponibles;
 	private int reservar;
 
 	public Integer getIdExistenciaBoletos() {
@@ -34,11 +34,11 @@ public class ExistenciaBoletoVO {
 	public void setBoletosReservados(long boletosReservados) {
 		this.boletosReservados = boletosReservados;
 	}
-	public long getDisponbles() {
-		return disponbles;
+	public long getDisponibles() {
+		return disponibles;
 	}
-	public void setDisponbles(long disponbles) {
-		this.disponbles = disponbles;
+	public void setDisponibles(long disponibles) {
+		this.disponibles = disponibles;
 	}
 	public int getReservar() {
 		return reservar;

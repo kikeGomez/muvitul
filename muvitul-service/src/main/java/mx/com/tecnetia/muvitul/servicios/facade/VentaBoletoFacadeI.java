@@ -1,5 +1,6 @@
 package mx.com.tecnetia.muvitul.servicios.facade;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -33,13 +34,17 @@ public interface VentaBoletoFacadeI {
 			@RequestParam(value = "idFormato") Integer idFormato) throws BusinessGlobalException, NotFoundException;
 
 	@RequestMapping(value = "/existencias", method = RequestMethod.GET)
-	public ResponseEntity<ExistenciaBoletoVO> getExistenciaBoleto(@RequestParam(value = "idProgramacion") Integer idProgramacion,
-			@RequestParam(value = "idSala") Integer idSala) throws BusinessGlobalException, NotFoundException;
+	public ResponseEntity<ExistenciaBoletoVO> getExistenciaBoleto(
+			@RequestParam(value = "idProgramacion") Integer idProgramacion,
+			@RequestParam(value = "idSala") Integer idSala,
+			@RequestParam(value = "fechaExhibicion") Date fechaExhibicion)
+			throws BusinessGlobalException, NotFoundException;
 
 	@RequestMapping(value = "/existencias", method = RequestMethod.PUT)
-	public ResponseEntity<ExistenciaBoletoVO> updateExistenciaBoleto(@RequestBody ExistenciaBoletoVO existenciaBoletoVO) 
+	public ResponseEntity<ExistenciaBoletoVO> updateExistenciaBoleto(@RequestBody ExistenciaBoletoVO existenciaBoletoVO)
 			throws BusinessGlobalException, NotFoundException;
 
 	@RequestMapping(value = "/pagos", method = RequestMethod.POST)
-	public ResponseEntity<VentaVO> createVenta(@RequestBody VentaVO ventaVO) throws BusinessGlobalException, NotFoundException;
+	public ResponseEntity<VentaVO> createVenta(@RequestBody VentaVO ventaVO)
+			throws BusinessGlobalException, NotFoundException;
 }

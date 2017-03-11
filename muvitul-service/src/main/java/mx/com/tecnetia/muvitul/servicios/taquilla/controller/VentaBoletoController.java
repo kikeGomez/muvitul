@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
@@ -46,8 +45,8 @@ public class VentaBoletoController {
 		return precioXFormatoBO.findPreciosByFormatoCine(idCine,idFormato);
 	}
 
-	public ExistenciaBoletoVO getExistenciaBoleto(Integer idProgramacion, Integer idSala, Date today) throws BusinessGlobalException{
-		return existenciaBoletoBO.findByIdProgramacion(idProgramacion, idSala, today);
+	public ExistenciaBoletoVO getExistenciaBoleto(Integer idProgramacion, Integer idSala, Date fechaExhibicion) throws BusinessGlobalException{
+		return existenciaBoletoBO.findByIdProgramacion(idProgramacion, idSala, fechaExhibicion);
 	}
 	
 	public ExistenciaBoletoVO updateExistenciaBoleto(ExistenciaBoletoVO existenciaBoletoVO) throws BusinessGlobalException {

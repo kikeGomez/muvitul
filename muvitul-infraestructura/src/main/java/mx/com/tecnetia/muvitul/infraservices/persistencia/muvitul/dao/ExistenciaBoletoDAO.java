@@ -13,15 +13,15 @@ import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Existencia
 public class ExistenciaBoletoDAO extends GlobalHibernateDAO<ExistenciaBoletos> implements ExistenciaBoletoDAOI {
 
 	@Override
-	public ExistenciaBoletos findByIdProgramacion(Integer idProgramacion, Date today) {
+	public ExistenciaBoletos findByIdProgramacion(Integer idProgramacion, Date fechaExhibicion) {
 		StringBuilder hql = new StringBuilder();
 		hql.append(" select exb from ExistenciaBoletos exb ");
-		hql.append("where exb.programacion.idProgramacion=:idProgramacion and exb.fechaExhibicion=:today " );
+		hql.append("where exb.programacion.idProgramacion=:idProgramacion and exb.fechaExhibicion=:fechaExhibicion " );
 		hql.append("order by exb.idExistenciaBoletos desc ");
 
 		Query query = getSession().createQuery(hql.toString());
 		query.setParameter("idProgramacion", idProgramacion);
-		query.setParameter("today", today);
+		query.setParameter("fechaExhibicion", fechaExhibicion);
 		List<ExistenciaBoletos> result =query.list();
 		
 		if (!result.isEmpty()){

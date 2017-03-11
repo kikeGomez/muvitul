@@ -8,7 +8,7 @@ import mx.com.tecnetia.muvitul.negocio.taquilla.vo.ExistenciaBoletoVO;
 
 public class ExistenciaBoletoAssembler {
 	
-	public static ExistenciaBoletoVO getExistenciaBoletoVO(ExistenciaBoletos existenciaBoleto){
+	public static ExistenciaBoletoVO getExistenciaBoletoVO(ExistenciaBoletos existenciaBoleto, long disponibles){
 		
 		if(existenciaBoleto==null)
 			return null;
@@ -17,21 +17,24 @@ public class ExistenciaBoletoAssembler {
 		existenciaBoletoVO.setIdExistenciaBoletos(existenciaBoleto.getIdExistenciaBoletos());
 		existenciaBoletoVO.setProgramacionVO(ProgramacionAssembler.getProgramacionVO(existenciaBoleto.getProgramacion()));
 		existenciaBoletoVO.setFechaExhibicion(existenciaBoleto.getFechaExhibicion());
-		existenciaBoletoVO.setIdExistenciaBoletos(existenciaBoleto.getIdExistenciaBoletos());
+		existenciaBoletoVO.setBoletosReservados(existenciaBoleto.getBoletosReservados());
+		existenciaBoletoVO.setDisponibles(disponibles);
 
 		return existenciaBoletoVO;
 	}
 	
-	public static ExistenciaBoletos getExistenciaBoleto(Integer idProgramacion){
+	public static ExistenciaBoletoVO getExistenciaBoletoVO(Programacion programacion, Date fechaExhibicion, long disponibles){
 		
-		if(idProgramacion==null)
+		if(programacion==null && fechaExhibicion==null)
 			return null;
+	
+		ExistenciaBoletoVO existenciaBoleto = new ExistenciaBoletoVO();
+		existenciaBoleto.setIdExistenciaBoletos(null);
+		existenciaBoleto.setProgramacionVO(ProgramacionAssembler.getProgramacionVO(programacion));
+		existenciaBoleto.setFechaExhibicion(fechaExhibicion);
+		existenciaBoleto.setBoletosReservados(0);
+		existenciaBoleto.setDisponibles(disponibles);
 		
-		ExistenciaBoletos existenciaBoleto = new ExistenciaBoletos();
-		existenciaBoleto.setProgramacion(ProgramacionAssembler.getProgramacion(idProgramacion));
-		existenciaBoleto.setFechaExhibicion(new Date());
-		existenciaBoleto.setIdExistenciaBoletos(0);
-
 		return existenciaBoleto;
 	}
 
