@@ -1,14 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!-- page content -->
-<!-- bloque de wizard -->
-
-
-<!-- bloque de PASO 2 de wizard - CANTIDAD -->
+ 
+<!-- bloque de PASO 3 de wizard - CANTIDAD -->
 <div id="step-2">
-	<div class="x_panel">
+	<div class="x_panel" ng-init="initCron()">
 		<div class="x_title">
 			<h2>
 				<i class="fa fa-calculator"></i> Selecciona la Cantidad de Boletos
@@ -23,7 +16,7 @@
 
 				<button type="button" class="btn btn-success"
 					ng-disabled="pago.subtotal == 0 "
-					ng-click="asignarPaso(4);consultarFormasPago()">
+					ng-click="asignarPaso(4);consultarFormasPago();StopTimer()">
 					Registrar el Pago <i class="fa fa-credit-card"></i>
 				</button>
 
@@ -49,7 +42,7 @@
 								class="animated flipInY col-lg-8 col-md-8 col-sm-10 col-xs-12">
 								<div class="tile-stats">
 									<h2 class="text-center">Disponibles</h2>
-									<h3 class="text-center">5</h3>
+									<h3 class="text-center">{{asientosDisponibles.disponibles}}</h3>
 								</div>
 							</div>
 						</div>
@@ -192,5 +185,4 @@
 	</div>
 	<!-- /xpanel MODULO -->
 </div>
-<!-- /bloque de PASO 2 de wizard -->
-<!-- /bloque de wizard -->
+ 

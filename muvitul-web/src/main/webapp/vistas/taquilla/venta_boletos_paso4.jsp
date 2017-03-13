@@ -1,12 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!-- page content -->
-<!-- bloque de wizard -->
-
-
-<!-- bloque de PASO 2 de wizard - CANTIDAD -->
+ 
+<!-- bloque de PASO 4 de wizard - CANTIDAD -->
 <div id="step-2">
 	<div class="x_panel">
 		<div class="x_title">
@@ -15,7 +8,7 @@
 			</h2>
 			<div class="row pull-right">
 				<button type="button" class="btn btn-primary"
-					ng-click="asignarPaso(3)">
+					ng-click="asignarPaso(3);StartTimer(paramsExistenciaBoleto)">
 					<i class="fa fa-calculator"></i> Modificar Cantidades
 				</button>
 				<button type="button" class="btn btn-success"
@@ -176,6 +169,4 @@
 		<!-- /xcontent -->
 	</div>
 	<!-- /xpanel MODULO -->
-</div>
-<!-- /bloque de PASO 2 de wizard -->
-<!-- /bloque de wizard -->
+</div> 

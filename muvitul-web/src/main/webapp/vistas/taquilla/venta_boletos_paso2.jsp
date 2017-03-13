@@ -1,9 +1,7 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!-- page content -->
-<!-- bloque de wizard -->
 
 <!-- bloque de PASO 2 de wizard - PROMOCION -->
 <div id="step-2">
@@ -21,7 +19,7 @@
 				</button>
 
 				<button type="button" class="btn btn-success"
-					ng-click="asignarPaso(3)">
+					ng-click="asignarPaso(3);StartTimer(paramsExistenciaBoleto)">
 					Elegir Cantidad <i class="fa fa-calculator"></i>
 				</button>
 
@@ -39,7 +37,8 @@
 							<div ng-repeat="promocion in listaPromociones ">
 								<div
 									class="animated flipInY col-lg-4 col-md-4 col-sm-4 col-xs-6">
-									<a href="javascript:void(0)" ng-click="seleccionarPromocion(promocion )">
+									<a href="javascript:void(0)"
+										ng-click="seleccionarPromocion(promocion )">
 										<div class="tile-stats" style="background-color: #F2F2F2">
 											<div style="position: absolute; top: 10px; right: 10px">
 												<img src="<c:url value='resources/img/ticket_icon.jpeg' />"
@@ -47,8 +46,8 @@
 											</div>
 											<div class="count">
 												<img src="<c:url value='resources/img/check_icon.jpeg' />"
-													width="50px" height="50px" ng-if="promocion.check">
-													<img src="<c:url value='resources/img/uncheck_icon.jpeg' />"
+													width="50px" height="50px" ng-if="promocion.check"> <img
+													src="<c:url value='resources/img/uncheck_icon.jpeg' />"
 													width="50px" height="50px" ng-if="!promocion.check">
 											</div>
 											<br />
@@ -77,5 +76,4 @@
 		<!-- /row -->
 	</div>
 </div>
-<!-- /bloque de PASO 2 de wizard -->
-<!-- /bloque de wizard -->
+

@@ -1,33 +1,39 @@
 'use strict';
 
-var VentaBoletosPaso1Controller = angular.module('indexModule').controller('ventaBoletos', function($controller,$scope,$rootScope,$filter,taquillaService,calculosFactory){
-	
+var VentaBoletosPaso1Controller = angular.module('indexModule').controller('ventaBoletos', function($controller,$scope,$filter,taquillaService,calculosFactory){
+
 	$scope.statusVenta			= { elegirPelicula	:"selected", elegirPromocion :"", elegirCantidad	:"", 
 						 		   registrarPago	:"", confirmarVenta  :"", numeroPaso:1	}
-	$scope.listaPromociones		={};
+	$scope.fechaExhibicion 		= moment(new Date()).format('YYYY/MM/DD');
 	$scope.listaFormasPago		={};
 	$scope.listaPeliculas		={};
 	$scope.listaPreciosXFormato	={};
 	$scope.boletos			    =[];
  	$scope.pago				    ={subtotal:0, porPagar:0, pagado:0};
-	$scope.listaPagos			=[];
+	
 	$scope.objetosVenta			={};
 	$scope.promocion			={ cantidad:0, tipoCliente:"Promocion", subtotal:0, precio:0, };
-//	$controller('VentaBoletosPaso2Controller',{$scope : $scope });
+	$controller('VentaBoletosPaso2Controller',{$scope : $scope });
+	$controller('VentaBoletosPaso3Controller',{$scope : $scope });
+	$controller('VentaBoletosPaso4Controller',{$scope : $scope });
 
 	
  	$scope.seleccionarPelicula =function(pelicula,programacion){
+ 		
  		$scope.listaPreciosXFormato ={};
  		$scope.statusVenta.numeroPaso		= 2;
 		$scope.statusVenta.elegirPelicula	= "done";
     	$scope.statusVenta.elegirPromocion  = "selected";
+    	
 		$scope.objetosVenta.programacion	= programacion;
 		$scope.objetosVenta.pelicula		= pelicula;
 		$scope.objetosVenta.fechaVenta		= new Date();
 		$scope.consultarPromociones();
 		$scope.consultarPreciosFormato();
 		$scope.pago.subtotal =0;
+ 
 
+		$scope.configParamsCron(programacion,$scope.fechaExhibicion);
 //		$scope.init();
 	}
 	
@@ -65,6 +71,9 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 	}
 	
 	$scope.agregarBoleto =function(tipoClienteVO, index){
+		$scope.reservarBoleto($scope.asientosDisponibles);
+		
+ 
 		$scope.pago.subtotal =0;
 
 		tipoClienteVO.boletosSeleccionados = tipoClienteVO.boletosSeleccionados +1;
@@ -80,29 +89,23 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 	$scope.asignarPaso =function( paso){
 		$scope.statusVenta= calculosFactory.estatusPaso(paso);
 		$scope.statusVenta.numeroPaso = paso;
+		
+		
 //		$scope.boletos.push($scope.promocion);
-
 	}
  
-	
-	
 	//Consulta de programacion de peliculas
-	$scope.consultarPeliculas =function(){
- 		taquillaService.consultarPeliculas().success(function(data) {	
+	$scope.consultarPeliculas =function(fechaBusqueda){
+ 		taquillaService.consultarPeliculas(fechaBusqueda).success(function(data) {	
  			$scope.listaPeliculas=data;
-			 $scope.errorPeliculas=false;
+			$scope.errorPeliculas=false;
 
  		  }).error(function(data) {
  			 $scope.errorPeliculas=true;
  		  });
+ 		 
 	}
-	//Consulta de promociones
-	$scope.consultarPromociones =function(){
- 		taquillaService.consultarPromociones().success(function(data) {	
- 			$scope.listaPromociones=data;
-  		  }).error(function(data) {
-		  });
-	}
+
 	//Consulta de precios por formato
 	$scope.consultarPreciosFormato =function(){
 		$scope.boletos=[];
@@ -124,30 +127,18 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
  		  }).error(function(data) {
 		  });
 	}
-	//Formas de pagos
-	$scope.seleccionarFormaPago =function( formaPago, formPagos){
-		formPagos.$setPristine();
- 		$scope.pago.formaPago = formaPago;
-	}
-	$scope.guardarPago =function(pago,formPagos){
-		if ( formPagos.$invalid) {
-            angular.forEach( formPagos.$error, function (field) {
-              angular.forEach(field, function(errorField){
-            	  errorField.$setDirty();
-              })
-            });
-            return;
-        }
-		$scope.listaPagos.push(angular.copy(pago));
-		console.log($scope.listaPagos)
-	}
+	
+	
+	
 	$scope.calcularCambio =function(pagoCon,pagoImporte){
 		$scope.pago.cambio=pagoCon-pagoImporte;
 	}
 	
-	$scope.init =function(){
-		$scope.boletos.push({ cantidad:0, tipoCliente:"Promocion", subtotal:0, precio:0 })
+	$scope.buscarPeliculasXFecha =function(){
+		$scope.consultarPeliculas($scope.fechaExhibicion);
 	}
-	
-	$scope.consultarPeliculas();
+
+	 
+	$scope.consultarPeliculas($scope.fechaExhibicion);
  });
+ 

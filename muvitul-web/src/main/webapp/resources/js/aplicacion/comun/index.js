@@ -8,7 +8,8 @@ angular.module('indexModule').config(function($routeProvider){
             .when("/ventaBoletos", {
                 controller: "ventaBoletos",
                 controllerAs: "vm",
-                templateUrl: "vistas/taquilla/venta_boletos.jsp"
+                templateUrl: "vistas/taquilla/venta_boletos.jsp" 
+            
             })
 
             .when("/ventaProducto", {

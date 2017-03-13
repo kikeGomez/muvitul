@@ -26,6 +26,10 @@
   	<link href="<c:url value='/resources/css/vendors/bootstrap/dist/css/fileinput.css' />" rel="stylesheet">
   	<!-- Select2 -->
     <link href="<c:url value='/resources/css/vendors/select2/dist/css/select2.min.css' />" rel="stylesheet">
+	<!-- bootstrap datepicker -->
+    <link href="<c:url value='/resources/js/vendors/datepicker/datepicker3.css' />" rel="stylesheet">
+    <!-- Bootstrap time Picker -->
+     <link href="<c:url value='/resources/js/vendors/timepicker/bootstrap-timepicker.min.css' />" rel="stylesheet">
 	
   </head>
 
@@ -133,7 +137,7 @@
                         <span>Cambiar Contrase&ntilde;a</span>
                       </a>
                     </li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión </a></li>
+                    <li><a href="/muvitul-web"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión </a></li>
                   </ul>
                 </li>
 		<!--  
@@ -205,8 +209,7 @@
         <!-- /page content -->
 
         <!-- footer content -->
-        <footer>
-
+        <footer> 
  			<!-- AQUÃ VA EL FOOTER DE LA APLICACIÃ“N -->   
           <div class="pull-right">
             2017. Grupo Tecnetia SA de CV. <a href="http://tecnetia.com.mx/aviso-de-privacidad/" target="_blank">Aviso de Privacidad.</a>
@@ -226,17 +229,23 @@
     <script src="<c:url value='/resources/js/vendors/fastclick/lib/fastclick.js' />"></script>
     <!-- NProgress -->
     <script src="<c:url value='/resources/js/vendors/nprogress/nprogress.js' />"></script>	
-    <!-- Custom Theme Scripts -->
-    <script src="<c:url value='/resources/js/build/custom.min.js' />"></script>
 	<!-- Angular -->
     <script src="<c:url value='/resources/js/vendors/angular/angular.min.js' />"></script>
 	<!-- Angular Route -->
     <script src="<c:url value='/resources/js/vendors/angular/angular-route.js' />"></script>
-    <!-- Para manejo de horas y fechas -->
-	<script src="<c:url value='/resources/js/vendors/bootstrap/moment.min.js' />" charset="utf-8"></script>
+   	<!-- Calendar and Date -->
+   	<script src="<c:url value='/resources/js/moment/moment.min.js' />" charset="utf-8"></script>
+     <script src="<c:url value='/resources/js/comun/config/angular-locale_es-mx.js'/>"></script>
 	<script src="<c:url value='/resources/js/datepicker/datetime-inputs.min.js' />"></script>
+	<script src="<c:url value='/resources/js/datepicker/daterangepicker.js' />"></script>
 	<script src="<c:url value='/resources/js/vendors/bootstrap/moment-with-locales.js' />"></script>
-	<script src="<c:url value='/resources/js/vendors/bootstrap/bootstrap-datetimepicker.js' />"></script>
+<%-- 	<script src="<c:url value='/resources/js/vendors/bootstrap/bootstrap-datetimepicker.js' />"></script> --%>
+	
+	<!-- bootstrap datepicker -->
+	<script src="<c:url value='/resources/js/vendors/datepicker/bootstrap-datepicker.js' />"></script>
+	<!-- bootstrap timepicker -->
+	<script src="<c:url value='/resources/js/vendors/timepicker/bootstrap-timepicker.min.js' />"></script>
+
 	<!-- Manejo de carga de archivos -->
     <script src="<c:url value='/resources/js/vendors/bootstrap/fileinput.js' />"></script>
     <script src="<c:url value='/resources/js/vendors/bootstrap/locales/es.js' />"></script>
@@ -244,8 +253,11 @@
     <script src="<c:url value='/resources/js/vendors/select2/dist/js/select2.full.min.js' />"></script>
 	<!-- Underscore.js -->
 	<script src="<c:url value='/resources/js/vendors/underscore/underscore.js'/>"></script>
+	<!-- LazyLoad.js -->
+<%-- 	<script src="<c:url value='/resources/js/vendors/angular/ocLazyLoad.min.js'/>"></script> --%>
 	
-	
+	  <!-- Custom Theme Scripts -->
+    <script src="<c:url value='/resources/js/build/custom.min.js' />"></script>
 	
 	<script src="<c:url value='/resources/js/comun/global.js' />"></script> 
 	<script src="<c:url value='/resources/js/comun/service/globalService.js' />"></script>

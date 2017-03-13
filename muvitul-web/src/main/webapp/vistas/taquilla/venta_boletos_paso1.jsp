@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- Bootstrap -->
 <!-- page content -->
@@ -14,11 +11,29 @@
 				<i class="fa fa-film"></i> Cartelera
 			</h2>
 			<div class="clearfix"></div>
+
 		</div>
 		<div class="x_content">
+			<div class="row">
+
+				<div class="col-md-2 col-md-offset-9">
+					<label>Fecha Función:</label>
+
+					<div class="input-group date" id='horario-pelicula'>
+						<input type="text" class="form-control" ng-model="fechaExhibicion"
+							ng-change="buscarPeliculasXFecha()"><span
+							class="input-group-addon"><i
+							class="glyphicon glyphicon-th"></i></span>
+					</div>
+				</div>
+
+			</div>
 			<div class="alert   alert-danger" ng-if="errorPeliculas">
 				<strong>Cuidado! </strong> No se encuentran funciones en cartelera.
 			</div>
+
+
+
 			<!-- bloque de pelicula -->
 			<div dir-paginate="pelicula in listaPeliculas | itemsPerPage: 5">
 				<div class="col-md-12 col-sm-12 col-xs-12">
@@ -64,6 +79,7 @@
 														<button type="button" class="btn btn-round btn-info">{{pelicula.duracion}}
 															min</button>
 													</p>
+
 													<div class="row col-md-12">
 														<p ng-if="pelicula.esp2d.length > 0">ESP 2D
 														<ul id="1" class="col-md-2 col-xs-6"
@@ -166,6 +182,21 @@
 			<dir-pagination-controls></dir-pagination-controls>
 		</div>
 	</div>
+	<script>
+		var dateToday = new Date();
+
+		$(function() {
+			$('.input-group.date').datepicker({
+				format : "dd/mm/yyyy",
+				startDate : '+0d',
+				autoclose : true,
+				todayBtn : 'linked',
+				todayHighlight : true
+			});
+		});
+	</script>
+
 </div>
+
 <!-- /bloque de PASO de wizard -->
 <!-- /bloque de wizard -->

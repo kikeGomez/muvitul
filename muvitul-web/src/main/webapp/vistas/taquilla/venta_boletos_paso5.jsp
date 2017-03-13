@@ -1,13 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
-<!-- page content -->
-<!-- bloque de wizard -->
-
-
-<!-- bloque de PASO 2 de wizard - CANTIDAD -->
+ 
+<!-- bloque de PASO 5 de wizard - CANTIDAD -->
 <div id="step-2">
 	<div class="x_panel">
 		<div class="x_title">
@@ -180,6 +172,4 @@
 		<!-- /xcontent -->
 	</div>
 	<!-- /xpanel MODULO -->
-</div>
-<!-- /bloque de PASO 2 de wizard -->
-<!-- /bloque de wizard -->
+</div> 

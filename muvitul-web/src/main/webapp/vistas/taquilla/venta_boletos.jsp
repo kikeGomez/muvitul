@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<html>
+<head>
+<meta charset="utf-8">
+<title>Alta de Infracción</title>
+</head>
+<body>
 <!-- Bootstrap -->
 
 <!-- page content -->
@@ -37,7 +42,7 @@
 			</a></li>
 		</ul>
 		<!-- bloque de PASO de wizard - CARTELERA -->
-		<div ng-if="statusVenta.numeroPaso ===1" elegir-pelicula></div>
+		<div ng-show="statusVenta.numeroPaso ===1" elegir-pelicula></div>
 		<div ng-if="statusVenta.numeroPaso ===2" elegir-promocion></div>
 		<div ng-if="statusVenta.numeroPaso ===3" elegir-cantidad></div>
 		<div ng-if="statusVenta.numeroPaso ===4" registrar-pago></div>
@@ -46,4 +51,9 @@
 		<!-- /bloque de PASO de wizard -->
 	</div>
 </div>
+ 
 <!-- /bloque de wizard -->
+
+
+</body>
+</html>
