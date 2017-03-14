@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 2/03/2017 11:59:13 PM by Hibernate Tools 4.3.1.Final
+// Generated 13/03/2017 10:51:10 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -39,6 +39,7 @@ public class Cine implements java.io.Serializable {
 	private Set<Promocion> promocions = new HashSet<Promocion>(0);
 	private Set<Pelicula> peliculas = new HashSet<Pelicula>(0);
 	private Set<MateriaPrima> materiaPrimas = new HashSet<MateriaPrima>(0);
+	private Set<Regalo> regalos = new HashSet<Regalo>(0);
 	private Set<Paquete> paquetes = new HashSet<Paquete>(0);
 	private Set<ImpuestoBoleto> impuestoBoletos = new HashSet<ImpuestoBoleto>(0);
 	private Set<ImpuestoXProducto> impuestoXProductos = new HashSet<ImpuestoXProducto>(0);
@@ -57,8 +58,9 @@ public class Cine implements java.io.Serializable {
 	public Cine(Contacto contacto, Empresa empresa, String nombre, boolean activo,
 			Set<ClasificacionArt> clasificacionArts, Set<Usuario> usuarios, Set<Articulo> articulos, Set<Sala> salas,
 			Set<PuntoVenta> puntoVentas, Set<Formato> formatos, Set<Usuario> usuarios_1, Set<Proveedor> proveedors,
-			Set<Promocion> promocions, Set<Pelicula> peliculas, Set<MateriaPrima> materiaPrimas, Set<Paquete> paquetes,
-			Set<ImpuestoBoleto> impuestoBoletos, Set<ImpuestoXProducto> impuestoXProductos, Set<Producto> productos) {
+			Set<Promocion> promocions, Set<Pelicula> peliculas, Set<MateriaPrima> materiaPrimas, Set<Regalo> regalos,
+			Set<Paquete> paquetes, Set<ImpuestoBoleto> impuestoBoletos, Set<ImpuestoXProducto> impuestoXProductos,
+			Set<Producto> productos) {
 		this.contacto = contacto;
 		this.empresa = empresa;
 		this.nombre = nombre;
@@ -74,6 +76,7 @@ public class Cine implements java.io.Serializable {
 		this.promocions = promocions;
 		this.peliculas = peliculas;
 		this.materiaPrimas = materiaPrimas;
+		this.regalos = regalos;
 		this.paquetes = paquetes;
 		this.impuestoBoletos = impuestoBoletos;
 		this.impuestoXProductos = impuestoXProductos;
@@ -230,6 +233,15 @@ public class Cine implements java.io.Serializable {
 
 	public void setMateriaPrimas(Set<MateriaPrima> materiaPrimas) {
 		this.materiaPrimas = materiaPrimas;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cine")
+	public Set<Regalo> getRegalos() {
+		return this.regalos;
+	}
+
+	public void setRegalos(Set<Regalo> regalos) {
+		this.regalos = regalos;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cine")

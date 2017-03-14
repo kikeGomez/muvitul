@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 2/03/2017 11:59:13 PM by Hibernate Tools 4.3.1.Final
+// Generated 13/03/2017 10:51:10 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -25,14 +25,17 @@ public class ExistenciaBoletos implements java.io.Serializable {
 	private Programacion programacion;
 	private Date fechaExhibicion;
 	private long boletosReservados;
+	private Date fechaReserva;
 
 	public ExistenciaBoletos() {
 	}
 
-	public ExistenciaBoletos(Programacion programacion, Date fechaExhibicion, long boletosReservados) {
+	public ExistenciaBoletos(Programacion programacion, Date fechaExhibicion, long boletosReservados,
+			Date fechaReserva) {
 		this.programacion = programacion;
 		this.fechaExhibicion = fechaExhibicion;
 		this.boletosReservados = boletosReservados;
+		this.fechaReserva = fechaReserva;
 	}
 
 	@Id
@@ -74,6 +77,16 @@ public class ExistenciaBoletos implements java.io.Serializable {
 
 	public void setBoletosReservados(long boletosReservados) {
 		this.boletosReservados = boletosReservados;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "fecha_reserva", nullable = false, length = 19)
+	public Date getFechaReserva() {
+		return this.fechaReserva;
+	}
+
+	public void setFechaReserva(Date fechaReserva) {
+		this.fechaReserva = fechaReserva;
 	}
 
 }

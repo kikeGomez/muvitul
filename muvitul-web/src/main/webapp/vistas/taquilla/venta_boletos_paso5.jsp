@@ -1,4 +1,4 @@
- 
+
 <!-- bloque de PASO 5 de wizard - CANTIDAD -->
 <div id="step-2">
 	<div class="x_panel">
@@ -8,7 +8,8 @@
 			</h2>
 			<div class="row pull-right">
 
-				<button type="button" class="btn btn-primary" ng-click="asignarPaso(4)">
+				<button type="button" class="btn btn-primary"
+					ng-click="asignarPaso(4)">
 					<i class="fa fa-credit-card"></i> Regresar al Pago
 				</button>
 
@@ -35,54 +36,58 @@
 				<div class="x_panel">
 					<div class="x_title">
 						<h2>
-							<i class="fa fa-film"></i> La Era de Hielo: Choque de Mundos
+							<i class="fa fa-film"></i> {{objetosVenta.pelicula.titulo}}
 						</h2>
 						<div class="row pull-right">
-							<h3>TOTAL = $95.00</h3>
+							<h3>TOTAL = {{pago.subtotal}}</h3>
 						</div>
 						<div class="clearfix"></div>
 					</div>
 					<div class="col-md-3 col-sm-3 col-xs-3">
-						<br />
-						<br />
+						<br /> <br />
 						<div class="profile_img">
 							<div id="crop-avatar">
 								<img class="img-responsive avatar-view"
-									src="<c:url value='resources/img/pelicula1.jpg' />">
+									ng-src="data:image/png;base64,{{objetosVenta.pelicula.icono}}"
+									width="90%">
+
 							</div>
 						</div>
 					</div>
 					<div class="col-md-9 col-sm-9 col-xs-9">
 						<div class="row">
 							<div class="col-md-4 col-sm-4 col-xs-4">
-								<br />
-								<br />
+								<br /> <br />
 								<div class="row">
 									<div class="col-md-12 col-sm-12 col-xs-12">
-										<label>CINE: San Miguel </label>
+										<label>CINE: {{objetosVenta.pelicula.cineVO.nombre}} </label>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-12 col-sm-12 col-xs-12">
-										<label>FECHA: Jueves 18 de Julio </label>
+										<label>FECHA: {{objetosVenta.fechaVenta |
+											date:'dd-MM-yyyy'}} </label>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-12 col-sm-12 col-xs-12">
-										<label>HORARIO: 20:30 ESP </label>
+										<label>HORARIO: {{objetosVenta.programacion.horario}}
+											{{objetosVenta.programacion.versionVO.nombre}}
+											{{objetosVenta.programacion.formatoVO.nombre}} </label>
 									</div>
 								</div>
 							</div>
 							<!-- /col md 4 -->
 							<div class="col-md-8 col-sm-8 col-xs-8">
 								<br />
-								<div class="animated flipInY col-lg-8 col-md-8 col-sm-8 col-xs8">
+								<div
+									class="animated flipInY col-lg-4 col-md-12 col-sm-12 col-xs12">
 
 									<div class="tile-stats">
-										<h3 class="text-center">Promoci&oacute;n</h3>
+										<h2 class="text-center">Promoci&oacute;n</h2>
 										<br />
-										<h3>2 X 1</h3>
-										<p>2 X 1 todos los mi&eacute;rcoles</p>
+										<h3>{{objetosVenta.promocion.nombre}}</h3>
+										<p>{{objetosVenta.promocion.descripcion}}</p>
 									</div>
 
 								</div>
@@ -105,23 +110,17 @@
 										</tr>
 									</thead>
 
+
 									<tbody>
-										<tr class="odd pointer">
-											<td class=" ">Promoci&oacute;n</td>
-											<td class="text-center">1</td>
-											<td class="text-center">-$40.00</td>
+										<tr class="odd pointer" ng-repeat="boleto in  boletos "	ng-if="boleto.cantidad >0">
+											<td class=" ">{{boleto.tipoCliente}}</td>
+											<td class="text-center">{{boleto.cantidad}}</td>
+											<td class="text-center">{{boleto.subtotal}}</td>
+ 
 										</tr>
-										<tr class="even pointer">
-											<td class=" ">Ni&ntilde;os</td>
-											<td class="text-center">2</td>
-											<td class="text-center">$80.00</td>
-										</tr>
-										<tr class="odd pointer">
-											<td class=" ">Adultos</td>
-											<td class="text-center">1</td>
-											<td class="text-center">$55.00</td>
-										</tr>
+
 									</tbody>
+
 								</table>
 							</div>
 							<!-- table-responsive -->
@@ -172,4 +171,4 @@
 		<!-- /xcontent -->
 	</div>
 	<!-- /xpanel MODULO -->
-</div> 
+</div>

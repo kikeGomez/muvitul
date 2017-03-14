@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 2/03/2017 11:59:13 PM by Hibernate Tools 4.3.1.Final
+// Generated 13/03/2017 10:51:10 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,6 +26,7 @@ public class Usuario implements java.io.Serializable {
 	private Integer idUsuario;
 	private Cine cine;
 	private EstatusUsuario estatusUsuario;
+	private PuntoVenta puntoVenta;
 	private String nombre;
 	private String paterno;
 	private String materno;
@@ -52,12 +53,13 @@ public class Usuario implements java.io.Serializable {
 		this.contrasenia = contrasenia;
 	}
 
-	public Usuario(Cine cine, EstatusUsuario estatusUsuario, String nombre, String paterno, String materno,
-			String correo, String contrasenia, String foto, Set<Cine> cines, Set<TicketVenta> ticketVentas,
-			Set<Perfil> perfils, Set<CancelacionPago> cancelacionPagos,
+	public Usuario(Cine cine, EstatusUsuario estatusUsuario, PuntoVenta puntoVenta, String nombre, String paterno,
+			String materno, String correo, String contrasenia, String foto, Set<Cine> cines,
+			Set<TicketVenta> ticketVentas, Set<Perfil> perfils, Set<CancelacionPago> cancelacionPagos,
 			Set<AutorizacionMovimiento> autorizacionMovimientos, Set<MovimientoInventario> movimientoInventarios) {
 		this.cine = cine;
 		this.estatusUsuario = estatusUsuario;
+		this.puntoVenta = puntoVenta;
 		this.nombre = nombre;
 		this.paterno = paterno;
 		this.materno = materno;
@@ -102,6 +104,16 @@ public class Usuario implements java.io.Serializable {
 
 	public void setEstatusUsuario(EstatusUsuario estatusUsuario) {
 		this.estatusUsuario = estatusUsuario;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_punto_venta")
+	public PuntoVenta getPuntoVenta() {
+		return this.puntoVenta;
+	}
+
+	public void setPuntoVenta(PuntoVenta puntoVenta) {
+		this.puntoVenta = puntoVenta;
 	}
 
 	@Column(name = "nombre", nullable = false, length = 60)

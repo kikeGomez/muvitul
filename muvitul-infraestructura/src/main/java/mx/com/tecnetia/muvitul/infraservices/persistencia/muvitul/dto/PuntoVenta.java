@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 2/03/2017 11:59:13 PM by Hibernate Tools 4.3.1.Final
+// Generated 13/03/2017 10:51:10 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -29,6 +29,7 @@ public class PuntoVenta implements java.io.Serializable {
 	private String nombre;
 	private Set<Paquete> paquetes = new HashSet<Paquete>(0);
 	private Set<TicketVenta> ticketVentas = new HashSet<TicketVenta>(0);
+	private Set<Usuario> usuarios = new HashSet<Usuario>(0);
 	private Set<Producto> productos = new HashSet<Producto>(0);
 	private Set<Articulo> articulos = new HashSet<Articulo>(0);
 
@@ -42,12 +43,13 @@ public class PuntoVenta implements java.io.Serializable {
 	}
 
 	public PuntoVenta(Cine cine, TipoPuntoVenta tipoPuntoVenta, String nombre, Set<Paquete> paquetes,
-			Set<TicketVenta> ticketVentas, Set<Producto> productos, Set<Articulo> articulos) {
+			Set<TicketVenta> ticketVentas, Set<Usuario> usuarios, Set<Producto> productos, Set<Articulo> articulos) {
 		this.cine = cine;
 		this.tipoPuntoVenta = tipoPuntoVenta;
 		this.nombre = nombre;
 		this.paquetes = paquetes;
 		this.ticketVentas = ticketVentas;
+		this.usuarios = usuarios;
 		this.productos = productos;
 		this.articulos = articulos;
 	}
@@ -112,6 +114,15 @@ public class PuntoVenta implements java.io.Serializable {
 
 	public void setTicketVentas(Set<TicketVenta> ticketVentas) {
 		this.ticketVentas = ticketVentas;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "puntoVenta")
+	public Set<Usuario> getUsuarios() {
+		return this.usuarios;
+	}
+
+	public void setUsuarios(Set<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)

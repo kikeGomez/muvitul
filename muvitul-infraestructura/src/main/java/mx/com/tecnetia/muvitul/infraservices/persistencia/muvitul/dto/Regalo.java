@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 2/03/2017 11:59:13 PM by Hibernate Tools 4.3.1.Final
+// Generated 13/03/2017 10:51:10 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,6 +22,7 @@ import javax.persistence.Table;
 public class Regalo implements java.io.Serializable {
 
 	private Integer idRegalo;
+	private Cine cine;
 	private String nombre;
 	private String descripcion;
 	private Set<DetallePromocion> detallePromocions = new HashSet<DetallePromocion>(0);
@@ -27,12 +30,14 @@ public class Regalo implements java.io.Serializable {
 	public Regalo() {
 	}
 
-	public Regalo(String nombre, String descripcion) {
+	public Regalo(Cine cine, String nombre, String descripcion) {
+		this.cine = cine;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 	}
 
-	public Regalo(String nombre, String descripcion, Set<DetallePromocion> detallePromocions) {
+	public Regalo(Cine cine, String nombre, String descripcion, Set<DetallePromocion> detallePromocions) {
+		this.cine = cine;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.detallePromocions = detallePromocions;
@@ -48,6 +53,16 @@ public class Regalo implements java.io.Serializable {
 
 	public void setIdRegalo(Integer idRegalo) {
 		this.idRegalo = idRegalo;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_cine", nullable = false)
+	public Cine getCine() {
+		return this.cine;
+	}
+
+	public void setCine(Cine cine) {
+		this.cine = cine;
 	}
 
 	@Column(name = "nombre", nullable = false, length = 100)
