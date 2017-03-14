@@ -2,14 +2,22 @@
 
 angular.module('indexModule').service('dulceriaService', ['$http','GlobalFactory','config', function($http,GlobalFactory,config) {
  
-	 this.consultarPeliculas = function(){
+	 this.consultarPeliculas = function(fechaExhibicion){
 		 console.log("consultar peliculas");
-		 return $http.get(config.baseUrl+"/ventaBoleto/peliculas");
+		 return $http.get(config.baseUrl+"/ventaBoleto/peliculas", {
+			 params : {
+				 "fechaExhibicion" : fechaExhibicion
+			}
+		});
 	 }
 	 
-	 this.consultarPromociones = function(){
+	 this.consultarPromociones = function(fechaExhibicion){
 		 console.log("consultar promociones");
-		 return $http.get(config.baseUrl+"/ventaBoleto/promociones");
+		 return $http.get(config.baseUrl+"/ventaBoleto/promociones", {
+			 params : {
+				 "fechaExhibicion" : fechaExhibicion
+			}
+		});
 	 }
 	 
 	this.consultarPrecios = function(idFormato){

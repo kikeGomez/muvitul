@@ -2,6 +2,8 @@ package mx.com.tecnetia.muvitul.negocio.taquilla.vo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class ProgramacionVO {
 	private Integer idProgramacion;
 	private FormatoVO formatoVO;
@@ -9,6 +11,7 @@ public class ProgramacionVO {
 	private SalaVO salaVO;
 	private VersionVO versionVO;
 	private String diaSemana;
+	@JsonFormat(pattern="HH:mm:ss")
 	private Date horario;
 	private Date fechaVigencia;
 //	private Set<ExistenciaBoletos> existenciaBoletoses = new HashSet<ExistenciaBoletos>(0);

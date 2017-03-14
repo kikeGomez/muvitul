@@ -1,5 +1,6 @@
 package mx.com.tecnetia.muvitul.servicios.facade;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -24,10 +25,12 @@ import mx.com.tecnetia.muvitul.negocio.taquilla.vo.VentaVO;
 @RequestMapping("/ventaBoleto")
 public interface VentaBoletoFacadeI {
 	@RequestMapping(value = "/peliculas", method = RequestMethod.GET)
-	public ResponseEntity<List<PeliculaVO>> getPeliculasByCine() throws BusinessGlobalException, NotFoundException;
+	public ResponseEntity<List<PeliculaVO>> getPeliculasByCine(Date fechaExhibicion)
+			throws BusinessGlobalException, NotFoundException, ParseException;
 
 	@RequestMapping(value = "/promociones", method = RequestMethod.GET)
-	public ResponseEntity<List<PromocionVO>> getPromocionesByCine() throws BusinessGlobalException, NotFoundException;
+	public ResponseEntity<List<PromocionVO>> getPromocionesByCine(Date fechaExhibicion)
+			throws BusinessGlobalException, NotFoundException;
 
 	@RequestMapping(value = "/precios", method = RequestMethod.GET)
 	public ResponseEntity<List<PrecioXFormatoVO>> getPreciosByFormato(
@@ -38,7 +41,7 @@ public interface VentaBoletoFacadeI {
 			@RequestParam(value = "idProgramacion") Integer idProgramacion,
 			@RequestParam(value = "idSala") Integer idSala,
 			@RequestParam(value = "fechaExhibicion") Date fechaExhibicion)
-			throws BusinessGlobalException, NotFoundException;
+			throws BusinessGlobalException, NotFoundException, ParseException;
 
 	@RequestMapping(value = "/existencias", method = RequestMethod.PUT)
 	public ResponseEntity<ExistenciaBoletoVO> updateExistenciaBoleto(@RequestBody ExistenciaBoletoVO existenciaBoletoVO)

@@ -54,7 +54,7 @@ public class ExistenciaBoletoBO {
 		long ocupados=vendidos+existenciaBoleto.getBoletosReservados();
 		
 		
-		if (cupoXSala.getNoAsientos()<=ocupados){
+		if (cupoXSala.getNoAsientos()<ocupados){
 			throw new BusinessGlobalException("Boletos no disponibles.");
 		}
 

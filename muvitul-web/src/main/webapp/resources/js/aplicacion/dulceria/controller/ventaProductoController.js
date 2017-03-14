@@ -2,6 +2,7 @@
 
 var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 		"ventaProductoController", function($scope,$filter,dulceriaService) {
+			$scope.fechaExhibicion = moment(new Date("2017/03/17")).format('YYYY/MM/DD');
 			$scope.paquetes = {};
 			$scope.existenciaBoletoVo;
 			
@@ -39,16 +40,16 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 				}
 			}
 			
-			$scope.consultarPeliculas = function() {
-				dulceriaService.consultarPeliculas().success(function(data) {
+			$scope.consultarPeliculas = function(fechaExhibicion) {
+				dulceriaService.consultarPeliculas(fechaExhibicion).success(function(data) {
 					console.log(data);
 				}).error(function(data) {
 					
 				});
 			}
 				 
-			$scope.consultarPromociones = function() {
-				dulceriaService.consultarPromociones().success(function(data) {
+			$scope.consultarPromociones = function(fechaExhibicion) {
+				dulceriaService.consultarPromociones(fechaExhibicion).success(function(data) {
 					console.log(data);
 				}).error(function(data) {
 
@@ -75,6 +76,9 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 				// console.log("consultar existencias"+ getFechaActual());
 				dulceriaService.consultarExistencias(idProgramacion,idSala,fechaExhibicion).success(function(data) {
 					console.log(data);
+					$scope.existenciaBoletoVo=data;
+					$scope.actualizarExistenciaBoleto($scope.existenciaBoletoVo);
+					//$scope.consultarPaquetes();
 				}).error(function(data) {
 
 				});
@@ -84,7 +88,6 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 				// console.log("consultar existencias"+ getFechaActual());
 				dulceriaService.actualizarExistenciaBoleto(existenciaBoletoVo).success(function(data) {
 					console.log(data);
-					existenciaBoletoVo=data;
 				}).error(function(data) {
 
 				});
@@ -98,12 +101,16 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 
 				});
 			}
+			
+//			obtnerFechaActual = function(){			
+//				var hoy =  $filter('date')(new Date(), 'dd-MM-yyyy');
+//				return 	hoy;
+//			}
 
-			$scope.consultarPeliculas();
-			$scope.consultarPromociones();
-			$scope.consultarPrecios(1);
-			$scope.consultarFormasPago();
-			$scope.consultarExistencias(1,1,new Date());
-			$scope.actualizarExistenciaBoleto($scope.existenciaBoletoVo);
-			//$scope.consultarPaquetes();
+			console.log($scope.fechaExhibicion);
+			$scope.consultarPeliculas($scope.fechaExhibicion);
+			$scope.consultarPromociones($scope.fechaExhibicion);
+			//$scope.consultarPrecios(1);
+			//$scope.consultarFormasPago();
+			$scope.consultarExistencias(1,1,$scope.fechaExhibicion);
 		});
