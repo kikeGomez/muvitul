@@ -1,7 +1,10 @@
 package mx.com.tecnetia.muvitul.negocio.taquilla.vo;
 
+import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Cine;
+
 public class RegaloVO {
 	private Integer idRegalo;
+	private CineVO cineVO;
 	private String nombre;
 	private String descripcion;
 //	private Set<DetallePromocion> detallePromocions = new HashSet<DetallePromocion>(0);
@@ -11,6 +14,12 @@ public class RegaloVO {
 	}
 	public void setIdRegalo(Integer idRegalo) {
 		this.idRegalo = idRegalo;
+	}
+	public CineVO getCineVO() {
+		return cineVO;
+	}
+	public void setCineVO(CineVO cineVO) {
+		this.cineVO = cineVO;
 	}
 	public String getNombre() {
 		return nombre;

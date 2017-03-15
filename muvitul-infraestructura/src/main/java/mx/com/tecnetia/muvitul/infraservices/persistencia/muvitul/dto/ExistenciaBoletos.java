@@ -60,8 +60,8 @@ public class ExistenciaBoletos implements java.io.Serializable {
 		this.programacion = programacion;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "fecha_exhibicion", nullable = false, length = 10)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "fecha_exhibicion", nullable = false, length = 19)
 	public Date getFechaExhibicion() {
 		return this.fechaExhibicion;
 	}

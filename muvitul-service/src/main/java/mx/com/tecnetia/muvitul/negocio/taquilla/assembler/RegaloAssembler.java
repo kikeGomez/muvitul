@@ -12,6 +12,7 @@ public class RegaloAssembler {
 
 		RegaloVO regaloVO = new RegaloVO();
 		regaloVO.setIdRegalo(regalo.getIdRegalo());
+		regaloVO.setCineVO(CineAssembler.getCineVO(regalo.getCine()));
 		regaloVO.setNombre(regalo.getNombre());
 		regaloVO.setDescripcion(regalo.getDescripcion());
 		

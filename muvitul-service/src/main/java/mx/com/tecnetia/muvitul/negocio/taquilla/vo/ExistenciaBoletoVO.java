@@ -2,11 +2,14 @@ package mx.com.tecnetia.muvitul.negocio.taquilla.vo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class ExistenciaBoletoVO {
 	private Integer idExistenciaBoletos;
 	private ProgramacionVO programacionVO;
 	private Date fechaExhibicion;
 	private long boletosReservados;
+	private Date fechaReserva;
 	private long disponibles;
 	private int reservar;
 
@@ -33,6 +36,12 @@ public class ExistenciaBoletoVO {
 	}
 	public void setBoletosReservados(long boletosReservados) {
 		this.boletosReservados = boletosReservados;
+	}
+	public Date getFechaReserva() {
+		return fechaReserva;
+	}
+	public void setFechaReserva(Date fechaReserva) {
+		this.fechaReserva = fechaReserva;
 	}
 	public long getDisponibles() {
 		return disponibles;

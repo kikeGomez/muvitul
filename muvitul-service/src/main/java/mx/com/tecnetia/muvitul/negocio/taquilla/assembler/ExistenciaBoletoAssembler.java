@@ -17,9 +17,9 @@ public class ExistenciaBoletoAssembler {
 		existenciaBoletoVO.setIdExistenciaBoletos(existenciaBoleto.getIdExistenciaBoletos());
 		existenciaBoletoVO.setProgramacionVO(ProgramacionAssembler.getProgramacionVO(existenciaBoleto.getProgramacion()));
 		existenciaBoletoVO.setFechaExhibicion(existenciaBoleto.getFechaExhibicion());
+		existenciaBoletoVO.setFechaReserva(existenciaBoleto.getFechaReserva());
 		existenciaBoletoVO.setBoletosReservados(existenciaBoleto.getBoletosReservados());
 		existenciaBoletoVO.setDisponibles(disponibles);
-
 		return existenciaBoletoVO;
 	}
 	
@@ -33,6 +33,7 @@ public class ExistenciaBoletoAssembler {
 		existenciaBoleto.setProgramacionVO(ProgramacionAssembler.getProgramacionVO(programacion));
 		existenciaBoleto.setFechaExhibicion(fechaExhibicion);
 		existenciaBoleto.setBoletosReservados(0);
+		existenciaBoleto.setFechaReserva(new Date());
 		existenciaBoleto.setDisponibles(disponibles);
 		
 		return existenciaBoleto;
@@ -43,10 +44,13 @@ public class ExistenciaBoletoAssembler {
 			return null;
 		
 		ExistenciaBoletos existenciaBoleto = new ExistenciaBoletos();
+		existenciaBoleto.setIdExistenciaBoletos(existenciaBoletoVO.getIdExistenciaBoletos());
 		existenciaBoleto.setProgramacion(ProgramacionAssembler.getProgramacion(existenciaBoletoVO.getProgramacionVO().getIdProgramacion()));
 		existenciaBoleto.setFechaExhibicion(existenciaBoletoVO.getFechaExhibicion());
-		existenciaBoleto.setIdExistenciaBoletos(0);
+		existenciaBoleto.setBoletosReservados(existenciaBoletoVO.getBoletosReservados());
+		existenciaBoleto.setFechaReserva(existenciaBoletoVO.getFechaReserva());
 		return existenciaBoleto;
 	}
+	
 
 }

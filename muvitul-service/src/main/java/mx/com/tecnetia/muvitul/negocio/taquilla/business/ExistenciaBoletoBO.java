@@ -28,10 +28,9 @@ public class ExistenciaBoletoBO {
 
 	@Autowired
 	private BoletosXTicketDAOI boletosXTicketDAO;
-	
+
 	@Autowired
 	private ProgramacionDAOI programacionDAO;
-	
 
 	public ExistenciaBoletoVO findByIdProgramacion(Integer idProgramacion, Integer idSala, Date fechaExhibicion)
 			throws BusinessGlobalException {
@@ -41,20 +40,19 @@ public class ExistenciaBoletoBO {
 		if (cupoXSala == null) {
 			throw new BusinessGlobalException("Error al consultar existencia boletos.");
 		}
-		
+
 		long vendidos = boletosXTicketDAO.sumByProgramacion(idProgramacion, fechaExhibicion);
 		ExistenciaBoletos existenciaBoleto = existenciaBoletoDAO.findByIdProgramacion(idProgramacion, fechaExhibicion);
 
 		if (existenciaBoleto == null) {
-			long disponibles=cupoXSala.getNoAsientos()-vendidos;
-			Programacion programacion= programacionDAO.getById(idProgramacion);
-			return ExistenciaBoletoAssembler.getExistenciaBoletoVO(programacion,fechaExhibicion, disponibles);
+			long disponibles = cupoXSala.getNoAsientos() - vendidos;
+			Programacion programacion = programacionDAO.getById(idProgramacion);
+			return ExistenciaBoletoAssembler.getExistenciaBoletoVO(programacion, fechaExhibicion, disponibles);
 		}
 
-		long ocupados=vendidos+existenciaBoleto.getBoletosReservados();
-		
-		
-		if (cupoXSala.getNoAsientos()<ocupados){
+		long ocupados = vendidos + existenciaBoleto.getBoletosReservados();
+
+		if (cupoXSala.getNoAsientos() < ocupados) {
 			throw new BusinessGlobalException("Boletos no disponibles.");
 		}
 
@@ -63,17 +61,34 @@ public class ExistenciaBoletoBO {
 	}
 
 	public ExistenciaBoletoVO update(ExistenciaBoletoVO existenciaBoletoVO) throws BusinessGlobalException {
+
+		CupoXSala cupoXSala = cupoXSalaDAO.findByIdSala(existenciaBoletoVO.getProgramacionVO().getSalaVO().getIdSala());
+		long vendidos = boletosXTicketDAO.sumByProgramacion(existenciaBoletoVO.getProgramacionVO().getIdProgramacion(),
+				existenciaBoletoVO.getFechaExhibicion());
 		
-		ExistenciaBoletoVO existenciaVO = findByIdProgramacion(existenciaBoletoVO.getProgramacionVO().getIdProgramacion(),
-				existenciaBoletoVO.getProgramacionVO().getSalaVO().getIdSala(), existenciaBoletoVO.getFechaExhibicion());
+		
+		ExistenciaBoletos existenciaBoleto = existenciaBoletoDAO.findByIdProgramacion(
+				existenciaBoletoVO.getProgramacionVO().getIdProgramacion(), existenciaBoletoVO.getFechaExhibicion());
 
-		ExistenciaBoletos existenciaBoleto =ExistenciaBoletoAssembler.getExistenciaBoleto(existenciaBoletoVO);
-		existenciaBoleto.setBoletosReservados(existenciaBoleto.getBoletosReservados()+existenciaBoletoVO.getReservar());
-		existenciaBoletoDAO.saveOrUpdate(existenciaBoleto);
+		if (existenciaBoleto == null) {
+			existenciaBoleto= ExistenciaBoletoAssembler.getExistenciaBoleto(existenciaBoletoVO);
+			existenciaBoleto.setBoletosReservados(existenciaBoleto.getBoletosReservados() + existenciaBoletoVO.getReservar());
+			existenciaBoletoDAO.save(existenciaBoleto);
+		}else{
+			
+			long ocupados = vendidos + existenciaBoleto.getBoletosReservados();
 
-		existenciaBoletoVO = ExistenciaBoletoAssembler.getExistenciaBoletoVO(existenciaBoleto,existenciaVO.getDisponibles()+existenciaBoletoVO.getReservar());
+			if (cupoXSala.getNoAsientos() < ocupados) {
+				throw new BusinessGlobalException("Boletos no disponibles.");
+			}
+			
+			existenciaBoleto.setBoletosReservados(existenciaBoleto.getBoletosReservados() + existenciaBoletoVO.getReservar());
+			existenciaBoletoDAO.update(existenciaBoleto);
 
-		return existenciaBoletoVO;
+		}
+
+		long disponibles = cupoXSala.getNoAsientos() - vendidos - existenciaBoleto.getBoletosReservados();
+		return ExistenciaBoletoAssembler.getExistenciaBoletoVO(existenciaBoleto, disponibles);
 	}
 
 }

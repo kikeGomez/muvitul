@@ -2,7 +2,7 @@
 
 var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 		"ventaProductoController", function($scope,$filter,dulceriaService) {
-			$scope.fechaExhibicion = moment(new Date("2017/03/17")).format('YYYY/MM/DD');
+			$scope.fechaExhibicion = moment(new Date()).format('YYYY/MM/DD');
 			$scope.paquetes = {};
 			$scope.existenciaBoletoVo;
 			
@@ -77,6 +77,8 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 				dulceriaService.consultarExistencias(idProgramacion,idSala,fechaExhibicion).success(function(data) {
 					console.log(data);
 					$scope.existenciaBoletoVo=data;
+					$scope.existenciaBoletoVo.reservar=1;
+					console.log($scope.existenciaBoletoVo.fechaExhibicion);
 					$scope.actualizarExistenciaBoleto($scope.existenciaBoletoVo);
 					//$scope.consultarPaquetes();
 				}).error(function(data) {
@@ -107,9 +109,9 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 //				return 	hoy;
 //			}
 
-			console.log($scope.fechaExhibicion);
-			$scope.consultarPeliculas($scope.fechaExhibicion);
-			$scope.consultarPromociones($scope.fechaExhibicion);
+			//console.log($scope.fechaExhibicion);
+			//$scope.consultarPeliculas($scope.fechaExhibicion);
+			//$scope.consultarPromociones($scope.fechaExhibicion);
 			//$scope.consultarPrecios(1);
 			//$scope.consultarFormasPago();
 			$scope.consultarExistencias(1,1,$scope.fechaExhibicion);

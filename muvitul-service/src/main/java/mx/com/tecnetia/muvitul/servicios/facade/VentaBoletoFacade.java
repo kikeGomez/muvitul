@@ -97,11 +97,10 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 	@Override
 	public ResponseEntity<ExistenciaBoletoVO> updateExistenciaBoleto(@RequestBody ExistenciaBoletoVO existenciaBoletoVO)
 			throws BusinessGlobalException, NotFoundException {
-		logger.info("UpdateExistenciaBoleto:: [{}] :: [{}]" + existenciaBoletoVO.getDisponibles(),
-				existenciaBoletoVO.getProgramacionVO().getHorario());
-		ventaBoletoController.updateExistenciaBoleto(existenciaBoletoVO);
-		return new ResponseEntity<ExistenciaBoletoVO>(existenciaBoletoVO,
-				HttpStatus.OK);
+		logger.info("UpdateExistenciaBoleto:: [{}] :: [{}]" ,existenciaBoletoVO.getProgramacionVO().getIdProgramacion(),
+				existenciaBoletoVO.getFechaExhibicion());
+		
+		return new ResponseEntity<ExistenciaBoletoVO>(ventaBoletoController.updateExistenciaBoleto(existenciaBoletoVO),HttpStatus.OK);
 
 	}
 
