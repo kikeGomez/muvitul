@@ -187,7 +187,7 @@
 
 		$(function() {
 			$('.input-group.date').datepicker({
-				format : "dd/mm/yyyy",
+				format : "yyyy/mm/dd",
 				startDate : '+0d',
 				autoclose : true,
 				todayBtn : 'linked',

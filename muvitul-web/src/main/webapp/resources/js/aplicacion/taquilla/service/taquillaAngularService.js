@@ -1,14 +1,18 @@
 'use strict';
 
-angular.module('indexModule').service('taquillaService', ['$http','GlobalFactory','config', function($http,GlobalFactory,config) {
+angular.module('indexModule').service('taquillaService', ['$http','GlobalFactory','config','dataRest', function($http,GlobalFactory,config) {
  
-	 this.consultarPeliculas = function(fechaBusqueda){
-		 console.log("Buscando peliculas para "+ fechaBusqueda);
-		 return $http.get(config.baseUrl+"/ventaBoleto/peliculas");
+	dataRest.getAttrDiseno();
+	 this.consultarPeliculas = function(fechaExhibicion){
+		 return $http.get(config.baseUrl+"/ventaBoleto/peliculas", {
+				params : {"fechaExhibicion" : fechaExhibicion }
+		  });
 	 }
 	 
-	 this.consultarPromociones = function(){
-		return $http.get(config.baseUrl+"/ventaBoleto/promociones");
+	 this.consultarPromociones = function(fechaExhibicion){
+		return $http.get(config.baseUrl+"/ventaBoleto/promociones", {
+			params : {"fechaExhibicion" : fechaExhibicion }
+		  });
 	 }
  
 	 this.consultarPreciosFormato = function(idFormato){

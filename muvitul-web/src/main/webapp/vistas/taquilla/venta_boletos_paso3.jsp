@@ -1,4 +1,4 @@
- 
+
 <!-- bloque de PASO 3 de wizard - CANTIDAD -->
 <div id="step-2">
 	<div class="x_panel" ng-init="initCron()">
@@ -81,12 +81,17 @@
 											{{objetosVenta.programacion.formatoVO.nombre}}</label>
 									</div>
 								</div>
+								
+								<div class="row">
+									<div class="col-md-12 col-sm-12 col-xs-12">
+										<label>SALA:  {{objetosVenta.programacion.salaVO.nombre}}</label>
+									</div>
+								</div>
 							</div>
 							<!-- /col md 6 -->
 							<div class="col-md-8 col-sm-8 col-xs-8">
 								<br />
-								<div
-									class="animated flipInY col-lg-4 col-md-12 col-sm-12 col-xs12">
+								<div class="animated flipInY col-lg-4 col-md-12 col-sm-12 col-xs12">
 
 									<div class="tile-stats">
 										<h2 class="text-center">Promoci&oacute;n</h2>
@@ -185,4 +190,3 @@
 	</div>
 	<!-- /xpanel MODULO -->
 </div>
- 

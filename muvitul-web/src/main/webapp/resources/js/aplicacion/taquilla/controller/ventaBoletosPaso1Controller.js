@@ -9,7 +9,6 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 	$scope.listaPeliculas		={};
 	$scope.listaPreciosXFormato	={};
 	$scope.boletos			    =[];
- 	$scope.pago				    ={subtotal:0, porPagar:0, pagado:0};
 	
 	$scope.objetosVenta			={};
 	$scope.promocion			={ cantidad:0, tipoCliente:"Promocion", subtotal:0, precio:0, };
@@ -28,13 +27,11 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 		$scope.objetosVenta.programacion	= programacion;
 		$scope.objetosVenta.pelicula		= pelicula;
 		$scope.objetosVenta.fechaVenta		= new Date();
-		$scope.consultarPromociones();
+		$scope.consultarPromociones($scope.fechaExhibicion);
 		$scope.consultarPreciosFormato();
 		$scope.pago.subtotal =0;
- 
 
 		$scope.configParamsCron(programacion,$scope.fechaExhibicion);
-//		$scope.init();
 	}
 	
 	$scope.seleccionarPromocion =function(promocion){
@@ -58,6 +55,11 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
     }
 	
 	$scope.quitarBoleto = function(boleto) { 
+		
+		$scope.asientosDisponibles.reservar =-1;
+		$scope.reservarBoleto($scope.asientosDisponibles);
+		
+		
  		boleto.cantidad = boleto.cantidad-1;
 		boleto.subtotal= calculosFactory.calcularSubtotal(boleto.cantidad,boleto.precio);
  		$scope.pago.subtotal -=boleto.precio;
@@ -71,6 +73,7 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 	}
 	
 	$scope.agregarBoleto =function(tipoClienteVO, index){
+		$scope.asientosDisponibles.reservar =1;
 		$scope.reservarBoleto($scope.asientosDisponibles);
 		
  
@@ -95,12 +98,13 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 	}
  
 	//Consulta de programacion de peliculas
-	$scope.consultarPeliculas =function(fechaBusqueda){
- 		taquillaService.consultarPeliculas(fechaBusqueda).success(function(data) {	
+	$scope.consultarPeliculas =function(fechaExhibicion){
+ 		taquillaService.consultarPeliculas(fechaExhibicion).success(function(data) {	
  			$scope.listaPeliculas=data;
 			$scope.errorPeliculas=false;
 
  		  }).error(function(data) {
+ 			 $scope.listaPeliculas={};
  			 $scope.errorPeliculas=true;
  		  });
  		 
@@ -127,8 +131,6 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
  		  }).error(function(data) {
 		  });
 	}
-	
-	
 	
 	$scope.calcularCambio =function(pagoCon,pagoImporte){
 		$scope.pago.cambio=pagoCon-pagoImporte;

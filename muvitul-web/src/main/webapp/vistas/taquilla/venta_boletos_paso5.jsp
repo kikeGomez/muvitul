@@ -92,7 +92,21 @@
 
 								</div>
 
+								<div
+									class="animated flipInY col-lg-4 col-md-12 col-sm-12 col-xs12">
+
+									<div class="tile-stats">
+										<h2 class="text-center">Sala</h2>
+										<br />
+										<h3>{{objetosVenta.programacion.salaVO.nombre}}</h3>
+
+									</div>
+
+								</div>
+
 							</div>
+
+
 							<!-- /div col-md-8 -->
 						</div>
 						<!-- /row -->
@@ -112,11 +126,12 @@
 
 
 									<tbody>
-										<tr class="odd pointer" ng-repeat="boleto in  boletos "	ng-if="boleto.cantidad >0">
+										<tr class="odd pointer" ng-repeat="boleto in  boletos "
+											ng-if="boleto.cantidad >0">
 											<td class=" ">{{boleto.tipoCliente}}</td>
 											<td class="text-center">{{boleto.cantidad}}</td>
 											<td class="text-center">{{boleto.subtotal}}</td>
- 
+
 										</tr>
 
 									</tbody>
@@ -137,22 +152,16 @@
 									</thead>
 
 									<tbody>
-										<tr class="even pointer">
-											<td class=" ">Cr&eacute;dito</td>
-											<td class="text-center">$50.00</td>
-											<td class="text-center">4356</td>
+									<tbody>
+										<tr class="even pointer" ng-repeat="pago in listaPagos">
+											<td class=" ">{{pago.formaPago.nombre}}</td>
+											<td class="text-center">{{pago.importe}}</td>
+											<td class="text-center">{{pago.numeroCta}}</td>
 										</tr>
-										<tr class="odd pointer">
-											<td class=" ">D&eacute;bito</td>
-											<td class="text-center">$30.00</td>
-											<td class="text-center">4565</td>
-										</tr>
-										<tr class="even pointer">
-											<td class=" ">Efectivo</td>
-											<td class="text-center">$15.00</td>
-											<td class="text-center"></td>
-										</tr>
+
 									</tbody>
+									</tbody>
+
 								</table>
 							</div>
 							<!-- table-responsive -->

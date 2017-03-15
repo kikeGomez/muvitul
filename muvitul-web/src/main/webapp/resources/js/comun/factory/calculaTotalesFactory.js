@@ -7,6 +7,16 @@ angular.module('indexModule').factory("calculosFactory",function() {
 		    calcularTotal:function(a,b) {
 		      return a * b;
 		    },
+		    suma:function(a,b) {
+		    	 var total=0;
+		    	  total = parseFloat(a) + parseFloat(b);
+			      return total;
+			},
+			resta:function(a,b) {
+				var total = 0;
+				total = parseFloat(a) -  parseFloat(b);
+			      return total;
+			},
 		    estatusPaso:function(paso) {
 	    		 
 	   		 var statusVenta = {};
