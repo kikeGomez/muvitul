@@ -1,19 +1,19 @@
 package mx.com.tecnetia.muvitul.servicios.util;
 
 public enum ColorType {
-	BLUE(1), YELLOW(2), RED(3);
-	private int type;
+	BLUE("btn btn-round btn-default"), YELLOW("btn btn-round btn-warning"), RED("btn btn-round btn-danger");
+	private String color;
 
-	public int getType() {
-		return type;
+	public String getColor() {
+		return color;
 	}
 
-	public void setType(int type) {
-		this.type = type;
+	public void setColor(String color) {
+		this.color = color;
 	}
 
-	ColorType(int type) {
-		this.setType(type);
+	ColorType(String color) {
+		this.setColor(color);
 	}
 
 }

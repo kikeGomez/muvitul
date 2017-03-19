@@ -23,7 +23,7 @@ public class ExistenciaBoletoAssembler {
 		existenciaBoletoVO.setFechaReserva(existenciaBoleto.getFechaReserva());
 		existenciaBoletoVO.setBoletosReservados(existenciaBoleto.getBoletosReservados());
 		existenciaBoletoVO.setDisponibles(disponibles);
-		existenciaBoletoVO.setIdColor(getColor((int) disponibles, cupo));
+		existenciaBoletoVO.setColor(getColor((int) disponibles, cupo));
 		return existenciaBoletoVO;
 	}
 
@@ -40,7 +40,7 @@ public class ExistenciaBoletoAssembler {
 		existenciaBoleto.setBoletosReservados(0);
 		existenciaBoleto.setFechaReserva(new Date());
 		existenciaBoleto.setDisponibles(disponibles);
-		existenciaBoleto.setIdColor(getColor((int) disponibles, cupo));
+		existenciaBoleto.setColor(getColor((int) disponibles, cupo));
 		return existenciaBoleto;
 	}
 
@@ -58,15 +58,15 @@ public class ExistenciaBoletoAssembler {
 		return existenciaBoleto;
 	}
 
-	private static int getColor(int disponibles, int cupo) {
-		int color;
+	private static String getColor(int disponibles, int cupo) {
+		String color;
 		int porcentaje= disponibles*100/cupo;
 		if (porcentaje <=Constantes.UPPER_LIMIT_RED){
-			color=ColorType.RED.getType();
+			color=ColorType.RED.getColor();
 		}else if(porcentaje <= Constantes.UPPER_LIMIT_YELLOW){
-			color=ColorType.YELLOW.getType();
+			color=ColorType.YELLOW.getColor();
 		}else{
-			color=ColorType.BLUE.getType();
+			color=ColorType.BLUE.getColor();
 		}
 		return color;
 	}

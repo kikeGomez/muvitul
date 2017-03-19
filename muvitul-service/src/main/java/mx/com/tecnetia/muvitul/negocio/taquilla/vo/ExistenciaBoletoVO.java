@@ -10,7 +10,7 @@ public class ExistenciaBoletoVO {
 	private Date fechaReserva;
 	private long disponibles;
 	private int reservar;
-	private int idColor;
+	private String color;
 
 	public Integer getIdExistenciaBoletos() {
 		return idExistenciaBoletos;
@@ -54,10 +54,10 @@ public class ExistenciaBoletoVO {
 	public void setReservar(int reservar) {
 		this.reservar = reservar;
 	}
-	public int getIdColor() {
-		return idColor;
+	public String getColor() {
+		return color;
 	}
-	public void setIdColor(int idColor) {
-		this.idColor = idColor;
+	public void setColor(String color) {
+		this.color = color;
 	}
 }

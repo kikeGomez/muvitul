@@ -3,8 +3,8 @@ package mx.com.tecnetia.muvitul.negocio.taquilla.business;
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,18 +23,21 @@ import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ImpuestoBo
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ImpuestosXTicketTaquilla;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Pago;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PromocionesXTicket;
+import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PuntoVenta;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.TicketVenta;
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 import mx.com.tecnetia.muvitul.negocio.taquilla.assembler.BoletoXTicketAssembler;
 import mx.com.tecnetia.muvitul.negocio.taquilla.assembler.PagoAssembler;
 import mx.com.tecnetia.muvitul.negocio.taquilla.assembler.PromocionXTicketAssembler;
 import mx.com.tecnetia.muvitul.negocio.taquilla.assembler.TicketVentaAssembler;
+import mx.com.tecnetia.muvitul.negocio.taquilla.vo.BoletoXTicketVO;
+import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PromocionXTicketVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.VentaVO;
 
 @Service
 @Transactional
 public class VentaBoletoBO {
-	final static Log log = LogFactory.getLog(PeliculaBO.class);
+	private static final Logger logger = LoggerFactory.getLogger(VentaBoletoBO.class);
 
 	@Autowired
 	private TicketVentaDAOI ticketVentaDAO;
@@ -58,17 +61,45 @@ public class VentaBoletoBO {
 	private ImpuestoBoletoDAOI impuestoBoletoDAO;
 
 	public Object createVenta(VentaVO ventaVO, UsuarioFirmadoVO usuarioVO) throws BusinessGlobalException {
+		PuntoVenta puntoVenta = new PuntoVenta();
+		puntoVenta.setIdPuntoVenta(3);
+		BigDecimal total = new BigDecimal(0);
+		BigDecimal descuento = new BigDecimal(0);
+		BigDecimal importes = new BigDecimal(0);
+		BigDecimal porcentajes = new BigDecimal(0);
 
-		TicketVenta ticketVenta = ticketVentaDAO.save(TicketVentaAssembler.getTicketVenta(ventaVO.getTicketVentaVO()));
+		BigDecimal importe = new BigDecimal(0);
+		
+		List<ImpuestoBoleto> impuestosBoletos = impuestoBoletoDAO.findByIdCine(usuarioVO.getCineVO().getIdCine());
 
-		// OK
+		for (BoletoXTicketVO boletoXTicketVO : ventaVO.getBoletosXTicketVO()) {
+			total.add(boletoXTicketVO.getImporte());
+		}
+
+		for (PromocionXTicketVO promocionXTicketVO : ventaVO.getPromocionesXTicketVO()) {
+			descuento.add(promocionXTicketVO.getImporte());
+		}
+
+		for (ImpuestoBoleto impuestoBoleto : impuestosBoletos) {
+			porcentajes.add(impuestoBoleto.getPorcentaje());
+		}
+
+		porcentajes.divide(new BigDecimal(100));
+		importes.add(total).subtract(descuento).multiply(porcentajes);
+		importe.add(total).subtract(descuento);
+		
+		logger.info("Total: [{}] Descuento:[{}] Importe:[{}] Porcentaje:[{}]", total.toString(), descuento.toString(),
+				importes.toString(), porcentajes.toString());
+
+		TicketVenta ticketVenta = ticketVentaDAO
+				.save(TicketVentaAssembler.getTicketVenta(usuarioVO, puntoVenta, descuento, importes, total));
+
 		List<BoletosXTicket> boletosXTicket = BoletoXTicketAssembler.getBoletosXTicket(ventaVO.getBoletosXTicketVO());
 		for (BoletosXTicket boletoXTicket : boletosXTicket) {
 			boletoXTicket.setTicketVenta(ticketVenta);
 			boletoXTicketDAO.save(boletoXTicket);
 		}
 
-		// OK
 		List<PromocionesXTicket> promocionesXTicket = PromocionXTicketAssembler
 				.getPromocionesXTicket(ventaVO.getPromocionesXTicketVO());
 		for (PromocionesXTicket promocionXTicket : promocionesXTicket) {
@@ -76,20 +107,24 @@ public class VentaBoletoBO {
 			promocionXTicketDAO.save(promocionXTicket);
 		}
 
-		// OK
 		List<Pago> pagos = PagoAssembler.getPagos(ventaVO.getPagosVO());
 		for (Pago pago : pagos) {
 			pago.setTicketVenta(ticketVenta);
 			pagoDAO.save(pago);
 		}
 
-		List<ImpuestoBoleto> impuestosBoletos = impuestoBoletoDAO.findByIdCine(usuarioVO.getCineVO().getIdCine());
-
 		for (ImpuestoBoleto impuestoBoleto : impuestosBoletos) {
 			ImpuestosXTicketTaquilla impuestosXTicketTaquilla = new ImpuestosXTicketTaquilla();
 			impuestosXTicketTaquilla.setImpuestoBoleto(impuestoBoleto);
 			impuestosXTicketTaquilla.setTicketVenta(ticketVenta);
-			impuestosXTicketTaquilla.setImporte(new BigDecimal(0));
+			
+			BigDecimal porcentajeBoleto = new BigDecimal(0);
+			porcentajeBoleto.add(impuestoBoleto.getPorcentaje());
+			porcentajeBoleto.divide(new BigDecimal(100));
+			
+			BigDecimal importeBoleto = new BigDecimal(0);
+			importeBoleto.add(importe).multiply(importeBoleto);
+			impuestosXTicketTaquilla.setImporte(importeBoleto);
 			impuestosXTicketTaquillaDAO.update(impuestosXTicketTaquilla);
 		}
 
