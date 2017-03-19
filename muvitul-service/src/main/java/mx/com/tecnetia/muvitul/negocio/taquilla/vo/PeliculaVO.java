@@ -25,7 +25,7 @@ public class PeliculaVO {
 	private Set<ProgramacionVO> else3d = new HashSet<ProgramacionVO>();
 	private Set<ProgramacionVO> else4d = new HashSet<ProgramacionVO>();
 	
-	public void addProgramacion(ProgramacionVO programacionVO) {
+	public void addProgramacionVO(ProgramacionVO programacionVO) {
 		switch (programacionVO.getVersionVO().getIdVersion()) {
 		case 1:
 			switch (programacionVO.getFormatoVO().getNombre()) {

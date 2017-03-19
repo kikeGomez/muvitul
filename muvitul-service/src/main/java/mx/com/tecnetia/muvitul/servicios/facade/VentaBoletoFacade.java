@@ -106,8 +106,7 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 
 	@Override
 	public ResponseEntity<VentaVO> createVenta(VentaVO ventaVO) throws BusinessGlobalException, NotFoundException {
-		ventaVO.getTicketVentaVO().setUsuarioFirmadoVO(usuarioFirmadoBean.getUser());
-		ventaBoletoController.createVenta(ventaVO);
+		ventaBoletoController.createVenta(ventaVO, usuarioFirmadoBean.getUser());
 		return new ResponseEntity<VentaVO>(ventaVO, HttpStatus.CREATED);
 	}
 

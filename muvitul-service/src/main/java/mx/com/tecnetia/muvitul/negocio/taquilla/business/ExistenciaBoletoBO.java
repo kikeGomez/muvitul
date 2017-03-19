@@ -47,7 +47,7 @@ public class ExistenciaBoletoBO {
 		if (existenciaBoleto == null) {
 			long disponibles = cupoXSala.getNoAsientos() - vendidos;
 			Programacion programacion = programacionDAO.getById(idProgramacion);
-			return ExistenciaBoletoAssembler.getExistenciaBoletoVO(programacion, fechaExhibicion, disponibles);
+			return ExistenciaBoletoAssembler.getExistenciaBoletoVO(programacion, fechaExhibicion, disponibles, cupoXSala.getNoAsientos() );
 		}
 
 		long ocupados = vendidos + existenciaBoleto.getBoletosReservados();
@@ -56,7 +56,7 @@ public class ExistenciaBoletoBO {
 			throw new BusinessGlobalException("Boletos no disponibles.");
 		}
 
-		return ExistenciaBoletoAssembler.getExistenciaBoletoVO(existenciaBoleto, cupoXSala.getNoAsientos() - ocupados);
+		return ExistenciaBoletoAssembler.getExistenciaBoletoVO(existenciaBoleto, cupoXSala.getNoAsientos() - ocupados, cupoXSala.getNoAsientos());
 
 	}
 
@@ -88,7 +88,7 @@ public class ExistenciaBoletoBO {
 		}
 
 		long disponibles = cupoXSala.getNoAsientos() - vendidos - existenciaBoleto.getBoletosReservados();
-		return ExistenciaBoletoAssembler.getExistenciaBoletoVO(existenciaBoleto, disponibles);
+		return ExistenciaBoletoAssembler.getExistenciaBoletoVO(existenciaBoleto, disponibles, cupoXSala.getNoAsientos() );
 	}
 
 }

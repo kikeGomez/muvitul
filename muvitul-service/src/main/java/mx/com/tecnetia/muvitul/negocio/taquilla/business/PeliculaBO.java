@@ -18,6 +18,7 @@ import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 import mx.com.tecnetia.muvitul.negocio.taquilla.assembler.PeliculaAssembler;
 import mx.com.tecnetia.muvitul.negocio.taquilla.assembler.ProgramacionAssembler;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PeliculaVO;
+import mx.com.tecnetia.muvitul.negocio.taquilla.vo.ProgramacionVO;
 
 @Service
 @Transactional
@@ -26,23 +27,29 @@ public class PeliculaBO {
 	@Autowired
 	private ProgramacionDAOI programacionDAO;
 
-	
-	public List<PeliculaVO> findByCineAndDay(Integer idCine, String diaSemana, Date today) throws BusinessGlobalException {
-		Map <Integer, PeliculaVO> mapPeliculas= new HashMap<Integer,PeliculaVO>();
-		
-		for (Programacion programacion : programacionDAO.findByCineAndDay(idCine,diaSemana,today)) {
+	@Autowired
+	private ExistenciaBoletoBO existenciaBoletoBO;
 
-			if (!mapPeliculas.containsKey(programacion.getPelicula().getIdPelicula())){
-				mapPeliculas.put(programacion.getPelicula().getIdPelicula(),PeliculaAssembler.getPeliculaVO(programacion.getPelicula()));
+	public List<PeliculaVO> findByCineAndDay(Integer idCine, String diaSemana, Date fechaExhibicion)
+			throws BusinessGlobalException {
+		Map<Integer, PeliculaVO> mapPeliculas = new HashMap<Integer, PeliculaVO>();
+
+		for (Programacion programacion : programacionDAO.findByCineAndDay(idCine, diaSemana, fechaExhibicion)) {
+
+			if (!mapPeliculas.containsKey(programacion.getPelicula().getIdPelicula())) {
+				mapPeliculas.put(programacion.getPelicula().getIdPelicula(),
+						PeliculaAssembler.getPeliculaVO(programacion.getPelicula()));
 			}
-			
+
 			PeliculaVO peliculaVO = mapPeliculas.get(programacion.getPelicula().getIdPelicula());
-			peliculaVO.addProgramacion(ProgramacionAssembler.getProgramacionVO(programacion));
-			
-			
+			ProgramacionVO programacionVO = ProgramacionAssembler.getProgramacionVO(programacion);
+			programacionVO.setExistenciaBoletoVO(existenciaBoletoBO.findByIdProgramacion(
+					programacionVO.getIdProgramacion(), programacionVO.getSalaVO().getIdSala(), fechaExhibicion));
+			peliculaVO.addProgramacionVO(programacionVO);
+
 		}
-		List <PeliculaVO> peliculas = new ArrayList<PeliculaVO>(mapPeliculas.values());
-		return peliculas;
+		
+		return new ArrayList<PeliculaVO>(mapPeliculas.values());
 	}
 
 }

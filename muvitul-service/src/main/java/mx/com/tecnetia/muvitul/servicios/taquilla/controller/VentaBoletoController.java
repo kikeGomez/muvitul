@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import mx.com.tecnetia.muvitul.infraservices.negocio.seguridad.vo.UsuarioFirmadoVO;
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 import mx.com.tecnetia.muvitul.negocio.taquilla.business.ExistenciaBoletoBO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.business.PeliculaBO;
@@ -33,12 +34,12 @@ public class VentaBoletoController {
 	private ExistenciaBoletoBO existenciaBoletoBO;
 	
 	
-	public List<PeliculaVO> getPeliculasByCine(Integer idCine,String diaSemana, Date today ) throws BusinessGlobalException {
-		return peliculaBO.findByCineAndDay(idCine,diaSemana, today);
+	public List<PeliculaVO> getPeliculasByCine(Integer idCine,String diaSemana, Date fechaExhibicion ) throws BusinessGlobalException {
+		return peliculaBO.findByCineAndDay(idCine,diaSemana, fechaExhibicion);
 	}
 	
-	public List<PromocionVO> getPromocionesByCine(Integer idCine, Integer idPromocionPara, Date today) throws BusinessGlobalException {
-		return promocionBO.findByCineAndDate(idCine,idPromocionPara,today);
+	public List<PromocionVO> getPromocionesByCine(Integer idCine, Integer idPromocionPara, Date fechaExhibicion) throws BusinessGlobalException {
+		return promocionBO.findByCineAndDate(idCine,idPromocionPara,fechaExhibicion);
 	}
 
 	public List<PrecioXFormatoVO> getPreciosByFormato(Integer idCine, Integer idFormato) throws BusinessGlobalException {
@@ -54,8 +55,8 @@ public class VentaBoletoController {
 	}
 	
 
-	public void createVenta(VentaVO ventaVO) throws BusinessGlobalException {
-		ventaBoletoBO.createVenta(ventaVO);
+	public void createVenta(VentaVO ventaVO, UsuarioFirmadoVO usuarioVO) throws BusinessGlobalException {
+		ventaBoletoBO.createVenta(ventaVO, usuarioVO);
 	}
 
 }

@@ -14,9 +14,17 @@ public class ProgramacionVO {
 	@JsonFormat(pattern="HH:mm:ss")
 	private Date horario;
 	private Date fechaVigencia;
+	/**Addicional**/
+	private ExistenciaBoletoVO existenciaBoletoVO;
 //	private Set<ExistenciaBoletos> existenciaBoletoses = new HashSet<ExistenciaBoletos>(0);
 //	private Set<BoletosXTicket> boletosXTickets = new HashSet<BoletosXTicket>(0);
 	
+	public ExistenciaBoletoVO getExistenciaBoletoVO() {
+		return existenciaBoletoVO;
+	}
+	public void setExistenciaBoletoVO(ExistenciaBoletoVO existenciaBoletoVO) {
+		this.existenciaBoletoVO = existenciaBoletoVO;
+	}
 	public Integer getIdProgramacion() {
 		return idProgramacion;
 	}

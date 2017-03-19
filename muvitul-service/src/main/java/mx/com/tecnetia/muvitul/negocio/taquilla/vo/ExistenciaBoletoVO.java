@@ -2,8 +2,6 @@ package mx.com.tecnetia.muvitul.negocio.taquilla.vo;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 public class ExistenciaBoletoVO {
 	private Integer idExistenciaBoletos;
 	private ProgramacionVO programacionVO;
@@ -12,6 +10,7 @@ public class ExistenciaBoletoVO {
 	private Date fechaReserva;
 	private long disponibles;
 	private int reservar;
+	private int idColor;
 
 	public Integer getIdExistenciaBoletos() {
 		return idExistenciaBoletos;
@@ -54,5 +53,11 @@ public class ExistenciaBoletoVO {
 	}
 	public void setReservar(int reservar) {
 		this.reservar = reservar;
+	}
+	public int getIdColor() {
+		return idColor;
+	}
+	public void setIdColor(int idColor) {
+		this.idColor = idColor;
 	}
 }
