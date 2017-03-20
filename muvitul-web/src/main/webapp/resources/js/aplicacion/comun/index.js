@@ -1,6 +1,6 @@
 'use strict';
  
-var IndexModule = angular.module('indexModule',['ngRoute','globalModule','angularUtils.directives.dirPagination']);
+var IndexModule = angular.module('indexModule',['ngRoute','globalModule','blockUI','angularModalService','angularUtils.directives.dirPagination']);
 
 angular.module('indexModule').config(function($routeProvider){
 	

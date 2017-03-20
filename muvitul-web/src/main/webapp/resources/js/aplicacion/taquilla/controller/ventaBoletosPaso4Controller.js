@@ -13,11 +13,11 @@ var VentaBoletosPaso4Controller = angular.module('indexModule').controller("Vent
             	  errorField.$setDirty();
               })
             });
-            return;
+            $scope.showAviso("Es necesario llenar los campos obligatorios ");
+         }else{ 
+			$scope.listaPagos.push(angular.copy(pago));
+			$scope.calcularTotalPagado($scope.listaPagos);
         }
-	$scope.listaPagos.push(angular.copy(pago));
-	$scope.calcularTotalPagado($scope.listaPagos);
-	
 	}
 	
 	//Obtiene las formas de pago

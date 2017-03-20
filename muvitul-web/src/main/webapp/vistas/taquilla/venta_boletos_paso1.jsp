@@ -86,8 +86,8 @@
 															ng-repeat="esp2d in pelicula.esp2d">
 															<button type="button"
 																ng-click="seleccionarPelicula(pelicula,esp2d)"
-																class="btn btn-round btn-warning"
-																title="Disponibles: 10">{{esp2d.horario}}</button>
+																ng-class="esp2d.existenciaBoletoVO.color"
+																title="Disponibles: {{esp2d.existenciaBoletoVO.disponibles}}">{{esp2d.horario}}</button>
 														</ul>
 														</p>
 													</div>
@@ -97,8 +97,9 @@
 															ng-repeat="esp3d in pelicula.esp3d">
 															<button type="button"
 																ng-click="seleccionarPelicula(pelicula,esp3d)"
-																class="btn btn-round btn-warning"
-																title="Disponibles: 10">{{esp3d.horario}}</button>
+																ng-class="esp3d.existenciaBoletoVO.color"
+																ng-disabled ="esp3d.existenciaBoletoVO.disponibles ==0"
+																title="Disponibles: {{esp3d.existenciaBoletoVO.disponibles}}">{{esp3d.horario}}</button>
 														</ul>
 														</p>
 													</div>
@@ -109,8 +110,8 @@
 															ng-repeat="esp4d in pelicula.esp4d">
 															<button type="button"
 																ng-click="seleccionarPelicula(pelicula,esp4d)"
-																class="btn btn-round btn-warning"
-																title="Disponibles: 10">{{esp4d.horario}}</button>
+																ng-class="esp4d.existenciaBoletoVO.color"
+																title="Disponibles: {{esp4d.existenciaBoletoVO.disponibles}}">{{esp4d.horario}}</button>
 														</ul>
 														</p>
 													</div>
@@ -122,8 +123,8 @@
 															ng-repeat="sub2d in pelicula.sub2d">
 															<button type="button"
 																ng-click="seleccionarPelicula(pelicula,sub2d)"
-																class="btn btn-round btn-warning"
-																title="Disponibles: 10">{{sub2d.horario}}</button>
+																ng-class="sub2d.existenciaBoletoVO.color"
+																title="Disponibles: {{sub2d.existenciaBoletoVO.disponibles}}">{{sub2d.horario}}</button>
 														</ul>
 														</p>
 													</div>
@@ -133,8 +134,8 @@
 															ng-repeat="sub3d in pelicula.sub3d">
 															<button type="button"
 																ng-click="seleccionarPelicula(pelicula,sub3d)"
-																class="btn btn-round btn-warning"
-																title="Disponibles: 10">{{sub3d.horario}}</button>
+																ng-class="sub3d.existenciaBoletoVO.color"
+																title="Disponibles: {{sub3d.existenciaBoletoVO.disponibles}}">{{sub3d.horario}}</button>
 														</ul>
 														</p>
 													</div>
@@ -144,8 +145,8 @@
 															ng-repeat="sub4d in pelicula.sub4d">
 															<button type="button"
 																ng-click="seleccionarPelicula(pelicula,sub4d)"
-																class="btn btn-round btn-warning"
-																title="Disponibles: 10">{{sub4d.horario}}</button>
+																ng-class="sub4d.existenciaBoletoVO.color"
+																title="Disponibles: {{sub4d.existenciaBoletoVO.disponibles}}">{{sub4d.horario}}</button>
 														</ul>
 														</p>
 													</div>

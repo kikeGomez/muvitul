@@ -57,6 +57,42 @@ public class UsuarioBO extends GlobalService{
 	@Autowired
 	RecursoDAOI recursoDAO;		
 	
+	/**
+     * Servicio para validar la contraseña actual de un usuario
+     */
+	@Transactional (readOnly=true)
+	public boolean contraseniaActualValida(UsuarioLoginVO usuarioVO) throws Exception{
+		 if (usuarioVO == null) 
+	            throw new BusinessGlobalException("Error al validar contrasenia. El objeto de usuario no puede ser nulo.");
+		 if (usuarioVO.getUsuario() == null) 
+	            throw new BusinessGlobalException("Error al validar contrasenia. El usuario no puede ser nulo.");
+		 if (usuarioVO.getContrasenia() == null) 
+	            throw new BusinessGlobalException("Error al validar contrasenia. La contrasenia no puede ser nulo.");
+			
+		Usuario usuario = this.usuarioDAO.getUsuario(usuarioVO.getUsuario());
+		if(usuario==null)
+            throw new BusinessGlobalException("Error al validar contrasenia. No se encontró el usuario actual.");
+			
+		 //Este metodo asume que la contrasenia viene encriptada con SHA1
+		if(!usuarioVO.getContrasenia().equals(usuario.getContrasenia()))
+			return false;
+		
+		return true;
+	}
+	
+	/**
+     * Servicio para cambiar la cotraseña de un usuario
+     */
+	@Transactional (readOnly=false)
+	public void cambiarContrasenia(UsuarioLoginVO usuarioVO) throws Exception{
+		 if (usuarioVO == null) 
+	            throw new BusinessGlobalException("Error al cambiar contrasenia. El objeto de usuario no puede ser nulo.");
+	
+		Usuario usuario = this.usuarioDAO.getUsuario(usuarioVO.getUsuario());
+		usuario.setContrasenia(usuarioVO.getContrasenia());
+		this.usuarioDAO.update(usuario);
+	}
+	
 	@Transactional(readOnly = true)
 	public LoginResponseVO autenticarConJwt(UsuarioLoginVO usuarioVO) throws BusinessGlobalException, Exception {
 		 if (usuarioVO == null) 
@@ -86,9 +122,15 @@ public class UsuarioBO extends GlobalService{
 		 Date fechaActual = FechasUtilsBO.getCurrentDate();
 		 Date fechaExpriacion = FechasUtilsBO.addMinutesToDate(fechaActual, expirationMinutes);
 		 
+		 //Map<String,Object> claims = new HashMap<String,Object>();
+		 //claims.put(ClaimsEnum.ROLES, roles);
+		 //claims.put(ClaimsEnum.CINE, usuario.getIdCine());
+		 
 		 return new LoginResponseVO(
 				       Jwts.builder().setSubject(usuarioVO.getUsuario())
 				       	  			 .claim(ClaimsEnum.ROLES, roles)
+				       	  			 .claim(ClaimsEnum.CINE, usuario.getCine().getIdCine())
+				       	  			 .claim(ClaimsEnum.PUNTO_VENTA, usuario.getPuntoVenta()==null?null:usuario.getPuntoVenta().getIdPuntoVenta())
 				       	  			 .setIssuedAt(fechaActual)
 				       	  			 .setExpiration(fechaExpriacion)
 				       	  			 .signWith(SignatureAlgorithm.HS256, pwdEncryptor)

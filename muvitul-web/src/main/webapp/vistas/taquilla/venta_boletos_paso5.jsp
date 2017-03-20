@@ -26,7 +26,7 @@
 							correctos.</h5>
 						<div
 							class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-lg-offset-5 col-md-offset-5 col-sm-offset-5">
-							<a class="btn btn-app" title="Cerrar venta e imprimir boletos">
+							<a class="btn btn-app" title="Cerrar venta e imprimir boletos" ng-click="imprimirBoleto()">
 								<i class="fa fa-print"></i> Imprimir Boletos
 							</a>
 						</div>
@@ -65,7 +65,7 @@
 								</div>
 								<div class="row">
 									<div class="col-md-12 col-sm-12 col-xs-12">
-										<label>FECHA: {{objetosVenta.fechaVenta |
+										<label>FECHA: {{objetosVenta.fechaExhibicion |
 											date:'dd-MM-yyyy'}} </label>
 									</div>
 								</div>

@@ -1,9 +1,8 @@
 'use strict';
 
-angular.module('indexModule').service('taquillaService', ['$http','GlobalFactory','config','dataRest', function($http,GlobalFactory,config) {
+angular.module('indexModule').service('taquillaService', ['$http','GlobalFactory','config', function($http,GlobalFactory,config) {
  
-	dataRest.getAttrDiseno();
-	 this.consultarPeliculas = function(fechaExhibicion){
+ 	 this.consultarPeliculas = function(fechaExhibicion){
 		 return $http.get(config.baseUrl+"/ventaBoleto/peliculas", {
 				params : {"fechaExhibicion" : fechaExhibicion }
 		  });

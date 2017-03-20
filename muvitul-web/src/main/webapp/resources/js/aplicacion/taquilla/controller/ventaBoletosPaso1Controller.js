@@ -1,6 +1,6 @@
 'use strict';
 
-var VentaBoletosPaso1Controller = angular.module('indexModule').controller('ventaBoletos', function($controller,$scope,$filter,taquillaService,calculosFactory){
+var VentaBoletosPaso1Controller = angular.module('indexModule').controller('ventaBoletos', function($controller,$scope,$filter,taquillaService,calculosFactory,ModalService){
 
 	$scope.statusVenta			= { elegirPelicula	:"selected", elegirPromocion :"", elegirCantidad	:"", 
 						 		   registrarPago	:"", confirmarVenta  :"", numeroPaso:1	}
@@ -15,6 +15,8 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 	$controller('VentaBoletosPaso2Controller',{$scope : $scope });
 	$controller('VentaBoletosPaso3Controller',{$scope : $scope });
 	$controller('VentaBoletosPaso4Controller',{$scope : $scope });
+	$controller('VentaBoletosPaso5Controller',{$scope : $scope });
+    $controller('modalController',{$scope : $scope });
 
 	
  	$scope.seleccionarPelicula =function(pelicula,programacion){
@@ -26,7 +28,7 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
     	
 		$scope.objetosVenta.programacion	= programacion;
 		$scope.objetosVenta.pelicula		= pelicula;
-		$scope.objetosVenta.fechaVenta		= new Date();
+		$scope.objetosVenta.fechaExhibicion		= $scope.fechaExhibicion;
 		$scope.consultarPromociones($scope.fechaExhibicion);
 		$scope.consultarPreciosFormato();
 		$scope.pago.subtotal =0;
@@ -73,9 +75,15 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 	}
 	
 	$scope.agregarBoleto =function(tipoClienteVO, index){
+		
+		if($scope.asientosDisponibles.disponibles ==0){
+			$scope.showAviso("No hay asientos disponibles ");
+			return;
+			}
 		$scope.asientosDisponibles.reservar =1;
 		$scope.reservarBoleto($scope.asientosDisponibles);
-		
+ 		$scope.consultarExistenciaBoletos($scope.paramsExistenciaBoleto);
+
  
 		$scope.pago.subtotal =0;
 
@@ -102,7 +110,7 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
  		taquillaService.consultarPeliculas(fechaExhibicion).success(function(data) {	
  			$scope.listaPeliculas=data;
 			$scope.errorPeliculas=false;
-
+			console.log($scope.listaPeliculas)
  		  }).error(function(data) {
  			 $scope.listaPeliculas={};
  			 $scope.errorPeliculas=true;
@@ -140,7 +148,9 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 		$scope.consultarPeliculas($scope.fechaExhibicion);
 	}
 
-	 
+
+	
+	
 	$scope.consultarPeliculas($scope.fechaExhibicion);
  });
  

@@ -12,7 +12,7 @@
 					<i class="fa fa-calculator"></i> Modificar Cantidades
 				</button>
 				<button type="button" class="btn btn-success"
-					ng-click="asignarPaso(5)" ng-disabled="pago.porPagar > 0">
+					ng-click="asignarPaso(5)" ng-disabled="pago.porPagar > 0 || pago.porPagar  >0">
 					Confirmar la Venta <i class="fa fa-thumbs-o-up"></i>
 				</button>
 			</div>

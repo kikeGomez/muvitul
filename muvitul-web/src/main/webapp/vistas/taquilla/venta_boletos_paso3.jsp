@@ -70,7 +70,7 @@
 								</div>
 								<div class="row">
 									<div class="col-md-12 col-sm-12 col-xs-12">
-										<label>FECHA: {{objetosVenta.fechaVenta |
+										<label>FECHA: {{objetosVenta.fechaExhibicion |
 											date:'dd-MM-yyyy'}} </label>
 									</div>
 								</div>
@@ -134,32 +134,19 @@
 						</div>
 						<!-- /row -->
 						<br />
-						<form id="demo-form2" data-parsley-validate
-							class="form-horizontal form-label-left">
+						<form id="demo-form2" data-parsley-validate	class="form-horizontal form-label-left">
 							<!-- row - Tabla de selección de boletos -->
 							<div class="row">
-								<div ng-repeat="precio in listaPreciosXFormato track by $index">
-									<div
-										class="animated flipInY col-lg-4 col-md-4 col-sm-4 col-xs-4">
-										<a href="#/ventaBoletos"
-											ng-click="agregarBoleto(precio,$index)">
+								<div ng-repeat="precio in listaPreciosXFormato track by $index" >
+								<div ng-disabled="asientosDisponibles.disponibles ==0">
+									<div class="animated flipInY col-lg-4 col-md-4 col-sm-4 col-xs-4" >
+										<a href="#/ventaBoletos"	ng-click="agregarBoleto(precio,$index)">
 											<div class="tile-stats">
 												<div style="position: absolute; top: 10px; right: 10px">
 													<img class="img-responsive avatar-view" width="50px"
 														height="50px"
-														ng-src="data:image/png;base64,{{precio.tipoClienteVO.icono}}">
-													<!-- 													<img width="50px" height="50px" -->
-													<!-- 														ng-if="precio.tipoClienteVO.idTipoCliente === 1" -->
-													<%-- 														src="<c:url value='resources/img/kids_icon.jpeg' />" />  --%>
-													<!-- 														<img -->
-													<!-- 														width="50px" height="50px" -->
-													<!-- 														ng-if="precio.tipoClienteVO.idTipoCliente === 3" -->
-													<%-- 														src="<c:url value='resources/img/thirdage_icon.jpeg' />" /> --%>
-
-													<!-- 													<img width="50px" height="50px" -->
-													<!-- 														ng-if="precio.tipoClienteVO.idTipoCliente === 2" -->
-													<%-- 														src="<c:url value='resources/img/adults_icon.jpeg' />" /> --%>
-												</div>
+														ng-src="data:image/png;base64,{{precio.tipoClienteVO.icono}}" >
+ 												</div>
 												<div ng-if="precio.tipoClienteVO.idTipoCliente === 2"
 													class="count">{{precio.boletosSeleccionados}}</div>
 												<div ng-if="precio.tipoClienteVO.idTipoCliente === 1"
@@ -174,6 +161,7 @@
 												</div>
 											</div>
 										</a>
+									</div>
 									</div>
 								</div>
 							</div>

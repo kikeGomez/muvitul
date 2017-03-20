@@ -30,6 +30,10 @@
     <link href="<c:url value='/resources/js/vendors/datepicker/datepicker3.css' />" rel="stylesheet">
     <!-- Bootstrap time Picker -->
      <link href="<c:url value='/resources/js/vendors/timepicker/bootstrap-timepicker.min.css' />" rel="stylesheet">
+	 <!-- Block UI -->
+     <link href="<c:url value='/resources/js/vendors/blockUI/angular-block-ui.min.css' />" rel="stylesheet">
+	 <!-- Block UI -->
+     <link href="<c:url value='/resources/css/modals/modals.css' />" rel="stylesheet">
 	
   </head>
 
@@ -233,13 +237,15 @@
     <script src="<c:url value='/resources/js/vendors/angular/angular.min.js' />"></script>
 	<!-- Angular Route -->
     <script src="<c:url value='/resources/js/vendors/angular/angular-route.js' />"></script>
+    <!-- Block UI -->
+    <script src="<c:url value='/resources/js/vendors/blockUI/angular-block-ui.min.js' />"></script>
    	<!-- Calendar and Date -->
    	<script src="<c:url value='/resources/js/moment/moment.min.js' />" charset="utf-8"></script>
      <script src="<c:url value='/resources/js/comun/config/angular-locale_es-mx.js'/>"></script>
 	<script src="<c:url value='/resources/js/datepicker/datetime-inputs.min.js' />"></script>
 	<script src="<c:url value='/resources/js/datepicker/daterangepicker.js' />"></script>
 	<script src="<c:url value='/resources/js/vendors/bootstrap/moment-with-locales.js' />"></script>
-<%-- 	<script src="<c:url value='/resources/js/vendors/bootstrap/bootstrap-datetimepicker.js' />"></script> --%>
+	<script src="<c:url value='/resources/js/vendors/bootstrap/bootstrap-datetimepicker.js' />"></script>
 	
 	<!-- bootstrap datepicker -->
 	<script src="<c:url value='/resources/js/vendors/datepicker/bootstrap-datepicker.js' />"></script>
@@ -253,9 +259,9 @@
     <script src="<c:url value='/resources/js/vendors/select2/dist/js/select2.full.min.js' />"></script>
 	<!-- Underscore.js -->
 	<script src="<c:url value='/resources/js/vendors/underscore/underscore.js'/>"></script>
-	<!-- LazyLoad.js -->
-<%-- 	<script src="<c:url value='/resources/js/vendors/angular/ocLazyLoad.min.js'/>"></script> --%>
-	
+	<!-- Lib Modales -->
+    <script src="<c:url value='/resources/js/vendors/angular/angular-modal-service.js' />"></script>
+ 	
 	  <!-- Custom Theme Scripts -->
     <script src="<c:url value='/resources/js/build/custom.min.js' />"></script>
 	
@@ -302,6 +308,10 @@
 	    
     <!-- Controller del modulo de cambio de contraseña -->
     <script src="<c:url value='/resources/js/aplicacion/configuracion/controller/cambiarContraseniaController.js' />"></script>
+ 
+ 	<!-- Controller para modales -->
+ 	<script src="<c:url value='/resources/js/comun/dialog/mensajeModalController.js'/>"></script>
+ 	<script src="<c:url value='/resources/js/comun/dialog/modalController.js'/>"></script>
  
    </body>
 </html>

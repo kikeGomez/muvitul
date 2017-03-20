@@ -2,6 +2,8 @@ package mx.com.tecnetia.muvitul.servicios.facade;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,6 @@ import mx.com.tecnetia.muvitul.negocio.configuracion.vo.FormaPagoVO;
 @RequestMapping("/catalogo")
 public interface CatalogoFacadeI {
 	@RequestMapping(value = "/formaspago", method = RequestMethod.GET)
-	public ResponseEntity<List<FormaPagoVO>> getFormasPago() throws BusinessGlobalException, NotFoundException;
+	public ResponseEntity<List<FormaPagoVO>> getFormasPago(HttpServletRequest request) throws BusinessGlobalException, NotFoundException;
 
 }
