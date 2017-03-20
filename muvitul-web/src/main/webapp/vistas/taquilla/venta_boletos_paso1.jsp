@@ -71,8 +71,8 @@
 										</div>
 										<div class="col-md-9">
 											<br />
-											<div class="row col-md-12">
-												<div class="form-group pull-left">
+											<div class="row">
+												<div class="">
 
 													<p>
 														<button type="button" class="btn btn-round btn-info">{{pelicula.clasificacion}}</button>
@@ -81,24 +81,27 @@
 													</p>
 
 													<div class="row col-md-12">
-														<p ng-if="pelicula.esp2d.length > 0">ESP 2D
-														<ul id="1" class="col-md-2 col-xs-6"
-															ng-repeat="esp2d in pelicula.esp2d">
-															<button type="button"
+														<p ng-if="pelicula.esp2d.length > 0">
+															ESP 2D
+
+															<ul id="1" class="col-md-2 col-xs-6"
+															ng-repeat="esp2d in pelicula.esp2d"><button type="button"
 																ng-click="seleccionarPelicula(pelicula,esp2d)"
 																ng-class="esp2d.existenciaBoletoVO.color"
+																ng-disabled="esp2d.existenciaBoletoVO.disponibles ==0"
 																title="Disponibles: {{esp2d.existenciaBoletoVO.disponibles}}">{{esp2d.horario}}</button>
 														</ul>
 														</p>
 													</div>
 													<div class="row col-md-12">
-														<p ng-if="pelicula.esp3d.length > 0">ESP 3D
-														<ul id="2" class="col-md-2 col-xs-6"
-															ng-repeat="esp3d in pelicula.esp3d">
-															<button type="button"
+														<p ng-if="pelicula.esp3d.length > 0">
+															ESP 3D
+
+															<ul id="2" class="col-md-2 col-xs-6"
+															ng-repeat="esp3d in pelicula.esp3d"><button type="button"
 																ng-click="seleccionarPelicula(pelicula,esp3d)"
 																ng-class="esp3d.existenciaBoletoVO.color"
-																ng-disabled ="esp3d.existenciaBoletoVO.disponibles ==0"
+																ng-disabled="esp3d.existenciaBoletoVO.disponibles ==0"
 																title="Disponibles: {{esp3d.existenciaBoletoVO.disponibles}}">{{esp3d.horario}}</button>
 														</ul>
 														</p>
@@ -111,6 +114,7 @@
 															<button type="button"
 																ng-click="seleccionarPelicula(pelicula,esp4d)"
 																ng-class="esp4d.existenciaBoletoVO.color"
+																ng-disabled="esp4d.existenciaBoletoVO.disponibles ==0"
 																title="Disponibles: {{esp4d.existenciaBoletoVO.disponibles}}">{{esp4d.horario}}</button>
 														</ul>
 														</p>
@@ -124,6 +128,7 @@
 															<button type="button"
 																ng-click="seleccionarPelicula(pelicula,sub2d)"
 																ng-class="sub2d.existenciaBoletoVO.color"
+																ng-disabled="sub2d.existenciaBoletoVO.disponibles ==0"
 																title="Disponibles: {{sub2d.existenciaBoletoVO.disponibles}}">{{sub2d.horario}}</button>
 														</ul>
 														</p>
@@ -135,6 +140,7 @@
 															<button type="button"
 																ng-click="seleccionarPelicula(pelicula,sub3d)"
 																ng-class="sub3d.existenciaBoletoVO.color"
+																ng-disabled="sub3d.existenciaBoletoVO.disponibles ==0"
 																title="Disponibles: {{sub3d.existenciaBoletoVO.disponibles}}">{{sub3d.horario}}</button>
 														</ul>
 														</p>
@@ -146,6 +152,7 @@
 															<button type="button"
 																ng-click="seleccionarPelicula(pelicula,sub4d)"
 																ng-class="sub4d.existenciaBoletoVO.color"
+																ng-disabled ="sub4d.existenciaBoletoVO.disponibles ==0"
 																title="Disponibles: {{sub4d.existenciaBoletoVO.disponibles}}">{{sub4d.horario}}</button>
 														</ul>
 														</p>
