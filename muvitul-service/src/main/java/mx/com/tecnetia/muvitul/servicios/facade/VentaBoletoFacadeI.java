@@ -18,6 +18,7 @@ import mx.com.tecnetia.muvitul.negocio.taquilla.vo.ExistenciaBoletoVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PeliculaVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PrecioXFormatoVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PromocionVO;
+import mx.com.tecnetia.muvitul.negocio.taquilla.vo.TicketVentaVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.VentaVO;
 
 @RestController
@@ -47,7 +48,11 @@ public interface VentaBoletoFacadeI {
 	public ResponseEntity<ExistenciaBoletoVO> updateExistenciaBoleto(@RequestBody ExistenciaBoletoVO existenciaBoletoVO)
 			throws BusinessGlobalException, NotFoundException;
 
-	@RequestMapping(value = "/pagos", method = RequestMethod.POST)
-	public ResponseEntity<VentaVO> createVenta(@RequestBody VentaVO ventaVO)
+	@RequestMapping(value = "/ventas", method = RequestMethod.GET)
+	public ResponseEntity<VentaVO> getVenta() throws BusinessGlobalException, NotFoundException;
+
+	@RequestMapping(value = "/ventas", method = RequestMethod.POST)
+	public ResponseEntity<TicketVentaVO> createVenta(@RequestBody VentaVO ventaVO)
 			throws BusinessGlobalException, NotFoundException;
+
 }

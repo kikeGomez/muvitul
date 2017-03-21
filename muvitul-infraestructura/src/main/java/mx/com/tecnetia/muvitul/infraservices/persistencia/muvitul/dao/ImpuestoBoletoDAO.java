@@ -16,7 +16,7 @@ public class ImpuestoBoletoDAO extends GlobalHibernateDAO<ImpuestoBoleto> implem
 		StringBuilder hql = new StringBuilder();
 		hql.append("select ixb  from ImpuestoBoleto ixb ");
 		hql.append("where ixb.cine.idCine=:idCine and ixb.activo=1 " );
-		hql.append("order by cxs.idCupoXSala desc ");
+		hql.append("order by ixb.idImpuestoBoleto desc ");
 
 		Query query = getSession().createQuery(hql.toString());
 		query.setParameter("idCine", idCine);

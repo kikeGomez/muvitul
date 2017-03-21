@@ -37,13 +37,13 @@ public class FormaPagoAssembler {
 		return formasPagosVO;
 	}
 	
-	public static FormaPago getFormaPago(FormaPagoVO formaPagoVO){
+	public static FormaPago getFormaPago(Integer idFormaPago){
 
-		if(formaPagoVO==null)
+		if(idFormaPago==null)
 			return null;
 		
 		FormaPago formaPago = new FormaPago();
-		formaPago.setIdFormaPago(formaPagoVO.getIdFormaPago());
+		formaPago.setIdFormaPago(idFormaPago);
 
 		return formaPago;
 	}

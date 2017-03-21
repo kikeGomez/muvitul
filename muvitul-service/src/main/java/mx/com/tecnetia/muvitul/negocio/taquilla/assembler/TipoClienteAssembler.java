@@ -19,13 +19,13 @@ public class TipoClienteAssembler {
 		return tipoClienteVO;
 	}
 	
-	public static TipoCliente getTipoCliente(TipoClienteVO tipoClienteVO){
+	public static TipoCliente getTipoCliente(Integer idTipoCliente){
 
-		if(tipoClienteVO==null )
+		if(idTipoCliente==null )
 			return null;
 		
 		TipoCliente tipoCliente = new TipoCliente();
-		tipoCliente.setIdTipoCliente(tipoClienteVO.getIdTipoCliente());
+		tipoCliente.setIdTipoCliente(idTipoCliente);
 
 		return tipoCliente;
 	}

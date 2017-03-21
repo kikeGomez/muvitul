@@ -7,7 +7,7 @@ public class BoletoXTicketVO {
 	private TipoClienteVO tipoClienteVO;
 	private int cantidad;
 	private BigDecimal importe;
-	private ProgramacionVO pagramacionVO;
+	private ProgramacionVO programacionVO;
 	private Date fechaExhibicion;
 	
 	public TipoClienteVO getTipoClienteVO() {
@@ -28,11 +28,11 @@ public class BoletoXTicketVO {
 	public void setImporte(BigDecimal importe) {
 		this.importe = importe;
 	}
-	public ProgramacionVO getPagramacionVO() {
-		return pagramacionVO;
+	public ProgramacionVO getProgramacionVO() {
+		return programacionVO;
 	}
-	public void setPagramacionVO(ProgramacionVO pagramacionVO) {
-		this.pagramacionVO = pagramacionVO;
+	public void setProgramacionVO(ProgramacionVO programacionVO) {
+		this.programacionVO = programacionVO;
 	}
 	public Date getFechaExhibicion() {
 		return fechaExhibicion;

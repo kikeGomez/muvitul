@@ -45,10 +45,21 @@ angular.module('indexModule').service('dulceriaService', ['$http','GlobalFactory
 		 });
 	 }
 	
-	this.actualizarExistenciaBoleto = function( existenciaBoletoVo ) {
+	this.actualizarExistencias = function( existenciaBoletoVo ) {
 		 console.log("actualizar existencias");
 		return $http.put(config.baseUrl + "/ventaBoleto/existencias", existenciaBoletoVo );
 	}
+	
+	 this.consultarVentas = function(){
+			console.log("Consultar ventas");
+		 return $http.get(config.baseUrl+"/ventaBoleto/ventas");
+	 }
+	 
+	 this.crearVentas = function( ventaVo ) {
+		 console.log("actualizar existencias");
+		 return $http.post(config.baseUrl + "/ventaBoleto/ventas", ventaVo );
+	 }
+		
 		
 	this.consultarPaquetes = function(idPuntoVenta){
 		console.log("consultar paquetes");

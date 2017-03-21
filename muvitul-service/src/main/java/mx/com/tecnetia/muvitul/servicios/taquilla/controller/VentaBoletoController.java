@@ -17,6 +17,7 @@ import mx.com.tecnetia.muvitul.negocio.taquilla.vo.ExistenciaBoletoVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PeliculaVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PrecioXFormatoVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PromocionVO;
+import mx.com.tecnetia.muvitul.negocio.taquilla.vo.TicketVentaVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.VentaVO;
 
 @Service
@@ -55,8 +56,8 @@ public class VentaBoletoController {
 	}
 	
 
-	public void createVenta(VentaVO ventaVO, UsuarioFirmadoVO usuarioVO) throws BusinessGlobalException {
-		ventaBoletoBO.createVenta(ventaVO, usuarioVO);
+	public TicketVentaVO createVenta(VentaVO ventaVO, UsuarioFirmadoVO usuarioVO) throws BusinessGlobalException {
+		return ventaBoletoBO.createVenta(ventaVO, usuarioVO);
 	}
 
 }

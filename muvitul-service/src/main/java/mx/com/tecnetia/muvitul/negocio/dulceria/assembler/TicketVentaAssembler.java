@@ -13,7 +13,7 @@ public class TicketVentaAssembler {
 
 		TicketVenta ticketVenta= new TicketVenta();
 		ticketVenta.setPuntoVenta(PuntoVentaAssembler.getPuntoVenta(ticketVentaVO.getPuntoVentaVO()));
-		ticketVenta.setUsuario(UsuarioAssembler.getUsuario(ticketVentaVO.getUsuarioFirmadoVO()));
+		ticketVenta.setUsuario(UsuarioAssembler.getUsuario(ticketVentaVO.getUsuarioFirmadoVO().getId()));
 		ticketVenta.setFecha(ticketVenta.getFecha());
 		ticketVenta.setDescuento(ticketVenta.getDescuento());
 		ticketVenta.setImporte(ticketVenta.getImporte());

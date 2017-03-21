@@ -42,6 +42,16 @@ public class PromocionAssembler {
 		return promocionesVO;
 	}
 	
+	public static Promocion getPromocion(Integer idPromocion){
+
+		if(idPromocion==null )
+			return null;
+		
+		Promocion promocion = new Promocion();
+		promocion.setIdPromocion(idPromocion);
+
+		return promocion;
+	}
 	
 	
 }

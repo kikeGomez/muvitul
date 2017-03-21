@@ -6,6 +6,9 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 			$scope.paquetes = {};
 			$scope.existenciaBoletoVo;
 			
+			$scope.ventaVo;
+			//={"ticketVentaVO":{"puntoVentaVO":null,"usuarioFirmadoVO":null,"fecha":null,"descuento":null,"importe":null,"total":null},"boletosXTicketVO":[{"tipoClienteVO":{"idTipoCliente":1,"nombre":null,"activo":false,"icono":null},"cantidad":2,"importe":200,"programacionVO":{"idProgramacion":1,"formatoVO":null,"salaVO":null,"versionVO":null,"diaSemana":null,"horario":null,"fechaVigencia":null,"existenciaBoletoVO":null},"fechaExhibicion":1489990050490}],"pagosVO":[{"formaPagoVO":{"idFormaPago":1,"nombre":null,"requiereNumCuenta":false,"activo":false},"noCuenta":"","importe":150,"estatusPagoVO":{"idEstatus":1,"nombre":null},"fecha":1489990050493}],"promocionesXTicketVO":[{"promocionVO":{"idPromocion":1,"cineVO":null,"promocionParaVO":null,"tipoPromocionVO":null,"nombre":null,"descripcion":null,"fechaInicio":null,"fechaFin":null,"detallePromocionesVO":null},"cantidad":1,"importe":50}]};
+			
 			$scope.statusVenta = {
 				elegirProducto : "selected",
 				registrarPago : "",
@@ -73,27 +76,43 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 			}
 
 			$scope.consultarExistencias = function(idProgramacion, idSala, fechaExhibicion) {
-				// console.log("consultar existencias"+ getFechaActual());
 				dulceriaService.consultarExistencias(idProgramacion,idSala,fechaExhibicion).success(function(data) {
 					console.log(data);
 					$scope.existenciaBoletoVo=data;
 					$scope.existenciaBoletoVo.reservar=1;
 					console.log($scope.existenciaBoletoVo.fechaExhibicion);
-					$scope.actualizarExistenciaBoleto($scope.existenciaBoletoVo);
-					//$scope.consultarPaquetes();
+					$scope.actualizarExistencias($scope.existenciaBoletoVo);
 				}).error(function(data) {
 
 				});
 			}
 
-			$scope.actualizarExistenciaBoleto = function(existenciaBoletoVo) {
-				// console.log("consultar existencias"+ getFechaActual());
-				dulceriaService.actualizarExistenciaBoleto(existenciaBoletoVo).success(function(data) {
+			$scope.actualizarExistencias = function(existenciaBoletoVo) {
+				dulceriaService.actualizarExistencias(existenciaBoletoVo).success(function(data) {
 					console.log(data);
 				}).error(function(data) {
 
 				});
 			}
+			
+			$scope.consultarVentas = function() {
+				dulceriaService.consultarVentas().success(function(data) {
+					console.log(data);
+					$scope.ventaVo=data;
+					dulceriaService.crearVentas($scope.ventaVo);
+				}).error(function(data) {
+
+				});
+			}
+			
+			$scope.crearVentas = function(ventaVO) {
+				dulceriaService.crearVentas(ventaVO).success(function(data) {
+					console.log(data);
+				}).error(function(data) {
+
+				});
+			}
+			
 			
 			$scope.consultarPaquetes = function(idPuntoVenta) {
 				dulceriaService.consultarPaquetes(idPuntoVenta).success(function(data) {
@@ -104,15 +123,12 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 				});
 			}
 			
-//			obtnerFechaActual = function(){			
-//				var hoy =  $filter('date')(new Date(), 'dd-MM-yyyy');
-//				return 	hoy;
-//			}
-
 			//console.log($scope.fechaExhibicion);
-			$scope.consultarPeliculas($scope.fechaExhibicion);
+			//$scope.consultarPeliculas($scope.fechaExhibicion);
 			//$scope.consultarPromociones($scope.fechaExhibicion);
 			//$scope.consultarPrecios(1);
 			//$scope.consultarFormasPago();
 			//$scope.consultarExistencias(1,1,$scope.fechaExhibicion);
+			$scope.consultarVentas();
+			
 		});

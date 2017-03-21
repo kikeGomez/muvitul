@@ -50,11 +50,11 @@ public class ExistenciaBoletoAssembler {
 
 		ExistenciaBoletos existenciaBoleto = new ExistenciaBoletos();
 		existenciaBoleto.setIdExistenciaBoletos(existenciaBoletoVO.getIdExistenciaBoletos());
-		existenciaBoleto.setProgramacion(
-				ProgramacionAssembler.getProgramacion(existenciaBoletoVO.getProgramacionVO().getIdProgramacion()));
+		existenciaBoleto.setProgramacion(ProgramacionAssembler.getProgramacion(existenciaBoletoVO.getProgramacionVO().getIdProgramacion()));
 		existenciaBoleto.setFechaExhibicion(existenciaBoletoVO.getFechaExhibicion());
 		existenciaBoleto.setBoletosReservados(existenciaBoletoVO.getBoletosReservados());
 		existenciaBoleto.setFechaReserva(existenciaBoletoVO.getFechaReserva());
+		
 		return existenciaBoleto;
 	}
 

@@ -8,25 +8,23 @@ import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PagoVO;
 
 public class PagoAssembler {
 
-	public static Pago getPago(PagoVO pagoVO){
+	public static Pago getPago(PagoVO pagoVO, Integer idTicket){
 
 		if(pagoVO==null )
 			return null;
 
 		Pago pago= new Pago();
-		pago.setFormaPago(FormaPagoAssembler.getFormaPago(pagoVO.getFormaPagoVO()));
+		pago.setEstatusPago(EstatusPagoAssembler.getEstatusPago(pagoVO.getEstatusPagoVO().getIdEstatus()));
+		pago.setFormaPago(FormaPagoAssembler.getFormaPago(pagoVO.getFormaPagoVO().getIdFormaPago()));
+		pago.setTicketVenta(TicketVentaAssembler.getTicketVenta(idTicket));
 		pago.setNoCuenta(pagoVO.getNoCuenta());
 		pago.setImporte(pagoVO.getImporte());
-		pago.setEstatusPago(EstatusPagoAssembler.getEstatusPago(pagoVO.getEstatusPagoVO()));
-		pago.setFecha(pago.getFecha());
+		pago.setFecha(pagoVO.getFecha());
 		
 		return pago;
 	}
 	
-	
-	
-	
-	public static List<Pago> getPagos(List<PagoVO> pagosVO){
+	public static List<Pago> getPagos(List<PagoVO> pagosVO,Integer idTicket){
 
 		if(pagosVO==null || pagosVO.isEmpty())
 			return null;
@@ -34,11 +32,10 @@ public class PagoAssembler {
 		List<Pago> pagos = new ArrayList<Pago>();
 		
 		for (PagoVO pagoVO : pagosVO) {
-			pagos.add(PagoAssembler.getPago(pagoVO));
+			pagos.add(PagoAssembler.getPago(pagoVO,idTicket));
 		}
 
 		return pagos;
 	}
-	
 	
 }
