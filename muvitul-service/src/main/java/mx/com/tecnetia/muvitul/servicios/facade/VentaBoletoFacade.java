@@ -36,6 +36,7 @@ import mx.com.tecnetia.muvitul.negocio.taquilla.vo.VentaVO;
 import mx.com.tecnetia.muvitul.servicios.taquilla.controller.VentaBoletoController;
 import mx.com.tecnetia.muvitul.servicios.util.Fecha;
 
+
 @Service
 public class VentaBoletoFacade implements VentaBoletoFacadeI {
 	private static final Logger logger = LoggerFactory.getLogger(VentaBoletoFacade.class);
