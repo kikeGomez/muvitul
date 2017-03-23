@@ -27,6 +27,7 @@ import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PagoVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PeliculaVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PrecioXFormatoVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.ProgramacionVO;
+import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PromocionBoletoVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PromocionVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PromocionXTicketVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.TicketVentaVO;
@@ -76,6 +77,74 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 		return new ResponseEntity<List<PromocionVO>>(promociones, HttpStatus.OK);
 
 	}
+	
+	@Override
+	public ResponseEntity<PromocionBoletoVO> getPromocionBoletos() throws BusinessGlobalException, NotFoundException {
+
+		ProgramacionVO programacionVO = new ProgramacionVO();
+		programacionVO.setIdProgramacion(1);
+
+		TipoClienteVO tipoClienteVO = new TipoClienteVO();
+		tipoClienteVO.setIdTipoCliente(1);
+
+		BoletoXTicketVO boletoXTicketVO1 = new BoletoXTicketVO();
+		boletoXTicketVO1.setTipoClienteVO(tipoClienteVO);
+		boletoXTicketVO1.setCantidad(2);
+		boletoXTicketVO1.setImporte(new BigDecimal(200));
+		boletoXTicketVO1.setProgramacionVO(programacionVO);
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		Date date = null;
+		try {
+			date = sdf.parse("21-03-2017");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		boletoXTicketVO1.setFechaExhibicion(date);
+
+		BoletoXTicketVO boletoXTicketVO2 = new BoletoXTicketVO();
+		boletoXTicketVO2.setTipoClienteVO(tipoClienteVO);
+		boletoXTicketVO2.setCantidad(2);
+		boletoXTicketVO2.setImporte(new BigDecimal(160));
+		boletoXTicketVO2.setProgramacionVO(programacionVO);
+		boletoXTicketVO2.setFechaExhibicion(date);
+
+		BoletoXTicketVO boletoXTicketVO3 = new BoletoXTicketVO();
+		boletoXTicketVO3.setTipoClienteVO(tipoClienteVO);
+		boletoXTicketVO3.setCantidad(2);
+		boletoXTicketVO3.setImporte(new BigDecimal(100));
+		boletoXTicketVO3.setProgramacionVO(programacionVO);
+		boletoXTicketVO3.setFechaExhibicion(date);
+
+		List<BoletoXTicketVO> boletosXTicketVO = new ArrayList<BoletoXTicketVO>();
+		boletosXTicketVO.add(boletoXTicketVO1);
+		boletosXTicketVO.add(boletoXTicketVO2);
+		boletosXTicketVO.add(boletoXTicketVO3);
+
+		/*************************************************************************/
+		PromocionVO promocionVO = new PromocionVO();
+		promocionVO.setIdPromocion(1);
+
+
+		PromocionBoletoVO  promocionBoletoVO = new PromocionBoletoVO();
+		promocionBoletoVO.setPromocionVO(promocionVO);
+		promocionBoletoVO.setBoletosXTicketVO(boletosXTicketVO);
+		
+		return new ResponseEntity<PromocionBoletoVO>(promocionBoletoVO, HttpStatus.OK);
+
+	}
+
+	@Override
+	public ResponseEntity<BigDecimal> getDescuentoByPromocion(@RequestBody PromocionBoletoVO promocionBoletoVO)
+			throws BusinessGlobalException, NotFoundException {
+	
+		return new ResponseEntity<BigDecimal>(ventaBoletoController.getDescuentoByPromocion(promocionBoletoVO),
+				HttpStatus.OK);
+		
+	}
+
 
 	@Override
 	public ResponseEntity<List<PrecioXFormatoVO>> getPreciosByFormato(Integer idFormato)
@@ -108,29 +177,30 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 	@Override
 	public ResponseEntity<ExistenciaBoletoVO> updateExistenciaBoleto(@RequestBody ExistenciaBoletoVO existenciaBoletoVO)
 			throws BusinessGlobalException, NotFoundException {
-		logger.info("UpdateExistenciaBoleto:: [{}] :: [{}]" ,existenciaBoletoVO.getProgramacionVO().getIdProgramacion(),
+		logger.info("UpdateExistenciaBoleto:: [{}] :: [{}]", existenciaBoletoVO.getProgramacionVO().getIdProgramacion(),
 				existenciaBoletoVO.getFechaExhibicion());
-		
-		return new ResponseEntity<ExistenciaBoletoVO>(ventaBoletoController.updateExistenciaBoleto(existenciaBoletoVO),HttpStatus.OK);
+
+		return new ResponseEntity<ExistenciaBoletoVO>(ventaBoletoController.updateExistenciaBoleto(existenciaBoletoVO),
+				HttpStatus.OK);
 
 	}
 
 	@Override
 	public ResponseEntity<VentaVO> getVenta() throws BusinessGlobalException, NotFoundException {
 		TicketVentaVO ticketVentaVO = new TicketVentaVO();
-		
+
 		ProgramacionVO programacionVO = new ProgramacionVO();
 		programacionVO.setIdProgramacion(1);
-		
+
 		TipoClienteVO tipoClienteVO = new TipoClienteVO();
 		tipoClienteVO.setIdTipoCliente(1);
-		
+
 		BoletoXTicketVO boletoXTicketVO1 = new BoletoXTicketVO();
 		boletoXTicketVO1.setTipoClienteVO(tipoClienteVO);
 		boletoXTicketVO1.setCantidad(2);
 		boletoXTicketVO1.setImporte(new BigDecimal(200));
 		boletoXTicketVO1.setProgramacionVO(programacionVO);
-		
+
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		Date date = null;
 		try {
@@ -139,45 +209,59 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		boletoXTicketVO1.setFechaExhibicion(date);
 
-		
-		List<BoletoXTicketVO> boletosXTicketVO= new  ArrayList<BoletoXTicketVO>();
+		BoletoXTicketVO boletoXTicketVO2 = new BoletoXTicketVO();
+		boletoXTicketVO2.setTipoClienteVO(tipoClienteVO);
+		boletoXTicketVO2.setCantidad(2);
+		boletoXTicketVO2.setImporte(new BigDecimal(160));
+		boletoXTicketVO2.setProgramacionVO(programacionVO);
+		boletoXTicketVO2.setFechaExhibicion(date);
+
+		BoletoXTicketVO boletoXTicketVO3 = new BoletoXTicketVO();
+		boletoXTicketVO3.setTipoClienteVO(tipoClienteVO);
+		boletoXTicketVO3.setCantidad(2);
+		boletoXTicketVO3.setImporte(new BigDecimal(100));
+		boletoXTicketVO3.setProgramacionVO(programacionVO);
+		boletoXTicketVO3.setFechaExhibicion(date);
+
+		List<BoletoXTicketVO> boletosXTicketVO = new ArrayList<BoletoXTicketVO>();
 		boletosXTicketVO.add(boletoXTicketVO1);
-		
+		boletosXTicketVO.add(boletoXTicketVO2);
+		boletosXTicketVO.add(boletoXTicketVO3);
+
 		/*************************************************************************/
 		PromocionVO promocionVO = new PromocionVO();
 		promocionVO.setIdPromocion(1);
-		
-		
-		PromocionXTicketVO promocionXTicketVO1= new PromocionXTicketVO();
+
+		PromocionXTicketVO promocionXTicketVO1 = new PromocionXTicketVO();
 		promocionXTicketVO1.setPromocionVO(promocionVO);
 		promocionXTicketVO1.setCantidad(1);
 		promocionXTicketVO1.setImporte(new BigDecimal(50));
-		
-		List<PromocionXTicketVO> promocionesXTicketVO= new  ArrayList<PromocionXTicketVO>();
+
+		List<PromocionXTicketVO> promocionesXTicketVO = new ArrayList<PromocionXTicketVO>();
 		promocionesXTicketVO.add(promocionXTicketVO1);
-		
+
 		/*************************************************************************/
-		FormaPagoVO formaPagoVO= new FormaPagoVO();
+		FormaPagoVO formaPagoVO = new FormaPagoVO();
 		formaPagoVO.setIdFormaPago(1);
-		
-		EstatusPagoVO estatusPagoVO= new EstatusPagoVO();
+
+		EstatusPagoVO estatusPagoVO = new EstatusPagoVO();
 		estatusPagoVO.setIdEstatus(1);
-		
+
 		PagoVO pagoVO1 = new PagoVO();
 		pagoVO1.setFormaPagoVO(formaPagoVO);
 		pagoVO1.setNoCuenta("");
 		pagoVO1.setImporte(new BigDecimal(150));
 		pagoVO1.setEstatusPagoVO(estatusPagoVO);
 		pagoVO1.setFecha(new Date());
-		
-		List<PagoVO> pagosVO= new  ArrayList<PagoVO>();
+
+		List<PagoVO> pagosVO = new ArrayList<PagoVO>();
 		pagosVO.add(pagoVO1);
-		
+
 		VentaVO ventaVO = new VentaVO();
-		//ventaVO.setTicketVentaVO(ticketVentaVO);
+		// ventaVO.setTicketVentaVO(ticketVentaVO);
 		ventaVO.setBoletosXTicketVO(boletosXTicketVO);
 		ventaVO.setPromocionesXTicketVO(promocionesXTicketVO);
 		ventaVO.setPagosVO(pagosVO);
@@ -186,9 +270,9 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 	}
 
 	@Override
-	public ResponseEntity<TicketVentaVO> createVenta(@RequestBody VentaVO ventaVO) throws BusinessGlobalException, NotFoundException {
-		TicketVentaVO ticketVentaVO =ventaBoletoController.createVenta(ventaVO, usuarioFirmadoBean.getUser());
+	public ResponseEntity<TicketVentaVO> createVenta(@RequestBody VentaVO ventaVO)
+			throws BusinessGlobalException, NotFoundException {
+		TicketVentaVO ticketVentaVO = ventaBoletoController.createVenta(ventaVO, usuarioFirmadoBean.getUser());
 		return new ResponseEntity<TicketVentaVO>(ticketVentaVO, HttpStatus.CREATED);
 	}
-
 }

@@ -59,6 +59,14 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 				});
 			}
 			
+			$scope.consultarDescuentos = function(idPromocion, boletosXTicketVO) {
+				dulceriaService.consultarDescuentos(idPromocion, boletosXTicketVO).success(function(data) {
+					console.log(data);
+				}).error(function(data) {
+
+				});
+			}
+			
 			$scope.consultarPrecios = function(idFormato) {
 				dulceriaService.consultarPrecios(idFormato).success(function(data) {
 					console.log(data);
@@ -105,6 +113,21 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 				});
 			}
 			
+			$scope.consultarDescuentos = function() {
+				dulceriaService.consultarDescuentos().success(function(data) {
+					console.log(data);
+					dulceriaService.crearDescuentos(data).success(function(data) {
+						console.log(data);
+						
+					}).error(function(data) {
+
+					});
+					
+				}).error(function(data) {
+
+				});
+			}
+			
 			$scope.crearVentas = function(ventaVO) {
 				dulceriaService.crearVentas(ventaVO).success(function(data) {
 					console.log(data);
@@ -129,6 +152,7 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 			//$scope.consultarPrecios(1);
 			//$scope.consultarFormasPago();
 			//$scope.consultarExistencias(1,1,$scope.fechaExhibicion);
-			$scope.consultarVentas();
+			//$scope.consultarVentas();
+			$scope.consultarDescuentos();
 			
 		});

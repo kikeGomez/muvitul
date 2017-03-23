@@ -1,5 +1,6 @@
 package mx.com.tecnetia.muvitul.servicios.facade;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +18,7 @@ import mx.com.tecnetia.muvitul.infraservices.servicios.NotFoundException;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.ExistenciaBoletoVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PeliculaVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PrecioXFormatoVO;
+import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PromocionBoletoVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PromocionVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.TicketVentaVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.VentaVO;
@@ -32,6 +34,13 @@ public interface VentaBoletoFacadeI {
 	@RequestMapping(value = "/promociones", method = RequestMethod.GET)
 	public ResponseEntity<List<PromocionVO>> getPromocionesByCine(Date fechaExhibicion)
 			throws BusinessGlobalException, NotFoundException;
+
+	@RequestMapping(value = "/descuentos", method = RequestMethod.GET)
+	public ResponseEntity<PromocionBoletoVO> getPromocionBoletos() throws BusinessGlobalException, NotFoundException;
+
+	
+	@RequestMapping(value = "/descuentos", method = RequestMethod.POST)
+	public ResponseEntity<BigDecimal> getDescuentoByPromocion(@RequestBody PromocionBoletoVO promocionBoletoVO) throws BusinessGlobalException, NotFoundException;
 
 	@RequestMapping(value = "/precios", method = RequestMethod.GET)
 	public ResponseEntity<List<PrecioXFormatoVO>> getPreciosByFormato(

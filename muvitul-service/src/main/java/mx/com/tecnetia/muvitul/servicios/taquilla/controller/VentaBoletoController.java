@@ -1,5 +1,6 @@
 package mx.com.tecnetia.muvitul.servicios.taquilla.controller;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -13,9 +14,11 @@ import mx.com.tecnetia.muvitul.negocio.taquilla.business.PeliculaBO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.business.PrecioXFormatoBO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.business.PromocionBO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.business.VentaBoletoBO;
+import mx.com.tecnetia.muvitul.negocio.taquilla.vo.BoletoXTicketVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.ExistenciaBoletoVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PeliculaVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PrecioXFormatoVO;
+import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PromocionBoletoVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PromocionVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.TicketVentaVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.VentaVO;
@@ -43,6 +46,10 @@ public class VentaBoletoController {
 		return promocionBO.findByCineAndDate(idCine,idPromocionPara,fechaExhibicion);
 	}
 
+	public BigDecimal getDescuentoByPromocion(PromocionBoletoVO promocionBoletoVO) throws BusinessGlobalException{
+		return promocionBO.getDescuentoByPromocion(promocionBoletoVO);
+	}
+	
 	public List<PrecioXFormatoVO> getPreciosByFormato(Integer idCine, Integer idFormato) throws BusinessGlobalException {
 		return precioXFormatoBO.findPreciosByFormatoCine(idCine,idFormato);
 	}
@@ -54,7 +61,6 @@ public class VentaBoletoController {
 	public ExistenciaBoletoVO updateExistenciaBoleto(ExistenciaBoletoVO existenciaBoletoVO) throws BusinessGlobalException {
 		return existenciaBoletoBO.update(existenciaBoletoVO);
 	}
-	
 
 	public TicketVentaVO createVenta(VentaVO ventaVO, UsuarioFirmadoVO usuarioVO) throws BusinessGlobalException {
 		return ventaBoletoBO.createVenta(ventaVO, usuarioVO);

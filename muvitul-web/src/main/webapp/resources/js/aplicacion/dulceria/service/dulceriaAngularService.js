@@ -20,6 +20,18 @@ angular.module('indexModule').service('dulceriaService', ['$http','GlobalFactory
 		});
 	 }
 	 
+	 this.consultarDescuentos = function(){
+			console.log("Consultar descuentos");
+		 return $http.get(config.baseUrl+"/ventaBoleto/descuentos");
+	 }
+	 
+	 
+	 this.crearDescuentos = function(promocionBoletoVO ){
+		 console.log("consultar descuentos");
+		 return $http.post(config.baseUrl + "/ventaBoleto/descuentos",promocionBoletoVO  );
+	 }
+	 
+	 
 	this.consultarPrecios = function(idFormato){
 		console.log("consultar precios");
 		return $http.get(config.baseUrl+"/ventaBoleto/precios", {
