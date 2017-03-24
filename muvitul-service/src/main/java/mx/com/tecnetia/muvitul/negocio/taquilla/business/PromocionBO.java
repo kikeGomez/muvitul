@@ -43,6 +43,8 @@ public class PromocionBO {
 			cantidadBoletos= cantidadBoletos+boletoXTicketVO.getCantidad();
 			BigDecimal precioBoleto= new BigDecimal(0);
 			precioBoleto= precioBoleto.add(boletoXTicketVO.getImporte());
+			if (boletoXTicketVO.getCantidad()<=0 || boletoXTicketVO.getImporte().intValue()<=0 )
+				continue;
 			precioBoleto= precioBoleto.divide(new BigDecimal(boletoXTicketVO.getCantidad()));
 			for (int i = 0; i < boletoXTicketVO.getCantidad(); i++) {
 				importes.add(precioBoleto);

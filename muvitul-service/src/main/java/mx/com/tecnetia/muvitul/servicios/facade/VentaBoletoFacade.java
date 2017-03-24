@@ -90,7 +90,7 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 
 		BoletoXTicketVO boletoXTicketVO1 = new BoletoXTicketVO();
 		boletoXTicketVO1.setTipoClienteVO(tipoClienteVO);
-		boletoXTicketVO1.setCantidad(2);
+		boletoXTicketVO1.setCantidad(0);
 		boletoXTicketVO1.setImporte(new BigDecimal(200));
 		boletoXTicketVO1.setProgramacionVO(programacionVO);
 
@@ -107,7 +107,7 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 
 		BoletoXTicketVO boletoXTicketVO2 = new BoletoXTicketVO();
 		boletoXTicketVO2.setTipoClienteVO(tipoClienteVO);
-		boletoXTicketVO2.setCantidad(2);
+		boletoXTicketVO2.setCantidad(0);
 		boletoXTicketVO2.setImporte(new BigDecimal(160));
 		boletoXTicketVO2.setProgramacionVO(programacionVO);
 		boletoXTicketVO2.setFechaExhibicion(date);
