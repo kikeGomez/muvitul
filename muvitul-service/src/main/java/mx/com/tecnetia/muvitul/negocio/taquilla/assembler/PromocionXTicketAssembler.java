@@ -5,11 +5,12 @@ import java.util.List;
 
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PromocionesXTicket;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PromocionesXTicketId;
+import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.TicketVenta;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PromocionXTicketVO;
 
 public class PromocionXTicketAssembler {
 
-	public static PromocionesXTicket getPromocionXTicket(PromocionXTicketVO promocionXTicketVO, Integer idTicket){
+	public static PromocionesXTicket getPromocionXTicket(PromocionXTicketVO promocionXTicketVO, TicketVenta  ticketVenta){
 
 		if(promocionXTicketVO==null )
 			return null;
@@ -17,10 +18,10 @@ public class PromocionXTicketAssembler {
 		PromocionesXTicket promocionXTicket = new PromocionesXTicket();
 		PromocionesXTicketId id= new PromocionesXTicketId();
 		id.setIdPromocion(promocionXTicketVO.getPromocionVO().getIdPromocion());
-		id.setIdTicket(idTicket);
+		id.setIdTicket(ticketVenta.getIdTicket());
 		promocionXTicket.setId(id);
 		promocionXTicket.setPromocion(PromocionAssembler.getPromocion(promocionXTicketVO.getPromocionVO().getIdPromocion()));
-		promocionXTicket.setTicketVenta(TicketVentaAssembler.getTicketVenta(idTicket));
+		promocionXTicket.setTicketVenta(ticketVenta);
 		promocionXTicket.setCantidad(promocionXTicketVO.getCantidad());
 		promocionXTicket.setImporte(promocionXTicketVO.getImporte());
 
@@ -29,7 +30,7 @@ public class PromocionXTicketAssembler {
 	}
 	
 	
-	public static List<PromocionesXTicket> getPromocionesXTicket(List<PromocionXTicketVO> promocionesXTicketVO,Integer idTicket){
+	public static List<PromocionesXTicket> getPromocionesXTicket(List<PromocionXTicketVO> promocionesXTicketVO,TicketVenta  ticketVenta){
 
 		if(promocionesXTicketVO==null || promocionesXTicketVO.isEmpty())
 			return null;
@@ -37,7 +38,7 @@ public class PromocionXTicketAssembler {
 		List<PromocionesXTicket> promocionesXTicket = new ArrayList<PromocionesXTicket>();
 		
 		for (PromocionXTicketVO promocionXTicketVO : promocionesXTicketVO) {
-			promocionesXTicket.add(PromocionXTicketAssembler.getPromocionXTicket(promocionXTicketVO, idTicket));
+			promocionesXTicket.add(PromocionXTicketAssembler.getPromocionXTicket(promocionXTicketVO, ticketVenta));
 		}
 
 		return promocionesXTicket;

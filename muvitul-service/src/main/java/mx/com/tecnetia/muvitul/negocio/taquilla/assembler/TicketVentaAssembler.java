@@ -27,17 +27,7 @@ public class TicketVentaAssembler {
 		return ticketVenta;
 
 	}
-	
-	public static TicketVenta getTicketVenta(Integer idTicket){
 
-		if(idTicket==null )
-			return null;
-		
-		TicketVenta ticketVenta = new TicketVenta();
-		ticketVenta.setIdTicket(idTicket);
-
-		return ticketVenta;
-	}
 
 	public static TicketVentaVO getTicketVentaVO(TicketVenta ticketVenta) {
 		if (ticketVenta == null)

@@ -85,11 +85,11 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 		ProgramacionVO programacionVO = new ProgramacionVO();
 		programacionVO.setIdProgramacion(1);
 
-		TipoClienteVO tipoClienteVO = new TipoClienteVO();
-		tipoClienteVO.setIdTipoCliente(1);
+		TipoClienteVO tipoClienteVO1 = new TipoClienteVO();
+		tipoClienteVO1.setIdTipoCliente(1);
 
 		BoletoXTicketVO boletoXTicketVO1 = new BoletoXTicketVO();
-		boletoXTicketVO1.setTipoClienteVO(tipoClienteVO);
+		boletoXTicketVO1.setTipoClienteVO(tipoClienteVO1);
 		boletoXTicketVO1.setCantidad(0);
 		boletoXTicketVO1.setImporte(new BigDecimal(200));
 		boletoXTicketVO1.setProgramacionVO(programacionVO);
@@ -105,15 +105,22 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 
 		boletoXTicketVO1.setFechaExhibicion(date);
 
+		TipoClienteVO tipoClienteVO2 = new TipoClienteVO();
+		tipoClienteVO2.setIdTipoCliente(2);
+		
 		BoletoXTicketVO boletoXTicketVO2 = new BoletoXTicketVO();
-		boletoXTicketVO2.setTipoClienteVO(tipoClienteVO);
+		boletoXTicketVO2.setTipoClienteVO(tipoClienteVO2);
 		boletoXTicketVO2.setCantidad(0);
 		boletoXTicketVO2.setImporte(new BigDecimal(160));
 		boletoXTicketVO2.setProgramacionVO(programacionVO);
 		boletoXTicketVO2.setFechaExhibicion(date);
 
+
+		TipoClienteVO tipoClienteVO3 = new TipoClienteVO();
+		tipoClienteVO3.setIdTipoCliente(3);
+		
 		BoletoXTicketVO boletoXTicketVO3 = new BoletoXTicketVO();
-		boletoXTicketVO3.setTipoClienteVO(tipoClienteVO);
+		boletoXTicketVO3.setTipoClienteVO(tipoClienteVO3);
 		boletoXTicketVO3.setCantidad(2);
 		boletoXTicketVO3.setImporte(new BigDecimal(100));
 		boletoXTicketVO3.setProgramacionVO(programacionVO);
@@ -193,11 +200,11 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 		ProgramacionVO programacionVO = new ProgramacionVO();
 		programacionVO.setIdProgramacion(1);
 
-		TipoClienteVO tipoClienteVO = new TipoClienteVO();
-		tipoClienteVO.setIdTipoCliente(1);
+		TipoClienteVO tipoClienteVO1 = new TipoClienteVO();
+		tipoClienteVO1.setIdTipoCliente(1);
 
 		BoletoXTicketVO boletoXTicketVO1 = new BoletoXTicketVO();
-		boletoXTicketVO1.setTipoClienteVO(tipoClienteVO);
+		boletoXTicketVO1.setTipoClienteVO(tipoClienteVO1);
 		boletoXTicketVO1.setCantidad(2);
 		boletoXTicketVO1.setImporte(new BigDecimal(200));
 		boletoXTicketVO1.setProgramacionVO(programacionVO);
@@ -213,15 +220,22 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 
 		boletoXTicketVO1.setFechaExhibicion(date);
 
+		TipoClienteVO tipoClienteVO2 = new TipoClienteVO();
+		tipoClienteVO2.setIdTipoCliente(2);
+		
 		BoletoXTicketVO boletoXTicketVO2 = new BoletoXTicketVO();
-		boletoXTicketVO2.setTipoClienteVO(tipoClienteVO);
+		boletoXTicketVO2.setTipoClienteVO(tipoClienteVO2);
 		boletoXTicketVO2.setCantidad(2);
 		boletoXTicketVO2.setImporte(new BigDecimal(160));
 		boletoXTicketVO2.setProgramacionVO(programacionVO);
 		boletoXTicketVO2.setFechaExhibicion(date);
 
+		TipoClienteVO tipoClienteVO3 = new TipoClienteVO();
+		tipoClienteVO3.setIdTipoCliente(3);
+		
 		BoletoXTicketVO boletoXTicketVO3 = new BoletoXTicketVO();
-		boletoXTicketVO3.setTipoClienteVO(tipoClienteVO);
+		boletoXTicketVO3.setTipoClienteVO(tipoClienteVO3);
+		
 		boletoXTicketVO3.setCantidad(2);
 		boletoXTicketVO3.setImporte(new BigDecimal(100));
 		boletoXTicketVO3.setProgramacionVO(programacionVO);

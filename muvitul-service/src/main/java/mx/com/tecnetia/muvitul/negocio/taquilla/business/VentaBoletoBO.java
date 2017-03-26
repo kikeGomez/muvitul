@@ -64,16 +64,21 @@ public class VentaBoletoBO {
 
 	public TicketVentaVO createVenta(VentaVO ventaVO, UsuarioFirmadoVO usuarioVO) throws BusinessGlobalException {
 		PuntoVenta puntoVenta = new PuntoVenta();
+		int cantidadBoletos = 0;
+
 		puntoVenta.setIdPuntoVenta(3);
 		BigDecimal total = new BigDecimal(0);
 		BigDecimal descuento = new BigDecimal(0);
-		BigDecimal importes = new BigDecimal(0);
 		BigDecimal porcentajes = new BigDecimal(0);
-		BigDecimal importe = new BigDecimal(0);
+		BigDecimal impuestos = new BigDecimal(0);
+		BigDecimal subtotal = new BigDecimal(0);
+
+		BigDecimal subtTot = new BigDecimal(0);
 
 		List<ImpuestoBoleto> impuestosBoletos = impuestoBoletoDAO.findByIdCine(usuarioVO.getCineVO().getIdCine());
 
 		for (BoletoXTicketVO boletoXTicketVO : ventaVO.getBoletosXTicketVO()) {
+			cantidadBoletos = cantidadBoletos + boletoXTicketVO.getCantidad();
 			total = total.add(boletoXTicketVO.getImporte());
 		}
 
@@ -86,53 +91,62 @@ public class VentaBoletoBO {
 		}
 
 		porcentajes = porcentajes.divide(new BigDecimal(100));
-		importes = importes.add(total);
-		importes = importes.subtract(descuento);
-		importes = importes.multiply(porcentajes);
-		importe = importe.add(total).subtract(descuento);
 
-		logger.info("Total: [{}] Descuento:[{}] Importes:[{}] Porcentajes:[{}]", total.toString(), descuento.toString(),
-				importes.toString(), porcentajes.toString());
+		impuestos = impuestos.add(total);
+		impuestos = impuestos.subtract(descuento);
+		impuestos = impuestos.multiply(porcentajes);
+
+		subtotal = subtotal.add(total);
+		subtotal = subtotal.subtract(descuento);
+		subtotal = subtotal.subtract(impuestos);
+
+		subtTot = subtTot.add(total);
+		subtTot = subtTot.subtract(descuento);
+
+		logger.info("Total: [{}] Descuento:[{}] Importes:[{}] Porcentajes:[{}] Subtotal:[{}]", total.toString(),
+				descuento.toString(), impuestos.toString(), porcentajes.toString(), subtotal.toString());
 
 		TicketVenta ticketVenta = ticketVentaDAO
-				.save(TicketVentaAssembler.getTicketVenta(usuarioVO, puntoVenta, descuento, importes, total));
+				.save(TicketVentaAssembler.getTicketVenta(usuarioVO, puntoVenta, descuento, subtotal, total));
 
 		List<BoletosXTicket> boletosXTicket = BoletoXTicketAssembler.getBoletosXTicket(ventaVO.getBoletosXTicketVO(),
-				ticketVenta.getIdTicket());
+				ticketVenta);
 		for (BoletosXTicket boletoXTicket : boletosXTicket) {
 			boletoXTicketDAO.save(boletoXTicket);
 		}
 
 		List<PromocionesXTicket> promocionesXTicket = PromocionXTicketAssembler
-				.getPromocionesXTicket(ventaVO.getPromocionesXTicketVO(), ticketVenta.getIdTicket());
+				.getPromocionesXTicket(ventaVO.getPromocionesXTicketVO(), ticketVenta);
 		for (PromocionesXTicket promocionXTicket : promocionesXTicket) {
 			promocionXTicketDAO.save(promocionXTicket);
 		}
 
-		List<Pago> pagos = PagoAssembler.getPagos(ventaVO.getPagosVO(), ticketVenta.getIdTicket());
+		List<Pago> pagos = PagoAssembler.getPagos(ventaVO.getPagosVO(), ticketVenta);
 		for (Pago pago : pagos) {
 			pagoDAO.save(pago);
 		}
 
 		for (ImpuestoBoleto impuestoBoleto : impuestosBoletos) {
 
-			BigDecimal porcentajeBoleto = new BigDecimal(0);
-			porcentajeBoleto.add(impuestoBoleto.getPorcentaje());
-			porcentajeBoleto.divide(new BigDecimal(100));
-			BigDecimal importeBoleto = new BigDecimal(0);
-			importeBoleto.add(importe).multiply(importeBoleto);
+			BigDecimal porcentaje = new BigDecimal(0);
+			porcentaje = porcentaje.add(impuestoBoleto.getPorcentaje());
+			porcentaje = porcentaje.divide(new BigDecimal(100));
+
+			BigDecimal impuesto = new BigDecimal(0);
+			impuesto = impuesto.add(subtTot);
+			impuesto = impuesto.multiply(porcentaje);
+
 
 			ImpuestosXTicketTaquilla impuestosXTicketTaquilla = ImpuestoXTicketTaquillaAssembler
-					.getImpuestosXTicketTaquilla(impuestoBoleto.getIdImpuestoBoleto(), ticketVenta.getIdTicket(),
-							importeBoleto);
+					.getImpuestosXTicketTaquilla(impuestoBoleto.getIdImpuestoBoleto(), ticketVenta, impuesto);
 			impuestosXTicketTaquillaDAO.save(impuestosXTicketTaquilla);
 		}
 
 		ExistenciaBoletos existenciaBoletos = existenciaBoletoDAO.findByIdProgramacion(
 				ventaVO.getBoletosXTicketVO().get(0).getProgramacionVO().getIdProgramacion(),
 				ventaVO.getBoletosXTicketVO().get(0).getFechaExhibicion());
-		if (existenciaBoletos!=null){
-			existenciaBoletos.setBoletosReservados(existenciaBoletos.getBoletosReservados()-ventaVO.getBoletosXTicketVO().size());
+		if (existenciaBoletos != null) {
+			existenciaBoletos.setBoletosReservados(existenciaBoletos.getBoletosReservados() - cantidadBoletos);
 			existenciaBoletoDAO.update(existenciaBoletos);
 		}
 

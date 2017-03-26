@@ -4,21 +4,22 @@ import java.math.BigDecimal;
 
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ImpuestosXTicketTaquilla;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ImpuestosXTicketTaquillaId;
+import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.TicketVenta;
 
 public class ImpuestoXTicketTaquillaAssembler {
 	
-	public static  ImpuestosXTicketTaquilla getImpuestosXTicketTaquilla(Integer idImpuestoBoleto, Integer idTicket, BigDecimal importe){
+	public static  ImpuestosXTicketTaquilla getImpuestosXTicketTaquilla(Integer idImpuestoBoleto,TicketVenta  ticketVenta, BigDecimal importe){
 		
-		if(idImpuestoBoleto==null && idTicket==null )
+		if(idImpuestoBoleto==null && ticketVenta==null )
 			return null;
 		
 		ImpuestosXTicketTaquilla impuestosXTicketTaquilla= new ImpuestosXTicketTaquilla();
 		ImpuestosXTicketTaquillaId id= new ImpuestosXTicketTaquillaId();
 		id.setIdImpuestoBoleto(idImpuestoBoleto);
-		id.setIdTicket(idTicket);
+		id.setIdTicket(ticketVenta.getIdTicket());
 		impuestosXTicketTaquilla.setId(id);
 		impuestosXTicketTaquilla.setImpuestoBoleto(ImpuestoBoletoAssembler.getImpuestoBoleto(idImpuestoBoleto));
-		impuestosXTicketTaquilla.setTicketVenta(TicketVentaAssembler.getTicketVenta(idTicket));
+		impuestosXTicketTaquilla.setTicketVenta(ticketVenta);
 		impuestosXTicketTaquilla.setImporte(importe);
 		
 		return impuestosXTicketTaquilla;

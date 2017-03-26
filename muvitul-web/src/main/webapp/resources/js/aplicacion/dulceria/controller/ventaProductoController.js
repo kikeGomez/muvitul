@@ -128,14 +128,6 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 				});
 			}
 			
-			$scope.crearVentas = function(ventaVO) {
-				dulceriaService.crearVentas(ventaVO).success(function(data) {
-					console.log(data);
-				}).error(function(data) {
-
-				});
-			}
-			
 			
 			$scope.consultarPaquetes = function(idPuntoVenta) {
 				dulceriaService.consultarPaquetes(idPuntoVenta).success(function(data) {
@@ -152,7 +144,7 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 			//$scope.consultarPrecios(1);
 			//$scope.consultarFormasPago();
 			//$scope.consultarExistencias(1,1,$scope.fechaExhibicion);
-			//$scope.consultarVentas();
-			$scope.consultarDescuentos();
+			$scope.consultarVentas();
+			//$scope.consultarDescuentos();
 			
 		});

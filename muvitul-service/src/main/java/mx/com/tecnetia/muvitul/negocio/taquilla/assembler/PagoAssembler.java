@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Pago;
+import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.TicketVenta;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PagoVO;
 
 public class PagoAssembler {
 
-	public static Pago getPago(PagoVO pagoVO, Integer idTicket){
+	public static Pago getPago(PagoVO pagoVO, TicketVenta  ticketVenta){
 
 		if(pagoVO==null )
 			return null;
@@ -16,7 +17,7 @@ public class PagoAssembler {
 		Pago pago= new Pago();
 		pago.setEstatusPago(EstatusPagoAssembler.getEstatusPago(pagoVO.getEstatusPagoVO().getIdEstatus()));
 		pago.setFormaPago(FormaPagoAssembler.getFormaPago(pagoVO.getFormaPagoVO().getIdFormaPago()));
-		pago.setTicketVenta(TicketVentaAssembler.getTicketVenta(idTicket));
+		pago.setTicketVenta(ticketVenta);
 		pago.setNoCuenta(pagoVO.getNoCuenta());
 		pago.setImporte(pagoVO.getImporte());
 		pago.setFecha(pagoVO.getFecha());
@@ -24,7 +25,7 @@ public class PagoAssembler {
 		return pago;
 	}
 	
-	public static List<Pago> getPagos(List<PagoVO> pagosVO,Integer idTicket){
+	public static List<Pago> getPagos(List<PagoVO> pagosVO,TicketVenta  ticketVenta){
 
 		if(pagosVO==null || pagosVO.isEmpty())
 			return null;
@@ -32,7 +33,7 @@ public class PagoAssembler {
 		List<Pago> pagos = new ArrayList<Pago>();
 		
 		for (PagoVO pagoVO : pagosVO) {
-			pagos.add(PagoAssembler.getPago(pagoVO,idTicket));
+			pagos.add(PagoAssembler.getPago(pagoVO, ticketVenta));
 		}
 
 		return pagos;
