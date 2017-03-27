@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('indexModule').service('taquillaService', ['$http','GlobalFactory','config', function($http,GlobalFactory,config) {
- 
+         console.log(config.baseUrl);
  	 this.consultarPeliculas = function(fechaExhibicion){
 		 return $http.get(config.baseUrl+"/ventaBoleto/peliculas", {
 				params : {"fechaExhibicion" : fechaExhibicion }
@@ -38,5 +38,8 @@ angular.module('indexModule').service('taquillaService', ['$http','GlobalFactory
  		 return $http.put(config.baseUrl+"/ventaBoleto/existencias",existenciaBoletoVO);
 	 }
 	 
+	 this.consultarDescuentos = function(promocionBoletoVO ){
+		 return $http.post(config.baseUrl + "/ventaBoleto/descuentos",promocionBoletoVO  );
+	 }
 	  
 }]);

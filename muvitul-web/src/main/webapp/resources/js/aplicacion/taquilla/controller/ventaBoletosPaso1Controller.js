@@ -9,7 +9,6 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 	$scope.listaPeliculas		={};
 	$scope.listaPreciosXFormato	={};
 	$scope.boletos			    =[];
-	
 	$scope.objetosVenta			={};
 	$scope.promocion			={ cantidad:0, tipoCliente:"Promocion", subtotal:0, precio:0, };
 	$controller('VentaBoletosPaso2Controller',{$scope : $scope });
@@ -32,8 +31,7 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 		$scope.consultarPromociones($scope.fechaExhibicion);
 		$scope.consultarPreciosFormato();
 		$scope.pago.subtotal =0;
-
-		$scope.configParamsCron(programacion,$scope.fechaExhibicion);
+ 		$scope.configParamsCron(programacion,$scope.fechaExhibicion);
 	}
 	
 	$scope.seleccionarPromocion =function(promocion){
@@ -42,26 +40,24 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 		});
 		promocion.check = true;
 		$scope.objetosVenta.promocion	= promocion;
-//		$scope.promocion={ cantidad:0, tipoCliente:"Promocion", subtotal:0, precio:0 };
-//		
-//		$scope.isPromocion = $filter('filter')($scope.boletos, {'tipoCliente':'Promocion'});
-//		if(promocion.tipoCliente ===$scope.promocion.tipoCliente)	 
-//        $scope.promocion.cantidad +=1;
-//        angular.forEach($scope.boletos, function(value, key){
-//        	if(!$scope.isPromocion ){
-//		});
-//        if(!$scope.isPromocion ){
-        	$scope.boletos.push({ cantidad:0, tipoCliente:"Promocion", subtotal:0, precio:0 })
-//        }
-// 
+		$scope.promocionBoletoVO.promocionVO = promocion;
+		
+		$scope.promocion={ cantidad:1, tipoCliente:"Promocion", subtotal:0, precio:0,promocion :promocion, importe:0 };
+        angular.forEach($scope.boletos, function(value, key){
+//    		$scope.isPromocion = $filter('filter')(value, {'tipoCliente':'Promocion'});
+        	if(value.tipoCliente ==  'Promocion' ){
+        		$scope.eliminar( $scope.boletos, key );
+        	}
+        		
+		});
+        $scope.boletos.push($scope.promocion); 
     }
 	
 	$scope.quitarBoleto = function(boleto) { 
 		
 		$scope.asientosDisponibles.reservar =-1;
 		$scope.reservarBoleto($scope.asientosDisponibles);
-		
-		
+				
  		boleto.cantidad = boleto.cantidad-1;
 		boleto.subtotal= calculosFactory.calcularSubtotal(boleto.cantidad,boleto.precio);
  		$scope.pago.subtotal -=boleto.precio;
@@ -69,9 +65,7 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 		angular.forEach($scope.listaPreciosXFormato, function(value, key){
 			if(value.tipoClienteVO.nombre ===boleto.tipoCliente) 
 				value.boletosSeleccionados =value.boletosSeleccionados-1;
-
 		});
-//		$scope.pago.subtotal -= value.subtotal;
 	}
 	
 	$scope.agregarBoleto =function(tipoClienteVO, index){
@@ -79,7 +73,7 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 		if($scope.asientosDisponibles.disponibles ==0){
 			$scope.showAviso("No hay asientos disponibles ");
 			return;
-			}
+		}
 		$scope.asientosDisponibles.reservar =1;
 		$scope.reservarBoleto($scope.asientosDisponibles);
  		$scope.consultarExistenciaBoletos($scope.paramsExistenciaBoleto);
@@ -95,13 +89,13 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
   			value.subtotal =calculosFactory.calcularSubtotal(value.cantidad,value.precio);
   			$scope.pago.subtotal += value.subtotal;
   		}); 
+  		$scope.promocionBoletoVO.boletosXTicketVO=$scope.boletos
+  		$scope.consultarDescuentos ($scope.promocionBoletoVO);
    	}
 
 	$scope.asignarPaso =function( paso){
 		$scope.statusVenta= calculosFactory.estatusPaso(paso);
 		$scope.statusVenta.numeroPaso = paso;
-		
-		
 //		$scope.boletos.push($scope.promocion);
 	}
  
@@ -115,7 +109,6 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
  			 $scope.listaPeliculas={};
  			 $scope.errorPeliculas=true;
  		  });
- 		 
 	}
 
 	//Consulta de precios por formato
@@ -124,7 +117,7 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
  		taquillaService.consultarPreciosFormato($scope.objetosVenta.programacion.formatoVO.idFormato).success(function(data) {	
  			$scope.listaPreciosXFormato=data;
  			angular.forEach($scope.listaPreciosXFormato, function(value, key){
-	 			 $scope.boletos.push({ cantidad:0, tipoCliente:value.tipoClienteVO.nombre, subtotal:0, precio:value.precio })
+	 			 $scope.boletos.push({ cantidad:0, tipoCliente:value.tipoClienteVO.nombre,tipoClienteVO:value.tipoClienteVO,  subtotal:0, precio:value.precio, importe:value.precio, programacionVO : $scope.objetosVenta.programacion,fechaExhibicion: new Date() })
 	 			  value.boletosSeleccionados =0;
  			});
  			$scope.listaPreciosXFormato.boletos=$scope.boletos;
@@ -148,9 +141,6 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 		$scope.consultarPeliculas($scope.fechaExhibicion);
 	}
 
-
-	
-	
 	$scope.consultarPeliculas($scope.fechaExhibicion);
  });
  

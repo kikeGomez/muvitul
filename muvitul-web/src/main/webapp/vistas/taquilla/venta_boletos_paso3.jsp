@@ -9,7 +9,7 @@
 			<div class="row pull-right">
 
 				<button type="button" class="btn btn-primary"
-					ng-click="asignarPaso(2)">
+					ng-click="asignarPaso(2);StopTimer()">
 					<i class="fa fa-star"></i> Regresar a Promociones
 				</button>
 
@@ -119,7 +119,7 @@
 												<td class=" ">{{boleto.tipoCliente}}</td>
 												<td class="text-center">{{boleto.cantidad}}</td>
 												<td class="text-center">{{boleto.subtotal}}</td>
-												<td class="text-center"><a href=""
+												<td class="text-center"><a href="" ng-if="boleto.tipoCliente !='Promocion'"
 													ng-click="quitarBoleto(boleto)" title="Quitar Boleto"><i
 														class="success fa fa-minus-square-o"></i></a></td>
 

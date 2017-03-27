@@ -1,4 +1,9 @@
-
+<html>
+<head>
+<meta charset="utf-8">
+<title>Alta de Infracción</title>
+</head>
+<body>
 <!-- bloque de PASO 5 de wizard - CANTIDAD -->
 <div id="step-2">
 	<div class="x_panel">
@@ -8,10 +13,10 @@
 			</h2>
 			<div class="row pull-right">
 
-				<button type="button" class="btn btn-primary"
-					ng-click="asignarPaso(4)">
-					<i class="fa fa-credit-card"></i> Regresar al Pago
-				</button>
+<!-- 				<button type="button" class="btn btn-primary" -->
+<!-- 					ng-click="asignarPaso(4)"> -->
+<!-- 					<i class="fa fa-credit-card"></i> Regresar al Pago -->
+<!-- 				</button> -->
 
 			</div>
 			<div class="clearfix"></div>
@@ -181,3 +186,6 @@
 	</div>
 	<!-- /xpanel MODULO -->
 </div>
+
+</body>
+</html>

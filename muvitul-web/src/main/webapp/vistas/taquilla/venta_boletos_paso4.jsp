@@ -6,13 +6,13 @@
 			<h2>
 				<i class="fa fa-credit-card"></i> Registra el Pago
 			</h2>
-			<div class="row pull-right">
+			<div class="row pull-right" ng-init=calcularTotalPagado(listaPagos)>
 				<button type="button" class="btn btn-primary"
 					ng-click="asignarPaso(3);StartTimer(paramsExistenciaBoleto)">
 					<i class="fa fa-calculator"></i> Modificar Cantidades
 				</button>
 				<button type="button" class="btn btn-success"
-					ng-click="asignarPaso(5)" ng-disabled="pago.porPagar > 0 || pago.porPagar  >0">
+					ng-click="confirmacionVenta(objetosVenta)" ng-disabled="pago.porPagar > 0">
 					Confirmar la Venta <i class="fa fa-thumbs-o-up"></i>
 				</button>
 			</div>
