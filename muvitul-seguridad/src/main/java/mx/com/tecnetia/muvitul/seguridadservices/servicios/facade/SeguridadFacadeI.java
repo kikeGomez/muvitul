@@ -20,8 +20,6 @@ import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/seguridad")
 public interface SeguridadFacadeI {
-	
-	
 	@RequestMapping(value = "autenticar", method = RequestMethod.POST)
     LoginResponseVO loginJwt(@RequestBody UsuarioLoginVO usuarioVO) throws BusinessGlobalException, Exception;		
 	@RequestMapping(value = "autorizar", method = RequestMethod.POST)
@@ -30,6 +28,5 @@ public interface SeguridadFacadeI {
     LoginResponseVO actualizarToken(HttpServletRequest request) throws BusinessGlobalException, Exception;		
 	@RequestMapping(value = "firmado", method = RequestMethod.POST)
 	UsuarioFirmadoVO getUsuarioFirmadoVO(@RequestBody UsuarioVO usuarioVO) throws BusinessGlobalException, Exception;
-	
 	void guardarUsuario(UsuarioVO usuarioVO) throws BusinessGlobalException, Exception;
 }

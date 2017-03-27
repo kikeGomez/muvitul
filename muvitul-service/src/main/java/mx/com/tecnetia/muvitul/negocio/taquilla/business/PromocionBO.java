@@ -28,57 +28,88 @@ public class PromocionBO {
 
 	public List<PromocionVO> findByCineAndDate(Integer idCine, Integer idPromocionPara, Date fechaExhibicion)
 			throws BusinessGlobalException {
+
 		return PromocionAssembler
 				.getPromocionesVO(promocionDAO.findByCineAndDate(idCine, idPromocionPara, fechaExhibicion));
+
 	}
 
 	public BigDecimal getDescuentoByPromocion(PromocionBoletoVO promocionBoletoVO) throws BusinessGlobalException {
+
 		BigDecimal descuento = new BigDecimal(0);
 		BigDecimal total = new BigDecimal(0);
 		int cantidadBoletos = 0;
 		List<BigDecimal> importes = new ArrayList<BigDecimal>();
+
 		for (BoletoXTicketVO boletoXTicketVO : promocionBoletoVO.getBoletosXTicketVO()) {
+			if (boletoXTicketVO.getCantidad() <= 0 || boletoXTicketVO.getImporte().intValue() <= 0)
+				continue;
 			total = total.add(boletoXTicketVO.getImporte());
 			cantidadBoletos = cantidadBoletos + boletoXTicketVO.getCantidad();
 			BigDecimal precioBoleto = new BigDecimal(0);
 			precioBoleto = precioBoleto.add(boletoXTicketVO.getImporte());
-			if (boletoXTicketVO.getCantidad() <= 0 || boletoXTicketVO.getImporte().intValue() <= 0)
-				continue;
-			precioBoleto = precioBoleto.divide(new BigDecimal(boletoXTicketVO.getCantidad()), 3, BigDecimal.ROUND_HALF_EVEN);
+
+			precioBoleto = precioBoleto.divide(new BigDecimal(boletoXTicketVO.getCantidad()), 3,
+					BigDecimal.ROUND_HALF_EVEN);
 			for (int i = 0; i < boletoXTicketVO.getCantidad(); i++) {
 				importes.add(precioBoleto);
 			}
 		}
 
 		Collections.sort(importes);
+
 		if (promocionBoletoVO != null) {
 			Promocion promocion = promocionDAO.findById(promocionBoletoVO.getPromocionVO().getIdPromocion());
 
 			if (promocion.getDetallePromocions() != null) {
 
 				DetallePromocion detallePromocion = promocion.getDetallePromocions().iterator().next();
+				int varN = detallePromocion.getVarN() == null ? 0 : detallePromocion.getVarN().intValue();
+				int varM = detallePromocion.getVarM() == null ? 0 : detallePromocion.getVarM().intValue();
+				int varPorcentaje = detallePromocion.getPorcentaje() == null ? 0 : detallePromocion.getPorcentaje().intValue();
+				int varPrecio = detallePromocion.getPrecio() == null ? 0 : detallePromocion.getPrecio().intValue();
 
 				switch (promocion.getTipoPromocion().getIdTipoPromocion()) {
 				case Constantes.PROMOCION_NXM:
-					if (detallePromocion.getVarN().intValue() <= cantidadBoletos) {
-						int limit = detallePromocion.getVarN().intValue() - detallePromocion.getVarM().intValue();
+					
+					if (cantidadBoletos >= varN) {
+						int limit = varN - varM;
 						for (int i = 0; i < limit; i++) {
 							descuento = descuento.add(importes.get(i));
 						}
-
 					}
 					break;
+					
 				case Constantes.PROMOCION_NXFIJO:
-					descuento = descuento.add(detallePromocion.getPrecio());
-					break;
-				case Constantes.PROMOCION_PORCIENTO:
-					BigDecimal porcentaje = new BigDecimal(0);
-					porcentaje = porcentaje.add(detallePromocion.getPorcentaje());
-					porcentaje = porcentaje.divide(new BigDecimal(100));
-					descuento = descuento.add(total);
-					descuento = descuento.multiply(porcentaje);
+					
+					if (cantidadBoletos >= varN && varPrecio> 0) {
+
+						BigDecimal importe = new BigDecimal(0);
+						
+						for (int i = 0; i < varN; i++) {
+							importe = importe.add(importes.get(i));
+						}
+						
+						importe=importe.subtract(detallePromocion.getPrecio());
+						if (importe.intValue()>0){
+							descuento=descuento.add(importe);
+						}
+						
+					}
 
 					break;
+					
+				case Constantes.PROMOCION_PORCIENTO:
+
+					if (cantidadBoletos >= varN && varPorcentaje > 0) {
+						BigDecimal porcentaje = new BigDecimal(0);
+						porcentaje = porcentaje.add(detallePromocion.getPorcentaje());
+						porcentaje = porcentaje.divide(new BigDecimal(100));
+						descuento = descuento.add(total);
+						descuento = descuento.multiply(porcentaje);
+					}
+					break;
+					
 				case Constantes.PROMOCION_REGALOX:
 					break;
 				default:

@@ -7,14 +7,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import mx.com.tecnetia.muvitul.infraservices.negocio.seguridad.vo.UsuarioFirmadoVO;
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 import mx.com.tecnetia.muvitul.negocio.taquilla.business.ExistenciaBoletoBO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.business.PeliculaBO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.business.PrecioXFormatoBO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.business.PromocionBO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.business.VentaBoletoBO;
-import mx.com.tecnetia.muvitul.negocio.taquilla.vo.BoletoXTicketVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.ExistenciaBoletoVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PeliculaVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PrecioXFormatoVO;
@@ -62,8 +60,8 @@ public class VentaBoletoController {
 		return existenciaBoletoBO.update(existenciaBoletoVO);
 	}
 
-	public TicketVentaVO createVenta(VentaVO ventaVO, UsuarioFirmadoVO usuarioVO) throws BusinessGlobalException {
-		return ventaBoletoBO.createVenta(ventaVO, usuarioVO);
+	public TicketVentaVO createVenta(VentaVO ventaVO) throws BusinessGlobalException {
+		return ventaBoletoBO.createVenta(ventaVO);
 	}
 
 }

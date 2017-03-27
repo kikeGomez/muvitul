@@ -129,6 +129,7 @@ public class UsuarioBO extends GlobalService{
 		 return new LoginResponseVO(
 				       Jwts.builder().setSubject(usuarioVO.getUsuario())
 				       	  			 .claim(ClaimsEnum.ROLES, roles)
+				       	  			 .claim(ClaimsEnum.USUARIO, usuario.getIdUsuario())
 				       	  			 .claim(ClaimsEnum.CINE, usuario.getCine().getIdCine())
 				       	  			 .claim(ClaimsEnum.PUNTO_VENTA, usuario.getPuntoVenta()==null?null:usuario.getPuntoVenta().getIdPuntoVenta())
 				       	  			 .setIssuedAt(fechaActual)

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import mx.com.tecnetia.muvitul.infraservices.negocio.seguridad.vo.UsuarioFirmadoVO;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dao.BoletosXTicketDAOI;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dao.ExistenciaBoletoDAOI;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dao.ImpuestoBoletoDAOI;
@@ -62,11 +61,9 @@ public class VentaBoletoBO {
 	@Autowired
 	private ImpuestoBoletoDAOI impuestoBoletoDAO;
 
-	public TicketVentaVO createVenta(VentaVO ventaVO, UsuarioFirmadoVO usuarioVO) throws BusinessGlobalException {
+	public TicketVentaVO createVenta(VentaVO ventaVO) throws BusinessGlobalException {
 		PuntoVenta puntoVenta = new PuntoVenta();
 		int cantidadBoletos = 0;
-
-		puntoVenta.setIdPuntoVenta(3);
 		BigDecimal total = new BigDecimal(0);
 		BigDecimal descuento = new BigDecimal(0);
 		BigDecimal porcentajes = new BigDecimal(0);
@@ -75,7 +72,7 @@ public class VentaBoletoBO {
 
 		BigDecimal subtTot = new BigDecimal(0);
 
-		List<ImpuestoBoleto> impuestosBoletos = impuestoBoletoDAO.findByIdCine(usuarioVO.getCineVO().getIdCine());
+		List<ImpuestoBoleto> impuestosBoletos = impuestoBoletoDAO.findByIdCine(ventaVO.getIdCine());
 
 		for (BoletoXTicketVO boletoXTicketVO : ventaVO.getBoletosXTicketVO()) {
 			cantidadBoletos = cantidadBoletos + boletoXTicketVO.getCantidad();
@@ -107,7 +104,7 @@ public class VentaBoletoBO {
 				descuento.toString(), impuestos.toString(), porcentajes.toString(), subtotal.toString());
 
 		TicketVenta ticketVenta = ticketVentaDAO
-				.save(TicketVentaAssembler.getTicketVenta(usuarioVO, puntoVenta, descuento, subtotal, total));
+				.save(TicketVentaAssembler.getTicketVenta(ventaVO.getIdUsuario(), ventaVO.getIdPuntoVenta(), descuento, subtotal, total));
 
 		List<BoletosXTicket> boletosXTicket = BoletoXTicketAssembler.getBoletosXTicket(ventaVO.getBoletosXTicketVO(),
 				ticketVenta);
@@ -135,7 +132,6 @@ public class VentaBoletoBO {
 			BigDecimal impuesto = new BigDecimal(0);
 			impuesto = impuesto.add(subtTot);
 			impuesto = impuesto.multiply(porcentaje);
-
 
 			ImpuestosXTicketTaquilla impuestosXTicketTaquilla = ImpuestoXTicketTaquillaAssembler
 					.getImpuestosXTicketTaquilla(impuestoBoleto.getIdImpuestoBoleto(), ticketVenta, impuesto);

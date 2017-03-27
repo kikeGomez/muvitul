@@ -33,10 +33,12 @@ public class CatalogoFacade implements CatalogoFacadeI{
 	@Override
 	public ResponseEntity<List<FormaPagoVO>> getFormasPago(HttpServletRequest request) throws BusinessGlobalException, NotFoundException {
 		
-		Claims claims =(Claims)request.getAttribute(ClaimsEnum.CLAIMS_ID);
-	 
-		logger.info("Claim IdCine::[{}]",(Integer)claims.get(ClaimsEnum.CINE));
-		logger.info("Claim Id Pto Venta::[{}]",		(Integer)claims.get(ClaimsEnum.PUNTO_VENTA));
+		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
+		Integer idUsuario=(Integer) claims.get(ClaimsEnum.USUARIO);
+		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
+		Integer idPuntoVenta=(Integer) claims.get(ClaimsEnum.PUNTO_VENTA);
+		
+		logger.info("GetFormasPago:::IdUsuario[{}]:::IdCine[{}]:::IdPuntoVenta[{}]",idUsuario,idCine,idPuntoVenta);
 		
 		List<FormaPagoVO> formasPago= catalogoController.getFormasPagos();
 		

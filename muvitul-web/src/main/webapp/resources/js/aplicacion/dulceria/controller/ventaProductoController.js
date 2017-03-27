@@ -138,13 +138,15 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 				});
 			}
 			
-			//console.log($scope.fechaExhibicion);
-			//$scope.consultarPeliculas($scope.fechaExhibicion);
-			//$scope.consultarPromociones($scope.fechaExhibicion);
-			//$scope.consultarPrecios(1);
-			//$scope.consultarFormasPago();
-			//$scope.consultarExistencias(1,1,$scope.fechaExhibicion);
+//			console.log($scope.fechaExhibicion);
+//			$scope.consultarPeliculas($scope.fechaExhibicion);
+//			$scope.consultarPromociones($scope.fechaExhibicion);
+//			$scope.consultarPrecios(1);
+//			$scope.consultarFormasPago();
+//			$scope.consultarExistencias(1,1,$scope.fechaExhibicion);
+//			$scope.consultarDescuentos();
+			
 			$scope.consultarVentas();
-			//$scope.consultarDescuentos();
+
 			
 		});
