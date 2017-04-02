@@ -124,10 +124,6 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
  		  });
 	}
 
-	
-	
-	
-	
 	$scope.calcularCambio =function(pagoCon,pagoImporte){
 		$scope.pago.cambio=pagoCon-pagoImporte;
 	}

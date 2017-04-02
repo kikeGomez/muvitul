@@ -1,6 +1,6 @@
 'use strict';
 
-var VentaBoletosPaso4Controller = angular.module('indexModule').controller("VentaBoletosPaso4Controller", function($controller,$scope,ModalService,calculosFactory,taquillaService){
+var VentaBoletosPaso4Controller = angular.module('indexModule').controller("VentaBoletosPaso4Controller", function($controller,$scope,$filter,ModalService,calculosFactory,taquillaService){
 	
 	$scope.listaPagos			=[];
 	$scope.listaFormasPago		={};
@@ -33,7 +33,7 @@ var VentaBoletosPaso4Controller = angular.module('indexModule').controller("Vent
 	//Obtiene las formas de pago
 	$scope.seleccionarFormaPago =function( formaPago, formPagos){
 		formPagos.$setPristine();
- 		$scope.pago.formaPago = formaPago;
+ 		$scope.pago.formaPagoVO = formaPago;
 	}
 	
 	$scope.calcularTotalPagado =function(listaPagos){
@@ -76,23 +76,25 @@ var VentaBoletosPaso4Controller = angular.module('indexModule').controller("Vent
 		  });
 	}
 	$scope.complementarDatosPago =function(   ){
-		$scope.promo = [];
-		$scope.promo.push($scope.promocion);
+		
+		$scope.listaBoletosFilter = $filter('filter')($scope.boletos, {'tipoCliente': '!Promocion'});
+ 		$scope.objetosVenta.boletosXTicketVO=$scope.listaBoletosFilter;
 
+ 		$scope.promo = [];
+		$scope.promo.push($scope.promocion);
 		$scope.objetosVenta.promocionesXTicketVO=$scope.promo;
- 		$scope.objetosVenta.boletosXTicketVO=$scope.boletos;
 		
   	}
 	
 	//ProcesarVenta
 	$scope.procesarVenta =function( venta ){
-	$scope.asignarPaso(5);
 		venta.pagosVO=$scope.listaPagos;
 		console.log(venta);
 		console.log( $scope.boletos);
 		
 		taquillaService.procesarVenta(venta).success(function(data) {	
 			console.log(data);
+			$scope.asignarPaso(5);
 
  		  }).error(function(data) {
  				console.log(data);

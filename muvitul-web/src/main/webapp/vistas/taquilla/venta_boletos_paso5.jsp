@@ -159,9 +159,9 @@
 									<tbody>
 									<tbody>
 										<tr class="even pointer" ng-repeat="pago in listaPagos">
-											<td class=" ">{{pago.formaPago.nombre}}</td>
+											<td class=" ">{{pago.formaPagoVO.nombre}}</td>
 											<td class="text-center">{{pago.importe}}</td>
-											<td class="text-center">{{pago.numeroCta}}</td>
+											<td class="text-center">{{pago.noCuenta}}</td>
 										</tr>
 
 									</tbody>
