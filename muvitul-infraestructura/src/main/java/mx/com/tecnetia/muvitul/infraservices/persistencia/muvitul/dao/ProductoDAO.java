@@ -7,12 +7,13 @@ import org.springframework.stereotype.Repository;
 
 import mx.com.tecnetia.muvitul.infraservices.persistencia.GlobalHibernateDAO;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Paquete;
+import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Producto;
 
 @Repository 
-public class PaqueteDAO extends GlobalHibernateDAO<Paquete> implements PaqueteDAOI {
+public class ProductoDAO extends GlobalHibernateDAO<Producto> implements ProductoDAOI {
 
 	@Override
-	public List<Paquete> findByPuntoVenta(Integer idPuntoVenta) {
+	public List<Producto> findByPuntoVenta(Integer idPuntoVenta) {
 		
 		StringBuilder hql = new StringBuilder();
 		hql.append(" select paq  from Paquete paq inner join paq.puntoVenta pdv ");

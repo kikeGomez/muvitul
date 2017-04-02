@@ -38,7 +38,10 @@ public class BoletoXTicketAssembler {
 		List<BoletosXTicket> boletosXTicket = new ArrayList<BoletosXTicket>();
 		
 		for (BoletoXTicketVO boletoXTicketVO : boletosXTicketVO) {
-			boletosXTicket.add(BoletoXTicketAssembler.getBoletoXTicket(boletoXTicketVO,ticketVenta));
+			if (boletoXTicketVO.getCantidad() > 0){
+				boletosXTicket.add(BoletoXTicketAssembler.getBoletoXTicket(boletoXTicketVO,ticketVenta));
+			}
+		
 		}
 
 		return boletosXTicket;

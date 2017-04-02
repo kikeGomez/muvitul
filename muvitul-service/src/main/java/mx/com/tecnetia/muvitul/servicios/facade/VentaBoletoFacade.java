@@ -91,6 +91,9 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 	public ResponseEntity<BigDecimal> getDescuentoByPromocion(HttpServletRequest request,
 			@RequestBody PromocionBoletoVO promocionBoletoVO) throws BusinessGlobalException, NotFoundException {
 		
+		if (promocionBoletoVO==null || promocionBoletoVO.getBoletosXTicketVO()==null || promocionBoletoVO.getPromocionVO()==null)
+			throw new NotFoundException("Parametros invalidos");
+		
 		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
 		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
 

@@ -9,6 +9,7 @@ import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 import mx.com.tecnetia.muvitul.negocio.dulceria.business.PaqueteBO;
 import mx.com.tecnetia.muvitul.negocio.dulceria.business.VentaProductoBO;
 import mx.com.tecnetia.muvitul.negocio.dulceria.vo.PaqueteVO;
+import mx.com.tecnetia.muvitul.negocio.dulceria.vo.TicketVentaVO;
 import mx.com.tecnetia.muvitul.negocio.dulceria.vo.VentaVO;
 
 @Service
@@ -19,13 +20,12 @@ public class VentaProductoController {
 	@Autowired
 	private VentaProductoBO ventaProductoBO;
 
-	public List<PaqueteVO> getByPuntoVenta(Integer idPuntoVenta) throws BusinessGlobalException {
+	public List<PaqueteVO> getPaquetes(Integer idPuntoVenta) throws BusinessGlobalException {
 		return paqueteBO.findByPuntoVenta(idPuntoVenta);
 	}
 
-	public void createVenta(VentaVO ventaVO) throws BusinessGlobalException {
-		ventaProductoBO.createVenta(ventaVO);
+	public TicketVentaVO createVenta(VentaVO ventaVO) throws BusinessGlobalException {
+		return ventaProductoBO.createVenta(ventaVO);
 	}
-	
 	
 }

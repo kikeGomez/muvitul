@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Paquete;
+import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Producto;
 import mx.com.tecnetia.muvitul.negocio.dulceria.vo.PaqueteVO;
 
 public class PaqueteAssembler {
@@ -16,12 +17,13 @@ public class PaqueteAssembler {
 		
 		PaqueteVO paqueteVO = new PaqueteVO();
 		paqueteVO.setIdPaquete(paquete.getIdPaquete());
-		//paqueteVO.setPuntoVentaVO(PuntoVentaAssembler.getPuntoVentaVO(paquete.getPuntoVenta()));
+		paqueteVO.setPaquete(true);
+		paqueteVO.setCineVO(CineAssembler.getCineVO(paquete.getCine()));
 		paqueteVO.setNombre(paquete.getNombre());
 		paqueteVO.setIcono(paquete.getIcono());
 		paqueteVO.setActivo(paquete.isActivo());
-		//paqueteVO.setProductos(ProductoAssembler.getProductosVO(paquete.getProductos()));
-		paqueteVO.setPreciosXPaquete(PrecioXPaqueteAssembler.getPreciosXPaqueteVO(paquete.getPrecioXPaquetes()));
+		//paqueteVO.setProductosXPaquete(productosXPaquete);
+		//paqueteVO.setPreciosXPaquete(PrecioXPaqueteAssembler.getPreciosXPaqueteVO(paquete.getPrecioXPaquetes()));
 
 		return paqueteVO;
 	}
@@ -40,5 +42,39 @@ public class PaqueteAssembler {
 
 		return paquetesVO;
 	}
+	
+	
+	public static PaqueteVO getPaqueteVO(Producto producto){
+
+		if(producto==null )
+			return null;
+		
+		PaqueteVO paqueteVO = new PaqueteVO();
+		paqueteVO.setIdPaquete(producto.getIdProducto());
+		paqueteVO.setCineVO(CineAssembler.getCineVO(producto.getCine()));
+		paqueteVO.setNombre(producto.getNombre());
+		paqueteVO.setIcono(producto.getIcono());
+		paqueteVO.setActivo(producto.isActivo());
+		//paqueteVO.setProductosXPaquete(productosXPaquete);
+		//paqueteVO.setPreciosXPaquete(PrecioXPaqueteAssembler.getPreciosXPaqueteVO(paquete.getPrecioXPaquetes()));
+
+		return paqueteVO;
+	}
+	
+	
+	public static List<PaqueteVO> getPaquetesVOXProducto(List<Producto> productos){
+
+		if(productos==null || productos.isEmpty())
+			return null;
+		
+		List<PaqueteVO> paquetesVO = new ArrayList<PaqueteVO>();
+		
+		for (Producto producto : productos) {
+			paquetesVO.add(PaqueteAssembler.getPaqueteVO(producto));
+		}
+
+		return paquetesVO;
+	}
+	
 	
 }

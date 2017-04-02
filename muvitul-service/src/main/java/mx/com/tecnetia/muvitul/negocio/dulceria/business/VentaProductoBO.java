@@ -21,6 +21,7 @@ import mx.com.tecnetia.muvitul.negocio.dulceria.assembler.PagoAssembler;
 import mx.com.tecnetia.muvitul.negocio.dulceria.assembler.PaqueteXTicketAssembler;
 import mx.com.tecnetia.muvitul.negocio.dulceria.assembler.ProductoXTicketAssembler;
 import mx.com.tecnetia.muvitul.negocio.dulceria.assembler.TicketVentaAssembler;
+import mx.com.tecnetia.muvitul.negocio.dulceria.vo.TicketVentaVO;
 import mx.com.tecnetia.muvitul.negocio.dulceria.vo.VentaVO;
 
 @Service
@@ -41,7 +42,7 @@ public class VentaProductoBO {
 	private PagoDAOI pagoDAO;
 
 
-	public Object createVenta(VentaVO ventaVO) throws BusinessGlobalException {
+	public TicketVentaVO createVenta(VentaVO ventaVO) throws BusinessGlobalException {
 
 		TicketVenta ticketVenta = ticketVentaDAO.save(TicketVentaAssembler.getTicketVenta(ventaVO.getTicketVentaVO()));
 
@@ -64,7 +65,7 @@ public class VentaProductoBO {
 		}
 		
 		
-		return ventaVO;
+		return TicketVentaAssembler.getTicketVentaVO(ticketVenta);
 	}
 
 }

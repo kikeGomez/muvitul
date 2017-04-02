@@ -3,27 +3,32 @@ package mx.com.tecnetia.muvitul.negocio.dulceria.vo;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import mx.com.tecnetia.muvitul.infraservices.negocio.seguridad.vo.UsuarioFirmadoVO;
-
 public class TicketVentaVO {
+	private Integer idTicket;
 	private PuntoVentaVO puntoVentaVO;
-	private UsuarioFirmadoVO usuarioFirmadoVO;
+	private UsuarioVO usuarioVO;
 	private Date fecha;
 	private BigDecimal descuento;
 	private BigDecimal importe;
 	private BigDecimal total;
 	
+	public Integer getIdTicket() {
+		return idTicket;
+	}
+	public void setIdTicket(Integer idTicket) {
+		this.idTicket = idTicket;
+	}
 	public PuntoVentaVO getPuntoVentaVO() {
 		return puntoVentaVO;
 	}
 	public void setPuntoVentaVO(PuntoVentaVO puntoVentaVO) {
 		this.puntoVentaVO = puntoVentaVO;
 	}
-	public UsuarioFirmadoVO getUsuarioFirmadoVO() {
-		return usuarioFirmadoVO;
+	public UsuarioVO getUsuarioVO() {
+		return usuarioVO;
 	}
-	public void setUsuarioFirmadoVO(UsuarioFirmadoVO usuarioFirmadoVO) {
-		this.usuarioFirmadoVO = usuarioFirmadoVO;
+	public void setUsuarioVO(UsuarioVO usuarioVO) {
+		this.usuarioVO = usuarioVO;
 	}
 	public Date getFecha() {
 		return fecha;

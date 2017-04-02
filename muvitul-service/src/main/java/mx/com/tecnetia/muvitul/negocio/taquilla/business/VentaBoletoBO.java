@@ -62,7 +62,7 @@ public class VentaBoletoBO {
 	private ImpuestoBoletoDAOI impuestoBoletoDAO;
 
 	public TicketVentaVO createVenta(VentaVO ventaVO) throws BusinessGlobalException {
-		PuntoVenta puntoVenta = new PuntoVenta();
+
 		int cantidadBoletos = 0;
 		BigDecimal total = new BigDecimal(0);
 		BigDecimal descuento = new BigDecimal(0);

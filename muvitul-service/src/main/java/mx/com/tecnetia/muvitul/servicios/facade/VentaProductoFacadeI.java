@@ -2,6 +2,8 @@ package mx.com.tecnetia.muvitul.servicios.facade;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 import mx.com.tecnetia.muvitul.infraservices.servicios.NotFoundException;
 import mx.com.tecnetia.muvitul.negocio.dulceria.vo.PaqueteVO;
+import mx.com.tecnetia.muvitul.negocio.dulceria.vo.TicketVentaVO;
 import mx.com.tecnetia.muvitul.negocio.dulceria.vo.VentaVO;
 
 @RestController
@@ -19,9 +22,10 @@ import mx.com.tecnetia.muvitul.negocio.dulceria.vo.VentaVO;
 @RequestMapping("/ventaProducto")
 public interface VentaProductoFacadeI {
 	@RequestMapping(value = "/paquetes", method = RequestMethod.GET)
-	public ResponseEntity<List<PaqueteVO>> getByPuntoVenta(Integer idPuntoVenta) throws BusinessGlobalException, NotFoundException;
+	public ResponseEntity<List<PaqueteVO>> getPaquetes(HttpServletRequest request) throws BusinessGlobalException, NotFoundException;
 
-	@RequestMapping(value = "/pagos", method = RequestMethod.POST)
-	public ResponseEntity<VentaVO> createVenta(@RequestBody VentaVO ventaVO)
+	@RequestMapping(value = "/ventas", method = RequestMethod.POST)
+	public ResponseEntity<TicketVentaVO> createVenta(HttpServletRequest request, @RequestBody VentaVO ventaVO)
 			throws BusinessGlobalException, NotFoundException;
+	
 }

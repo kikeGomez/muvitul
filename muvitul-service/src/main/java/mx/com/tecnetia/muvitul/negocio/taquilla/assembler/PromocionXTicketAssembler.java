@@ -38,7 +38,9 @@ public class PromocionXTicketAssembler {
 		List<PromocionesXTicket> promocionesXTicket = new ArrayList<PromocionesXTicket>();
 		
 		for (PromocionXTicketVO promocionXTicketVO : promocionesXTicketVO) {
-			promocionesXTicket.add(PromocionXTicketAssembler.getPromocionXTicket(promocionXTicketVO, ticketVenta));
+			if(promocionXTicketVO.getCantidad() > 0){
+				promocionesXTicket.add(PromocionXTicketAssembler.getPromocionXTicket(promocionXTicketVO, ticketVenta));
+			}
 		}
 
 		return promocionesXTicket;
