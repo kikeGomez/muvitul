@@ -1,7 +1,8 @@
 'use strict';
 
 var VentaBoletosPaso3Controller = angular.module('indexModule').controller("VentaBoletosPaso3Controller", function(taquillaService,$scope, $interval,$filter,$controller){
-	
+	$scope.listaPreciosXFormato	={};
+	$scope.totalDescuento ={};
 	$scope.Timer = null;
 	$scope.asientosDisponibles   ={};
 	$scope.promocionBoletoVO ={};
@@ -37,11 +38,34 @@ var VentaBoletosPaso3Controller = angular.module('indexModule').controller("Vent
  	 	 
 	 	});
 	 }
+	
+	//Consulta de precios por formato
+	$scope.consultarPreciosFormato =function(){
+		$scope.boletos=[];
+ 		taquillaService.consultarPreciosFormato($scope.objetosVenta.programacion.formatoVO.idFormato).success(function(data) {	
+ 			$scope.listaPreciosXFormato=data;
+ 			angular.forEach($scope.listaPreciosXFormato, function(value, key){
+	 			 $scope.boletos.push({ cantidad:0, tipoCliente:value.tipoClienteVO.nombre,tipoClienteVO:value.tipoClienteVO,  subtotal:0, precio:value.precio, importe:value.precio, programacionVO : $scope.objetosVenta.programacion,fechaExhibicion: new Date($scope.fechaExhibicion) })
+	 			  value.boletosSeleccionados =0;
+ 			});
+ 			$scope.listaPreciosXFormato.boletos=$scope.boletos;
+ 	  		$scope.promocionBoletoVO.boletosXTicketVO=$scope.boletos
+
+  		  }).error(function(data) {
+		  });
+	}
 	 
 	//Consultar descuentos Promocion
 	$scope.consultarDescuentos = function(promocionBoletoVO) {
 		taquillaService.consultarDescuentos(promocionBoletoVO).success(function(data) {
-			console.log(data);
+ 
+			$scope.totalDescuento=data;
+	  		$scope.pago.subtotal -=$scope.totalDescuento;
+
+ 			angular.forEach($scope.boletos, function(value, key){
+	  			if(value.tipoCliente ==="Promocion")
+	  				value.subtotal =data;
+			});
 		}).error(function(data) {
 
 		});

@@ -19,7 +19,7 @@
 				</button>
 
 				<button type="button" class="btn btn-success"
-					ng-click="asignarPaso(3);StartTimer(paramsExistenciaBoleto)">
+					ng-click="asignarPaso(3);consultarDescuentos(promocionBoletoVO);StartTimer(paramsExistenciaBoleto)">
 					Elegir Cantidad <i class="fa fa-calculator"></i>
 				</button>
 

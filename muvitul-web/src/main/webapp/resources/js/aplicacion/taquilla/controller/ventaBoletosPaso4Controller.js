@@ -1,9 +1,11 @@
 'use strict';
 
-var VentaBoletosPaso4Controller = angular.module('indexModule').controller("VentaBoletosPaso4Controller", function($controller,$scope,ModalService,calculosFactory){
+var VentaBoletosPaso4Controller = angular.module('indexModule').controller("VentaBoletosPaso4Controller", function($controller,$scope,ModalService,calculosFactory,taquillaService){
 	
 	$scope.listaPagos			=[];
- 	$scope.pago				    ={subtotal:0, porPagar:0, pagado:0};
+	$scope.listaFormasPago		={};
+	$scope.estatusPagoVO ={idEstatus:'1',nombre:'PAGADO'}
+ 	$scope.pago				    ={subtotal:0, porPagar:0, pagado:0,estatusPagoVO:$scope.estatusPagoVO};
  	$controller('VentaBoletosPaso3Controller',{$scope : $scope });
     $controller('modalController',{$scope : $scope });
  
@@ -16,6 +18,7 @@ var VentaBoletosPaso4Controller = angular.module('indexModule').controller("Vent
             });
             $scope.showAviso("Es necesario llenar los campos obligatorios ");
          }else{ 
+        	pago.fecha=new Date();
  			$scope.listaPagos.push(angular.copy(pago));
  			$scope.calcularTotalPagado($scope.listaPagos);
 
@@ -53,6 +56,8 @@ var VentaBoletosPaso4Controller = angular.module('indexModule').controller("Vent
 			        modal.element.modal();
 			        modal.close.then(function(result) {
 			        	if(result){
+			     			$scope.complementarDatosPago();
+
 			        		$scope.procesarVenta(venta);
 			        	}
 			        }); 
@@ -62,12 +67,37 @@ var VentaBoletosPaso4Controller = angular.module('indexModule').controller("Vent
 			$scope.showConfirmacion ("¿Est\u00e1 seguro de terminar la compra ?");
 		 
 	};
+	
+	//Consulta formas de pago
+	$scope.consultarFormasPago =function(){
+ 		taquillaService.consultarFormasPago().success(function(data) {	
+ 			$scope.listaFormasPago=data;
+ 		  }).error(function(data) {
+		  });
+	}
+	$scope.complementarDatosPago =function(   ){
+		$scope.promo = [];
+		$scope.promo.push($scope.promocion);
+
+		$scope.objetosVenta.promocionesXTicketVO=$scope.promo;
+ 		$scope.objetosVenta.boletosXTicketVO=$scope.boletos;
+		
+  	}
+	
 	//ProcesarVenta
 	$scope.procesarVenta =function( venta ){
-		$scope.asignarPaso(5);
-		venta.pagoVO=$scope.listaPagos;
+	$scope.asignarPaso(5);
+		venta.pagosVO=$scope.listaPagos;
 		console.log(venta);
 		console.log( $scope.boletos);
+		
+		taquillaService.procesarVenta(venta).success(function(data) {	
+			console.log(data);
+
+ 		  }).error(function(data) {
+ 				console.log(data);
+
+		  });
 	}
 	
 	 

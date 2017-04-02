@@ -41,5 +41,9 @@ angular.module('indexModule').service('taquillaService', ['$http','GlobalFactory
 	 this.consultarDescuentos = function(promocionBoletoVO ){
 		 return $http.post(config.baseUrl + "/ventaBoleto/descuentos",promocionBoletoVO  );
 	 }
+	 
+	 this.procesarVenta = function(ventaVO ){
+		 return $http.post(config.baseUrl + "/ventaBoleto/ventas",ventaVO  );
+	 }
 	  
 }]);
