@@ -79,7 +79,7 @@ var VentaBoletosPaso4Controller = angular.module('indexModule').controller("Vent
 		
 		$scope.listaBoletosFilter = $filter('filter')($scope.boletos, {'tipoCliente': '!Promocion'});
  		$scope.objetosVenta.boletosXTicketVO=$scope.listaBoletosFilter;
-
+ 		$scope.promocion.importe = $scope.promocion.subtotal;
  		$scope.promo = [];
 		$scope.promo.push($scope.promocion);
 		$scope.objetosVenta.promocionesXTicketVO=$scope.promo;
