@@ -60,7 +60,7 @@ public class ExistenciaBoletoBO {
 
 	}
 
-	public ExistenciaBoletoVO update(ExistenciaBoletoVO existenciaBoletoVO) throws BusinessGlobalException {
+	public void update(ExistenciaBoletoVO existenciaBoletoVO) throws BusinessGlobalException {
 
 		CupoXSala cupoXSala = cupoXSalaDAO.findByIdSala(existenciaBoletoVO.getProgramacionVO().getSalaVO().getIdSala());
 		long vendidos = boletosXTicketDAO.sumByProgramacion(existenciaBoletoVO.getProgramacionVO().getIdProgramacion(),
@@ -74,6 +74,7 @@ public class ExistenciaBoletoBO {
 			existenciaBoleto= ExistenciaBoletoAssembler.getExistenciaBoleto(existenciaBoletoVO);
 			existenciaBoleto.setBoletosReservados(existenciaBoleto.getBoletosReservados() + existenciaBoletoVO.getReservar());
 			existenciaBoletoDAO.save(existenciaBoleto);
+			
 		}else{
 			
 			long ocupados = vendidos + existenciaBoleto.getBoletosReservados();
@@ -86,9 +87,7 @@ public class ExistenciaBoletoBO {
 			existenciaBoletoDAO.update(existenciaBoleto);
 
 		}
-
-		long disponibles = cupoXSala.getNoAsientos() - vendidos - existenciaBoleto.getBoletosReservados();
-		return ExistenciaBoletoAssembler.getExistenciaBoletoVO(existenciaBoleto, disponibles, cupoXSala.getNoAsientos() );
+		
 	}
 
 }

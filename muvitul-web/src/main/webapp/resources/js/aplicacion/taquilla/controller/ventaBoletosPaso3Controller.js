@@ -25,6 +25,7 @@ var VentaBoletosPaso3Controller = angular.module('indexModule').controller("Vent
 	$scope.consultarExistenciaBoletos = function(paramsExistenciaBoleto) {
  		taquillaService.consultarExistenciaBoletos( paramsExistenciaBoleto ).success(function(data) {
 			$scope.asientosDisponibles =data;
+			console.log(data);
 		}).error(function(data) {
  	 	 
 	 	});
@@ -32,8 +33,10 @@ var VentaBoletosPaso3Controller = angular.module('indexModule').controller("Vent
 	
  	//Actualiza los boletos disponibles
 	$scope.reservarBoleto = function(existenciaBoletoVO) {
+		console.log(existenciaBoletoVO);
  		taquillaService.updateExistenciaBoleto( existenciaBoletoVO ).success(function(data) {
 			$scope.asientosDisponibles =data;
+			console.log(data);
 	 	}).error(function(data) {
  	 	 
 	 	});

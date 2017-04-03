@@ -57,7 +57,8 @@ public class VentaBoletoController {
 	}
 	
 	public ExistenciaBoletoVO updateExistenciaBoleto(ExistenciaBoletoVO existenciaBoletoVO) throws BusinessGlobalException {
-		return existenciaBoletoBO.update(existenciaBoletoVO);
+		existenciaBoletoBO.update(existenciaBoletoVO);
+		return getExistenciaBoleto(existenciaBoletoVO.getProgramacionVO().getIdProgramacion(), existenciaBoletoVO.getProgramacionVO().getSalaVO().getIdSala(), existenciaBoletoVO.getFechaExhibicion());
 	}
 
 	public TicketVentaVO createVenta(VentaVO ventaVO) throws BusinessGlobalException {
