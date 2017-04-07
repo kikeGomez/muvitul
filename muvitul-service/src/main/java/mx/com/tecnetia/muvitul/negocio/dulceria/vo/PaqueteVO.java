@@ -1,14 +1,6 @@
 package mx.com.tecnetia.muvitul.negocio.dulceria.vo;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Cine;
-import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PaquetesXTicket;
-import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PrecioXPaquete;
-import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ProductosXPaquete;
-import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PuntoVenta;
 
 public class PaqueteVO {
 	private Integer idPaquete;
@@ -17,9 +9,11 @@ public class PaqueteVO {
 	private String nombre;
 	private byte[] icono;
 	private boolean activo;
-	private List<ProductoXPaqueteVO> productosXPaquete;
-	private List<PrecioXPaqueteVO> preciosXPaquete;
+	private List<ProductoXPaqueteVO> productosXPaqueteVO;
+	private List<PrecioXPaqueteVO> preciosXPaqueteVO;
 
+	//Adicionales
+	private String color;
 //	private Set<PuntoVenta> puntoVentas = new HashSet<PuntoVenta>(0);
 //	private Set<PaquetesXTicket> paquetesXTickets = new HashSet<PaquetesXTicket>(0);
 	
@@ -59,17 +53,22 @@ public class PaqueteVO {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-	public List<ProductoXPaqueteVO> getProductosXPaquete() {
-		return productosXPaquete;
+	public List<ProductoXPaqueteVO> getProductosXPaqueteVO() {
+		return productosXPaqueteVO;
 	}
-	public void setProductosXPaquete(List<ProductoXPaqueteVO> productosXPaquete) {
-		this.productosXPaquete = productosXPaquete;
+	public void setProductosXPaqueteVO(List<ProductoXPaqueteVO> productosXPaqueteVO) {
+		this.productosXPaqueteVO = productosXPaqueteVO;
 	}
-	public List<PrecioXPaqueteVO> getPreciosXPaquete() {
-		return preciosXPaquete;
+	public List<PrecioXPaqueteVO> getPreciosXPaqueteVO() {
+		return preciosXPaqueteVO;
 	}
-	public void setPreciosXPaquete(List<PrecioXPaqueteVO> preciosXPaquete) {
-		this.preciosXPaquete = preciosXPaquete;
+	public void setPreciosXPaqueteVO(List<PrecioXPaqueteVO> preciosXPaqueteVO) {
+		this.preciosXPaqueteVO = preciosXPaqueteVO;
 	}
-	
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
 }

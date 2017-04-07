@@ -8,20 +8,23 @@ import org.springframework.stereotype.Repository;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.GlobalHibernateDAO;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Paquete;
 
+
 @Repository 
 public class PaqueteDAO extends GlobalHibernateDAO<Paquete> implements PaqueteDAOI {
 
 	@Override
-	public List<Paquete> findByPuntoVenta(Integer idPuntoVenta) {
+	public List<Paquete> findByCine(Integer idCine) {
 		
 		StringBuilder hql = new StringBuilder();
-		hql.append(" select paq  from Paquete paq inner join paq.puntoVenta pdv ");
-		hql.append("where pdv.idPuntoVenta=:idPuntoVenta and paq.activo=1 " );
-		hql.append("order by paq.idPaquete desc ");
-
+		hql.append("select pqt from Paquete pqt join pqt.cine cne ");
+		hql.append("where cne.idCine=:idCine and pqt.activo=1 ");
+		hql.append("order by pqt.idPaquete desc");
+		
 		Query query = getSession().createQuery(hql.toString());
-		query.setParameter("idPuntoVenta", idPuntoVenta);
+		query.setParameter("idCine", idCine);
+		
 		return query.list();
-	}
 
+	}
+	
 }

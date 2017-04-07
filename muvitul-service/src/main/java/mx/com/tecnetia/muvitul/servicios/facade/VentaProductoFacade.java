@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import io.jsonwebtoken.Claims;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.enumeration.ClaimsEnum;
-import mx.com.tecnetia.muvitul.infraservices.presentacion.seguridad.frontcontroller.UsuarioFirmadoBean;
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 import mx.com.tecnetia.muvitul.infraservices.servicios.NotFoundException;
 import mx.com.tecnetia.muvitul.negocio.dulceria.vo.PaqueteVO;
@@ -25,12 +24,8 @@ import mx.com.tecnetia.muvitul.servicios.dulceria.controller.VentaProductoContro
 
 @Service
 public class VentaProductoFacade implements VentaProductoFacadeI {
-	
 	private static final Logger logger = LoggerFactory.getLogger(VentaBoletoFacade.class);
-	
-	@Autowired
-	UsuarioFirmadoBean usuarioFirmadoBean;
-	
+
 	@Autowired
 	VentaProductoController ventaProductoController;
 

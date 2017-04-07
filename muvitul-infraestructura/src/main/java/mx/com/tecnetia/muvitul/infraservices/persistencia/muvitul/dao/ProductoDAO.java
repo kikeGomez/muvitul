@@ -6,23 +6,24 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import mx.com.tecnetia.muvitul.infraservices.persistencia.GlobalHibernateDAO;
-import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Paquete;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Producto;
 
 @Repository 
 public class ProductoDAO extends GlobalHibernateDAO<Producto> implements ProductoDAOI {
 
 	@Override
-	public List<Producto> findByPuntoVenta(Integer idPuntoVenta) {
+	public List<Producto> findByCine(Integer idCine) {
 		
 		StringBuilder hql = new StringBuilder();
-		hql.append(" select paq  from Paquete paq inner join paq.puntoVenta pdv ");
-		hql.append("where pdv.idPuntoVenta=:idPuntoVenta and paq.activo=1 " );
-		hql.append("order by paq.idPaquete desc ");
-
+		hql.append("select pdt from Producto pdt join pdt.cine cne ");
+		hql.append("where cne.idCine=:idCine and pdt.activo=1 ");
+		hql.append("order by pdt.idProducto desc");
+		
 		Query query = getSession().createQuery(hql.toString());
-		query.setParameter("idPuntoVenta", idPuntoVenta);
+		query.setParameter("idCine", idCine);
+		
 		return query.list();
-	}
 
+	}
+	
 }

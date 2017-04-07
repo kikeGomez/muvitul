@@ -2,6 +2,7 @@ package mx.com.tecnetia.muvitul.negocio.dulceria.assembler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Paquete;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Producto;
@@ -22,14 +23,14 @@ public class PaqueteAssembler {
 		paqueteVO.setNombre(paquete.getNombre());
 		paqueteVO.setIcono(paquete.getIcono());
 		paqueteVO.setActivo(paquete.isActivo());
-		//paqueteVO.setProductosXPaquete(productosXPaquete);
-		//paqueteVO.setPreciosXPaquete(PrecioXPaqueteAssembler.getPreciosXPaqueteVO(paquete.getPrecioXPaquetes()));
+		paqueteVO.setProductosXPaqueteVO(ProductoXPaqueteAssembler.getProductoXPaqueteVO(paquete.getProductosXPaquetes()));
+		paqueteVO.setPreciosXPaqueteVO(PrecioXPaqueteAssembler.getPreciosXPaqueteVO(paquete.getPrecioXPaquetes()));
 
 		return paqueteVO;
 	}
 	
 	
-	public static List<PaqueteVO> getPaquetesVO(List<Paquete> paquetes){
+	public static List<PaqueteVO> getPaquetesVO(Set<Paquete> paquetes){
 
 		if(paquetes==null || paquetes.isEmpty())
 			return null;
@@ -56,13 +57,13 @@ public class PaqueteAssembler {
 		paqueteVO.setIcono(producto.getIcono());
 		paqueteVO.setActivo(producto.isActivo());
 		//paqueteVO.setProductosXPaquete(productosXPaquete);
-		//paqueteVO.setPreciosXPaquete(PrecioXPaqueteAssembler.getPreciosXPaqueteVO(paquete.getPrecioXPaquetes()));
+		paqueteVO.setPreciosXPaqueteVO(PrecioXPaqueteAssembler.getPreciosXPaqueteVOXProducto(producto.getPrecioXProductos()));
 
 		return paqueteVO;
 	}
 	
 	
-	public static List<PaqueteVO> getPaquetesVOXProducto(List<Producto> productos){
+	public static List<PaqueteVO> getPaquetesVOXProducto(Set<Producto> productos){
 
 		if(productos==null || productos.isEmpty())
 			return null;

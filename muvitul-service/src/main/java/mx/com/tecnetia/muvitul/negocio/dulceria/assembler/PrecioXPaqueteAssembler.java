@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PrecioXPaquete;
+import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PrecioXProducto;
 import mx.com.tecnetia.muvitul.negocio.dulceria.vo.PrecioXPaqueteVO;
 
 public class PrecioXPaqueteAssembler {
@@ -16,7 +17,6 @@ public class PrecioXPaqueteAssembler {
 		
 		PrecioXPaqueteVO precioXPaqueteVO = new PrecioXPaqueteVO();
 		precioXPaqueteVO.setIdPrecioXPaquete(precioXPaquete.getIdPrecioXPaquete());
-		//precioXPaqueteVO.setPaqueteVO(PaqueteAssembler.getPaqueteVO(precioXPaquete.getPaquete()));
 		precioXPaqueteVO.setPrecio(precioXPaquete.getPrecio());
 		precioXPaqueteVO.setActivo(precioXPaquete.isActivo());
 		
@@ -32,6 +32,33 @@ public class PrecioXPaqueteAssembler {
 		
 		for (PrecioXPaquete precioXPaquete : preciosXPaquete) {
 			preciosXPaqueteVO.add(PrecioXPaqueteAssembler.getPrecioXPaqueteVO(precioXPaquete));
+		}
+
+		return preciosXPaqueteVO;
+	}
+	
+	public static PrecioXPaqueteVO getPrecioXPaqueteVOXProducto(PrecioXProducto precioXProducto){
+
+		if(precioXProducto==null )
+			return null;
+		
+		PrecioXPaqueteVO precioXPaqueteVO = new PrecioXPaqueteVO();
+		precioXPaqueteVO.setIdPrecioXPaquete(precioXProducto.getIdPrecioXProducto());
+		precioXPaqueteVO.setPrecio(precioXProducto.getPrecio());
+		precioXPaqueteVO.setActivo(precioXProducto.isActivo());
+		
+		return precioXPaqueteVO;
+	}
+	
+	public static List<PrecioXPaqueteVO> getPreciosXPaqueteVOXProducto(Set<PrecioXProducto> preciosXProducto){
+
+		if(preciosXProducto==null || preciosXProducto.isEmpty())
+			return null;
+		
+		List<PrecioXPaqueteVO> preciosXPaqueteVO = new ArrayList<PrecioXPaqueteVO>();
+		
+		for (PrecioXProducto precioXProducto : preciosXProducto) {
+			preciosXPaqueteVO.add(PrecioXPaqueteAssembler.getPrecioXPaqueteVOXProducto(precioXProducto));
 		}
 
 		return preciosXPaqueteVO;

@@ -6,5 +6,7 @@ import mx.com.tecnetia.muvitul.infraservices.persistencia.GlobalHibernateDAOI;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Producto;
 
 public interface ProductoDAOI extends GlobalHibernateDAOI<Producto>{
-	List<Producto> findByPuntoVenta(Integer idPuntoVenta);
+
+	List<Producto> findByCine(Integer idCine);
+
 }
