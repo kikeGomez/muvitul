@@ -73,14 +73,32 @@ angular.module('indexModule').service('dulceriaService', ['$http','GlobalFactory
 	 }
 		
 		
-	this.consultarPaquetes = function(idPuntoVenta){
+	this.consultarPaquetes = function(){
 		console.log("consultar paquetes");
-		return $http.get(config.baseUrl+"/ventaProducto/paquetes", {
-			params : {
-				"idPuntoVenta" : idPuntoVenta
-			}
-		});
+		return $http.get(config.baseUrl+"/ventaProducto/paquetes");
 	}
  
+	this.consultarProductos = function(){
+		console.log("consultar productos");
+		return $http.get(config.baseUrl+"/configuracion/productos");
+	}
+ 
+	this.consultarPaquetes2 = function(){
+		console.log("consultar paquetes");
+		return $http.get(config.baseUrl+"/configuracion/paquetes");
+	}
+	
+	this.consultarConfigProgramacion = function(){
+		console.log("consultar config programacion");
+		return $http.get(config.baseUrl+"/configuracion/configProgramaciones");
+	}
+	
+	this.consultarConfigPromociones = function(){
+		console.log("consultar config promociones");
+		return $http.get(config.baseUrl+"/configuracion/configPromociones");
+	}
+	
+	
+	
 }]);
 

@@ -50,7 +50,7 @@ public class ConfigProgramacionBO {
 		List<Sala> salas= salaDAO.findByIdCine(idCine);
 		List<Pelicula> peliculas= peliculaDAO.findByIdCine(idCine);
 		List<Formato> formatos= formatoDAO.findByIdCine(idCine);
-		List<Version> versiones= versionDAO.findByIdCine(idCine);
+		List<Version> versiones= versionDAO.findByIdCine();
 		
 		return ConfigProgramacionAssembler.getConfigProgramacionVO(salas, diasSemana, peliculas, formatos, versiones);
 	}

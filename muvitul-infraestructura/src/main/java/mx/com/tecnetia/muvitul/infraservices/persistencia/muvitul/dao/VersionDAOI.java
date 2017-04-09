@@ -7,7 +7,7 @@ import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Version;
 
 public interface VersionDAOI extends GlobalHibernateDAOI<Version>{
 	
-	List<Version> findByIdCine(Integer idCine);
+	List<Version> findByIdCine();
 
 
 }

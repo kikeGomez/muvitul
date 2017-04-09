@@ -14,9 +14,9 @@ public class TipoPromocionAssembler {
 			return null;
 		
 		TipoPromocionVO tipoPromocionVO = new TipoPromocionVO();
-		tipoPromocion.setIdTipoPromocion(tipoPromocion.getIdTipoPromocion());
-		tipoPromocion.setNombre(tipoPromocion.getNombre());
-		tipoPromocion.setDescripcion(tipoPromocion.getDescripcion());
+		tipoPromocionVO.setIdTipoPromocion(tipoPromocion.getIdTipoPromocion());
+		tipoPromocionVO.setNombre(tipoPromocion.getNombre());
+		tipoPromocionVO.setDescripcion(tipoPromocion.getDescripcion());
 		
 		return tipoPromocionVO;
 	}
