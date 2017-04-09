@@ -55,7 +55,10 @@ public class VentaProductoFacade implements VentaProductoFacadeI {
 		Integer idUsuario=(Integer) claims.get(ClaimsEnum.USUARIO);
 		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
 		Integer idPuntoVenta=(Integer) claims.get(ClaimsEnum.PUNTO_VENTA);
-
+		ventaVO.setIdUsuario(idUsuario);
+		ventaVO.setIdCine(idCine);
+		ventaVO.setIdPuntoVenta(idPuntoVenta);
+		
 		logger.info("CreateVenta:::IdUsuario[{}]:::IdCine[{}]:::IdPuntoVenta[{}]",idUsuario,idCine,idPuntoVenta);
 		
 		TicketVentaVO ticketVentaVO = ventaProductoController.createVenta(ventaVO);

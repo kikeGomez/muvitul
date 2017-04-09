@@ -1,19 +1,33 @@
 package mx.com.tecnetia.muvitul.servicios.configuracion.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import mx.com.tecnetia.muvitul.negocio.configuracion.business.ConfigProgramacionBO;
+import mx.com.tecnetia.muvitul.negocio.configuracion.business.ConfigPromocionBO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.business.PaqueteBO;
+import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ConfigProgramacionVO;
+import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ConfigPromocionVO;
+import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ConfigSalaVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.PaqueteVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ProductoVO;
+import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ProgramacionVO;
+import mx.com.tecnetia.muvitul.negocio.configuracion.vo.PromocionVO;
 
 @Service
 public class ConfiguracionController {
 
 	@Autowired
 	private PaqueteBO paqueteBO;
+	
+	@Autowired
+	private ConfigProgramacionBO configProgramacionBO;
+	
+	@Autowired
+	private ConfigPromocionBO configPromocionBO;
 
 	public List<ProductoVO> findProductosByCine(Integer idCine) {
 		return paqueteBO.findProductosByCine(idCine);
@@ -21,6 +35,38 @@ public class ConfiguracionController {
 
 	public List<PaqueteVO> findPaquetesByCine(Integer idCine) {
 		return paqueteBO.findPaquetesByCine(idCine);
+	}
+
+	public ConfigProgramacionVO findConfigProgramacionByCine(Integer idCine) {
+		return configProgramacionBO.findConfigByCine(idCine);
+	}
+
+	public List<ConfigSalaVO> findProgramacionOfSala(Integer idCine, Date fecha) {
+		return configProgramacionBO.findProgramacionOfSala(idCine,fecha);
+	}
+
+	public ProgramacionVO createProgramacion(ProgramacionVO programacionVO) {
+		return configProgramacionBO.save(programacionVO);
+	}
+
+	public void deleteProgramacion(Integer id) {
+		configProgramacionBO.delete(id);
+	}
+
+	public ConfigPromocionVO findConfigPromocionByCine(Integer idCine) {
+		return configPromocionBO.findConfigByCine(idCine);
+	}
+
+	public List<PromocionVO> findPromociones(Integer idCine, Date fecha) {
+		return configPromocionBO.findByCineAndDate(idCine, fecha);
+	}
+
+	public PromocionVO createPromocion(PromocionVO promocionVO) {
+		return configPromocionBO.save(promocionVO);
+	}
+
+	public void deletePromocion(Integer idPromocion) {
+		configPromocionBO.delete(idPromocion);
 	}
 
 

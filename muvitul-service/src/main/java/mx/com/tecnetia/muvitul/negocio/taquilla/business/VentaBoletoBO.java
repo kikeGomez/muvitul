@@ -22,7 +22,6 @@ import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ImpuestoBo
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ImpuestosXTicketTaquilla;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Pago;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PromocionesXTicket;
-import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PuntoVenta;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.TicketVenta;
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 import mx.com.tecnetia.muvitul.negocio.taquilla.assembler.BoletoXTicketAssembler;

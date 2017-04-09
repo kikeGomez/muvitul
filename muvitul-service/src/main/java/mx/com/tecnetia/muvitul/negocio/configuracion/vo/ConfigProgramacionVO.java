@@ -2,28 +2,25 @@ package mx.com.tecnetia.muvitul.negocio.configuracion.vo;
 
 import java.util.List;
 
-import mx.com.tecnetia.muvitul.negocio.taquilla.vo.FormatoVO;
-import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PeliculaVO;
-import mx.com.tecnetia.muvitul.negocio.taquilla.vo.SalaVO;
-import mx.com.tecnetia.muvitul.negocio.taquilla.vo.VersionVO;
 
-public class ConfProgramacionVO {
+public class ConfigProgramacionVO {
 	private List<SalaVO> salasVO;
-	private List<DiaVO> diasVO;
+	private List<String> dias;
 	private List<PeliculaVO> peliculasVO;
 	private List<FormatoVO> formatosVO;
 	private List<VersionVO> versionesVO;
+	
 	public List<SalaVO> getSalasVO() {
 		return salasVO;
 	}
 	public void setSalasVO(List<SalaVO> salasVO) {
 		this.salasVO = salasVO;
 	}
-	public List<DiaVO> getDiasVO() {
-		return diasVO;
+	public List<String> getDias() {
+		return dias;
 	}
-	public void setDiasVO(List<DiaVO> diasVO) {
-		this.diasVO = diasVO;
+	public void setDias(List<String> dias) {
+		this.dias = dias;
 	}
 	public List<PeliculaVO> getPeliculasVO() {
 		return peliculasVO;

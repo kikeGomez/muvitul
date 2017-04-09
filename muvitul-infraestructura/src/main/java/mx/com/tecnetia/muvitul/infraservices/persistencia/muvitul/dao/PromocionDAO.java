@@ -29,4 +29,18 @@ public class PromocionDAO extends GlobalHibernateDAO<Promocion> implements Promo
 
 	}
 
+	@Override
+	public List<Promocion> findByCineAndDate(Integer idCine, Date fechaExhibicion) {
+		StringBuilder hql = new StringBuilder();
+		hql.append("select prm from Promocion prm inner join prm.tipoPromocion tprm inner join prm.promocionPara prmp ");
+		hql.append("where prm.cine.idCine=:idCine and :fechaExhibicion between prm.fechaInicio and prm.fechaFin ");
+		hql.append("order by prm.idPromocion desc");
+		
+		Query query = getSession().createQuery(hql.toString());
+		query.setParameter("idCine", idCine);
+		query.setParameter("fechaExhibicion", fechaExhibicion);	
+		
+		return query.list();
+	}
+
 }

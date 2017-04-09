@@ -78,4 +78,16 @@ public class PaqueteAssembler {
 	}
 	
 	
+	public static Paquete getPaquete(Integer idPaquete){
+
+		if(idPaquete==null )
+			return null;
+		
+		Paquete paquete = new Paquete();
+		paquete.setIdPaquete(idPaquete);
+
+		return paquete;
+	}
+	
+	
 }

@@ -15,12 +15,12 @@ public class UsuarioAssembler {
 		return usuario;
 	}
 	
-	public static mx.com.tecnetia.muvitul.negocio.taquilla.vo.UsuarioVO getUsuarioVO(Integer idUsuario){
+	public static mx.com.tecnetia.muvitul.negocio.dulceria.vo.UsuarioVO getUsuarioVO(Integer idUsuario){
 
 		if(idUsuario==null)
 			return null;
 		
-		mx.com.tecnetia.muvitul.negocio.taquilla.vo.UsuarioVO usuarioVO = new mx.com.tecnetia.muvitul.negocio.taquilla.vo.UsuarioVO();
+		mx.com.tecnetia.muvitul.negocio.dulceria.vo.UsuarioVO usuarioVO = new mx.com.tecnetia.muvitul.negocio.dulceria.vo.UsuarioVO();
 		usuarioVO.setIdUsuario(idUsuario);
 		
 		return usuarioVO;

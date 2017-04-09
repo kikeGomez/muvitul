@@ -3,34 +3,41 @@ package mx.com.tecnetia.muvitul.negocio.dulceria.vo;
 import java.util.List;
 
 public class VentaVO {
-	private TicketVentaVO ticketVentaVO;
-	private List<PaqueteXTicketVO> paquetesXTicketVO;
-	private List<ProductoXTicketVO> productosXTicketVO;
-	private List<PagoVO> pagos;
+	private Integer idUsuario;
+	private Integer idPuntoVenta;
+	private Integer idCine;
+	private List<PaqueteVO> paquetesVO;
+	private List<PagoVO> pagosVO;
 	
-	public TicketVentaVO getTicketVentaVO() {
-		return ticketVentaVO;
+	public Integer getIdUsuario() {
+		return idUsuario;
 	}
-	public void setTicketVentaVO(TicketVentaVO ticketVentaVO) {
-		this.ticketVentaVO = ticketVentaVO;
+	public void setIdUsuario(Integer idUsuario) {
+		this.idUsuario = idUsuario;
 	}
-	public List<PaqueteXTicketVO> getPaquetesXTicketVO() {
-		return paquetesXTicketVO;
+	public Integer getIdPuntoVenta() {
+		return idPuntoVenta;
 	}
-	public void setPaquetesXTicketVO(List<PaqueteXTicketVO> paquetesXTicketVO) {
-		this.paquetesXTicketVO = paquetesXTicketVO;
+	public void setIdPuntoVenta(Integer idPuntoVenta) {
+		this.idPuntoVenta = idPuntoVenta;
 	}
-	public List<ProductoXTicketVO> getProductosXTicketVO() {
-		return productosXTicketVO;
+	public Integer getIdCine() {
+		return idCine;
 	}
-	public void setProductosXTicketVO(List<ProductoXTicketVO> productosXTicketVO) {
-		this.productosXTicketVO = productosXTicketVO;
+	public void setIdCine(Integer idCine) {
+		this.idCine = idCine;
 	}
-	public List<PagoVO> getPagos() {
-		return pagos;
+	public List<PaqueteVO> getPaquetesVO() {
+		return paquetesVO;
 	}
-	public void setPagos(List<PagoVO> pagos) {
-		this.pagos = pagos;
+	public void setPaquetesVO(List<PaqueteVO> paquetesVO) {
+		this.paquetesVO = paquetesVO;
+	}
+	public List<PagoVO> getPagosVO() {
+		return pagosVO;
+	}
+	public void setPagosVO(List<PagoVO> pagosVO) {
+		this.pagosVO = pagosVO;
 	}
 	
 }

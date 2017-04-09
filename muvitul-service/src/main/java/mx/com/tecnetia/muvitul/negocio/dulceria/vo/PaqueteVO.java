@@ -1,5 +1,6 @@
 package mx.com.tecnetia.muvitul.negocio.dulceria.vo;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class PaqueteVO {
@@ -14,6 +15,8 @@ public class PaqueteVO {
 
 	//Adicionales
 	private String color;
+	private int cantidad;
+	private BigDecimal importe;
 //	private Set<PuntoVenta> puntoVentas = new HashSet<PuntoVenta>(0);
 //	private Set<PaquetesXTicket> paquetesXTickets = new HashSet<PaquetesXTicket>(0);
 	
@@ -70,5 +73,18 @@ public class PaqueteVO {
 	}
 	public void setColor(String color) {
 		this.color = color;
+	}
+	public int getCantidad() {
+		return cantidad;
+	}
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+	
+	public BigDecimal getImporte() {
+		return importe;
+	}
+	public void setImporte(BigDecimal importe) {
+		this.importe = importe;
 	}
 }

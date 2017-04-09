@@ -36,5 +36,5 @@ public class FormaPagoAssembler {
 
 		return formasPagosVO;
 	}
-	
+
 }

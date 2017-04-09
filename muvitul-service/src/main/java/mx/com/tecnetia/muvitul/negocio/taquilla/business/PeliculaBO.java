@@ -33,8 +33,10 @@ public class PeliculaBO {
 	public List<PeliculaVO> findByCineAndDay(Integer idCine, String diaSemana, Date fechaExhibicion)
 			throws BusinessGlobalException {
 		Map<Integer, PeliculaVO> mapPeliculas = new HashMap<Integer, PeliculaVO>();
-
-		for (Programacion programacion : programacionDAO.findByCineAndDay(idCine, diaSemana, fechaExhibicion)) {
+		
+		List<Programacion> programaciones= programacionDAO.findByCineAndDay(idCine, diaSemana, fechaExhibicion);
+		
+		for (Programacion programacion : programaciones) {
 
 			if (!mapPeliculas.containsKey(programacion.getPelicula().getIdPelicula())) {
 				mapPeliculas.put(programacion.getPelicula().getIdPelicula(),
