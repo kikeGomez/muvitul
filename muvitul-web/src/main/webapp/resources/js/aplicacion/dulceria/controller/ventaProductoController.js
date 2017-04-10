@@ -97,10 +97,22 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 				});
 			}
 			
+			
+			$scope.consultarProgramacion = function() {
+				dulceriaService.consultarProgramaciones().success(function(data) {
+					console.log(data);
+					dulceriaService.crearProgramacion(data);
+				}).error(function(data) {
+
+				});
+			}
+			
+			
 			//$scope.consultarProductos();
 			//$scope.consultarPaquetes2();
-			$scope.consultarConfigProgramaciones();
-			$scope.consultarConfigPromociones();
+			//$scope.consultarConfigProgramaciones();
+			//$scope.consultarConfigPromociones();
+			$scope.consultarProgramacion();
 			
 
 		});

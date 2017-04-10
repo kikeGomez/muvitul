@@ -31,7 +31,7 @@ public class ProgramacionAssembler {
 		Programacion programacion = new Programacion();
 		programacion.setSala(SalaAssembler.getSala(programacionVO.getSalaVO().getIdSala()));
 		programacion.setDiaSemana(programacionVO.getDiaSemana());
-		programacion.setPelicula(PeliculaAssembler.getPelicula(programacionVO.getIdProgramacion()));
+		programacion.setPelicula(PeliculaAssembler.getPelicula(programacionVO.getPeliculaVO().getIdPelicula()));
 		programacion.setFormato(FormatoAssembler.getFormato(programacionVO.getFormatoVO().getIdFormato()));
 		programacion.setVersion(VersionAssembler.getVersion(programacionVO.getVersionVO().getIdVersion()));
 		programacion.setHorario(programacionVO.getHorario());

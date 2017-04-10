@@ -96,9 +96,19 @@ angular.module('indexModule').service('dulceriaService', ['$http','GlobalFactory
 	this.consultarConfigPromociones = function(){
 		console.log("consultar config promociones");
 		return $http.get(config.baseUrl+"/configuracion/configPromociones");
-	}
+	}	
+	
+	this.consultarProgramaciones = function(){
+		console.log("consultar programacion");
+		return $http.get(config.baseUrl+"/configuracion/programaciones");
+	}	
 	
 	
+	 this.crearProgramacion = function( programacionVo ) {
+		 console.log("crear programacion");
+		 return $http.post(config.baseUrl + "/configuracion/programaciones", programacionVo );
+	 }
+	 
 	
 }]);
 

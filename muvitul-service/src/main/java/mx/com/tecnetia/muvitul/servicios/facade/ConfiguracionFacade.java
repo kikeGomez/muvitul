@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import io.jsonwebtoken.Claims;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.enumeration.ClaimsEnum;
@@ -18,11 +19,14 @@ import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 import mx.com.tecnetia.muvitul.infraservices.servicios.NotFoundException;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ConfigProgramacionVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ConfigPromocionVO;
-import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ConfigSalaVO;
+import mx.com.tecnetia.muvitul.negocio.configuracion.vo.FormatoVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.PaqueteVO;
+import mx.com.tecnetia.muvitul.negocio.configuracion.vo.PeliculaVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ProductoVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ProgramacionVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.PromocionVO;
+import mx.com.tecnetia.muvitul.negocio.configuracion.vo.SalaVO;
+import mx.com.tecnetia.muvitul.negocio.configuracion.vo.VersionVO;
 import mx.com.tecnetia.muvitul.servicios.configuracion.controller.ConfiguracionController;
 
 @Service
@@ -50,25 +54,25 @@ public class ConfiguracionFacade implements ConfiguracionFacadeI {
 		return new ResponseEntity<ConfigProgramacionVO>(configProgramacionVO, HttpStatus.OK);
 	}
 
+//	@Override
+//	public ResponseEntity<List<ConfigSalaVO>> getProgramacionOfSala(HttpServletRequest request, Date fecha)
+//			throws BusinessGlobalException, NotFoundException {
+//		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
+//		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
+//
+//		logger.info("GetProgramacionOfSala:::IdCine[{}]:::Fecha[{}]", idCine, fecha);
+//
+//		List<ConfigSalaVO> configsSalaVO = configuracionController.findProgramacionOfSala(idCine, fecha);
+//
+//		if (configsSalaVO == null || configsSalaVO.isEmpty()) {
+//			throw new NotFoundException("No encontrado");
+//		}
+//
+//		return new ResponseEntity<List<ConfigSalaVO>>(configsSalaVO, HttpStatus.OK);
+//	}
+
 	@Override
-	public ResponseEntity<List<ConfigSalaVO>> getProgramacionOfSala(HttpServletRequest request, Date fecha)
-			throws BusinessGlobalException, NotFoundException {
-		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
-		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
-
-		logger.info("GetProgramacionOfSala:::IdCine[{}]:::Fecha[{}]", idCine, fecha);
-
-		List<ConfigSalaVO> configsSalaVO = configuracionController.findProgramacionOfSala(idCine, fecha);
-
-		if (configsSalaVO == null || configsSalaVO.isEmpty()) {
-			throw new NotFoundException("No encontrado");
-		}
-
-		return new ResponseEntity<List<ConfigSalaVO>>(configsSalaVO, HttpStatus.OK);
-	}
-
-	@Override
-	public ResponseEntity<ProgramacionVO> createProgramacion(HttpServletRequest request , ProgramacionVO programacionVO)
+	public ResponseEntity<ProgramacionVO> createProgramacion(HttpServletRequest request , @RequestBody  ProgramacionVO programacionVO)
 			throws BusinessGlobalException, NotFoundException {
 
 		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
@@ -195,6 +199,38 @@ public class ConfiguracionFacade implements ConfiguracionFacadeI {
 		}
 
 		return new ResponseEntity<List<PaqueteVO>>(paquetesVO, HttpStatus.OK);
+	}
+
+	
+	@Override
+	public ResponseEntity<ProgramacionVO> getProgramacion(HttpServletRequest request)
+			throws BusinessGlobalException, NotFoundException {
+		
+		FormatoVO formatoVO= new FormatoVO();
+		formatoVO.setIdFormato(1);
+		
+		PeliculaVO peliculaVO =new PeliculaVO();
+		peliculaVO.setIdPelicula(1);
+		
+		SalaVO salaVO= new SalaVO();
+		salaVO.setIdSala(1);
+		
+		VersionVO versionVO =new VersionVO();
+		versionVO.setIdVersion(1);
+		
+		
+		ProgramacionVO programacionVO  = new ProgramacionVO();
+		programacionVO.setFormatoVO(formatoVO);
+		programacionVO.setPeliculaVO(peliculaVO);
+		programacionVO.setSalaVO(salaVO);
+		programacionVO.setVersionVO(versionVO);
+		programacionVO.setDiaSemana("LU");
+		programacionVO.setHorario(new Date());
+		programacionVO.setFechaVigencia(new Date());
+		
+		
+		
+		return new ResponseEntity<ProgramacionVO>(programacionVO, HttpStatus.OK);
 	}
 
 }
