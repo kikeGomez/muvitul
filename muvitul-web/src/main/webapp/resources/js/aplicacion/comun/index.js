@@ -48,6 +48,12 @@ angular.module('indexModule').config(function($routeProvider){
                 controllerAs: "vm",
                 templateUrl: "vistas/configuracion/menus_dulceria.jsp"
             })
+            
+             .when("/promocionesTaquilla", {
+                controller: "PromocionesTaquillaController",
+                controllerAs: "vm",
+                templateUrl: "vistas/configuracion/promocion_taquilla.jsp"
+            })
             .when("/entradasDulceria", {
                 controller: "EntradasDulceriaController",
                 controllerAs: "vm",

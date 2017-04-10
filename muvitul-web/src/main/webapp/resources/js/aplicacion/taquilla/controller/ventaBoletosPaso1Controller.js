@@ -17,7 +17,9 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 
 	
  	$scope.seleccionarPelicula =function(pelicula,programacion){
- 		
+ 		$scope.objetosVenta.promocion=null;
+ 		$scope.promocionBoletoVO.promocionVO =null;
+ 		$scope.promocion=null;
  		$scope.listaPreciosXFormato ={};
  		$scope.statusVenta.numeroPaso		= 2;
 		$scope.statusVenta.elegirPelicula	= "done";
@@ -32,6 +34,7 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 	}
 	
 	$scope.seleccionarPromocion =function(promocion){
+		
 		angular.forEach($scope.listaPromociones, function(value, key){
 			value.check = false;
 		});
@@ -44,11 +47,9 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 		
 		$scope.promocion={ cantidad:1, tipoCliente:"Promocion", subtotal:0, precio:0,promocionVO :promocion, importe:0 };
         angular.forEach($scope.boletos, function(value, key){
-//    		$scope.isPromocion = $filter('filter')(value, {'tipoCliente':'Promocion'});
         	if(value.tipoCliente ==  'Promocion' ){
         		$scope.eliminar( $scope.boletos, key );
         	}
-        		
 		});
         $scope.boletos.push($scope.promocion); 
     }
@@ -57,27 +58,21 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 		
 		$scope.asientosDisponibles.reservar =-1;
 		$scope.reservarBoleto($scope.asientosDisponibles);
-				
  		boleto.cantidad = boleto.cantidad-1;
  		$scope.pago.subtotal =0;
- 		angular.forEach($scope.boletos, function(value, key){
-//  			if(tipoClienteVO.tipoClienteVO.nombre ===value.tipoCliente)
-//  				value.cantidad =value.cantidad + 1;
-// 
-//  				
-  			value.subtotal =calculosFactory.calcularSubtotal(value.cantidad,value.precio);
-  			value.importe = calculosFactory.calcularSubtotal(value.cantidad,value.precio);
-  			$scope.pago.subtotal += value.subtotal;
-  		}); 
-//		boleto.subtotal= calculosFactory.calcularSubtotal(boleto.cantidad,boleto.precio);
-// 		$scope.pago.subtotal -=boleto.precio;
-
+ 		if($scope.promocion==null){
+	 		angular.forEach($scope.boletos, function(value, key){
+	  			value.subtotal =calculosFactory.calcularSubtotal(value.cantidad,value.precio);
+	  			value.importe = calculosFactory.calcularSubtotal(value.cantidad,value.precio);
+	  			$scope.pago.subtotal += value.subtotal;
+	  		}); 
+ 		}
 		angular.forEach($scope.listaPreciosXFormato, function(value, key){
 			if(value.tipoClienteVO.nombre ===boleto.tipoCliente) 
 				value.boletosSeleccionados =value.boletosSeleccionados-1;
 		});
-  		$scope.consultarDescuentos ($scope.promocionBoletoVO);
-	}
+   			$scope.consultarDescuentos ($scope.promocionBoletoVO);
+ 	}
 	
 	$scope.agregarBoleto =function(tipoClienteVO, index){
 		
@@ -89,27 +84,27 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 		$scope.reservarBoleto($scope.asientosDisponibles);
  		$scope.consultarExistenciaBoletos($scope.paramsExistenciaBoleto);
 
- 
 		$scope.pago.subtotal =0;
 
 		tipoClienteVO.boletosSeleccionados = tipoClienteVO.boletosSeleccionados +1;
   		angular.forEach($scope.boletos, function(value, key){
   			if(tipoClienteVO.tipoClienteVO.nombre ===value.tipoCliente)
   				value.cantidad =value.cantidad + 1;
- 
-  				
-  			value.subtotal =calculosFactory.calcularSubtotal(value.cantidad,value.precio);
-  			value.importe = calculosFactory.calcularSubtotal(value.cantidad,value.precio);
-  			$scope.pago.subtotal += value.subtotal;
+	  		
+	  			value.subtotal =calculosFactory.calcularSubtotal(value.cantidad,value.precio);
+	  			value.importe = calculosFactory.calcularSubtotal(value.cantidad,value.precio);
+	  		if($scope.promocion==null){
+	  			$scope.pago.subtotal += value.subtotal;
+  			}
   		}); 
+  		
   		$scope.promocionBoletoVO.boletosXTicketVO=$scope.boletos
-  		$scope.consultarDescuentos ($scope.promocionBoletoVO);
-    	}
+   			$scope.consultarDescuentos ($scope.promocionBoletoVO);
+    }
 
 	$scope.asignarPaso =function( paso){
 		$scope.statusVenta= calculosFactory.estatusPaso(paso);
 		$scope.statusVenta.numeroPaso = paso;
-//		$scope.boletos.push($scope.promocion);
 	}
  
 	//Consulta de programacion de peliculas

@@ -1,6 +1,6 @@
 'use strict';
 
-var VentaBoletosPaso3Controller = angular.module('indexModule').controller("VentaBoletosPaso3Controller", function(taquillaService,$scope, $interval,$filter,$controller){
+var VentaBoletosPaso3Controller = angular.module('indexModule').controller("VentaBoletosPaso3Controller", function(taquillaService,$scope, $interval,$filter,$controller,calculosFactory){
 	$scope.listaPreciosXFormato	={};
 	$scope.totalDescuento ={};
 	$scope.Timer = null;
@@ -25,7 +25,7 @@ var VentaBoletosPaso3Controller = angular.module('indexModule').controller("Vent
 	$scope.consultarExistenciaBoletos = function(paramsExistenciaBoleto) {
  		taquillaService.consultarExistenciaBoletos( paramsExistenciaBoleto ).success(function(data) {
 			$scope.asientosDisponibles =data;
-			console.log(data);
+//			console.log(data);
 		}).error(function(data) {
  	 	 
 	 	});
@@ -33,10 +33,10 @@ var VentaBoletosPaso3Controller = angular.module('indexModule').controller("Vent
 	
  	//Actualiza los boletos disponibles
 	$scope.reservarBoleto = function(existenciaBoletoVO) {
-		console.log(existenciaBoletoVO);
+		//console.log(existenciaBoletoVO);
  		taquillaService.updateExistenciaBoleto( existenciaBoletoVO ).success(function(data) {
 			$scope.asientosDisponibles =data;
-			console.log(data);
+			//console.log(data);
 	 	}).error(function(data) {
  	 	 
 	 	});
@@ -60,18 +60,29 @@ var VentaBoletosPaso3Controller = angular.module('indexModule').controller("Vent
 	 
 	//Consultar descuentos Promocion
 	$scope.consultarDescuentos = function(promocionBoletoVO) {
+		if(promocionBoletoVO.promocionVO !=null){  			 
+ 	 
 		taquillaService.consultarDescuentos(promocionBoletoVO).success(function(data) {
  
 			$scope.totalDescuento=data;
-	  		$scope.pago.subtotal -=$scope.totalDescuento;
+	  		$scope.pago.subtotal  =0;
 
  			angular.forEach($scope.boletos, function(value, key){
 	  			if(value.tipoCliente ==="Promocion")
 	  				value.subtotal =data;
+	  			else {
+	  				value.subtotal =calculosFactory.calcularSubtotal(value.cantidad,value.precio);
+		  			value.importe = calculosFactory.calcularSubtotal(value.cantidad,value.precio);
+		  			$scope.pago.subtotal += value.subtotal;
+	  			}
+	  			
 			});
+ 			
+ 			$scope.pago.subtotal -=$scope.totalDescuento;
 		}).error(function(data) {
 
 		});
+		}
 	}
 	
 	$scope.eliminar = function(array,index){

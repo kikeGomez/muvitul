@@ -5,11 +5,13 @@ var VentaBoletosPaso4Controller = angular.module('indexModule').controller("Vent
 	$scope.listaPagos			=[];
 	$scope.listaFormasPago		={};
 	$scope.estatusPagoVO ={idEstatus:'1',nombre:'PAGADO'}
- 	$scope.pago				    ={subtotal:0, porPagar:0, pagado:0,estatusPagoVO:$scope.estatusPagoVO};
+ 	$scope.pago				    ={subtotalAux:0,subtotal:0, porPagar:0, pagado:0,estatusPagoVO:$scope.estatusPagoVO};
  	$controller('VentaBoletosPaso3Controller',{$scope : $scope });
     $controller('modalController',{$scope : $scope });
  
 	$scope.guardarPago =function(pago,formPagos){
+//		 
+		
 		if ( formPagos.$invalid) {
             angular.forEach( formPagos.$error, function (field) {
               angular.forEach(field, function(errorField){
@@ -25,8 +27,10 @@ var VentaBoletosPaso4Controller = angular.module('indexModule').controller("Vent
         	 if($scope.pago.subtotal < $scope.pago.pagado){
         		 $scope.listaPagos.pop();
   			     $scope.calcularTotalPagado($scope.listaPagos);
-  	            $scope.showAviso("Estas pagando de mas  ");
+  	            $scope.showAviso("El monto por pagar es menor");
         	 }
+        	 
+        	 $scope.resetObjetoPago();
         }
 	}
 	
@@ -34,6 +38,14 @@ var VentaBoletosPaso4Controller = angular.module('indexModule').controller("Vent
 	$scope.seleccionarFormaPago =function( formaPago, formPagos){
 		formPagos.$setPristine();
  		$scope.pago.formaPagoVO = formaPago;
+	}
+	
+	$scope.resetObjetoPago =function( ){
+//  		$scope.pago.formaPagoVO = null;
+//  		$scope.pago.importe = null;
+//  		$scope.pago.pagoCon = null;
+//  		$scope.pago.cambio = null;
+//  		$scope.pago.noCuenta=null;
 	}
 	
 	$scope.calcularTotalPagado =function(listaPagos){
@@ -57,7 +69,6 @@ var VentaBoletosPaso4Controller = angular.module('indexModule').controller("Vent
 			        modal.close.then(function(result) {
 			        	if(result){
 			     			$scope.complementarDatosPago();
-
 			        		$scope.procesarVenta(venta);
 			        	}
 			        }); 
@@ -79,7 +90,7 @@ var VentaBoletosPaso4Controller = angular.module('indexModule').controller("Vent
 		
 		$scope.listaBoletosFilter = $filter('filter')($scope.boletos, {'tipoCliente': '!Promocion'});
  		$scope.objetosVenta.boletosXTicketVO=$scope.listaBoletosFilter;
- 		$scope.promocion.importe = $scope.promocion.subtotal;
+ 		$scope.promocion={ importe : ($scope.promocion ==null   ) ? 0: $scope.promocion.subtotal}
  		$scope.promo = [];
 		$scope.promo.push($scope.promocion);
 		$scope.objetosVenta.promocionesXTicketVO=$scope.promo;
@@ -89,16 +100,12 @@ var VentaBoletosPaso4Controller = angular.module('indexModule').controller("Vent
 	//ProcesarVenta
 	$scope.procesarVenta =function( venta ){
 		venta.pagosVO=$scope.listaPagos;
-		console.log(venta);
-		console.log( $scope.boletos);
-		
+
 		taquillaService.procesarVenta(venta).success(function(data) {	
 			console.log(data);
 			$scope.asignarPaso(5);
-
  		  }).error(function(data) {
  				console.log(data);
-
 		  });
 	}
 	
