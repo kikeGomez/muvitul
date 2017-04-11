@@ -19,14 +19,11 @@ import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 import mx.com.tecnetia.muvitul.infraservices.servicios.NotFoundException;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ConfigProgramacionVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ConfigPromocionVO;
-import mx.com.tecnetia.muvitul.negocio.configuracion.vo.FormatoVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.PaqueteVO;
-import mx.com.tecnetia.muvitul.negocio.configuracion.vo.PeliculaVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ProductoVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ProgramacionVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.PromocionVO;
-import mx.com.tecnetia.muvitul.negocio.configuracion.vo.SalaVO;
-import mx.com.tecnetia.muvitul.negocio.configuracion.vo.VersionVO;
+import mx.com.tecnetia.muvitul.negocio.configuracion.vo.SalaProgramacionVO;
 import mx.com.tecnetia.muvitul.servicios.configuracion.controller.ConfiguracionController;
 
 @Service
@@ -54,22 +51,22 @@ public class ConfiguracionFacade implements ConfiguracionFacadeI {
 		return new ResponseEntity<ConfigProgramacionVO>(configProgramacionVO, HttpStatus.OK);
 	}
 
-//	@Override
-//	public ResponseEntity<List<ConfigSalaVO>> getProgramacionOfSala(HttpServletRequest request, Date fecha)
-//			throws BusinessGlobalException, NotFoundException {
-//		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
-//		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
-//
-//		logger.info("GetProgramacionOfSala:::IdCine[{}]:::Fecha[{}]", idCine, fecha);
-//
-//		List<ConfigSalaVO> configsSalaVO = configuracionController.findProgramacionOfSala(idCine, fecha);
-//
-//		if (configsSalaVO == null || configsSalaVO.isEmpty()) {
-//			throw new NotFoundException("No encontrado");
-//		}
-//
-//		return new ResponseEntity<List<ConfigSalaVO>>(configsSalaVO, HttpStatus.OK);
-//	}
+	@Override
+	public ResponseEntity<List<SalaProgramacionVO>> getProgramacionOfSala(HttpServletRequest request, Date fechaExhibicion)
+			throws BusinessGlobalException, NotFoundException {
+		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
+		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
+
+		logger.info("GetProgramacionOfSala:::IdCine[{}]:::Fecha[{}]", idCine, fechaExhibicion);
+
+		List<SalaProgramacionVO> salaProgramacionVO = configuracionController.findProgramacionOfSala(idCine, fechaExhibicion);
+
+		if (salaProgramacionVO == null || salaProgramacionVO.isEmpty()) {
+			throw new NotFoundException("No encontrado");
+		}
+
+		return new ResponseEntity<List<SalaProgramacionVO>>(salaProgramacionVO, HttpStatus.OK);
+	}
 
 	@Override
 	public ResponseEntity<ProgramacionVO> createProgramacion(HttpServletRequest request , @RequestBody  ProgramacionVO programacionVO)
@@ -202,35 +199,32 @@ public class ConfiguracionFacade implements ConfiguracionFacadeI {
 	}
 
 	
-	@Override
-	public ResponseEntity<ProgramacionVO> getProgramacion(HttpServletRequest request)
-			throws BusinessGlobalException, NotFoundException {
-		
-		FormatoVO formatoVO= new FormatoVO();
-		formatoVO.setIdFormato(1);
-		
-		PeliculaVO peliculaVO =new PeliculaVO();
-		peliculaVO.setIdPelicula(1);
-		
-		SalaVO salaVO= new SalaVO();
-		salaVO.setIdSala(1);
-		
-		VersionVO versionVO =new VersionVO();
-		versionVO.setIdVersion(1);
-		
-		
-		ProgramacionVO programacionVO  = new ProgramacionVO();
-		programacionVO.setFormatoVO(formatoVO);
-		programacionVO.setPeliculaVO(peliculaVO);
-		programacionVO.setSalaVO(salaVO);
-		programacionVO.setVersionVO(versionVO);
-		programacionVO.setDiaSemana("LU");
-		programacionVO.setHorario(new Date());
-		programacionVO.setFechaVigencia(new Date());
-		
-		
-		
-		return new ResponseEntity<ProgramacionVO>(programacionVO, HttpStatus.OK);
-	}
+//	@Override
+//	public ResponseEntity<ProgramacionVO> getProgramacion(HttpServletRequest request)
+//			throws BusinessGlobalException, NotFoundException {
+//		
+//		FormatoVO formatoVO= new FormatoVO();
+//		formatoVO.setIdFormato(1);
+//		
+//		PeliculaVO peliculaVO =new PeliculaVO();
+//		peliculaVO.setIdPelicula(1);
+//		
+//		SalaVO salaVO= new SalaVO();
+//		salaVO.setIdSala(1);
+//		
+//		VersionVO versionVO =new VersionVO();
+//		versionVO.setIdVersion(1);
+//		
+//		ProgramacionVO programacionVO  = new ProgramacionVO();
+//		programacionVO.setFormatoVO(formatoVO);
+//		programacionVO.setPeliculaVO(peliculaVO);
+//		programacionVO.setSalaVO(salaVO);
+//		programacionVO.setVersionVO(versionVO);
+//		programacionVO.setDiaSemana("LU");
+//		programacionVO.setHorario(new Date());
+//		programacionVO.setFechaVigencia(new Date());
+//	
+//		return new ResponseEntity<ProgramacionVO>(programacionVO, HttpStatus.OK);
+//	}
 
 }

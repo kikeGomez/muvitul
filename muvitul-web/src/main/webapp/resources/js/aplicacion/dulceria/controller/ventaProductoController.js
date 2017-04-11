@@ -108,9 +108,9 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 			}
 			
 			$scope.consultarProgramacion = function() {
-				dulceriaService.consultarProgramaciones().success(function(data) {
+				dulceriaService.consultarProgramaciones($scope.fechaExhibicion).success(function(data) {
 					console.log(data);
-					dulceriaService.crearProgramaciones(data);
+					//dulceriaService.crearProgramaciones(data);
 				}).error(function(data) {
 
 				});
@@ -128,6 +128,8 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 			//$scope.consultarPaquetes2();
 			//$scope.consultarConfigProgramaciones();
 			//$scope.consultarConfigPromociones();
+			console.log($scope.fechaExhibicion);
+			$scope.consultarProgramacion();
 			//$scope.crearProgramacion();
 			//$scope.eliminarProgramacion();
 

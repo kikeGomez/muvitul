@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Sala;
+import mx.com.tecnetia.muvitul.negocio.configuracion.vo.SalaProgramacionVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.SalaVO;
 
 public class SalaAssembler {
@@ -45,6 +46,21 @@ public class SalaAssembler {
 		sala.setIdSala(idSala);
 
 		return sala;
+	}
+	
+	public static SalaProgramacionVO getSalaProgramacionVO(Sala sala){
+		
+		if(sala==null)
+			return null;
+		
+		SalaProgramacionVO salaProgramacionVO = new SalaProgramacionVO();
+		salaProgramacionVO.setIdSala(sala.getIdSala());
+		salaProgramacionVO.setCineVO(CineAssembler.getCineVO(sala.getCine()));
+		salaProgramacionVO.setNombre(sala.getNombre());
+		salaProgramacionVO.setActivo(sala.isActivo());
+		
+
+		return salaProgramacionVO;
 	}
 	
 	

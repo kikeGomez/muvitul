@@ -1,8 +1,7 @@
 package mx.com.tecnetia.muvitul.negocio.configuracion.vo;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import mx.com.tecnetia.muvitul.negocio.taquilla.vo.ProgramacionVO;
 
 public class PeliculaVO {
 	private Integer idPelicula;
@@ -15,8 +14,14 @@ public class PeliculaVO {
 	private String sinopsis;
 	private boolean activo;
 	private byte[] icono;
-	private List<ProgramacionVO> programacionesVO;
+	private List<ProgramacionVO> programacionesVO= new ArrayList<ProgramacionVO>();
 
+
+	public void addProgramacionVO(ProgramacionVO programacionVO) {
+		programacionesVO.add(programacionVO);
+	}
+	
+	
 	public Integer getIdPelicula() {
 		return idPelicula;
 	}
@@ -64,6 +69,13 @@ public class PeliculaVO {
 	}
 	public void setIcono(byte[] icono) {
 		this.icono = icono;
+	}
+
+	public List<ProgramacionVO> getProgramacionesVO() {
+		return programacionesVO;
+	}
+	public void setProgramacionesVO(List<ProgramacionVO> programacionesVO) {
+		this.programacionesVO = programacionesVO;
 	}
 	
 }

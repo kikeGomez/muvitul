@@ -1,8 +1,11 @@
 package mx.com.tecnetia.muvitul.negocio.configuracion.business;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,10 +22,13 @@ import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Programaci
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Sala;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Version;
 import mx.com.tecnetia.muvitul.negocio.configuracion.assembler.ConfigProgramacionAssembler;
+import mx.com.tecnetia.muvitul.negocio.configuracion.assembler.PeliculaAssembler;
 import mx.com.tecnetia.muvitul.negocio.configuracion.assembler.ProgramacionAssembler;
+import mx.com.tecnetia.muvitul.negocio.configuracion.assembler.SalaAssembler;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ConfigProgramacionVO;
-import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ConfigSalaVO;
+import mx.com.tecnetia.muvitul.negocio.configuracion.vo.PeliculaVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ProgramacionVO;
+import mx.com.tecnetia.muvitul.negocio.configuracion.vo.SalaProgramacionVO;
 
 @Service
 @Transactional
@@ -55,10 +61,40 @@ public class ConfigProgramacionBO {
 		return ConfigProgramacionAssembler.getConfigProgramacionVO(salas, diasSemana, peliculas, formatos, versiones);
 	}
 
-	public List<ConfigSalaVO> findProgramacionOfSala(Integer idCine, Date fecha) {
+	public List<SalaProgramacionVO> findProgramacionOfSala(Integer idCine, Date fecha) {
+		
+		
+		List<SalaProgramacionVO> salasProgramacionVO= new ArrayList<SalaProgramacionVO>();
+		List<Sala> salas = salaDAO.findByIdCine(idCine);
 
+		for (Sala sala : salas) {
+			SalaProgramacionVO salaProgramacionVO= SalaAssembler.getSalaProgramacionVO(sala);
+			Map<Integer, PeliculaVO> mapPeliculas = new HashMap<Integer, PeliculaVO>();
+			
+			List<Programacion> programaciones = programacionDAO.findByCineAndDay( idCine, sala.getIdSala(), fecha);
+			for (Programacion programacion : programaciones) {
+				
+				if (!mapPeliculas.containsKey(programacion.getPelicula().getIdPelicula())) {
+					mapPeliculas.put(programacion.getPelicula().getIdPelicula(),PeliculaAssembler.getPeliculaVO(programacion.getPelicula()));
+				}
+				
+				PeliculaVO peliculaVO = mapPeliculas.get(programacion.getPelicula().getIdPelicula());
+				ProgramacionVO programacionVO = ProgramacionAssembler.getProgramacionVO(programacion);
+				peliculaVO.addProgramacionVO(programacionVO);
+				
+				
+			}
+			
+			List<PeliculaVO> peliculasVO= new ArrayList<PeliculaVO>(mapPeliculas.values());
+			salaProgramacionVO.setPeliculasVO(peliculasVO);
+			salasProgramacionVO.add(salaProgramacionVO);
+			
+		}
 
-		return null;
+		
+
+		
+		return salasProgramacionVO;
 	}
 
 	public ProgramacionVO save(ProgramacionVO programacionVO) {

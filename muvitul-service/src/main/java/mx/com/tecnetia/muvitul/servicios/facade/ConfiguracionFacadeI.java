@@ -21,6 +21,7 @@ import mx.com.tecnetia.muvitul.negocio.configuracion.vo.PaqueteVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ProductoVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ProgramacionVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.PromocionVO;
+import mx.com.tecnetia.muvitul.negocio.configuracion.vo.SalaProgramacionVO;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -31,17 +32,15 @@ public interface ConfiguracionFacadeI {
 	public ResponseEntity<ConfigProgramacionVO> getConfigProgramacion(HttpServletRequest request)
 			throws BusinessGlobalException, NotFoundException;
 
-	// Pendiente
-	// @RequestMapping(value = "/programaciones", method = RequestMethod.GET)
-	// public ResponseEntity<List<ConfigSalaVO>>
-	// getProgramacionOfSala(HttpServletRequest request, Date fecha)
-	// throws BusinessGlobalException, NotFoundException;
+	 @RequestMapping(value = "/programaciones", method = RequestMethod.GET)
+	 public ResponseEntity<List<SalaProgramacionVO>>
+	 getProgramacionOfSala(HttpServletRequest request, Date fechaExhibicion)
+	 throws BusinessGlobalException, NotFoundException;
 
-	@RequestMapping(value = "/programaciones", method = RequestMethod.GET)
-	public ResponseEntity<ProgramacionVO> getProgramacion(HttpServletRequest request)
-			throws BusinessGlobalException, NotFoundException;
+//	@RequestMapping(value = "/programaciones", method = RequestMethod.GET)
+//	public ResponseEntity<ProgramacionVO> getProgramacion(HttpServletRequest request)
+//			throws BusinessGlobalException, NotFoundException;
 
-	// Pendiente
 	@RequestMapping(value = "/programaciones", method = RequestMethod.POST)
 	public ResponseEntity<ProgramacionVO> createProgramacion(HttpServletRequest request,
 			@RequestBody ProgramacionVO programacionVO) throws BusinessGlobalException, NotFoundException;

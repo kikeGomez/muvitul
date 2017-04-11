@@ -11,7 +11,7 @@ import mx.com.tecnetia.muvitul.negocio.configuracion.business.ConfigPromocionBO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.business.PaqueteBO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ConfigProgramacionVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ConfigPromocionVO;
-import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ConfigSalaVO;
+import mx.com.tecnetia.muvitul.negocio.configuracion.vo.SalaProgramacionVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.PaqueteVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ProductoVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ProgramacionVO;
@@ -41,7 +41,7 @@ public class ConfiguracionController {
 		return configProgramacionBO.findConfigByCine(idCine);
 	}
 
-	public List<ConfigSalaVO> findProgramacionOfSala(Integer idCine, Date fecha) {
+	public List<SalaProgramacionVO> findProgramacionOfSala(Integer idCine, Date fecha) {
 		return configProgramacionBO.findProgramacionOfSala(idCine,fecha);
 	}
 
