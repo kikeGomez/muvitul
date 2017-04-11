@@ -104,11 +104,22 @@ angular.module('indexModule').service('dulceriaService', ['$http','GlobalFactory
 	}	
 	
 	
-	 this.crearProgramacion = function( programacionVo ) {
+	 this.crearProgramaciones = function( programacionVo ) {
 		 console.log("crear programacion");
 		 return $http.post(config.baseUrl + "/configuracion/programaciones", programacionVo );
 	 }
 	 
+	this.eliminarProgramaciones = function( id ) {
+		 console.log("eliminar programacion");
+	 		return $http.delete(config.baseUrl + "/configuracion/programaciones", {
+	 				params : {
+	 	 				"id" : id
+	 	 			}
+	 			}
+	 				
+	 		);
+	 }
+		
 	
 }]);
 

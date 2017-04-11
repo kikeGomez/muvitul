@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
@@ -31,21 +32,22 @@ public interface ConfiguracionFacadeI {
 			throws BusinessGlobalException, NotFoundException;
 
 	// Pendiente
-//	@RequestMapping(value = "/programaciones", method = RequestMethod.GET)
-//	public ResponseEntity<List<ConfigSalaVO>> getProgramacionOfSala(HttpServletRequest request, Date fecha)
-//			throws BusinessGlobalException, NotFoundException;
+	// @RequestMapping(value = "/programaciones", method = RequestMethod.GET)
+	// public ResponseEntity<List<ConfigSalaVO>>
+	// getProgramacionOfSala(HttpServletRequest request, Date fecha)
+	// throws BusinessGlobalException, NotFoundException;
 
 	@RequestMapping(value = "/programaciones", method = RequestMethod.GET)
 	public ResponseEntity<ProgramacionVO> getProgramacion(HttpServletRequest request)
 			throws BusinessGlobalException, NotFoundException;
-	
+
 	// Pendiente
 	@RequestMapping(value = "/programaciones", method = RequestMethod.POST)
 	public ResponseEntity<ProgramacionVO> createProgramacion(HttpServletRequest request,
 			@RequestBody ProgramacionVO programacionVO) throws BusinessGlobalException, NotFoundException;
 
 	@RequestMapping(value = "/programaciones", method = RequestMethod.DELETE)
-	public ResponseEntity<Integer> deleteProgramacion(HttpServletRequest request, Integer id)
+	public ResponseEntity<Integer> deleteProgramacion(HttpServletRequest request, @RequestParam(value = "id") Integer id)
 			throws BusinessGlobalException, NotFoundException;
 
 	@RequestMapping(value = "/configPromociones", method = RequestMethod.GET)
