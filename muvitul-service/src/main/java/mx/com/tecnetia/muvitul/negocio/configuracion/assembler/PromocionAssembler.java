@@ -15,6 +15,14 @@ public class PromocionAssembler {
 			return null;
 		
 		Promocion promocion = new Promocion();
+		promocion.setCine(CineAssembler.getCine(promocionVO.getCineVO().getIdCine()));
+		promocion.setPromocionPara(PromocionParaAssembler.getPromocionPara(promocionVO.getIdPromocion()));
+		promocion.setTipoPromocion(TipoPromocionAssembler.getTipoPromocion(promocionVO.getTipoPromocionVO().getIdTipoPromocion()));
+		promocion.setNombre(promocionVO.getNombre());
+		promocion.setDescripcion(promocionVO.getDescripcion());
+		promocion.setFechaInicio(promocionVO.getFechaInicio());
+		promocion.setFechaFin(promocionVO.getFechaFin());
+		promocion.setDetallePromocions(DetallePromocionAssembler.getDetallePromociones(promocionVO.getDetallePromocionesVO()));
 
 		return promocion;
 	}
@@ -28,8 +36,8 @@ public class PromocionAssembler {
 		PromocionVO promocionVO = new PromocionVO();
 		promocionVO.setIdPromocion(promocion.getIdPromocion());
 		promocionVO.setCineVO(CineAssembler.getCineVO(promocion.getCine()));
-		promocionVO.setPromocionParaVO(PromocionParaAssembler.getPromocionPara(promocion.getPromocionPara()));
-		promocionVO.setTipoPromocionVO(TipoPromocionAssembler.getTipoPromocion(promocion.getTipoPromocion()));
+		promocionVO.setPromocionParaVO(PromocionParaAssembler.getPromocionParaVO(promocion.getPromocionPara()));
+		promocionVO.setTipoPromocionVO(TipoPromocionAssembler.getTipoPromocionVO(promocion.getTipoPromocion()));
 		promocionVO.setNombre(promocion.getNombre());
 		promocionVO.setDescripcion(promocion.getDescripcion());
 		promocionVO.setFechaInicio(promocion.getFechaInicio());

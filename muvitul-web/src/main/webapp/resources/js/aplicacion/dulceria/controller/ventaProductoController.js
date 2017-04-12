@@ -124,13 +124,44 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 				});
 			}
 			
+			$scope.consultarPromocion2 = function() {
+				dulceriaService.consultarPromociones2($scope.fechaExhibicion).success(function(data) {
+					console.log(data);
+					//dulceriaService.crearProgramaciones(data);
+				}).error(function(data) {
+
+				});
+			}
+			
+			
+			$scope.crearPromocion = function() {
+				dulceriaService.consultarPromociones2($scope.fechaExhibicion).success(function(data) {
+					console.log(data);
+					dulceriaService.crearPromociones(data);
+				}).error(function(data) {
+
+				});
+			}
+			
+			
+			$scope.eliminarPromocion = function() {
+				dulceriaService.eliminarPromociones(5).success(function(data) {
+					console.log(data);
+				}).error(function(data) {
+
+				});
+			}
+			
+			
 			//$scope.consultarProductos();
 			//$scope.consultarPaquetes2();
 			//$scope.consultarConfigProgramaciones();
 			//$scope.consultarConfigPromociones();
 			console.log($scope.fechaExhibicion);
-			$scope.consultarProgramacion();
+			//$scope.consultarProgramacion();
 			//$scope.crearProgramacion();
 			//$scope.eliminarProgramacion();
-
+			//$scope.consultarPromocion2();
+			$scope.crearPromocion();
+			
 		});

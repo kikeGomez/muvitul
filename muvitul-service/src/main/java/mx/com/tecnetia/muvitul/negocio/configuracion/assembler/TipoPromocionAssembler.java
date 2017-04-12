@@ -8,7 +8,7 @@ import mx.com.tecnetia.muvitul.negocio.configuracion.vo.TipoPromocionVO;
 
 public class TipoPromocionAssembler {
 
-	public static TipoPromocionVO getTipoPromocion(TipoPromocion tipoPromocion){
+	public static TipoPromocionVO getTipoPromocionVO(TipoPromocion tipoPromocion){
 
 		if(tipoPromocion==null)
 			return null;
@@ -30,11 +30,21 @@ public class TipoPromocionAssembler {
 		List<TipoPromocionVO> tiposPromocionVO = new ArrayList<TipoPromocionVO>();
 
 		for (TipoPromocion tipoPromocion : tiposPromocion) {
-			tiposPromocionVO.add(TipoPromocionAssembler.getTipoPromocion(tipoPromocion));
+			tiposPromocionVO.add(TipoPromocionAssembler.getTipoPromocionVO(tipoPromocion));
 		}
 
 		return tiposPromocionVO;
 	}
 	
+	public static TipoPromocion getTipoPromocion(Integer idTipoPromocion){
+
+		if(idTipoPromocion==null)
+			return null;
+		
+		TipoPromocion tipoPromocion = new TipoPromocion();
+		tipoPromocion.setIdTipoPromocion(idTipoPromocion);
+
+		return tipoPromocion;
+	}
 	
 }

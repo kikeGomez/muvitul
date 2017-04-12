@@ -9,7 +9,7 @@ import mx.com.tecnetia.muvitul.negocio.configuracion.vo.PromocionParaVO;
 
 public class PromocionParaAssembler {
 
-	public static PromocionParaVO getPromocionPara(PromocionPara promocionPara){
+	public static PromocionParaVO getPromocionParaVO(PromocionPara promocionPara){
 
 		if(promocionPara==null)
 			return null;
@@ -30,11 +30,24 @@ public class PromocionParaAssembler {
 		List<PromocionParaVO> promocionesParaVO = new ArrayList<PromocionParaVO>();
 
 		for (PromocionPara promocionPara : promocionesPara) {
-			promocionesParaVO.add(PromocionParaAssembler.getPromocionPara(promocionPara));
+			promocionesParaVO.add(PromocionParaAssembler.getPromocionParaVO(promocionPara));
 		}
 
 		return promocionesParaVO;
 	}
+	
+	public static PromocionPara getPromocionPara(Integer idPromocionPara){
+
+		if(idPromocionPara==null)
+			return null;
+		
+		PromocionPara promocionPara = new PromocionPara();
+		promocionPara.setIdPromocionPara(idPromocionPara);
+
+		
+		return promocionPara;
+	}
+
 	
 	
 }

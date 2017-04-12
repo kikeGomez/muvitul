@@ -17,4 +17,16 @@ public class CineAssembler {
 		return cineVO;
 	}
 	
+	public static Cine getCine(Integer idCine){
+		
+		if(idCine==null)
+			return null;
+		
+		Cine cine = new Cine();
+		cine.setIdCine(idCine);
+
+		
+		return cine;
+	}
+	
 }

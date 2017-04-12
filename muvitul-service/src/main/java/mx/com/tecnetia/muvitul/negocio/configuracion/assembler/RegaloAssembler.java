@@ -37,4 +37,16 @@ public class RegaloAssembler {
 	}
 	
 	
+	public static Regalo getRegalo(Integer idRegalo){
+
+		if(idRegalo==null )
+			return null;
+
+		Regalo regalo = new Regalo();
+		regalo.setIdRegalo(idRegalo);
+
+		return regalo;
+	}
+	
+	
 }
