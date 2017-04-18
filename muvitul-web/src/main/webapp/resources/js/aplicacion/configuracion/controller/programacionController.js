@@ -76,7 +76,6 @@ var ProgramacionController = angular.module('indexModule').controller("Programac
 			 $scope.programacion.versionVO=dato;
 	 }
 	 
-	
 	 $scope.init();
 });
 $('#fechaVigencia').daterangepicker({
