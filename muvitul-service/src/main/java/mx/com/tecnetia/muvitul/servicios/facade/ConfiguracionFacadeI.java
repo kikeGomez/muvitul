@@ -53,9 +53,8 @@ public interface ConfiguracionFacadeI {
 	public ResponseEntity<ConfigPromocionVO> getConfigPromocion(HttpServletRequest request)
 			throws BusinessGlobalException, NotFoundException;
 
-	// Pendiente
 	@RequestMapping(value = "/promociones", method = RequestMethod.GET)
-	public ResponseEntity<List<PromocionVO>> getPromociones(HttpServletRequest request, Date fecha)
+	public ResponseEntity<List<PromocionVO>> getPromociones(HttpServletRequest request, Date fechaExhibicion)
 			throws BusinessGlobalException, NotFoundException;
 
 	@RequestMapping(value = "/promociones", method = RequestMethod.POST)
@@ -63,7 +62,7 @@ public interface ConfiguracionFacadeI {
 			throws BusinessGlobalException, NotFoundException;
 
 	@RequestMapping(value = "/promociones", method = RequestMethod.DELETE)
-	public ResponseEntity<Integer> deletePromocion(HttpServletRequest request, Integer id)
+	public ResponseEntity<Integer> deletePromocion(HttpServletRequest request, @RequestParam(value = "id") Integer id)
 			throws BusinessGlobalException, NotFoundException;
 
 	// OK

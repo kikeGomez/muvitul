@@ -22,6 +22,7 @@ public class ProductoAssembler {
 		return productoVO;
 	}
 	
+	
 	public static List<ProductoVO> getProductos(List<Producto> productos){
 
 		if(productos==null)
@@ -34,6 +35,17 @@ public class ProductoAssembler {
 		}
 
 		return productosVO;
+	}
+	
+	public static Producto getProducto(Integer idProducto){
+		
+		if(idProducto==null)
+			return null;
+		
+		Producto producto = new Producto();
+		producto.setIdProducto(idProducto);
+		
+		return producto;
 	}
 	
 }

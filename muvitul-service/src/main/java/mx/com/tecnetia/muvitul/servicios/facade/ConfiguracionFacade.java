@@ -17,6 +17,7 @@ import io.jsonwebtoken.Claims;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.enumeration.ClaimsEnum;
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 import mx.com.tecnetia.muvitul.infraservices.servicios.NotFoundException;
+import mx.com.tecnetia.muvitul.negocio.configuracion.vo.CineVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ConfigProgramacionVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ConfigPromocionVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.PaqueteVO;
@@ -117,14 +118,14 @@ public class ConfiguracionFacade implements ConfiguracionFacadeI {
 	}
 	
 	@Override
-	public ResponseEntity<List<PromocionVO>> getPromociones(HttpServletRequest request, Date fecha)
+	public ResponseEntity<List<PromocionVO>> getPromociones(HttpServletRequest request, Date fechaExhibicion)
 			throws BusinessGlobalException, NotFoundException {
 		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
 		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
 
-		logger.info("GetPromociones:::IdCine[{}]:::Fecha[{}]", idCine, fecha);
+		logger.info("GetPromociones:::IdCine[{}]:::Fecha[{}]", idCine, fechaExhibicion);
 
-		List<PromocionVO> promocionVO = configuracionController.findPromociones(idCine, fecha);
+		List<PromocionVO> promocionVO = configuracionController.findPromociones(idCine, fechaExhibicion);
 
 		if (promocionVO == null || promocionVO.isEmpty()) {
 			throw new NotFoundException("No encontrado");
@@ -134,7 +135,7 @@ public class ConfiguracionFacade implements ConfiguracionFacadeI {
 	}
 
 	@Override
-	public ResponseEntity<PromocionVO> createPromocion(HttpServletRequest request, PromocionVO promocionVO)
+	public ResponseEntity<PromocionVO> createPromocion(HttpServletRequest request, @RequestBody PromocionVO promocionVO)
 			throws BusinessGlobalException, NotFoundException {
 		
 		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
@@ -142,7 +143,9 @@ public class ConfiguracionFacade implements ConfiguracionFacadeI {
 		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
 
 		logger.info("CreatePromocion:::IdUsuario[{}]:::IdCine[{}]",idUsuario,idCine);
-		
+		CineVO cineVO= new CineVO();
+		cineVO.setIdCine(idCine);
+		promocionVO.setCineVO(cineVO);
 		promocionVO = configuracionController.createPromocion(promocionVO);
 		return new ResponseEntity<PromocionVO>(promocionVO, HttpStatus.CREATED);
 	}

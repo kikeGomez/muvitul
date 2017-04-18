@@ -62,7 +62,6 @@ public class ConfigPromocionBO {
 	}
 	
 	public List<PromocionVO> findByCineAndDate(Integer idCine, Date fecha) {
-		
 		List<Promocion> promociones= promocionDAO.findByCineAndDate(idCine, fecha);
 		return PromocionAssembler.getPromocionesVO(promociones);
 		

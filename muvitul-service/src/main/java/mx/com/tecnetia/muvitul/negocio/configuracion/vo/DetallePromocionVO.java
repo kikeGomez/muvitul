@@ -2,6 +2,9 @@ package mx.com.tecnetia.muvitul.negocio.configuracion.vo;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+@JsonSerialize
 public class DetallePromocionVO {
 	private Integer idDetallePromocion;
 	private ProductoVO productoVO;

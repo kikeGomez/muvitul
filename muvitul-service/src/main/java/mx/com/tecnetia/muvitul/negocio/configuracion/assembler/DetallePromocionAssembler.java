@@ -1,6 +1,7 @@
 package mx.com.tecnetia.muvitul.negocio.configuracion.assembler;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -40,5 +41,38 @@ public class DetallePromocionAssembler {
 
 		return detallePromocionesVO;
 	}
+	
+	
+	public static DetallePromocion getDetallePromocion(DetallePromocionVO detallePromocionVO){
+
+		if(detallePromocionVO==null )
+			return null;
+		
+		DetallePromocion detallePromocion = new DetallePromocion();
+		detallePromocion.setProducto(ProductoAssembler.getProducto(detallePromocionVO.getProductoVO().getIdProducto()));
+		detallePromocion.setRegalo(RegaloAssembler.getRegalo(detallePromocionVO.getRegaloVO().getIdRegalo()));
+		detallePromocion.setVarN(detallePromocionVO.getVarN());
+		detallePromocion.setVarM(detallePromocionVO.getVarM());
+		detallePromocion.setPrecio(detallePromocionVO.getPrecio());
+		detallePromocion.setPorcentaje(detallePromocionVO.getPorcentaje());
+		
+		return detallePromocion;
+	}
+	
+	
+	public static Set<DetallePromocion> getDetallePromociones(List<DetallePromocionVO> detallePromocionesVO){
+
+		if(detallePromocionesVO==null || detallePromocionesVO.isEmpty())
+			return null;
+		
+		Set<DetallePromocion> detallePromociones = new HashSet<DetallePromocion>();
+		
+		for (DetallePromocionVO detallePromocionVO : detallePromocionesVO) {
+			detallePromociones.add(DetallePromocionAssembler.getDetallePromocion(detallePromocionVO));
+		}
+
+		return detallePromociones;
+	}
+	
 	
 }

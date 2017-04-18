@@ -126,6 +126,32 @@ angular.module('indexModule').service('dulceriaService', ['$http','GlobalFactory
 	 		);
 	 }
 		
+	 this.consultarPromociones2 = function(fechaExhibicion){
+		 console.log("consultar config promociones");
+		 return $http.get(config.baseUrl+"/configuracion/promociones", {
+			 params : {
+				 "fechaExhibicion" : fechaExhibicion
+			}
+		});
+	 }
+	 
+	 
+	 this.crearPromociones = function( promocionVo ) {
+		 console.log("crear promociones");
+		 return $http.post(config.baseUrl + "/configuracion/promociones", promocionVo );
+	 }
+	 
+		this.eliminarPromociones = function( id ) {
+			 console.log("eliminar promociones");
+		 		return $http.delete(config.baseUrl + "/configuracion/promociones", {
+		 				params : {
+		 	 				"id" : id
+		 	 			}
+		 			}
+		 				
+		 		);
+		 }
+	 
 	
 }]);
 
