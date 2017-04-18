@@ -1,7 +1,6 @@
 'use strict';
 
 var ProgramacionController = angular.module('indexModule').controller("ProgramacionController", function($scope,$controller,ModalService,programacionesTaquillaService){
- 	
  	 
     $controller('modalController',{$scope : $scope });
 	$scope.programacion={ horario : moment(new Date()).format('YYYY-MM-DD')};

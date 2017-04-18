@@ -70,7 +70,6 @@
 						ng-style="{color:'red'}">El campo es requerido.</div>
 				</div>
 
-
 				<div class="form-group"
 					ng-class="{'has-error': formProgramaciones.pelicula.$invalid && formProgramaciones.pelicula.$dirty}">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12"

@@ -5,7 +5,6 @@ angular.module('indexModule').service('programacionesTaquillaService', ['$http',
 	this.consultarConfigProgramacion = function(){
  		return $http.get(config.baseUrl+"/configuracion/configProgramaciones");
 	}
-	
 
 	 this.crearProgramacion = function( programacionVo ) {
 		 console.log("crear programacion");
