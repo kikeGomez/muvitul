@@ -1,4 +1,4 @@
-<style type="text/css">
+ <style type="text/css">
 .table-fixed thead {
 	width: 97%;
 }

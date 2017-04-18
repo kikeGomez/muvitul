@@ -32,4 +32,3 @@ angular.module('indexModule').service('programacionesTaquillaService', ['$http',
 	 }
  
 }]);
-
