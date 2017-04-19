@@ -18,7 +18,7 @@ public class PromocionDAO extends GlobalHibernateDAO<Promocion> implements Promo
 		StringBuilder hql = new StringBuilder();
 		hql.append("select prm from Promocion prm inner join prm.tipoPromocion tprm inner join prm.promocionPara prmp ");
 		hql.append("where prm.cine.idCine=:idCine and prmp.idPromocionPara=:idPromocionPara and :fechaExhibicion between prm.fechaInicio and prm.fechaFin ");
-		hql.append("order by prm.idPromocion desc");
+		hql.append("order by prm.idPromocion asc");
 		
 		Query query = getSession().createQuery(hql.toString());
 		query.setParameter("idCine", idCine);

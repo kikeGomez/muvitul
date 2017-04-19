@@ -29,7 +29,7 @@ public class UsuarioAssembler {
 		usuarioFirmadoVO.setId(usuario.getIdUsuario());
 		usuarioFirmadoVO.setNombre(usuario.getNombre());		
 		usuarioFirmadoVO.setCineVO(CineAssembler.getCineVO(usuario.getCine()));
-		usuarioFirmadoVO.setRoles(new HashSet<PerfilVO>(PerfilAssembler.getPerfilesVO(usuario.getPerfils())));
+		usuarioFirmadoVO.setRoles(new HashSet<PerfilVO>(PerfilAssembler.getPerfilesVO(usuario.getPerfilesXUsuarios())));
 		usuarioFirmadoVO.setAccountNonLocked(usuario.getEstatusUsuario().getIdEstatus().equals(UsuarioEstatusEnum.ACTIVO));
 		usuarioFirmadoVO.setEnabled(usuario.getEstatusUsuario().getIdEstatus().equals(UsuarioEstatusEnum.ACTIVO));
 		usuarioFirmadoVO.setCredentialsNonExpired(!usuario.getEstatusUsuario().getIdEstatus().equals(UsuarioEstatusEnum.ACTIVO));		
@@ -62,7 +62,7 @@ public class UsuarioAssembler {
 		userDetailsVO.setUsername(usuario.getCorreo());
 		userDetailsVO.setPassword(usuario.getContrasenia());
 		
-		userDetailsVO.setRoles(new HashSet<PerfilVO>(PerfilAssembler.getPerfilesVO(usuario.getPerfils())));
+		userDetailsVO.setRoles(new HashSet<PerfilVO>(PerfilAssembler.getPerfilesVO(usuario.getPerfilesXUsuarios())));
 				
 		/*TODO corregir esto por el estatus de Activo e Inactivo*/
 		userDetailsVO.setAccountNonLocked(!usuario.getEstatusUsuario().getIdEstatus().equals(-1));

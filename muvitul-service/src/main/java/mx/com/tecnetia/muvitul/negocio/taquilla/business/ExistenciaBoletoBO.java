@@ -32,7 +32,7 @@ public class ExistenciaBoletoBO {
 	@Autowired
 	private ProgramacionDAOI programacionDAO;
 
-	public ExistenciaBoletoVO findByIdProgramacion(Integer idProgramacion, Integer idSala, Date fechaExhibicion)
+	public ExistenciaBoletoVO findByProgramacionSalaAndExhibicion(Integer idProgramacion, Integer idSala, Date fechaExhibicion)
 			throws BusinessGlobalException {
 
 		CupoXSala cupoXSala = cupoXSalaDAO.findByIdSala(idSala);

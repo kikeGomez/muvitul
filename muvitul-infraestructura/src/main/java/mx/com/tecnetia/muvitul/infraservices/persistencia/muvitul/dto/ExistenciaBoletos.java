@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 13/03/2017 10:51:10 PM by Hibernate Tools 4.3.1.Final
+// Generated 14-abr-2017 14:25:39 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -61,7 +61,7 @@ public class ExistenciaBoletos implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "fecha_exhibicion", nullable = false, length = 19)
+	@Column(name = "fecha_exhibicion", nullable = false, length = 10)
 	public Date getFechaExhibicion() {
 		return this.fechaExhibicion;
 	}

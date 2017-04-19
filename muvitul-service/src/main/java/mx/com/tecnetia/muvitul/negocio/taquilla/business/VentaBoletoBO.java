@@ -66,10 +66,9 @@ public class VentaBoletoBO {
 		BigDecimal total = new BigDecimal(0);
 		BigDecimal descuento = new BigDecimal(0);
 		BigDecimal porcentajes = new BigDecimal(0);
-		BigDecimal impuestos = new BigDecimal(0);
 		BigDecimal subtotal = new BigDecimal(0);
 
-		BigDecimal subtTot = new BigDecimal(0);
+//		BigDecimal subtTot = new BigDecimal(0);
 
 		List<ImpuestoBoleto> impuestosBoletos = impuestoBoletoDAO.findByIdCine(ventaVO.getIdCine());
 
@@ -87,26 +86,26 @@ public class VentaBoletoBO {
 		}
 
 		porcentajes = porcentajes.divide(new BigDecimal(100));
+		porcentajes = porcentajes.add(new BigDecimal(1));
 
-		impuestos = impuestos.add(total);
-		impuestos = impuestos.subtract(descuento);
-		impuestos = impuestos.multiply(porcentajes);
+		// impuestos = impuestos.add(total);
+		// impuestos = impuestos.subtract(descuento);
+		// impuestos = impuestos.divide(porcentajes);
 
 		subtotal = subtotal.add(total);
 		subtotal = subtotal.subtract(descuento);
-		subtotal = subtotal.subtract(impuestos);
+		subtotal = subtotal.divide(porcentajes, 3, BigDecimal.ROUND_HALF_EVEN);
 
-		subtTot = subtTot.add(total);
-		subtTot = subtTot.subtract(descuento);
+//		subtTot = subtTot.add(total);
+//		subtTot = subtTot.subtract(descuento);
 
-		logger.info("Total: [{}] Descuento:[{}] Importes:[{}] Porcentajes:[{}] Subtotal:[{}]", total.toString(),
-				descuento.toString(), impuestos.toString(), porcentajes.toString(), subtotal.toString());
+		logger.info("Total: [{}] Descuento:[{}] Porcentajes:[{}] Subtotal:[{}]", total.toString(), descuento.toString(),
+				porcentajes.toString(), subtotal.toString());
 
-		TicketVenta ticketVenta = ticketVentaDAO
-				.save(TicketVentaAssembler.getTicketVenta(ventaVO.getIdUsuario(), ventaVO.getIdPuntoVenta(), descuento, subtotal, total));
+		TicketVenta ticketVenta = ticketVentaDAO.save(TicketVentaAssembler.getTicketVenta(ventaVO.getIdUsuario(),
+				ventaVO.getIdPuntoVenta(), descuento, subtotal, total));
 
-		List<BoletosXTicket> boletosXTicket = BoletoXTicketAssembler.getBoletosXTicket(ventaVO.getBoletosXTicketVO(),
-				ticketVenta);
+		List<BoletosXTicket> boletosXTicket = BoletoXTicketAssembler.getBoletosXTicket(ventaVO.getBoletosXTicketVO(),ticketVenta);
 		for (BoletosXTicket boletoXTicket : boletosXTicket) {
 			boletoXTicketDAO.save(boletoXTicket);
 		}
@@ -129,7 +128,7 @@ public class VentaBoletoBO {
 			porcentaje = porcentaje.divide(new BigDecimal(100));
 
 			BigDecimal impuesto = new BigDecimal(0);
-			impuesto = impuesto.add(subtTot);
+			impuesto = impuesto.add(subtotal);
 			impuesto = impuesto.multiply(porcentaje);
 
 			ImpuestosXTicketTaquilla impuestosXTicketTaquilla = ImpuestoXTicketTaquillaAssembler

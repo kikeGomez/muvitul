@@ -16,7 +16,7 @@ public class VersionDAO extends GlobalHibernateDAO<Version> implements VersionDA
 		StringBuilder hql = new StringBuilder();
 		hql.append("select vrs from Version vrs ");
 		hql.append("where vrs.activo=1 ");
-		hql.append("order by vrs.idVersion desc");
+		hql.append("order by vrs.nombre asc");
 		
 		Query query = getSession().createQuery(hql.toString());
 		

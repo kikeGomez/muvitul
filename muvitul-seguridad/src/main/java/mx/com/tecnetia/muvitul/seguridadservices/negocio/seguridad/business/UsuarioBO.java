@@ -114,7 +114,7 @@ public class UsuarioBO extends GlobalService{
 		 if (UsuarioEstatusEnum.INACTIVO == usuario.getEstatusUsuario().getIdEstatus())
 		        return new LoginResponseVO(ErroresSeguridadEnum.USUARIO_INACTIVO);	
 		 
-		 List<Integer> roles = PerfilAssembler.getPerfilesId(usuario.getPerfils());
+		 List<Integer> roles = PerfilAssembler.getPerfilesId(usuario.getPerfilesXUsuarios());
 		 
 		 String pwdEncryptor = env.getProperty("jwt.password");
 		 Integer expirationMinutes = new Integer(env.getProperty("jwt.expiration.minutes"));
@@ -173,7 +173,7 @@ public class UsuarioBO extends GlobalService{
 		
 		if(!recursoVO.getPermitirATodos()){
 			//validamos si tiene permiso el usuario, para ese recurso
-			return this.contieneRol(this.recursoDAO.findById(recursoVO.getIdRecurso()).getPerfils(), roles);
+			//return this.contieneRol(this.recursoDAO.findById(recursoVO.getIdRecurso()).getPerfils(), roles);
 		}	
 			
 		return true;

@@ -17,7 +17,7 @@ public class PeliculaDAO extends GlobalHibernateDAO<Pelicula> implements Pelicul
 		StringBuilder hql = new StringBuilder();
 		hql.append("select pla from Pelicula pla join pla.cine cne ");
 		hql.append("where cne.idCine=:idCine and pla.activo=1 ");
-		hql.append("order by pla.idPelicula desc");
+		hql.append("order by pla.titulo asc");
 		
 		Query query = getSession().createQuery(hql.toString());
 		query.setParameter("idCine", idCine);

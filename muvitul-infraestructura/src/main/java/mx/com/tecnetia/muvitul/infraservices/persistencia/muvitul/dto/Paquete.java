@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 13/03/2017 10:51:10 PM by Hibernate Tools 4.3.1.Final
+// Generated 14-abr-2017 14:25:39 by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -28,7 +27,7 @@ public class Paquete implements java.io.Serializable {
 	private byte[] icono;
 	private boolean activo;
 	private Set<ProductosXPaquete> productosXPaquetes = new HashSet<ProductosXPaquete>(0);
-	private Set<PuntoVenta> puntoVentas = new HashSet<PuntoVenta>(0);
+	private Set<PaquetesXPuntoVenta> paquetesXPuntoVentas = new HashSet<PaquetesXPuntoVenta>(0);
 	private Set<PrecioXPaquete> precioXPaquetes = new HashSet<PrecioXPaquete>(0);
 	private Set<PaquetesXTicket> paquetesXTickets = new HashSet<PaquetesXTicket>(0);
 
@@ -43,13 +42,14 @@ public class Paquete implements java.io.Serializable {
 	}
 
 	public Paquete(Cine cine, String nombre, byte[] icono, boolean activo, Set<ProductosXPaquete> productosXPaquetes,
-			Set<PuntoVenta> puntoVentas, Set<PrecioXPaquete> precioXPaquetes, Set<PaquetesXTicket> paquetesXTickets) {
+			Set<PaquetesXPuntoVenta> paquetesXPuntoVentas, Set<PrecioXPaquete> precioXPaquetes,
+			Set<PaquetesXTicket> paquetesXTickets) {
 		this.cine = cine;
 		this.nombre = nombre;
 		this.icono = icono;
 		this.activo = activo;
 		this.productosXPaquetes = productosXPaquetes;
-		this.puntoVentas = puntoVentas;
+		this.paquetesXPuntoVentas = paquetesXPuntoVentas;
 		this.precioXPaquetes = precioXPaquetes;
 		this.paquetesXTickets = paquetesXTickets;
 	}
@@ -112,13 +112,13 @@ public class Paquete implements java.io.Serializable {
 		this.productosXPaquetes = productosXPaquetes;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "paquetes")
-	public Set<PuntoVenta> getPuntoVentas() {
-		return this.puntoVentas;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "paquete")
+	public Set<PaquetesXPuntoVenta> getPaquetesXPuntoVentas() {
+		return this.paquetesXPuntoVentas;
 	}
 
-	public void setPuntoVentas(Set<PuntoVenta> puntoVentas) {
-		this.puntoVentas = puntoVentas;
+	public void setPaquetesXPuntoVentas(Set<PaquetesXPuntoVenta> paquetesXPuntoVentas) {
+		this.paquetesXPuntoVentas = paquetesXPuntoVentas;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "paquete")

@@ -1,14 +1,16 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 13/03/2017 10:51:10 PM by Hibernate Tools 4.3.1.Final
+// Generated 14-abr-2017 14:25:39 by Hibernate Tools 4.3.1.Final
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -32,6 +34,7 @@ public class Programacion implements java.io.Serializable {
 	private String diaSemana;
 	private Date horario;
 	private Date fechaVigencia;
+	private boolean activo;
 	private Set<ExistenciaBoletos> existenciaBoletoses = new HashSet<ExistenciaBoletos>(0);
 	private Set<BoletosXTicket> boletosXTickets = new HashSet<BoletosXTicket>(0);
 
@@ -141,6 +144,15 @@ public class Programacion implements java.io.Serializable {
 
 	public void setFechaVigencia(Date fechaVigencia) {
 		this.fechaVigencia = fechaVigencia;
+	}
+	
+	@Column(name = "activo", nullable = false)
+	public boolean isActivo() {
+		return this.activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "programacion")

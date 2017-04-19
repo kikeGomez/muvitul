@@ -17,8 +17,7 @@ public class ExistenciaBoletoAssembler {
 
 		ExistenciaBoletoVO existenciaBoletoVO = new ExistenciaBoletoVO();
 		existenciaBoletoVO.setIdExistenciaBoletos(existenciaBoleto.getIdExistenciaBoletos());
-		existenciaBoletoVO
-				.setProgramacionVO(ProgramacionAssembler.getProgramacionVO(existenciaBoleto.getProgramacion()));
+		existenciaBoletoVO.setProgramacionVO(ProgramacionAssembler.getProgramacionVO(existenciaBoleto.getProgramacion()));
 		existenciaBoletoVO.setFechaExhibicion(existenciaBoleto.getFechaExhibicion());
 		existenciaBoletoVO.setFechaReserva(existenciaBoleto.getFechaReserva());
 		existenciaBoletoVO.setBoletosReservados(existenciaBoleto.getBoletosReservados());
@@ -34,7 +33,6 @@ public class ExistenciaBoletoAssembler {
 			return null;
 
 		ExistenciaBoletoVO existenciaBoleto = new ExistenciaBoletoVO();
-		existenciaBoleto.setIdExistenciaBoletos(null);
 		existenciaBoleto.setProgramacionVO(ProgramacionAssembler.getProgramacionVO(programacion));
 		existenciaBoleto.setFechaExhibicion(fechaExhibicion);
 		existenciaBoleto.setBoletosReservados(0);
@@ -45,6 +43,7 @@ public class ExistenciaBoletoAssembler {
 	}
 
 	public static ExistenciaBoletos getExistenciaBoleto(ExistenciaBoletoVO existenciaBoletoVO) {
+		
 		if (existenciaBoletoVO == null)
 			return null;
 

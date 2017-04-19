@@ -25,7 +25,6 @@ public class CineAssembler {
 		Cine cine = new Cine();
 		cine.setIdCine(idCine);
 
-		
 		return cine;
 	}
 	

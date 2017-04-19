@@ -9,8 +9,9 @@ public class ProgramacionVO {
 	private SalaVO salaVO;
 	private VersionVO versionVO;
 	private String diaSemana;
-	private Date horario;
+	private String horario;
 	private Date fechaVigencia;
+	private boolean activo;
 	
 	public Integer getIdProgramacion() {
 		return idProgramacion;
@@ -48,10 +49,10 @@ public class ProgramacionVO {
 	public void setDiaSemana(String diaSemana) {
 		this.diaSemana = diaSemana;
 	}
-	public Date getHorario() {
+	public String getHorario() {
 		return horario;
 	}
-	public void setHorario(Date horario) {
+	public void setHorario(String horario) {
 		this.horario = horario;
 	}
 	public Date getFechaVigencia() {
@@ -59,6 +60,12 @@ public class ProgramacionVO {
 	}
 	public void setFechaVigencia(Date fechaVigencia) {
 		this.fechaVigencia = fechaVigencia;
+	}
+	public boolean isActivo() {
+		return activo;
+	}
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 	
 }

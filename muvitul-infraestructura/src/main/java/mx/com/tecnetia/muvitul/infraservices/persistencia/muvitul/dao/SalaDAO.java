@@ -1,6 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -18,7 +17,7 @@ public class SalaDAO extends GlobalHibernateDAO<Sala> implements SalaDAOI {
 		StringBuilder hql = new StringBuilder();
 		hql.append("select sla from Sala sla join sla.cine cne ");
 		hql.append("where cne.idCine=:idCine and sla.activo=1 ");
-		hql.append("order by sla.idSala desc");
+		hql.append("order by sla.nombre asc");
 		
 		Query query = getSession().createQuery(hql.toString());
 		query.setParameter("idCine", idCine);

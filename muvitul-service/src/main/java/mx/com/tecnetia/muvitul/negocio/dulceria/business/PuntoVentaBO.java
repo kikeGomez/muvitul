@@ -23,13 +23,13 @@ public class PuntoVentaBO {
 		
 		List<PaqueteVO> paquetesVO=new ArrayList<PaqueteVO>();
 		PuntoVenta puntoVenta= puntoVentaDAO.findById(idPuntoVenta);
-		if(puntoVenta.getPaquetes()!=null && !puntoVenta.getPaquetes().isEmpty()){
-			paquetesVO.addAll(PaqueteAssembler.getPaquetesVO(puntoVenta.getPaquetes()));
-		}
-
-		if(puntoVenta.getProductos()!=null && !puntoVenta.getProductos().isEmpty()){
-			paquetesVO.addAll(PaqueteAssembler.getPaquetesVOXProducto(puntoVenta.getProductos()));
-		}
+//		if(puntoVenta.getPaquetes()!=null && !puntoVenta.getPaquetes().isEmpty()){
+//			paquetesVO.addAll(PaqueteAssembler.getPaquetesVO(puntoVenta.getPaquetes()));
+//		}
+//
+//		if(puntoVenta.getProductos()!=null && !puntoVenta.getProductos().isEmpty()){
+//			paquetesVO.addAll(PaqueteAssembler.getPaquetesVOXProducto(puntoVenta.getProductos()));
+//		}
 		
 
 		return paquetesVO ;

@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 13/03/2017 10:51:10 PM by Hibernate Tools 4.3.1.Final
+// Generated 14-abr-2017 14:25:39 by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,8 +10,6 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -33,9 +31,8 @@ public class Usuario implements java.io.Serializable {
 	private String correo;
 	private String contrasenia;
 	private String foto;
-	private Set<Cine> cines = new HashSet<Cine>(0);
 	private Set<TicketVenta> ticketVentas = new HashSet<TicketVenta>(0);
-	private Set<Perfil> perfils = new HashSet<Perfil>(0);
+	private Set<PerfilesXUsuario> perfilesXUsuarios = new HashSet<PerfilesXUsuario>(0);
 	private Set<CancelacionPago> cancelacionPagos = new HashSet<CancelacionPago>(0);
 	private Set<AutorizacionMovimiento> autorizacionMovimientos = new HashSet<AutorizacionMovimiento>(0);
 	private Set<MovimientoInventario> movimientoInventarios = new HashSet<MovimientoInventario>(0);
@@ -54,8 +51,8 @@ public class Usuario implements java.io.Serializable {
 	}
 
 	public Usuario(Cine cine, EstatusUsuario estatusUsuario, PuntoVenta puntoVenta, String nombre, String paterno,
-			String materno, String correo, String contrasenia, String foto, Set<Cine> cines,
-			Set<TicketVenta> ticketVentas, Set<Perfil> perfils, Set<CancelacionPago> cancelacionPagos,
+			String materno, String correo, String contrasenia, String foto, Set<TicketVenta> ticketVentas,
+			Set<PerfilesXUsuario> perfilesXUsuarios, Set<CancelacionPago> cancelacionPagos,
 			Set<AutorizacionMovimiento> autorizacionMovimientos, Set<MovimientoInventario> movimientoInventarios) {
 		this.cine = cine;
 		this.estatusUsuario = estatusUsuario;
@@ -66,9 +63,8 @@ public class Usuario implements java.io.Serializable {
 		this.correo = correo;
 		this.contrasenia = contrasenia;
 		this.foto = foto;
-		this.cines = cines;
 		this.ticketVentas = ticketVentas;
-		this.perfils = perfils;
+		this.perfilesXUsuarios = perfilesXUsuarios;
 		this.cancelacionPagos = cancelacionPagos;
 		this.autorizacionMovimientos = autorizacionMovimientos;
 		this.movimientoInventarios = movimientoInventarios;
@@ -170,15 +166,6 @@ public class Usuario implements java.io.Serializable {
 		this.foto = foto;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "usuarios")
-	public Set<Cine> getCines() {
-		return this.cines;
-	}
-
-	public void setCines(Set<Cine> cines) {
-		this.cines = cines;
-	}
-
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
 	public Set<TicketVenta> getTicketVentas() {
 		return this.ticketVentas;
@@ -188,16 +175,13 @@ public class Usuario implements java.io.Serializable {
 		this.ticketVentas = ticketVentas;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "perfiles_x_usuario", catalog = "muvitul", joinColumns = {
-			@JoinColumn(name = "id_usuario", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "id_perfil", nullable = false, updatable = false) })
-	public Set<Perfil> getPerfils() {
-		return this.perfils;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+	public Set<PerfilesXUsuario> getPerfilesXUsuarios() {
+		return this.perfilesXUsuarios;
 	}
 
-	public void setPerfils(Set<Perfil> perfils) {
-		this.perfils = perfils;
+	public void setPerfilesXUsuarios(Set<PerfilesXUsuario> perfilesXUsuarios) {
+		this.perfilesXUsuarios = perfilesXUsuarios;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")

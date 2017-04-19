@@ -53,14 +53,15 @@ public class ConfiguracionFacade implements ConfiguracionFacadeI {
 	}
 
 	@Override
-	public ResponseEntity<List<SalaProgramacionVO>> getProgramacionOfSala(HttpServletRequest request, Date fechaExhibicion)
-			throws BusinessGlobalException, NotFoundException {
+	public ResponseEntity<List<SalaProgramacionVO>> getProgramacionOfSala(HttpServletRequest request,
+			Date fechaExhibicion) throws BusinessGlobalException, NotFoundException {
 		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
 		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
 
 		logger.info("GetProgramacionOfSala:::IdCine[{}]:::Fecha[{}]", idCine, fechaExhibicion);
 
-		List<SalaProgramacionVO> salaProgramacionVO = configuracionController.findProgramacionOfSala(idCine, fechaExhibicion);
+		List<SalaProgramacionVO> salaProgramacionVO = configuracionController.findProgramacionOfSala(idCine,
+				fechaExhibicion);
 
 		if (salaProgramacionVO == null || salaProgramacionVO.isEmpty()) {
 			throw new NotFoundException("No encontrado");
@@ -70,33 +71,32 @@ public class ConfiguracionFacade implements ConfiguracionFacadeI {
 	}
 
 	@Override
-	public ResponseEntity<ProgramacionVO> createProgramacion(HttpServletRequest request , @RequestBody  ProgramacionVO programacionVO)
-			throws BusinessGlobalException, NotFoundException {
+	public ResponseEntity<ProgramacionVO> createProgramacion(HttpServletRequest request,
+			@RequestBody ProgramacionVO programacionVO) throws BusinessGlobalException, NotFoundException {
 
 		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
-		Integer idUsuario=(Integer) claims.get(ClaimsEnum.USUARIO);
+		Integer idUsuario = (Integer) claims.get(ClaimsEnum.USUARIO);
 		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
 
-		logger.info("CreateProgramacion:::IdUsuario[{}]:::IdCine[{}]",idUsuario,idCine);
-		
+		logger.info("CreateProgramacion:::IdUsuario[{}]:::IdCine[{}]", idUsuario, idCine);
+
 		programacionVO = configuracionController.createProgramacion(programacionVO);
 		return new ResponseEntity<ProgramacionVO>(programacionVO, HttpStatus.CREATED);
 
 	}
 
 	@Override
-	public ResponseEntity<Integer> deleteProgramacion(HttpServletRequest request ,Integer id)
+	public ResponseEntity<Integer> deleteProgramacion(HttpServletRequest request, Integer id)
 			throws BusinessGlobalException, NotFoundException {
-		
+
 		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
-		Integer idUsuario=(Integer) claims.get(ClaimsEnum.USUARIO);
+		Integer idUsuario = (Integer) claims.get(ClaimsEnum.USUARIO);
 		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
 
-		
-		logger.info("DeleteProgramacion:::IdUsuario[{}]:::IdCine[{}]",idUsuario,idCine);
-		
+		logger.info("DeleteProgramacion:::IdUsuario[{}]:::IdCine[{}]", idUsuario, idCine);
+
 		configuracionController.deleteProgramacion(id);
-		
+
 		return new ResponseEntity<Integer>(id, HttpStatus.OK);
 	}
 
@@ -116,7 +116,7 @@ public class ConfiguracionFacade implements ConfiguracionFacadeI {
 
 		return new ResponseEntity<ConfigPromocionVO>(configPromocionVO, HttpStatus.OK);
 	}
-	
+
 	@Override
 	public ResponseEntity<List<PromocionVO>> getPromociones(HttpServletRequest request, Date fechaExhibicion)
 			throws BusinessGlobalException, NotFoundException {
@@ -125,7 +125,7 @@ public class ConfiguracionFacade implements ConfiguracionFacadeI {
 
 		logger.info("GetPromociones:::IdCine[{}]:::Fecha[{}]", idCine, fechaExhibicion);
 
-		List<PromocionVO> promocionVO = configuracionController.findPromociones(idCine, fechaExhibicion);
+		List<PromocionVO> promocionVO = configuracionController.findByCineAndDate(idCine, fechaExhibicion);
 
 		if (promocionVO == null || promocionVO.isEmpty()) {
 			throw new NotFoundException("No encontrado");
@@ -137,13 +137,13 @@ public class ConfiguracionFacade implements ConfiguracionFacadeI {
 	@Override
 	public ResponseEntity<PromocionVO> createPromocion(HttpServletRequest request, @RequestBody PromocionVO promocionVO)
 			throws BusinessGlobalException, NotFoundException {
-		
+
 		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
-		Integer idUsuario=(Integer) claims.get(ClaimsEnum.USUARIO);
+		Integer idUsuario = (Integer) claims.get(ClaimsEnum.USUARIO);
 		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
 
-		logger.info("CreatePromocion:::IdUsuario[{}]:::IdCine[{}]",idUsuario,idCine);
-		CineVO cineVO= new CineVO();
+		logger.info("CreatePromocion:::IdUsuario[{}]:::IdCine[{}]", idUsuario, idCine);
+		CineVO cineVO = new CineVO();
 		cineVO.setIdCine(idCine);
 		promocionVO.setCineVO(cineVO);
 		promocionVO = configuracionController.createPromocion(promocionVO);
@@ -154,13 +154,13 @@ public class ConfiguracionFacade implements ConfiguracionFacadeI {
 	public ResponseEntity<Integer> deletePromocion(HttpServletRequest request, Integer id)
 			throws BusinessGlobalException, NotFoundException {
 		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
-		Integer idUsuario=(Integer) claims.get(ClaimsEnum.USUARIO);
+		Integer idUsuario = (Integer) claims.get(ClaimsEnum.USUARIO);
 		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
-		
-		logger.info("DeletePromocion:::IdUsuario[{}]:::IdCine[{}]",idUsuario,idCine);
-		
+
+		logger.info("DeletePromocion:::IdUsuario[{}]:::IdCine[{}]", idUsuario, idCine);
+
 		configuracionController.deletePromocion(id);
-		
+
 		return new ResponseEntity<Integer>(id, HttpStatus.OK);
 	}
 
@@ -201,33 +201,65 @@ public class ConfiguracionFacade implements ConfiguracionFacadeI {
 		return new ResponseEntity<List<PaqueteVO>>(paquetesVO, HttpStatus.OK);
 	}
 
-	
-//	@Override
-//	public ResponseEntity<ProgramacionVO> getProgramacion(HttpServletRequest request)
-//			throws BusinessGlobalException, NotFoundException {
-//		
-//		FormatoVO formatoVO= new FormatoVO();
-//		formatoVO.setIdFormato(1);
-//		
-//		PeliculaVO peliculaVO =new PeliculaVO();
-//		peliculaVO.setIdPelicula(1);
-//		
-//		SalaVO salaVO= new SalaVO();
-//		salaVO.setIdSala(1);
-//		
-//		VersionVO versionVO =new VersionVO();
-//		versionVO.setIdVersion(1);
-//		
-//		ProgramacionVO programacionVO  = new ProgramacionVO();
-//		programacionVO.setFormatoVO(formatoVO);
-//		programacionVO.setPeliculaVO(peliculaVO);
-//		programacionVO.setSalaVO(salaVO);
-//		programacionVO.setVersionVO(versionVO);
-//		programacionVO.setDiaSemana("LU");
-//		programacionVO.setHorario(new Date());
-//		programacionVO.setFechaVigencia(new Date());
-//	
-//		return new ResponseEntity<ProgramacionVO>(programacionVO, HttpStatus.OK);
-//	}
+	@Override
+	public ResponseEntity<PaqueteVO> createPaquete(HttpServletRequest request, @RequestBody PaqueteVO paqueteVO)
+			throws BusinessGlobalException, NotFoundException {
+		
+		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
+		Integer idUsuario = (Integer) claims.get(ClaimsEnum.USUARIO);
+		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
+
+		logger.info("CreatePaquete:::IdUsuario[{}]:::IdCine[{}]", idUsuario, idCine);
+
+		CineVO cineVO= new CineVO();
+		cineVO.setIdCine(idCine);
+		paqueteVO.setCineVO(cineVO);
+		paqueteVO = configuracionController.createPaquete(paqueteVO);
+		return new ResponseEntity<PaqueteVO>(paqueteVO, HttpStatus.CREATED);
+	}
+
+	@Override
+	public ResponseEntity<Integer> deletePaquete(HttpServletRequest request, Integer id)
+			throws BusinessGlobalException, NotFoundException {
+		
+		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
+		Integer idUsuario = (Integer) claims.get(ClaimsEnum.USUARIO);
+		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
+
+		logger.info("DeletePaquete:::IdUsuario[{}]:::IdCine[{}]", idUsuario, idCine);
+
+		configuracionController.deletePaquete(id);
+
+		return new ResponseEntity<Integer>(id, HttpStatus.OK);
+	}
+
+	// @Override
+	// public ResponseEntity<ProgramacionVO> getProgramacion(HttpServletRequest
+	// request)
+	// throws BusinessGlobalException, NotFoundException {
+	//
+	// FormatoVO formatoVO = new FormatoVO();
+	// formatoVO.setIdFormato(1);
+	//
+	// PeliculaVO peliculaVO = new PeliculaVO();
+	// peliculaVO.setIdPelicula(1);
+	//
+	// SalaVO salaVO = new SalaVO();
+	// salaVO.setIdSala(1);
+	//
+	// VersionVO versionVO = new VersionVO();
+	// versionVO.setIdVersion(1);
+	//
+	// ProgramacionVO programacionVO = new ProgramacionVO();
+	// programacionVO.setFormatoVO(formatoVO);
+	// programacionVO.setPeliculaVO(peliculaVO);
+	// programacionVO.setSalaVO(salaVO);
+	// programacionVO.setVersionVO(versionVO);
+	// programacionVO.setDiaSemana("LU");
+	// programacionVO.setHorario(null);
+	// programacionVO.setFechaVigencia(new Date());
+	// programacionVO.setActivo(true);
+	// return new ResponseEntity<ProgramacionVO>(programacionVO, HttpStatus.OK);
+	// }
 
 }

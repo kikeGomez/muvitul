@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dao.PromocionDAOI;
+import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.DetallePromoXPromo;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.DetallePromocion;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Promocion;
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
@@ -26,7 +27,7 @@ public class PromocionBO {
 	@Autowired
 	private PromocionDAOI promocionDAO;
 
-	public List<PromocionVO> findByCineAndDate(Integer idCine, Integer idPromocionPara, Date fechaExhibicion)
+	public List<PromocionVO> findByCineAndExhibicion(Integer idCine, Integer idPromocionPara, Date fechaExhibicion)
 			throws BusinessGlobalException {
 
 		return PromocionAssembler
@@ -56,22 +57,23 @@ public class PromocionBO {
 			}
 		}
 
-		Collections.sort(importes);
-
 		if (promocionBoletoVO != null) {
 			Promocion promocion = promocionDAO.findById(promocionBoletoVO.getPromocionVO().getIdPromocion());
 
-			if (promocion.getDetallePromocions() != null) {
+			if (promocion.getDetallePromoXPromos() != null) {
 
-				DetallePromocion detallePromocion = promocion.getDetallePromocions().iterator().next();
+				DetallePromoXPromo detallePromoXPromo = promocion.getDetallePromoXPromos().iterator().next();
+				DetallePromocion detallePromocion = detallePromoXPromo.getDetallePromocion();
+
 				int varN = detallePromocion.getVarN() == null ? 0 : detallePromocion.getVarN().intValue();
 				int varM = detallePromocion.getVarM() == null ? 0 : detallePromocion.getVarM().intValue();
-				int varPorcentaje = detallePromocion.getPorcentaje() == null ? 0 : detallePromocion.getPorcentaje().intValue();
+				int varPorcentaje = detallePromocion.getPorcentaje() == null ? 0
+						: detallePromocion.getPorcentaje().intValue();
 				int varPrecio = detallePromocion.getPrecio() == null ? 0 : detallePromocion.getPrecio().intValue();
 
 				switch (promocion.getTipoPromocion().getIdTipoPromocion()) {
 				case Constantes.PROMOCION_NXM:
-					
+					Collections.sort(importes);
 					if (cantidadBoletos >= varN) {
 						int limit = varN - varM;
 						for (int i = 0; i < limit; i++) {
@@ -79,26 +81,26 @@ public class PromocionBO {
 						}
 					}
 					break;
-					
-				case Constantes.PROMOCION_NXFIJO:
-					
-					if (cantidadBoletos >= varN && varPrecio> 0) {
 
+				case Constantes.PROMOCION_NXFIJO:
+
+					if (cantidadBoletos >= varN && varPrecio > 0) {
+						Collections.sort(importes,Collections.reverseOrder());
 						BigDecimal importe = new BigDecimal(0);
-						
+
 						for (int i = 0; i < varN; i++) {
 							importe = importe.add(importes.get(i));
 						}
-						
-						importe=importe.subtract(detallePromocion.getPrecio());
-						if (importe.intValue()>0){
-							descuento=descuento.add(importe);
+
+						importe = importe.subtract(detallePromocion.getPrecio());
+						if (importe.intValue() > 0) {
+							descuento = descuento.add(importe);
 						}
-						
+
 					}
 
 					break;
-					
+
 				case Constantes.PROMOCION_PORCIENTO:
 
 					if (cantidadBoletos >= varN && varPorcentaje > 0) {
@@ -109,7 +111,7 @@ public class PromocionBO {
 						descuento = descuento.multiply(porcentaje);
 					}
 					break;
-					
+
 				case Constantes.PROMOCION_REGALOX:
 					break;
 				default:

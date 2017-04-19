@@ -18,8 +18,9 @@ import mx.com.tecnetia.muvitul.negocio.configuracion.vo.FormaPagoVO;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/catalogo")
 public interface CatalogoFacadeI {
-	
+
 	@RequestMapping(value = "/formaspago", method = RequestMethod.GET)
-	public ResponseEntity<List<FormaPagoVO>> getFormasPago(HttpServletRequest request) throws BusinessGlobalException, NotFoundException;
+	public ResponseEntity<List<FormaPagoVO>> getFormasPago(HttpServletRequest request)
+			throws BusinessGlobalException, NotFoundException;
 
 }

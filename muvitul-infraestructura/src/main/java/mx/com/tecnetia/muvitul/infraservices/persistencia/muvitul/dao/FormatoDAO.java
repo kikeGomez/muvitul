@@ -16,7 +16,7 @@ public class FormatoDAO extends GlobalHibernateDAO<Formato> implements FormatoDA
 		StringBuilder hql = new StringBuilder();
 		hql.append("select fmt from Formato fmt join fmt.cine cne ");
 		hql.append("where cne.idCine=:idCine and fmt.activo=1 ");
-		hql.append("order by fmt.idFormato desc");
+		hql.append("order by fmt.nombre asc");
 		
 		Query query = getSession().createQuery(hql.toString());
 		query.setParameter("idCine", idCine);

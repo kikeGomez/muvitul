@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 13/03/2017 10:51:10 PM by Hibernate Tools 4.3.1.Final
+// Generated 14-abr-2017 14:25:39 by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,7 +26,7 @@ public class Recurso implements java.io.Serializable {
 	private boolean permitirATodos;
 	private Set<Menu> menusForIdRecurso = new HashSet<Menu>(0);
 	private Set<Menu> menusForIdRecursoPadre = new HashSet<Menu>(0);
-	private Set<Perfil> perfils = new HashSet<Perfil>(0);
+	private Set<RecursosXPerfil> recursosXPerfils = new HashSet<RecursosXPerfil>(0);
 
 	public Recurso() {
 	}
@@ -40,14 +39,14 @@ public class Recurso implements java.io.Serializable {
 	}
 
 	public Recurso(String nombre, String recursoUrl, boolean activo, boolean permitirATodos,
-			Set<Menu> menusForIdRecurso, Set<Menu> menusForIdRecursoPadre, Set<Perfil> perfils) {
+			Set<Menu> menusForIdRecurso, Set<Menu> menusForIdRecursoPadre, Set<RecursosXPerfil> recursosXPerfils) {
 		this.nombre = nombre;
 		this.recursoUrl = recursoUrl;
 		this.activo = activo;
 		this.permitirATodos = permitirATodos;
 		this.menusForIdRecurso = menusForIdRecurso;
 		this.menusForIdRecursoPadre = menusForIdRecursoPadre;
-		this.perfils = perfils;
+		this.recursosXPerfils = recursosXPerfils;
 	}
 
 	@Id
@@ -116,13 +115,13 @@ public class Recurso implements java.io.Serializable {
 		this.menusForIdRecursoPadre = menusForIdRecursoPadre;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "recursos")
-	public Set<Perfil> getPerfils() {
-		return this.perfils;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "recurso")
+	public Set<RecursosXPerfil> getRecursosXPerfils() {
+		return this.recursosXPerfils;
 	}
 
-	public void setPerfils(Set<Perfil> perfils) {
-		this.perfils = perfils;
+	public void setRecursosXPerfils(Set<RecursosXPerfil> recursosXPerfils) {
+		this.recursosXPerfils = recursosXPerfils;
 	}
 
 }

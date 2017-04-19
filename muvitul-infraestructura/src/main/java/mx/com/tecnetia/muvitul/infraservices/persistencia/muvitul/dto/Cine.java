@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 13/03/2017 10:51:10 PM by Hibernate Tools 4.3.1.Final
+// Generated 14-abr-2017 14:25:39 by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,8 +10,6 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -29,12 +27,11 @@ public class Cine implements java.io.Serializable {
 	private String nombre;
 	private boolean activo;
 	private Set<ClasificacionArt> clasificacionArts = new HashSet<ClasificacionArt>(0);
-	private Set<Usuario> usuarios = new HashSet<Usuario>(0);
 	private Set<Articulo> articulos = new HashSet<Articulo>(0);
 	private Set<Sala> salas = new HashSet<Sala>(0);
 	private Set<PuntoVenta> puntoVentas = new HashSet<PuntoVenta>(0);
 	private Set<Formato> formatos = new HashSet<Formato>(0);
-	private Set<Usuario> usuarios_1 = new HashSet<Usuario>(0);
+	private Set<Usuario> usuarios = new HashSet<Usuario>(0);
 	private Set<Proveedor> proveedors = new HashSet<Proveedor>(0);
 	private Set<Promocion> promocions = new HashSet<Promocion>(0);
 	private Set<Pelicula> peliculas = new HashSet<Pelicula>(0);
@@ -56,8 +53,8 @@ public class Cine implements java.io.Serializable {
 	}
 
 	public Cine(Contacto contacto, Empresa empresa, String nombre, boolean activo,
-			Set<ClasificacionArt> clasificacionArts, Set<Usuario> usuarios, Set<Articulo> articulos, Set<Sala> salas,
-			Set<PuntoVenta> puntoVentas, Set<Formato> formatos, Set<Usuario> usuarios_1, Set<Proveedor> proveedors,
+			Set<ClasificacionArt> clasificacionArts, Set<Articulo> articulos, Set<Sala> salas,
+			Set<PuntoVenta> puntoVentas, Set<Formato> formatos, Set<Usuario> usuarios, Set<Proveedor> proveedors,
 			Set<Promocion> promocions, Set<Pelicula> peliculas, Set<MateriaPrima> materiaPrimas, Set<Regalo> regalos,
 			Set<Paquete> paquetes, Set<ImpuestoBoleto> impuestoBoletos, Set<ImpuestoXProducto> impuestoXProductos,
 			Set<Producto> productos) {
@@ -66,12 +63,11 @@ public class Cine implements java.io.Serializable {
 		this.nombre = nombre;
 		this.activo = activo;
 		this.clasificacionArts = clasificacionArts;
-		this.usuarios = usuarios;
 		this.articulos = articulos;
 		this.salas = salas;
 		this.puntoVentas = puntoVentas;
 		this.formatos = formatos;
-		this.usuarios_1 = usuarios_1;
+		this.usuarios = usuarios;
 		this.proveedors = proveedors;
 		this.promocions = promocions;
 		this.peliculas = peliculas;
@@ -142,18 +138,6 @@ public class Cine implements java.io.Serializable {
 		this.clasificacionArts = clasificacionArts;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "usuarios_x_cine", catalog = "muvitul", joinColumns = {
-			@JoinColumn(name = "id_cine", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "id_usuario", nullable = false, updatable = false) })
-	public Set<Usuario> getUsuarios() {
-		return this.usuarios;
-	}
-
-	public void setUsuarios(Set<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
-
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cine")
 	public Set<Articulo> getArticulos() {
 		return this.articulos;
@@ -191,12 +175,12 @@ public class Cine implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cine")
-	public Set<Usuario> getUsuarios_1() {
-		return this.usuarios_1;
+	public Set<Usuario> getUsuarios() {
+		return this.usuarios;
 	}
 
-	public void setUsuarios_1(Set<Usuario> usuarios_1) {
-		this.usuarios_1 = usuarios_1;
+	public void setUsuarios(Set<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cine")

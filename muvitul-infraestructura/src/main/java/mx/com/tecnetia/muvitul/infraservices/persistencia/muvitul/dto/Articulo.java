@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 13/03/2017 10:51:10 PM by Hibernate Tools 4.3.1.Final
+// Generated 14-abr-2017 14:25:39 by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -29,7 +28,7 @@ public class Articulo implements java.io.Serializable {
 	private String nombre;
 	private boolean activo;
 	private long puntoReorden;
-	private Set<PuntoVenta> puntoVentas = new HashSet<PuntoVenta>(0);
+	private Set<ArticulosXPuntoVenta> articulosXPuntoVentas = new HashSet<ArticulosXPuntoVenta>(0);
 	private Set<MovimientoInventario> movimientoInventarios = new HashSet<MovimientoInventario>(0);
 	private Set<ArticulosXProducto> articulosXProductos = new HashSet<ArticulosXProducto>(0);
 
@@ -47,7 +46,7 @@ public class Articulo implements java.io.Serializable {
 	}
 
 	public Articulo(Cine cine, ClasificacionArt clasificacionArt, UnidadMedida unidadMedida, String nombre,
-			boolean activo, long puntoReorden, Set<PuntoVenta> puntoVentas,
+			boolean activo, long puntoReorden, Set<ArticulosXPuntoVenta> articulosXPuntoVentas,
 			Set<MovimientoInventario> movimientoInventarios, Set<ArticulosXProducto> articulosXProductos) {
 		this.cine = cine;
 		this.clasificacionArt = clasificacionArt;
@@ -55,7 +54,7 @@ public class Articulo implements java.io.Serializable {
 		this.nombre = nombre;
 		this.activo = activo;
 		this.puntoReorden = puntoReorden;
-		this.puntoVentas = puntoVentas;
+		this.articulosXPuntoVentas = articulosXPuntoVentas;
 		this.movimientoInventarios = movimientoInventarios;
 		this.articulosXProductos = articulosXProductos;
 	}
@@ -129,13 +128,13 @@ public class Articulo implements java.io.Serializable {
 		this.puntoReorden = puntoReorden;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "articulos")
-	public Set<PuntoVenta> getPuntoVentas() {
-		return this.puntoVentas;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "articulo")
+	public Set<ArticulosXPuntoVenta> getArticulosXPuntoVentas() {
+		return this.articulosXPuntoVentas;
 	}
 
-	public void setPuntoVentas(Set<PuntoVenta> puntoVentas) {
-		this.puntoVentas = puntoVentas;
+	public void setArticulosXPuntoVentas(Set<ArticulosXPuntoVenta> articulosXPuntoVentas) {
+		this.articulosXPuntoVentas = articulosXPuntoVentas;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "articulo")

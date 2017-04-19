@@ -17,7 +17,7 @@ public class ProductoDAO extends GlobalHibernateDAO<Producto> implements Product
 		StringBuilder hql = new StringBuilder();
 		hql.append("select pdt from Producto pdt join pdt.cine cne ");
 		hql.append("where cne.idCine=:idCine and pdt.activo=1 ");
-		hql.append("order by pdt.idProducto desc");
+		hql.append("order by pdt.nombre asc");
 		
 		Query query = getSession().createQuery(hql.toString());
 		query.setParameter("idCine", idCine);

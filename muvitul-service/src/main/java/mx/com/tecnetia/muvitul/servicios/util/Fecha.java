@@ -14,4 +14,14 @@ public class Fecha {
 		return days[numberDay - 1];
 	}
 
+	public static Date getTime(String date) {
+		
+		String[] parts = date.split(":");
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(parts[0]));
+		cal.set(Calendar.MINUTE, Integer.parseInt( parts[1]));
+		cal.set(Calendar.SECOND, 0);
+		
+		return cal.getTime();
+	}
 }

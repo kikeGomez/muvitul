@@ -22,7 +22,7 @@ public class PromocionAssembler {
 		promocion.setDescripcion(promocionVO.getDescripcion());
 		promocion.setFechaInicio(promocionVO.getFechaInicio());
 		promocion.setFechaFin(promocionVO.getFechaFin());
-		promocion.setDetallePromocions(DetallePromocionAssembler.getDetallePromociones(promocionVO.getDetallePromocionesVO()));
+		//promocion.setDetallePromocions(DetallePromocionAssembler.getDetallePromociones(promocionVO.getDetallePromocionesVO()));
 
 		return promocion;
 	}
@@ -42,7 +42,7 @@ public class PromocionAssembler {
 		promocionVO.setDescripcion(promocion.getDescripcion());
 		promocionVO.setFechaInicio(promocion.getFechaInicio());
 		promocionVO.setFechaFin(promocion.getFechaFin());
-		promocionVO.setDetallePromocionesVO(DetallePromocionAssembler.getDetallePromocionesVO(promocion.getDetallePromocions()));
+		promocionVO.setDetallePromocionesVO(DetallePromocionAssembler.getDetallePromocionesVO(promocion.getDetallePromoXPromos()));
 		
 		return promocionVO;
 	}

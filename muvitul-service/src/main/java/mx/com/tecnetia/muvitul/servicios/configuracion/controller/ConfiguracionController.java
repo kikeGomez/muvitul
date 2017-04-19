@@ -57,7 +57,7 @@ public class ConfiguracionController {
 		return configPromocionBO.findConfigByCine(idCine);
 	}
 
-	public List<PromocionVO> findPromociones(Integer idCine, Date fecha) {
+	public List<PromocionVO> findByCineAndDate(Integer idCine, Date fecha) {
 		return configPromocionBO.findByCineAndDate(idCine, fecha);
 	}
 
@@ -68,6 +68,15 @@ public class ConfiguracionController {
 	public void deletePromocion(Integer idPromocion) {
 		configPromocionBO.delete(idPromocion);
 	}
+
+	public PaqueteVO createPaquete(PaqueteVO paqueteVO) {
+		return paqueteBO.save(paqueteVO);
+	}
+
+	public void deletePaquete(Integer id) {
+		paqueteBO.delete(id);
+	}
+
 
 
 }

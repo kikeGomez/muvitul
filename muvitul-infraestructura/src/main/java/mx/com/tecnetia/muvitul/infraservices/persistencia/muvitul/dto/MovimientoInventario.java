@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 13/03/2017 10:51:10 PM by Hibernate Tools 4.3.1.Final
+// Generated 14-abr-2017 14:25:39 by Hibernate Tools 4.3.1.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -40,10 +40,9 @@ public class MovimientoInventario implements java.io.Serializable {
 	public MovimientoInventario() {
 	}
 
-	public MovimientoInventario(Articulo articulo, Proveedor proveedor, TipoMovimientoInv tipoMovimientoInv,
-			Usuario usuario, long cantidad, Date fecha, BigDecimal importe, long existenciaActual) {
+	public MovimientoInventario(Articulo articulo, TipoMovimientoInv tipoMovimientoInv, Usuario usuario, long cantidad,
+			Date fecha, BigDecimal importe, long existenciaActual) {
 		this.articulo = articulo;
-		this.proveedor = proveedor;
 		this.tipoMovimientoInv = tipoMovimientoInv;
 		this.usuario = usuario;
 		this.cantidad = cantidad;
@@ -90,7 +89,7 @@ public class MovimientoInventario implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_proveedor", nullable = false)
+	@JoinColumn(name = "id_proveedor")
 	public Proveedor getProveedor() {
 		return this.proveedor;
 	}

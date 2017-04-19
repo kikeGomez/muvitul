@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.DetallePromoXPromo;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.DetallePromocion;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.DetallePromocionVO;
 
@@ -27,15 +28,15 @@ public class DetallePromocionAssembler {
 	}
 	
 	
-	public static List<DetallePromocionVO> getDetallePromocionesVO(Set<DetallePromocion> detallePromociones){
+	public static List<DetallePromocionVO> getDetallePromocionesVO(Set<DetallePromoXPromo> detallesPromoXPromo){
 
-		if(detallePromociones==null || detallePromociones.isEmpty())
+		if(detallesPromoXPromo==null || detallesPromoXPromo.isEmpty())
 			return null;
 		
 		List<DetallePromocionVO> detallePromocionesVO = new ArrayList<DetallePromocionVO>();
 		
-		for (DetallePromocion detallePromocion : detallePromociones) {
-			detallePromocionesVO.add(DetallePromocionAssembler.getDetallePromocionVO(detallePromocion));
+		for (DetallePromoXPromo detallePromoXPromo : detallesPromoXPromo) {
+			detallePromocionesVO.add(DetallePromocionAssembler.getDetallePromocionVO(detallePromoXPromo.getDetallePromocion()));
 		}
 
 		return detallePromocionesVO;

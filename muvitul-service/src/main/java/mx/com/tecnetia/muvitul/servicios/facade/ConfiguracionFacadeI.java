@@ -32,22 +32,22 @@ public interface ConfiguracionFacadeI {
 	public ResponseEntity<ConfigProgramacionVO> getConfigProgramacion(HttpServletRequest request)
 			throws BusinessGlobalException, NotFoundException;
 
-	 @RequestMapping(value = "/programaciones", method = RequestMethod.GET)
-	 public ResponseEntity<List<SalaProgramacionVO>>
-	 getProgramacionOfSala(HttpServletRequest request, Date fechaExhibicion)
-	 throws BusinessGlobalException, NotFoundException;
+	@RequestMapping(value = "/programaciones", method = RequestMethod.GET)
+	public ResponseEntity<List<SalaProgramacionVO>> getProgramacionOfSala(HttpServletRequest request,
+			Date fechaExhibicion) throws BusinessGlobalException, NotFoundException;
 
-//	@RequestMapping(value = "/programaciones", method = RequestMethod.GET)
-//	public ResponseEntity<ProgramacionVO> getProgramacion(HttpServletRequest request)
-//			throws BusinessGlobalException, NotFoundException;
+	// @RequestMapping(value = "/programaciones", method = RequestMethod.GET)
+	// public ResponseEntity<ProgramacionVO> getProgramacion(HttpServletRequest
+	// request)
+	// throws BusinessGlobalException, NotFoundException;
 
 	@RequestMapping(value = "/programaciones", method = RequestMethod.POST)
 	public ResponseEntity<ProgramacionVO> createProgramacion(HttpServletRequest request,
 			@RequestBody ProgramacionVO programacionVO) throws BusinessGlobalException, NotFoundException;
 
 	@RequestMapping(value = "/programaciones", method = RequestMethod.DELETE)
-	public ResponseEntity<Integer> deleteProgramacion(HttpServletRequest request, @RequestParam(value = "id") Integer id)
-			throws BusinessGlobalException, NotFoundException;
+	public ResponseEntity<Integer> deleteProgramacion(HttpServletRequest request,
+			@RequestParam(value = "id") Integer id) throws BusinessGlobalException, NotFoundException;
 
 	@RequestMapping(value = "/configPromociones", method = RequestMethod.GET)
 	public ResponseEntity<ConfigPromocionVO> getConfigPromocion(HttpServletRequest request)
@@ -65,14 +65,22 @@ public interface ConfiguracionFacadeI {
 	public ResponseEntity<Integer> deletePromocion(HttpServletRequest request, @RequestParam(value = "id") Integer id)
 			throws BusinessGlobalException, NotFoundException;
 
-	// OK
+
 	@RequestMapping(value = "/productos", method = RequestMethod.GET)
 	public ResponseEntity<List<ProductoVO>> getProductos(HttpServletRequest request)
 			throws BusinessGlobalException, NotFoundException;
 
-	// Analisis
 	@RequestMapping(value = "/paquetes", method = RequestMethod.GET)
 	public ResponseEntity<List<PaqueteVO>> getPaquetes(HttpServletRequest request)
 			throws BusinessGlobalException, NotFoundException;
 
+	@RequestMapping(value = "/paquetes", method = RequestMethod.POST)
+	public ResponseEntity<PaqueteVO> createPaquete(HttpServletRequest request, @RequestBody PaqueteVO paqueteVO)
+			throws BusinessGlobalException, NotFoundException;
+	
+	@RequestMapping(value = "/paquetes", method = RequestMethod.DELETE)
+	public ResponseEntity<Integer> deletePaquete(HttpServletRequest request, @RequestParam(value = "id") Integer id)
+			throws BusinessGlobalException, NotFoundException;
+
+	
 }

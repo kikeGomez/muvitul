@@ -14,6 +14,8 @@ public class ProgramacionVO {
 	@JsonFormat(pattern="HH:mm:ss")
 	private Date horario;
 	private Date fechaVigencia;
+	private boolean activo;
+
 	/**Addicional**/
 	private ExistenciaBoletoVO existenciaBoletoVO;
 //	private Set<ExistenciaBoletos> existenciaBoletoses = new HashSet<ExistenciaBoletos>(0);
@@ -61,11 +63,16 @@ public class ProgramacionVO {
 	public void setHorario(Date horario) {
 		this.horario = horario;
 	}
-
 	public Date getFechaVigencia() {
 		return fechaVigencia;
 	}
 	public void setFechaVigencia(Date fechaVigencia) {
 		this.fechaVigencia = fechaVigencia;
+	}
+	public boolean isActivo() {
+		return activo;
+	}
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 }

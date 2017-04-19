@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 13/03/2017 10:51:10 PM by Hibernate Tools 4.3.1.Final
+// Generated 14-abr-2017 14:25:39 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -11,8 +11,6 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -34,7 +32,7 @@ public class Promocion implements java.io.Serializable {
 	private String descripcion;
 	private Date fechaInicio;
 	private Date fechaFin;
-	private Set<DetallePromocion> detallePromocions = new HashSet<DetallePromocion>(0);
+	private Set<DetallePromoXPromo> detallePromoXPromos = new HashSet<DetallePromoXPromo>(0);
 	private Set<PromocionesXTicket> promocionesXTickets = new HashSet<PromocionesXTicket>(0);
 
 	public Promocion() {
@@ -52,7 +50,7 @@ public class Promocion implements java.io.Serializable {
 	}
 
 	public Promocion(Cine cine, PromocionPara promocionPara, TipoPromocion tipoPromocion, String nombre,
-			String descripcion, Date fechaInicio, Date fechaFin, Set<DetallePromocion> detallePromocions,
+			String descripcion, Date fechaInicio, Date fechaFin, Set<DetallePromoXPromo> detallePromoXPromos,
 			Set<PromocionesXTicket> promocionesXTickets) {
 		this.cine = cine;
 		this.promocionPara = promocionPara;
@@ -61,7 +59,7 @@ public class Promocion implements java.io.Serializable {
 		this.descripcion = descripcion;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
-		this.detallePromocions = detallePromocions;
+		this.detallePromoXPromos = detallePromoXPromos;
 		this.promocionesXTickets = promocionesXTickets;
 	}
 
@@ -145,16 +143,13 @@ public class Promocion implements java.io.Serializable {
 		this.fechaFin = fechaFin;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "detalle_promo_x_promo", catalog = "muvitul", joinColumns = {
-			@JoinColumn(name = "id_promocion", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "id_detalle_promocion", nullable = false, updatable = false) })
-	public Set<DetallePromocion> getDetallePromocions() {
-		return this.detallePromocions;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "promocion")
+	public Set<DetallePromoXPromo> getDetallePromoXPromos() {
+		return this.detallePromoXPromos;
 	}
 
-	public void setDetallePromocions(Set<DetallePromocion> detallePromocions) {
-		this.detallePromocions = detallePromocions;
+	public void setDetallePromoXPromos(Set<DetallePromoXPromo> detallePromoXPromos) {
+		this.detallePromoXPromos = detallePromoXPromos;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "promocion")

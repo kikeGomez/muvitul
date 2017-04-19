@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 13/03/2017 10:51:10 PM by Hibernate Tools 4.3.1.Final
+// Generated 14-abr-2017 14:25:39 by Hibernate Tools 4.3.1.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -39,6 +40,7 @@ public class TicketVenta implements java.io.Serializable {
 	private Set<Pago> pagos = new HashSet<Pago>(0);
 	private Set<PaquetesXTicket> paquetesXTickets = new HashSet<PaquetesXTicket>(0);
 	private Set<ImpuestosXTicketProducto> impuestosXTicketProductos = new HashSet<ImpuestosXTicketProducto>(0);
+	private ImpuestosXTicketPaquete impuestosXTicketPaquete;
 
 	public TicketVenta() {
 	}
@@ -57,7 +59,7 @@ public class TicketVenta implements java.io.Serializable {
 			BigDecimal total, Set<ProductosXTicket> productosXTickets,
 			Set<ImpuestosXTicketTaquilla> impuestosXTicketTaquillas, Set<PromocionesXTicket> promocionesXTickets,
 			Set<BoletosXTicket> boletosXTickets, Set<Pago> pagos, Set<PaquetesXTicket> paquetesXTickets,
-			Set<ImpuestosXTicketProducto> impuestosXTicketProductos) {
+			Set<ImpuestosXTicketProducto> impuestosXTicketProductos, ImpuestosXTicketPaquete impuestosXTicketPaquete) {
 		this.puntoVenta = puntoVenta;
 		this.usuario = usuario;
 		this.fecha = fecha;
@@ -71,6 +73,7 @@ public class TicketVenta implements java.io.Serializable {
 		this.pagos = pagos;
 		this.paquetesXTickets = paquetesXTickets;
 		this.impuestosXTicketProductos = impuestosXTicketProductos;
+		this.impuestosXTicketPaquete = impuestosXTicketPaquete;
 	}
 
 	@Id
@@ -203,6 +206,15 @@ public class TicketVenta implements java.io.Serializable {
 
 	public void setImpuestosXTicketProductos(Set<ImpuestosXTicketProducto> impuestosXTicketProductos) {
 		this.impuestosXTicketProductos = impuestosXTicketProductos;
+	}
+
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "ticketVenta")
+	public ImpuestosXTicketPaquete getImpuestosXTicketPaquete() {
+		return this.impuestosXTicketPaquete;
+	}
+
+	public void setImpuestosXTicketPaquete(ImpuestosXTicketPaquete impuestosXTicketPaquete) {
+		this.impuestosXTicketPaquete = impuestosXTicketPaquete;
 	}
 
 }

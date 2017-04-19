@@ -37,11 +37,11 @@ public class VentaBoletoController {
 	
 	
 	public List<PeliculaVO> getPeliculasByCine(Integer idCine,String diaSemana, Date fechaExhibicion ) throws BusinessGlobalException {
-		return peliculaBO.findByCineAndDay(idCine,diaSemana, fechaExhibicion);
+		return peliculaBO.findByCineDiaAndExhibicion(idCine,diaSemana, fechaExhibicion);
 	}
 	
 	public List<PromocionVO> getPromocionesByCine(Integer idCine, Integer idPromocionPara, Date fechaExhibicion) throws BusinessGlobalException {
-		return promocionBO.findByCineAndDate(idCine,idPromocionPara,fechaExhibicion);
+		return promocionBO.findByCineAndExhibicion(idCine,idPromocionPara,fechaExhibicion);
 	}
 
 	public BigDecimal getDescuentoByPromocion(PromocionBoletoVO promocionBoletoVO) throws BusinessGlobalException{
@@ -53,7 +53,7 @@ public class VentaBoletoController {
 	}
 
 	public ExistenciaBoletoVO getExistenciaBoleto(Integer idProgramacion, Integer idSala, Date fechaExhibicion) throws BusinessGlobalException{
-		return existenciaBoletoBO.findByIdProgramacion(idProgramacion, idSala, fechaExhibicion);
+		return existenciaBoletoBO.findByProgramacionSalaAndExhibicion(idProgramacion, idSala, fechaExhibicion);
 	}
 	
 	public ExistenciaBoletoVO updateExistenciaBoleto(ExistenciaBoletoVO existenciaBoletoVO) throws BusinessGlobalException {

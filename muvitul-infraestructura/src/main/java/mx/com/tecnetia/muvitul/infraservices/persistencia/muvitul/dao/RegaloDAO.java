@@ -16,7 +16,7 @@ public class RegaloDAO extends GlobalHibernateDAO<Regalo> implements RegaloDAOI 
 		StringBuilder hql = new StringBuilder();
 		hql.append("select rgl from Regalo rgl join rgl.cine cne ");
 		hql.append("where cne.idCine=:idCine ");
-		hql.append("order by rgl.idRegalo desc");
+		hql.append("order by rgl.nombre asc");
 		
 		Query query = getSession().createQuery(hql.toString());
 		query.setParameter("idCine", idCine);

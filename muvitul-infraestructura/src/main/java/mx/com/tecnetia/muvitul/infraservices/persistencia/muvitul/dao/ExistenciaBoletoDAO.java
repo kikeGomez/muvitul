@@ -16,7 +16,7 @@ public class ExistenciaBoletoDAO extends GlobalHibernateDAO<ExistenciaBoletos> i
 	public ExistenciaBoletos findByIdProgramacion(Integer idProgramacion, Date fechaExhibicion) {
 		StringBuilder hql = new StringBuilder();
 		hql.append("select exb from ExistenciaBoletos exb join exb.programacion pgr join pgr.sala sla ");
-		hql.append("where pgr.idProgramacion=:idProgramacion and exb.fechaExhibicion=:fechaExhibicion " );
+		hql.append("where pgr.idProgramacion=:idProgramacion and exb.fechaExhibicion=:fechaExhibicion and pgr.activo=1 " );
 		hql.append("order by exb.idExistenciaBoletos desc ");
 
 		Query query = getSession().createQuery(hql.toString());

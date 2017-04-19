@@ -19,6 +19,7 @@ public class PaqueteAssembler {
 		paqueteVO.setNombre(paquete.getNombre());
 		paqueteVO.setIcono(paquete.getIcono());
 		paqueteVO.setActivo(paquete.isActivo());
+		paqueteVO.setProductosXPaqueteVO(ProductoXPaqueteAssembler.getProductosXPaqueteVO(paquete.getProductosXPaquetes()));
 		
 		return paqueteVO;
 	}
@@ -35,6 +36,21 @@ public class PaqueteAssembler {
 		}
 
 		return paquetesVO;
+	}
+
+	public static Paquete getPaquete(PaqueteVO paqueteVO) {
+		
+		if(paqueteVO==null)
+			return null;
+		
+		Paquete paquete = new Paquete();
+		paquete.setIdPaquete(paqueteVO.getIdPaquete());
+		paquete.setCine(CineAssembler.getCine(paqueteVO.getCineVO().getIdCine()));
+		paquete.setNombre(paqueteVO.getNombre());
+		paquete.setIcono(paqueteVO.getIcono());
+		paquete.setActivo(paqueteVO.isActivo());
+
+		return paquete;
 	}
 	
 }

@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 13/03/2017 10:51:10 PM by Hibernate Tools 4.3.1.Final
+// Generated 14-abr-2017 14:25:39 by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,9 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -23,8 +21,8 @@ public class Perfil implements java.io.Serializable {
 
 	private Integer idPerfil;
 	private String nombre;
-	private Set<Usuario> usuarios = new HashSet<Usuario>(0);
-	private Set<Recurso> recursos = new HashSet<Recurso>(0);
+	private Set<PerfilesXUsuario> perfilesXUsuarios = new HashSet<PerfilesXUsuario>(0);
+	private Set<RecursosXPerfil> recursosXPerfils = new HashSet<RecursosXPerfil>(0);
 
 	public Perfil() {
 	}
@@ -33,10 +31,10 @@ public class Perfil implements java.io.Serializable {
 		this.nombre = nombre;
 	}
 
-	public Perfil(String nombre, Set<Usuario> usuarios, Set<Recurso> recursos) {
+	public Perfil(String nombre, Set<PerfilesXUsuario> perfilesXUsuarios, Set<RecursosXPerfil> recursosXPerfils) {
 		this.nombre = nombre;
-		this.usuarios = usuarios;
-		this.recursos = recursos;
+		this.perfilesXUsuarios = perfilesXUsuarios;
+		this.recursosXPerfils = recursosXPerfils;
 	}
 
 	@Id
@@ -60,25 +58,22 @@ public class Perfil implements java.io.Serializable {
 		this.nombre = nombre;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "perfils")
-	public Set<Usuario> getUsuarios() {
-		return this.usuarios;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "perfil")
+	public Set<PerfilesXUsuario> getPerfilesXUsuarios() {
+		return this.perfilesXUsuarios;
 	}
 
-	public void setUsuarios(Set<Usuario> usuarios) {
-		this.usuarios = usuarios;
+	public void setPerfilesXUsuarios(Set<PerfilesXUsuario> perfilesXUsuarios) {
+		this.perfilesXUsuarios = perfilesXUsuarios;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "recursos_x_perfil", catalog = "muvitul", joinColumns = {
-			@JoinColumn(name = "id_perfil", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "id_recurso", nullable = false, updatable = false) })
-	public Set<Recurso> getRecursos() {
-		return this.recursos;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "perfil")
+	public Set<RecursosXPerfil> getRecursosXPerfils() {
+		return this.recursosXPerfils;
 	}
 
-	public void setRecursos(Set<Recurso> recursos) {
-		this.recursos = recursos;
+	public void setRecursosXPerfils(Set<RecursosXPerfil> recursosXPerfils) {
+		this.recursosXPerfils = recursosXPerfils;
 	}
 
 }

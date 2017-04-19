@@ -17,6 +17,7 @@ import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Programaci
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 import mx.com.tecnetia.muvitul.negocio.taquilla.assembler.PeliculaAssembler;
 import mx.com.tecnetia.muvitul.negocio.taquilla.assembler.ProgramacionAssembler;
+import mx.com.tecnetia.muvitul.negocio.taquilla.vo.ExistenciaBoletoVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.PeliculaVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.ProgramacionVO;
 
@@ -30,12 +31,13 @@ public class PeliculaBO {
 	@Autowired
 	private ExistenciaBoletoBO existenciaBoletoBO;
 
-	public List<PeliculaVO> findByCineAndDay(Integer idCine, String diaSemana, Date fechaExhibicion)
+	public List<PeliculaVO> findByCineDiaAndExhibicion(Integer idCine, String diaSemana, Date fechaExhibicion)
 			throws BusinessGlobalException {
 		Map<Integer, PeliculaVO> mapPeliculas = new HashMap<Integer, PeliculaVO>();
-		
-		List<Programacion> programaciones= programacionDAO.findByCineAndDay(idCine, diaSemana, fechaExhibicion);
-		
+
+		List<Programacion> programaciones = programacionDAO.findByCineDiaAndExhibicion(idCine, diaSemana,
+				fechaExhibicion);
+
 		for (Programacion programacion : programaciones) {
 
 			if (!mapPeliculas.containsKey(programacion.getPelicula().getIdPelicula())) {
@@ -43,14 +45,16 @@ public class PeliculaBO {
 						PeliculaAssembler.getPeliculaVO(programacion.getPelicula()));
 			}
 
+			ExistenciaBoletoVO ExistenciaBoletoVO = existenciaBoletoBO.findByProgramacionSalaAndExhibicion(
+					programacion.getIdProgramacion(), programacion.getSala().getIdSala(), fechaExhibicion);
+
 			PeliculaVO peliculaVO = mapPeliculas.get(programacion.getPelicula().getIdPelicula());
 			ProgramacionVO programacionVO = ProgramacionAssembler.getProgramacionVO(programacion);
-			programacionVO.setExistenciaBoletoVO(existenciaBoletoBO.findByIdProgramacion(
-					programacionVO.getIdProgramacion(), programacionVO.getSalaVO().getIdSala(), fechaExhibicion));
+			programacionVO.setExistenciaBoletoVO(ExistenciaBoletoVO);
 			peliculaVO.addProgramacionVO(programacionVO);
 
 		}
-		
+
 		return new ArrayList<PeliculaVO>(mapPeliculas.values());
 	}
 

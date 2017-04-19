@@ -18,7 +18,7 @@ public class PaqueteDAO extends GlobalHibernateDAO<Paquete> implements PaqueteDA
 		StringBuilder hql = new StringBuilder();
 		hql.append("select pqt from Paquete pqt join pqt.cine cne ");
 		hql.append("where cne.idCine=:idCine and pqt.activo=1 ");
-		hql.append("order by pqt.idPaquete desc");
+		hql.append("order by pqt.nombre asc");
 		
 		Query query = getSession().createQuery(hql.toString());
 		query.setParameter("idCine", idCine);

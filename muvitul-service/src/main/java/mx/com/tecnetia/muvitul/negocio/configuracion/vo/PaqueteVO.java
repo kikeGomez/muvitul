@@ -1,11 +1,16 @@
 package mx.com.tecnetia.muvitul.negocio.configuracion.vo;
 
+import java.util.List;
+
+
+
 public class PaqueteVO {
 	private Integer idPaquete;
 	private CineVO cineVO;
 	private String nombre;
 	private byte[] icono;
 	private boolean activo;
+	private List<ProductoXPaqueteVO> productosXPaqueteVO;
 	
 	public Integer getIdPaquete() {
 		return idPaquete;
@@ -37,5 +42,11 @@ public class PaqueteVO {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-
+	public List<ProductoXPaqueteVO> getProductosXPaqueteVO() {
+		return productosXPaqueteVO;
+	}
+	public void setProductosXPaqueteVO(List<ProductoXPaqueteVO> productosXPaqueteVO) {
+		this.productosXPaqueteVO = productosXPaqueteVO;
+	}
+	
 }

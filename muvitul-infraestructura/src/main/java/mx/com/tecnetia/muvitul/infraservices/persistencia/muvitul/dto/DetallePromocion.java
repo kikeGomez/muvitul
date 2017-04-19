@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 13/03/2017 10:51:10 PM by Hibernate Tools 4.3.1.Final
+// Generated 14-abr-2017 14:25:39 by Hibernate Tools 4.3.1.Final
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -11,8 +11,8 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -29,20 +29,20 @@ public class DetallePromocion implements java.io.Serializable {
 	private BigDecimal varM;
 	private BigDecimal precio;
 	private BigDecimal porcentaje;
-	private Set<Promocion> promocions = new HashSet<Promocion>(0);
+	private Set<DetallePromoXPromo> detallePromoXPromos = new HashSet<DetallePromoXPromo>(0);
 
 	public DetallePromocion() {
 	}
 
 	public DetallePromocion(Producto producto, Regalo regalo, BigDecimal varN, BigDecimal varM, BigDecimal precio,
-			BigDecimal porcentaje, Set<Promocion> promocions) {
+			BigDecimal porcentaje, Set<DetallePromoXPromo> detallePromoXPromos) {
 		this.producto = producto;
 		this.regalo = regalo;
 		this.varN = varN;
 		this.varM = varM;
 		this.precio = precio;
 		this.porcentaje = porcentaje;
-		this.promocions = promocions;
+		this.detallePromoXPromos = detallePromoXPromos;
 	}
 
 	@Id
@@ -113,13 +113,13 @@ public class DetallePromocion implements java.io.Serializable {
 		this.porcentaje = porcentaje;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "detallePromocions")
-	public Set<Promocion> getPromocions() {
-		return this.promocions;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "detallePromocion")
+	public Set<DetallePromoXPromo> getDetallePromoXPromos() {
+		return this.detallePromoXPromos;
 	}
 
-	public void setPromocions(Set<Promocion> promocions) {
-		this.promocions = promocions;
+	public void setDetallePromoXPromos(Set<DetallePromoXPromo> detallePromoXPromos) {
+		this.detallePromoXPromos = detallePromoXPromos;
 	}
 
 }

@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 13/03/2017 10:51:10 PM by Hibernate Tools 4.3.1.Final
+// Generated 14-abr-2017 14:25:39 by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -31,7 +30,7 @@ public class Producto implements java.io.Serializable {
 	private Set<PrecioXProducto> precioXProductos = new HashSet<PrecioXProducto>(0);
 	private Set<ProductosXTicket> productosXTickets = new HashSet<ProductosXTicket>(0);
 	private Set<DetallePromocion> detallePromocions = new HashSet<DetallePromocion>(0);
-	private Set<PuntoVenta> puntoVentas = new HashSet<PuntoVenta>(0);
+	private Set<ProductosXPuntoVenta> productosXPuntoVentas = new HashSet<ProductosXPuntoVenta>(0);
 	private Set<ArticulosXProducto> articulosXProductos = new HashSet<ArticulosXProducto>(0);
 	private Set<ImpuestoXProducto> impuestoXProductos = new HashSet<ImpuestoXProducto>(0);
 
@@ -47,7 +46,7 @@ public class Producto implements java.io.Serializable {
 
 	public Producto(Cine cine, String nombre, byte[] icono, boolean activo, Set<ProductosXPaquete> productosXPaquetes,
 			Set<PrecioXProducto> precioXProductos, Set<ProductosXTicket> productosXTickets,
-			Set<DetallePromocion> detallePromocions, Set<PuntoVenta> puntoVentas,
+			Set<DetallePromocion> detallePromocions, Set<ProductosXPuntoVenta> productosXPuntoVentas,
 			Set<ArticulosXProducto> articulosXProductos, Set<ImpuestoXProducto> impuestoXProductos) {
 		this.cine = cine;
 		this.nombre = nombre;
@@ -57,7 +56,7 @@ public class Producto implements java.io.Serializable {
 		this.precioXProductos = precioXProductos;
 		this.productosXTickets = productosXTickets;
 		this.detallePromocions = detallePromocions;
-		this.puntoVentas = puntoVentas;
+		this.productosXPuntoVentas = productosXPuntoVentas;
 		this.articulosXProductos = articulosXProductos;
 		this.impuestoXProductos = impuestoXProductos;
 	}
@@ -147,13 +146,13 @@ public class Producto implements java.io.Serializable {
 		this.detallePromocions = detallePromocions;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "productos")
-	public Set<PuntoVenta> getPuntoVentas() {
-		return this.puntoVentas;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "producto")
+	public Set<ProductosXPuntoVenta> getProductosXPuntoVentas() {
+		return this.productosXPuntoVentas;
 	}
 
-	public void setPuntoVentas(Set<PuntoVenta> puntoVentas) {
-		this.puntoVentas = puntoVentas;
+	public void setProductosXPuntoVentas(Set<ProductosXPuntoVenta> productosXPuntoVentas) {
+		this.productosXPuntoVentas = productosXPuntoVentas;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "producto")
