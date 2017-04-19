@@ -73,6 +73,15 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 				});
 			}
 			
+			$scope.consultarPuntoVenta = function() {
+				dulceriaService.consultarPuntosVenta().success(function(data) {
+					console.log(data);
+				}).error(function(data) {
+
+				});
+			}
+			
+			
 			$scope.consultarPaquetes2 = function() {
 				dulceriaService.consultarPaquetes2().success(function(data) {
 					console.log(data);
@@ -162,6 +171,7 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 			//$scope.crearProgramacion();
 			//$scope.eliminarProgramacion();
 			//$scope.consultarPromocion();
-			$scope.crearPromocion();
+			//$scope.crearPromocion();
+			$scope.consultarPuntoVenta();
 			
 		});

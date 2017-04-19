@@ -13,11 +13,11 @@ import mx.com.tecnetia.muvitul.negocio.configuracion.vo.FormaPagoVO;
 
 @Service
 @Transactional
-public class FormaPagoBO {
+public class CatalogoFormaPagoBO {
 	@Autowired
 	private FormaPagoDAOI formaPagoDAO;
 
-	public List<FormaPagoVO> findFormasPago() throws BusinessGlobalException {
+	public List<FormaPagoVO> findAll() throws BusinessGlobalException {
 		return FormaPagoAssembler.getFormasPagosVO(formaPagoDAO.findAll());
 	}
 

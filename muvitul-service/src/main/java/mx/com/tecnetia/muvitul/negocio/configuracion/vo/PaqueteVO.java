@@ -10,6 +10,7 @@ public class PaqueteVO {
 	private String nombre;
 	private byte[] icono;
 	private boolean activo;
+	private PuntoVentaVO puntoVentaVO;
 	private List<ProductoXPaqueteVO> productosXPaqueteVO;
 	
 	public Integer getIdPaquete() {
@@ -42,6 +43,14 @@ public class PaqueteVO {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
+	
+	public PuntoVentaVO getPuntoVentaVO() {
+		return puntoVentaVO;
+	}
+	public void setPuntoVentaVO(PuntoVentaVO puntoVentaVO) {
+		this.puntoVentaVO = puntoVentaVO;
+	}
+	
 	public List<ProductoXPaqueteVO> getProductosXPaqueteVO() {
 		return productosXPaqueteVO;
 	}

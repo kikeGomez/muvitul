@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 import mx.com.tecnetia.muvitul.infraservices.servicios.NotFoundException;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.FormaPagoVO;
+import mx.com.tecnetia.muvitul.negocio.configuracion.vo.PuntoVentaVO;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -23,4 +24,7 @@ public interface CatalogoFacadeI {
 	public ResponseEntity<List<FormaPagoVO>> getFormasPago(HttpServletRequest request)
 			throws BusinessGlobalException, NotFoundException;
 
+	@RequestMapping(value = "/puntosVenta", method = RequestMethod.GET)
+	public ResponseEntity<List<PuntoVentaVO>> getPuntosVenta(HttpServletRequest request)
+			throws BusinessGlobalException, NotFoundException;
 }

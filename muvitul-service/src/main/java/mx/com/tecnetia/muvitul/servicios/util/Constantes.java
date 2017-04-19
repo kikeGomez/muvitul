@@ -11,5 +11,8 @@ public final class Constantes {
 	public static final int PROMOCION_NXFIJO=2;
 	public static final int PROMOCION_PORCIENTO=3;
 	public static final int PROMOCION_REGALOX=4;
+	
+	public static final String COLON=":";
+	public static final String PM="PM";
 
 }

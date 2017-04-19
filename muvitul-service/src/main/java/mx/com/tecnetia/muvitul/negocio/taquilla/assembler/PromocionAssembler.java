@@ -22,6 +22,7 @@ public class PromocionAssembler {
 		promocionVO.setDescripcion(promocion.getDescripcion());
 		promocionVO.setFechaInicio(promocion.getFechaInicio());
 		promocionVO.setFechaFin(promocion.getFechaFin());
+		promocionVO.setActivo(promocion.isActivo());
 		promocionVO.setDetallePromocionesVO(DetallePromocionAssembler.getDetallePromocionesVO(promocion.getDetallePromoXPromos()));
 		
 		return promocionVO;

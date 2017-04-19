@@ -17,6 +17,7 @@ import mx.com.tecnetia.muvitul.infraservices.presentacion.seguridad.frontcontrol
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 import mx.com.tecnetia.muvitul.infraservices.servicios.NotFoundException;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.FormaPagoVO;
+import mx.com.tecnetia.muvitul.negocio.configuracion.vo.PuntoVentaVO;
 import mx.com.tecnetia.muvitul.servicios.configuracion.controller.CatalogoController;
 
 @Service
@@ -47,6 +48,25 @@ public class CatalogoFacade implements CatalogoFacadeI {
 		}
 
 		return new ResponseEntity<List<FormaPagoVO>>(formasPago, HttpStatus.OK);
+	}
+
+	@Override
+	public ResponseEntity<List<PuntoVentaVO>> getPuntosVenta(HttpServletRequest request)
+			throws BusinessGlobalException, NotFoundException {
+		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
+		Integer idUsuario = (Integer) claims.get(ClaimsEnum.USUARIO);
+		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
+		Integer idPuntoVenta = (Integer) claims.get(ClaimsEnum.PUNTO_VENTA);
+
+		logger.info("GetPPuntosVenta:::IdUsuario[{}]:::IdCine[{}]:::IdPuntoVenta[{}]", idUsuario, idCine, idPuntoVenta);
+
+		List<PuntoVentaVO> puntosVenta = catalogoController.getPuntosVenta(idCine);
+
+		if (puntosVenta == null || puntosVenta.isEmpty()) {
+			throw new NotFoundException("No encontrado");
+		}
+
+		return new ResponseEntity<List<PuntoVentaVO>>(puntosVenta, HttpStatus.OK);
 	}
 
 }

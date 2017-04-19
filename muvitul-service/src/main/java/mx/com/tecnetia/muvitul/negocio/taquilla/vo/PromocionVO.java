@@ -12,6 +12,8 @@ public class PromocionVO {
 	private String descripcion;
 	private Date fechaInicio;
 	private Date fechaFin;
+	private boolean activo;
+
 	private List<DetallePromocionVO> detallePromocionesVO;
 //	private Set<DetallePromocion> detallePromocions = new HashSet<DetallePromocion>(0);
 //	private Set<PromocionesXTicket> promocionesXTickets = new HashSet<PromocionesXTicket>(0);
@@ -63,6 +65,12 @@ public class PromocionVO {
 	}
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
+	}
+	public boolean isActivo() {
+		return activo;
+	}
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 	public List<DetallePromocionVO> getDetallePromocionesVO() {
 		return detallePromocionesVO;

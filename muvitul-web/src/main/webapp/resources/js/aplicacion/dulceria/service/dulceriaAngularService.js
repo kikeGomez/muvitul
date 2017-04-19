@@ -83,6 +83,11 @@ angular.module('indexModule').service('dulceriaService', ['$http','GlobalFactory
 		return $http.get(config.baseUrl+"/configuracion/productos");
 	}
  
+	this.consultarPuntosVenta = function(){
+		console.log("consultar puntos venta");
+		return $http.get(config.baseUrl+"/configuracion/puntosVenta");
+	}
+	
 	this.consultarPaquetes2 = function(){
 		console.log("consultar paquetes");
 		return $http.get(config.baseUrl+"/configuracion/paquetes");

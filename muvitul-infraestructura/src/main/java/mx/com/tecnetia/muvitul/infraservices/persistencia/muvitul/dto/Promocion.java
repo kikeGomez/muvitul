@@ -1,14 +1,16 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
 // Generated 14-abr-2017 14:25:39 by Hibernate Tools 4.3.1.Final
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -32,6 +34,7 @@ public class Promocion implements java.io.Serializable {
 	private String descripcion;
 	private Date fechaInicio;
 	private Date fechaFin;
+	private boolean activo;
 	private Set<DetallePromoXPromo> detallePromoXPromos = new HashSet<DetallePromoXPromo>(0);
 	private Set<PromocionesXTicket> promocionesXTickets = new HashSet<PromocionesXTicket>(0);
 
@@ -143,6 +146,15 @@ public class Promocion implements java.io.Serializable {
 		this.fechaFin = fechaFin;
 	}
 
+	@Column(name = "activo", nullable = false)
+	public boolean isActivo() {
+		return this.activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "promocion")
 	public Set<DetallePromoXPromo> getDetallePromoXPromos() {
 		return this.detallePromoXPromos;
