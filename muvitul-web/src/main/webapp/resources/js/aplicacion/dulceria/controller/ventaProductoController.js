@@ -124,8 +124,8 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 				});
 			}
 			
-			$scope.consultarPromocion2 = function() {
-				dulceriaService.consultarPromociones2($scope.fechaExhibicion).success(function(data) {
+			$scope.consultarPromocion = function() {
+				dulceriaService.consultarPromociones($scope.fechaExhibicion).success(function(data) {
 					console.log(data);
 					//dulceriaService.crearProgramaciones(data);
 				}).error(function(data) {
@@ -135,9 +135,9 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 			
 			
 			$scope.crearPromocion = function() {
-				dulceriaService.consultarPromociones2($scope.fechaExhibicion).success(function(data) {
+				dulceriaService.consultarPromociones($scope.fechaExhibicion).success(function(data) {
 					console.log(data);
-					dulceriaService.crearPromociones(data);
+					dulceriaService.crearPromociones(data[0]);
 				}).error(function(data) {
 
 				});
@@ -161,7 +161,7 @@ var VentaProductoPaso1Controller = angular.module('indexModule').controller(
 			//$scope.consultarProgramacion();
 			//$scope.crearProgramacion();
 			//$scope.eliminarProgramacion();
-			//$scope.consultarPromocion2();
+			//$scope.consultarPromocion();
 			$scope.crearPromocion();
 			
 		});

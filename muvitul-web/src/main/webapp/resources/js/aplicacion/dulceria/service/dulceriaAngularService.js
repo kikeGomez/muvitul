@@ -126,7 +126,7 @@ angular.module('indexModule').service('dulceriaService', ['$http','GlobalFactory
 	 		);
 	 }
 		
-	 this.consultarPromociones2 = function(fechaExhibicion){
+	 this.consultarPromociones = function(fechaExhibicion){
 		 console.log("consultar config promociones");
 		 return $http.get(config.baseUrl+"/configuracion/promociones", {
 			 params : {

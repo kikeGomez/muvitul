@@ -30,8 +30,7 @@ public class PromocionBO {
 	public List<PromocionVO> findByCineAndExhibicion(Integer idCine, Integer idPromocionPara, Date fechaExhibicion)
 			throws BusinessGlobalException {
 
-		return PromocionAssembler
-				.getPromocionesVO(promocionDAO.findByCineAndDate(idCine, idPromocionPara, fechaExhibicion));
+		return PromocionAssembler.getPromocionesVO(promocionDAO.findByCinePromocionAndExhibicion(idCine, idPromocionPara, fechaExhibicion));
 
 	}
 

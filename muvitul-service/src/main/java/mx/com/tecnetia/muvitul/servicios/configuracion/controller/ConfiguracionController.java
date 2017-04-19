@@ -11,11 +11,11 @@ import mx.com.tecnetia.muvitul.negocio.configuracion.business.ConfigPromocionBO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.business.PaqueteBO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ConfigProgramacionVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ConfigPromocionVO;
-import mx.com.tecnetia.muvitul.negocio.configuracion.vo.SalaProgramacionVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.PaqueteVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ProductoVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.ProgramacionVO;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.PromocionVO;
+import mx.com.tecnetia.muvitul.negocio.configuracion.vo.SalaProgramacionVO;
 
 @Service
 public class ConfiguracionController {
@@ -57,7 +57,7 @@ public class ConfiguracionController {
 		return configPromocionBO.findConfigByCine(idCine);
 	}
 
-	public List<PromocionVO> findByCineAndDate(Integer idCine, Date fecha) {
+	public List<PromocionVO> findPromocionByCineAndDate(Integer idCine, Date fecha) {
 		return configPromocionBO.findByCineAndDate(idCine, fecha);
 	}
 

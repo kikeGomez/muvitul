@@ -54,6 +54,12 @@ public class ConfigPromocionBO {
 	}
 	
 	
+	public List<PromocionVO> findByCineAndDate(Integer idCine, Date fecha) {
+		List<Promocion> promociones= promocionDAO.findByCineAndExhibicion(idCine, fecha);
+		return PromocionAssembler.getPromocionesVO(promociones);
+		
+	}
+	
 	public PromocionVO save(PromocionVO promocionVO) {
 		Promocion promocion = PromocionAssembler.getPromocion(promocionVO);
 		promocionDAO.save(promocion);
@@ -61,11 +67,7 @@ public class ConfigPromocionBO {
 		return promocionVO;
 	}
 	
-	public List<PromocionVO> findByCineAndDate(Integer idCine, Date fecha) {
-		List<Promocion> promociones= promocionDAO.findByCineAndDate(idCine, fecha);
-		return PromocionAssembler.getPromocionesVO(promociones);
-		
-	}
+
 	
 	public void delete(Integer idPromocion) {
 		Promocion promocion= promocionDAO.findById(idPromocion);

@@ -125,7 +125,7 @@ public class ConfiguracionFacade implements ConfiguracionFacadeI {
 
 		logger.info("GetPromociones:::IdCine[{}]:::Fecha[{}]", idCine, fechaExhibicion);
 
-		List<PromocionVO> promocionVO = configuracionController.findByCineAndDate(idCine, fechaExhibicion);
+		List<PromocionVO> promocionVO = configuracionController.findPromocionByCineAndDate(idCine, fechaExhibicion);
 
 		if (promocionVO == null || promocionVO.isEmpty()) {
 			throw new NotFoundException("No encontrado");

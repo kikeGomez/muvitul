@@ -13,12 +13,12 @@ import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Promocion;
 public class PromocionDAO extends GlobalHibernateDAO<Promocion> implements PromocionDAOI{
 
 	@Override
-	public List<Promocion> findByCineAndDate(Integer idCine, Integer idPromocionPara, Date fechaExhibicion) {
+	public List<Promocion> findByCinePromocionAndExhibicion(Integer idCine, Integer idPromocionPara, Date fechaExhibicion) {
 
 		StringBuilder hql = new StringBuilder();
 		hql.append("select prm from Promocion prm inner join prm.tipoPromocion tprm inner join prm.promocionPara prmp ");
 		hql.append("where prm.cine.idCine=:idCine and prmp.idPromocionPara=:idPromocionPara and :fechaExhibicion between prm.fechaInicio and prm.fechaFin ");
-		hql.append("order by prm.idPromocion asc");
+		hql.append("order by prm.nombre asc");
 		
 		Query query = getSession().createQuery(hql.toString());
 		query.setParameter("idCine", idCine);
@@ -30,11 +30,11 @@ public class PromocionDAO extends GlobalHibernateDAO<Promocion> implements Promo
 	}
 
 	@Override
-	public List<Promocion> findByCineAndDate(Integer idCine, Date fechaExhibicion) {
+	public List<Promocion> findByCineAndExhibicion(Integer idCine, Date fechaExhibicion) {
 		StringBuilder hql = new StringBuilder();
 		hql.append("select prm from Promocion prm inner join prm.tipoPromocion tprm inner join prm.promocionPara prmp ");
 		hql.append("where prm.cine.idCine=:idCine and :fechaExhibicion between prm.fechaInicio and prm.fechaFin ");
-		hql.append("order by prm.idPromocion desc");
+		hql.append("order by prm.nombre asc");
 		
 		Query query = getSession().createQuery(hql.toString());
 		query.setParameter("idCine", idCine);
