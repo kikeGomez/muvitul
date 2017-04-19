@@ -1,31 +1,46 @@
 
-angular.module('indexModule').constant("config", {	
+angular.module('indexModule').constant("constante", {	
     
-	baseUrl: "http://localhost:8080/muvitul-service/rest"
+//	baseUrl: "http://localhost:8080/muvitul-service/rest"
+		urlWs: "/muvitul-service/rest"
+
  
 });
 
-//angular.module('indexModule').factory('dataRest',['$http','$location',  function ($http,$location) {
+angular.module('indexModule').factory('config',['$http','$location','constante','$rootScope', function ($http,$location,constante,$rootScope) {
+
+    var protocol = $location.protocol()+ "://";
+    var host = location.host;
+    var url = protocol + host + constante.urlWs;
+    var absUrl = $location.absUrl();
+    var arrayLocation = $location.absUrl().split('/');
+    var path = '/' + arrayLocation[3]; 
+    $rootScope.applet_route =url;
+ 
+      return {
+    	baseUrl:url,
+    	host:host,
+    	path:path,
+    	absUrl:absUrl,
+    	arrayLocation: arrayLocation 
+      }
+    }]);
+
+angular.module('indexModule').directive('calendar', function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, el, attr, ngModel) {
+            $(el).datepicker({
+                dateFormat: 'yy-mm-dd',
+        	    calender_style: "picker_3",
 //
-//
-//    var pro = $location.protocol();
-//    var loc = $location.path();
-//    var absUrl = $location.absUrl();
-//    var array = $location.absUrl().split('/');
-//    var path = '/' + array[3];
-//    var urlWscproxy = '/WSCCPA/';
-//    var urlWsc = '/WSCCAT/';
-//    if(array[3] != '#'){
-//        var urlWscproxy = path +'/WSCCPA/';
-//        var urlWsc = path +'/WSCCAT/';
-//        
-//    }
-//
-//     dataRest = {x:"xxx"};
-//
-//    dataRest.getAttrDiseno = function () {
-//        return dataRest;
-//    };
-//
-//      return dataRest;
-//    }]);
+                onSelect: function (dateText) {
+                    scope.$apply(function () {
+                        ngModel.$setViewValue(dateText);
+                    });
+                }
+            });
+        }
+    }
+});
+    

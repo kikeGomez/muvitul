@@ -1,9 +1,13 @@
 'use strict';
 
 var ProgramacionController = angular.module('indexModule').controller("ProgramacionController", function($scope,$controller,ModalService,programacionesTaquillaService){
- 	 
+//	$('#fechaVigencia').daterangepicker({
+//	    singleDatePicker: true,
+//	    calender_style: "picker_3"
+//	  } );
+
     $controller('modalController',{$scope : $scope });
-	$scope.programacion={ horario : moment(new Date()).format('YYYY-MM-DD')};
+	$scope.programacion={};
 	$scope.listaSalasProgramaciones=[];
 	  
 	 
@@ -19,10 +23,11 @@ var ProgramacionController = angular.module('indexModule').controller("Programac
 
 		});
 	}
-  
+	 
 	
 	$scope.crearProgramacion = function(programacion) {
-		
+ 
+ 
 		if ( $scope.formProgramaciones.$invalid) {
             angular.forEach( $scope.formProgramaciones.$error, function (field) {
               angular.forEach(field, function(errorField){
@@ -78,10 +83,5 @@ var ProgramacionController = angular.module('indexModule').controller("Programac
 	 
 	 $scope.init();
 });
-$('#fechaVigencia').daterangepicker({
-    singleDatePicker: true,
-    calender_style: "picker_3"
-  }, function(start, end, label) {
-   });
 
 

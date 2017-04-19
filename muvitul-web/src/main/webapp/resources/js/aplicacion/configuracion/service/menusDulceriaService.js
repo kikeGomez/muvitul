@@ -11,6 +11,15 @@ angular.module('indexModule').service('menusDulceriaService', ['$http','GlobalFa
 	 }
 	 
 	 
+	 this.eliminarPaquete= function( id ) {
+ 	 		return $http.delete(config.baseUrl + "/configuracion/paquetes", {
+	 				params : {
+	 	 				"id" : id
+	 	 			}
+	 			}
+	 				
+	 		);
+	 }
  
 }]);
 

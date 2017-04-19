@@ -103,7 +103,7 @@
 								<td class="text-center">{{paquete.precio}}</td>
 								<td class="text-center">
 									<button type="button" class="btn btn-round btn-default btn-md"
-										ng-click="eliminarPaquete(listaPaquetes,paquete,$index)">
+										ng-click="eliminarPaquete(paquete)">
 										<i class="fa fa-trash-o"></i>
 									</button>
 								</td>

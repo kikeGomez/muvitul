@@ -3,8 +3,6 @@
 var MenusDulceriaController = angular.module('indexModule').controller("PromocionesTaquillaController", function($scope,promocionesTaquillaService,ModalService){
 	$scope.promocion={};
 	
-	
-	
 	$scope.consultaConfigProgramaciones =function(){
 		promocionesTaquillaService.consultarConfigPromociones().success(function(data) {
   			console.log(data);

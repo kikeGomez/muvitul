@@ -10,11 +10,15 @@ var MenusDulceriaController = angular.module('indexModule').controller("MenusDul
 		console.log(paquete);
 	}
 	
-	$scope.eliminarPaquete =function( array,objeto,index){
-		console.log(array);
-		console.log(objeto);
-		console.log(index);
-		 array.splice(index, 1);
+	$scope.eliminarPaquete =function( paquete){
+ 		 
+		 menusDulceriaService.eliminarPaquete(paquete.idPaquete).success(function(data) {	
+				$scope.consultarPaquetes ();
+
+		  }).error(function(data) {
+				console.log(data);
+		  });
+		 
 	}
 	$scope.onChange = function (e, file) {
 		var data = file[0];

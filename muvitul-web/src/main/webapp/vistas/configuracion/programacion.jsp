@@ -1,4 +1,5 @@
- <style type="text/css">
+
+<style type="text/css">
 .table-fixed thead {
 	width: 97%;
 }
@@ -30,8 +31,7 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<div class="btn-group btn-group-justified" data-toggle="buttons">
 
-							<label class="btn btn-primary "
-								ng-repeat="sala in listaSalas | orderBy:idSala: true "
+							<label class="btn btn-primary " ng-repeat="sala in listaSalas "
 								ng-click="seleccion(sala,'sala')"> <input type="radio"
 								class="sr-only" id="sala" ng-model="programacion.salaVO"
 								required name="sala" checked> <span class="docs-tooltip"
@@ -146,13 +146,13 @@
 							</span>
 						</div>
 					</div>
-					<!-- 					<script> 
- 						$(function() {
- 							$('#horario-pelicula').datetimepicker({
- 								format : 'LT'
- 							});
- 						});
- 					</script> -->
+					<script>
+						$(function() {
+							$('#horario-pelicula').datetimepicker({
+								format : 'LT'
+							});
+						});
+					</script>
 					<div
 						ng-show="formProgramaciones.horario.$invalid && formProgramaciones.horario.$dirty"
 						ng-style="{color:'red'}">El campo es requerido.</div>
@@ -160,23 +160,18 @@
 				<div class="form-group"
 					ng-class="{'has-error': formProgramaciones.fechaVigencia.$invalid && formProgramaciones.fechaVigencia.$dirty}">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12"
-						for="fechaVigencia">Vigencia  <span class="required">*</span>
+						for="fechaVigencia">Vigencia <span class="required">*</span>
 					</label>
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<div class="control-group">
-							<div class="controls">
-								<div class="col-md-11 xdisplay_inputx form-group has-feedback">
-									<input type="text" class="form-control has-feedback-left"
-										id="fechaVigencia" placeholder="Vigencia" name="fechaVigencia"
-										ng-model="programacion.fechaVigencia" required
-										aria-describedby="inputSuccess2Status3"> <span
-										class="fa fa-calendar-o form-control-feedback left"
-										aria-hidden="true"></span> <span id="inputSuccess2Status3"
-										class="sr-only">(success)</span>
-								</div>
-							</div>
+					<div class="form-group">
+
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<input type="text" calendar ng-model="programacion.fechaVigencia"
+								required="required" class="form-control col-md-7 col-xs-12">
+
+
 						</div>
 					</div>
+
 					<div
 						ng-show="formProgramaciones.fechaVigencia.$invalid && formProgramaciones.fechaVigencia.$dirty"
 						ng-style="{color:'red'}">El campo es requerido.</div>
