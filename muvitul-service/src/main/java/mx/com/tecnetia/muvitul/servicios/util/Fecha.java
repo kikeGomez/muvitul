@@ -23,6 +23,8 @@ public class Fecha {
 		
 		if (date.contains(Constantes.PM)){
 			hora= hora == 12 ? hora : hora+12 ;
+		} else {
+			hora= hora == 12 ? 0 : hora ;
 		}
 		
 		Calendar cal = Calendar.getInstance();
