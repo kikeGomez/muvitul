@@ -138,20 +138,27 @@
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<div class='input-group'>
-							<input type='text' class="form-control" id='horario-pelicula'
-								value="12:49 AM" ng-model="programacion.horario" required
-								name="horario" ng-change="cambiarHorario(horario)" /> <span
-								class="input-group-addon"> <span
-								class="glyphicon glyphicon-time"></span>
-							</span>
+							
+							<div class="input-group bootstrap-timepicker timepicker">
+<!-- 							<input type='text' class="form-control" id='timepicker1' -->
+<!-- 								value="12:49 AM" ng-model="programacion.horario" required -->
+<!-- 								name="horario" ng-change="cambiarHorario(horario)" /> <span -->
+<!-- 								class="input-group-addon"> <span -->
+<!-- 								class="glyphicon glyphicon-time"></span> -->
+<!-- 							</span> -->
+							
+							
+								<input id="timepicker1" type="text"
+									ng-model="programacion.horario"
+									class="form-control input-small"> <span
+									class="input-group-addon"><i
+									class="glyphicon glyphicon-time"></i></span>
+							</div>
+
 						</div>
 					</div>
-					<script>
-						$(function() {
-							$('#horario-pelicula').datetimepicker({
-								format : 'LT'
-							});
-						});
+					<script type="text/javascript">						
+						$('#timepicker1').timepicker();
 					</script>
 					<div
 						ng-show="formProgramaciones.horario.$invalid && formProgramaciones.horario.$dirty"
@@ -165,6 +172,8 @@
 					<div class="form-group">
 
 						<div class="col-md-6 col-sm-6 col-xs-12">
+							<!-- 						    <input type="text" id="datepicker" ng-model="programacion.fechaVigencia" /> -->
+
 							<input type="text" calendar ng-model="programacion.fechaVigencia"
 								required="required" class="form-control col-md-7 col-xs-12">
 

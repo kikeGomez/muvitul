@@ -7,7 +7,7 @@ var ProgramacionController = angular.module('indexModule').controller("Programac
 //	  } );
 
     $controller('modalController',{$scope : $scope });
-	$scope.programacion={};
+	$scope.programacion={activo:'true'};
 	$scope.listaSalasProgramaciones=[];
 	  
 	 
@@ -36,8 +36,7 @@ var ProgramacionController = angular.module('indexModule').controller("Programac
             });
             $scope.showAviso("Es necesario llenar los campos obligatorios ");
          }else{
-        	 programacion.fechaVigencia= moment(programacion.fechaVigencia).format('YYYY-MM-DD')
-        	 programacionesTaquillaService.crearProgramacion(programacion).success(function(data) {
+         	 programacionesTaquillaService.crearProgramacion(programacion).success(function(data) {
 	            $scope.showAviso("La programación fue registrada correctamente.");
 				$scope.consultarProgramacion();
 			}).error(function(data) {

@@ -31,7 +31,9 @@ angular.module('indexModule').directive('calendar', function () {
         require: 'ngModel',
         link: function (scope, el, attr, ngModel) {
             $(el).datepicker({
-                dateFormat: 'yy-mm-dd',
+                minDate: new Date(),
+            	format : 'dd/mm/yyyy',
+            	autoclose: true,
         	    calender_style: "picker_3",
 //
                 onSelect: function (dateText) {
