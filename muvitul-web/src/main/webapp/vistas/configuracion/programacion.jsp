@@ -138,18 +138,10 @@
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<div class='input-group'>
-							
+
 							<div class="input-group bootstrap-timepicker timepicker">
-<!-- 							<input type='text' class="form-control" id='timepicker1' -->
-<!-- 								value="12:49 AM" ng-model="programacion.horario" required -->
-<!-- 								name="horario" ng-change="cambiarHorario(horario)" /> <span -->
-<!-- 								class="input-group-addon"> <span -->
-<!-- 								class="glyphicon glyphicon-time"></span> -->
-<!-- 							</span> -->
-							
-							
-								<input id="timepicker1" type="text"
-									ng-model="programacion.horario"
+
+								<input id="horario" type="text" ng-model="programacion.horario"
 									class="form-control input-small"> <span
 									class="input-group-addon"><i
 									class="glyphicon glyphicon-time"></i></span>
@@ -157,8 +149,8 @@
 
 						</div>
 					</div>
-					<script type="text/javascript">						
-						$('#timepicker1').timepicker();
+					<script type="text/javascript">
+						$('#horario').timepicker();
 					</script>
 					<div
 						ng-show="formProgramaciones.horario.$invalid && formProgramaciones.horario.$dirty"
@@ -172,14 +164,31 @@
 					<div class="form-group">
 
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<!-- 						    <input type="text" id="datepicker" ng-model="programacion.fechaVigencia" /> -->
 
 							<input type="text" calendar ng-model="programacion.fechaVigencia"
-								required="required" class="form-control col-md-7 col-xs-12">
-
+								id="fechaVigencia" required="required"
+								class="form-control col-md-7 col-xs-12"> 
+								
+<!-- 								<input -->
+<!-- 								type="text" id="from" name="from" ng-model="programacion.fechaVigencia" /> -->
 
 						</div>
 					</div>
+					<script type="text/javascript">
+					
+					$(function() {
+					    $( "#from" ).datepicker({
+					      autoclose: true,  
+			            	format : 'dd/mm/yyyy',
+ 							startDate :new Date(),
+							todayHighlight: true,
+							todayBtn: "linked",
+					      onSelect: function( selectedDate ) {
+ 					      }
+					    });
+					 });
+ 
+					</script>
 
 					<div
 						ng-show="formProgramaciones.fechaVigencia.$invalid && formProgramaciones.fechaVigencia.$dirty"
