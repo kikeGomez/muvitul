@@ -2,6 +2,8 @@ package mx.com.tecnetia.muvitul.negocio.configuracion.vo;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class ProgramacionVO {
 	private Integer idProgramacion;
 	private FormatoVO formatoVO;
@@ -10,6 +12,7 @@ public class ProgramacionVO {
 	private VersionVO versionVO;
 	private String diaSemana;
 	private String horario;
+	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date fechaVigencia;
 	private boolean activo;
 	
