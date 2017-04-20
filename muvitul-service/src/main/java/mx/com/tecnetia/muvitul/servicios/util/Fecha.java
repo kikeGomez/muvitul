@@ -16,16 +16,10 @@ public class Fecha {
 
 	public static Date getTime(String date) {
 		
-		String[] partsHora = date.split(Constantes.COLON);
-		String[] partsMin = partsHora[1].split(" ");
+		String[] parts = date.split(Constantes.COLON);
 		Calendar cal = Calendar.getInstance();
-		int hora= Integer.parseInt(partsHora[0]);
-		int minuto= Integer.parseInt( partsMin[0]);
-		
-		if (partsMin[1].contains(Constantes.PM)){
-			hora= hora+12;
-		}
-		
+		int hora= Integer.parseInt(parts[0]);
+		int minuto= Integer.parseInt( parts[1]);
 		cal.set(Calendar.HOUR_OF_DAY, hora);
 		cal.set(Calendar.MINUTE, minuto);
 		cal.set(Calendar.SECOND, 0);
