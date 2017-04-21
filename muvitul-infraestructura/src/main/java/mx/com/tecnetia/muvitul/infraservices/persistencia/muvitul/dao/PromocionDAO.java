@@ -17,7 +17,8 @@ public class PromocionDAO extends GlobalHibernateDAO<Promocion> implements Promo
 
 		StringBuilder hql = new StringBuilder();
 		hql.append("select prm from Promocion prm inner join prm.tipoPromocion tprm inner join prm.promocionPara prmp ");
-		hql.append("where prm.cine.idCine=:idCine and prmp.idPromocionPara=:idPromocionPara and :fechaExhibicion between prm.fechaInicio and prm.fechaFin ");
+		hql.append("where prm.cine.idCine=:idCine and prmp.idPromocionPara=:idPromocionPara ");
+		hql.append("and :fechaExhibicion between prm.fechaInicio and prm.fechaFin and prm.activo=1 ");
 		hql.append("order by prm.nombre asc");
 		
 		Query query = getSession().createQuery(hql.toString());
@@ -33,7 +34,7 @@ public class PromocionDAO extends GlobalHibernateDAO<Promocion> implements Promo
 	public List<Promocion> findByCineAndExhibicion(Integer idCine, Date fechaExhibicion) {
 		StringBuilder hql = new StringBuilder();
 		hql.append("select prm from Promocion prm inner join prm.tipoPromocion tprm inner join prm.promocionPara prmp ");
-		hql.append("where prm.cine.idCine=:idCine and :fechaExhibicion between prm.fechaInicio and prm.fechaFin ");
+		hql.append("where prm.cine.idCine=:idCine and :fechaExhibicion between prm.fechaInicio and prm.fechaFin and prm.activo=1 ");
 		hql.append("order by prm.nombre asc");
 		
 		Query query = getSession().createQuery(hql.toString());
