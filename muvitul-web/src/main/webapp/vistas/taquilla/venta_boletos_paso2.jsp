@@ -55,7 +55,7 @@
 											<br />
 											<p>{{promocion.descripcion}}</p>
 											<div class="text-center mtop20">
-												<h2 ng-if="promocion.detallePromocionesVO">{{promocion.detallePromocionesVO[0].precio}}</h2>
+												<h2 ng-if="promocion.detallePromocionVO">{{promocion.detallePromocionVO.precio}}</h2>
 											</div>
 										</div>
 									</a>

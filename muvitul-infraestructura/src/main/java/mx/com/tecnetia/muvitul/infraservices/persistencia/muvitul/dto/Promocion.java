@@ -1,16 +1,14 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 14-abr-2017 14:25:39 by Hibernate Tools 4.3.1.Final
-
-import static javax.persistence.GenerationType.IDENTITY;
+// Generated 20-abr-2017 17:23:45 by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,6 +26,7 @@ public class Promocion implements java.io.Serializable {
 
 	private Integer idPromocion;
 	private Cine cine;
+	private DetallePromocion detallePromocion;
 	private PromocionPara promocionPara;
 	private TipoPromocion tipoPromocion;
 	private String nombre;
@@ -35,34 +34,37 @@ public class Promocion implements java.io.Serializable {
 	private Date fechaInicio;
 	private Date fechaFin;
 	private boolean activo;
-	private Set<DetallePromoXPromo> detallePromoXPromos = new HashSet<DetallePromoXPromo>(0);
 	private Set<PromocionesXTicket> promocionesXTickets = new HashSet<PromocionesXTicket>(0);
 
 	public Promocion() {
 	}
 
-	public Promocion(Cine cine, PromocionPara promocionPara, TipoPromocion tipoPromocion, String nombre,
-			String descripcion, Date fechaInicio, Date fechaFin) {
+	public Promocion(Cine cine, DetallePromocion detallePromocion, PromocionPara promocionPara,
+			TipoPromocion tipoPromocion, String nombre, String descripcion, Date fechaInicio, Date fechaFin,
+			boolean activo) {
 		this.cine = cine;
+		this.detallePromocion = detallePromocion;
 		this.promocionPara = promocionPara;
 		this.tipoPromocion = tipoPromocion;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
+		this.activo = activo;
 	}
 
-	public Promocion(Cine cine, PromocionPara promocionPara, TipoPromocion tipoPromocion, String nombre,
-			String descripcion, Date fechaInicio, Date fechaFin, Set<DetallePromoXPromo> detallePromoXPromos,
-			Set<PromocionesXTicket> promocionesXTickets) {
+	public Promocion(Cine cine, DetallePromocion detallePromocion, PromocionPara promocionPara,
+			TipoPromocion tipoPromocion, String nombre, String descripcion, Date fechaInicio, Date fechaFin,
+			boolean activo, Set<PromocionesXTicket> promocionesXTickets) {
 		this.cine = cine;
+		this.detallePromocion = detallePromocion;
 		this.promocionPara = promocionPara;
 		this.tipoPromocion = tipoPromocion;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
-		this.detallePromoXPromos = detallePromoXPromos;
+		this.activo = activo;
 		this.promocionesXTickets = promocionesXTickets;
 	}
 
@@ -86,6 +88,16 @@ public class Promocion implements java.io.Serializable {
 
 	public void setCine(Cine cine) {
 		this.cine = cine;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_detalle_promocion", nullable = false)
+	public DetallePromocion getDetallePromocion() {
+		return this.detallePromocion;
+	}
+
+	public void setDetallePromocion(DetallePromocion detallePromocion) {
+		this.detallePromocion = detallePromocion;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -153,15 +165,6 @@ public class Promocion implements java.io.Serializable {
 
 	public void setActivo(boolean activo) {
 		this.activo = activo;
-	}
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "promocion")
-	public Set<DetallePromoXPromo> getDetallePromoXPromos() {
-		return this.detallePromoXPromos;
-	}
-
-	public void setDetallePromoXPromos(Set<DetallePromoXPromo> detallePromoXPromos) {
-		this.detallePromoXPromos = detallePromoXPromos;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "promocion")

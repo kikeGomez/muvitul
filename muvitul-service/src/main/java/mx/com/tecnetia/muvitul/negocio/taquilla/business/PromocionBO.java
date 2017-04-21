@@ -59,10 +59,9 @@ public class PromocionBO {
 		if (promocionBoletoVO != null) {
 			Promocion promocion = promocionDAO.findById(promocionBoletoVO.getPromocionVO().getIdPromocion());
 
-			if (promocion.getDetallePromoXPromos() != null) {
+			if (promocion.getDetallePromocion() != null) {
 
-				DetallePromoXPromo detallePromoXPromo = promocion.getDetallePromoXPromos().iterator().next();
-				DetallePromocion detallePromocion = detallePromoXPromo.getDetallePromocion();
+				DetallePromocion detallePromocion = promocion.getDetallePromocion();
 
 				int varN = detallePromocion.getVarN() == null ? 0 : detallePromocion.getVarN().intValue();
 				int varM = detallePromocion.getVarM() == null ? 0 : detallePromocion.getVarM().intValue();

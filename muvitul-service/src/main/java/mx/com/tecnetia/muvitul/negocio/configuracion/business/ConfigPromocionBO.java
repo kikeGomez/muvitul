@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dao.DetallePromocionDAOI;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dao.ProductoDAOI;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dao.PromocionDAOI;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dao.PromocionParaDAOI;
@@ -38,10 +39,11 @@ public class ConfigPromocionBO {
 	@Autowired
 	private RegaloDAOI regaloDAO;
 	
-	
 	@Autowired
 	private PromocionDAOI promocionDAO;
 	
+	@Autowired
+	private DetallePromocionDAOI detallePromocionDAO;
 	
 	public ConfigPromocionVO findConfigByCine(Integer idCine) {
 		
@@ -62,16 +64,18 @@ public class ConfigPromocionBO {
 	
 	public PromocionVO save(PromocionVO promocionVO) {
 		Promocion promocion = PromocionAssembler.getPromocion(promocionVO);
+		
+		detallePromocionDAO.save(promocion.getDetallePromocion());
 		promocionDAO.save(promocion);
+		
 		promocionVO.setIdPromocion(promocion.getIdPromocion());
 		return promocionVO;
 	}
 	
-
-	
 	public void delete(Integer idPromocion) {
 		Promocion promocion= promocionDAO.findById(idPromocion);
-		promocionDAO.delete(promocion);
+		promocion.setActivo(false);
+		promocionDAO.update(promocion);
 	}
 	
 }

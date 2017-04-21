@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 14-abr-2017 14:25:39 by Hibernate Tools 4.3.1.Final
+// Generated 20-abr-2017 17:23:45 by Hibernate Tools 4.3.1.Final
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -29,20 +29,20 @@ public class DetallePromocion implements java.io.Serializable {
 	private BigDecimal varM;
 	private BigDecimal precio;
 	private BigDecimal porcentaje;
-	private Set<DetallePromoXPromo> detallePromoXPromos = new HashSet<DetallePromoXPromo>(0);
+	private Set<Promocion> promocions = new HashSet<Promocion>(0);
 
 	public DetallePromocion() {
 	}
 
 	public DetallePromocion(Producto producto, Regalo regalo, BigDecimal varN, BigDecimal varM, BigDecimal precio,
-			BigDecimal porcentaje, Set<DetallePromoXPromo> detallePromoXPromos) {
+			BigDecimal porcentaje, Set<Promocion> promocions) {
 		this.producto = producto;
 		this.regalo = regalo;
 		this.varN = varN;
 		this.varM = varM;
 		this.precio = precio;
 		this.porcentaje = porcentaje;
-		this.detallePromoXPromos = detallePromoXPromos;
+		this.promocions = promocions;
 	}
 
 	@Id
@@ -114,12 +114,12 @@ public class DetallePromocion implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "detallePromocion")
-	public Set<DetallePromoXPromo> getDetallePromoXPromos() {
-		return this.detallePromoXPromos;
+	public Set<Promocion> getPromocions() {
+		return this.promocions;
 	}
 
-	public void setDetallePromoXPromos(Set<DetallePromoXPromo> detallePromoXPromos) {
-		this.detallePromoXPromos = detallePromoXPromos;
+	public void setPromocions(Set<Promocion> promocions) {
+		this.promocions = promocions;
 	}
 
 }

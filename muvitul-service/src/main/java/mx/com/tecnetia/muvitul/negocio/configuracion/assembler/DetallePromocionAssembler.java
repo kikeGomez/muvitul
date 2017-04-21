@@ -29,21 +29,21 @@ public class DetallePromocionAssembler {
 	}
 	
 	
-	public static List<DetallePromocionVO> getDetallePromocionesVO(Set<DetallePromoXPromo> detallesPromoXPromo){
+//	public static List<DetallePromocionVO> getDetallePromocionesVO(Set<DetallePromoXPromo> detallesPromoXPromo){
+//
+//		if(detallesPromoXPromo==null || detallesPromoXPromo.isEmpty())
+//			return null;
+//		
+//		List<DetallePromocionVO> detallePromocionesVO = new ArrayList<DetallePromocionVO>();
+//		
+//		for (DetallePromoXPromo detallePromoXPromo : detallesPromoXPromo) {
+//			detallePromocionesVO.add(DetallePromocionAssembler.getDetallePromocionVO(detallePromoXPromo.getDetallePromocion()));
+//		}
+//
+//		return detallePromocionesVO;
+//	}
+//	
 
-		if(detallesPromoXPromo==null || detallesPromoXPromo.isEmpty())
-			return null;
-		
-		List<DetallePromocionVO> detallePromocionesVO = new ArrayList<DetallePromocionVO>();
-		
-		for (DetallePromoXPromo detallePromoXPromo : detallesPromoXPromo) {
-			detallePromocionesVO.add(DetallePromocionAssembler.getDetallePromocionVO(detallePromoXPromo.getDetallePromocion()));
-		}
-
-		return detallePromocionesVO;
-	}
-	
-	
 	public static DetallePromocion getDetallePromocion(DetallePromocionVO detallePromocionVO){
 
 		if(detallePromocionVO==null )

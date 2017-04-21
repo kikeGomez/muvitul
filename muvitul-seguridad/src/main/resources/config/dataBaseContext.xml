@@ -61,10 +61,10 @@
 				</value>
 				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.DetallePromocion
 				</value>
-				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.DetallePromoXPromo
-				</value>
-				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.DetallePromoXPromoId
-				</value>
+<!-- 				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.DetallePromoXPromo -->
+<!-- 				</value> -->
+<!-- 				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.DetallePromoXPromoId -->
+<!-- 				</value> -->
 				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Distribuidora
 				</value>
 				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Empresa

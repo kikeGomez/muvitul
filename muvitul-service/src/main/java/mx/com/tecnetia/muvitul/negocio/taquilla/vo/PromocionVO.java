@@ -13,8 +13,8 @@ public class PromocionVO {
 	private Date fechaInicio;
 	private Date fechaFin;
 	private boolean activo;
-
-	private List<DetallePromocionVO> detallePromocionesVO;
+	private DetallePromocionVO detallePromocionVO;
+	
 //	private Set<DetallePromocion> detallePromocions = new HashSet<DetallePromocion>(0);
 //	private Set<PromocionesXTicket> promocionesXTickets = new HashSet<PromocionesXTicket>(0);
 //	
@@ -72,10 +72,10 @@ public class PromocionVO {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-	public List<DetallePromocionVO> getDetallePromocionesVO() {
-		return detallePromocionesVO;
+	public DetallePromocionVO getDetallePromocionVO() {
+		return detallePromocionVO;
 	}
-	public void setDetallePromocionesVO(List<DetallePromocionVO> detallePromocionesVO) {
-		this.detallePromocionesVO = detallePromocionesVO;
+	public void setDetallePromocionVO(DetallePromocionVO detallePromocionVO) {
+		this.detallePromocionVO = detallePromocionVO;
 	}
 }
