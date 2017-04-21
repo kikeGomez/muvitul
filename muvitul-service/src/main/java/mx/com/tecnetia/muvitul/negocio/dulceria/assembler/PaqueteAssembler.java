@@ -2,10 +2,11 @@ package mx.com.tecnetia.muvitul.negocio.dulceria.assembler;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Paquete;
+import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PaquetesXPuntoVenta;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Producto;
+import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ProductosXPuntoVenta;
 import mx.com.tecnetia.muvitul.negocio.dulceria.vo.PaqueteVO;
 
 public class PaqueteAssembler {
@@ -30,15 +31,15 @@ public class PaqueteAssembler {
 	}
 	
 	
-	public static List<PaqueteVO> getPaquetesVO(Set<Paquete> paquetes){
+	public static List<PaqueteVO> getPaquetesVO(List<PaquetesXPuntoVenta> paquetesXPuntoVenta){
 
-		if(paquetes==null || paquetes.isEmpty())
+		if(paquetesXPuntoVenta==null || paquetesXPuntoVenta.isEmpty())
 			return null;
 		
 		List<PaqueteVO> paquetesVO = new ArrayList<PaqueteVO>();
 		
-		for (Paquete paquete : paquetes) {
-			paquetesVO.add(PaqueteAssembler.getPaqueteVO(paquete));
+		for (PaquetesXPuntoVenta paqueteXPuntoVenta : paquetesXPuntoVenta) {
+			paquetesVO.add(PaqueteAssembler.getPaqueteVO(paqueteXPuntoVenta.getPaquete()));
 		}
 
 		return paquetesVO;
@@ -63,15 +64,15 @@ public class PaqueteAssembler {
 	}
 	
 	
-	public static List<PaqueteVO> getPaquetesVOXProducto(Set<Producto> productos){
+	public static List<PaqueteVO> getPaquetesVOXProducto(List<ProductosXPuntoVenta> productosXPuntoVenta){
 
-		if(productos==null || productos.isEmpty())
+		if(productosXPuntoVenta==null || productosXPuntoVenta.isEmpty())
 			return null;
 		
 		List<PaqueteVO> paquetesVO = new ArrayList<PaqueteVO>();
 		
-		for (Producto producto : productos) {
-			paquetesVO.add(PaqueteAssembler.getPaqueteVO(producto));
+		for (ProductosXPuntoVenta productoXPuntoVenta : productosXPuntoVenta) {
+			paquetesVO.add(PaqueteAssembler.getPaqueteVO(productoXPuntoVenta.getProducto()));
 		}
 
 		return paquetesVO;
