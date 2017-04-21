@@ -40,9 +40,7 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 		});
 		promocion.check = true;
 		$scope.objetosVenta.promocion	= promocion;
-//		$scope.promo = [];
-//		$scope.promo.push(promocion);
-//		$scope.objetosVenta.PromocionXTicketVO=$scope.promo;
+
 		$scope.promocionBoletoVO.promocionVO = promocion;
 		
 		$scope.promocion={ cantidad:1, tipoCliente:"Promocion", subtotal:0, precio:0,promocionVO :promocion, importe:0 };
