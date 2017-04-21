@@ -168,28 +168,10 @@
 							<input type="text" calendar ng-model="programacion.fechaVigencia"
 								id="fechaVigencia" required="required"
 								class="form-control col-md-7 col-xs-12"> 
-								
-<!-- 								<input -->
-<!-- 								type="text" id="from" name="from" ng-model="programacion.fechaVigencia" /> -->
-
+ 
 						</div>
 					</div>
-					<script type="text/javascript">
-					
-					$(function() {
-					    $( "#from" ).datepicker({
-					      autoclose: true,  
-			            	format : 'dd/mm/yyyy',
- 							startDate :new Date(),
-							todayHighlight: true,
-							todayBtn: "linked",
-					      onSelect: function( selectedDate ) {
- 					      }
-					    });
-					 });
- 
-					</script>
-
+					 
 					<div
 						ng-show="formProgramaciones.fechaVigencia.$invalid && formProgramaciones.fechaVigencia.$dirty"
 						ng-style="{color:'red'}">El campo es requerido.</div>

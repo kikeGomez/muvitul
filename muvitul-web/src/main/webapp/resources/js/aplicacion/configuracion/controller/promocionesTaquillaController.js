@@ -1,37 +1,62 @@
 'use strict';
 
-var MenusDulceriaController = angular.module('indexModule').controller("PromocionesTaquillaController", function($scope,promocionesTaquillaService,ModalService){
-	$scope.promocion={};
-	
-	$scope.consultaConfigProgramaciones =function(){
+var MenusDulceriaController = angular.module('indexModule').controller("PromocionesTaquillaController", function($scope,$controller,promocionesTaquillaService,ModalService){
+	$scope.promociones={};
+	$scope.listaPromociones={};
+    $controller('modalController',{$scope : $scope });
+
+	$scope.consultaConfigPromociones =function(){
 		promocionesTaquillaService.consultarConfigPromociones().success(function(data) {
-  			console.log(data);
-  			 $scope.listaPromoPara= data.promocionesParaVO;
+   			 $scope.listaPromoPara= data.promocionesParaVO;
 			 $scope.listaTiposPromo = data.tiposPromocionVO;
  		}).error(function(data) {
 
 		});
 	}
 	
-	 $scope.guardarPromocion =function(prmocion){
-		 console.log(prmocion);
+	$scope.consultaPromociones=function(){
+		$scope.fechaExhibicion = moment(new Date()).format('YYYY/MM/DD');
+		promocionesTaquillaService.consultarPromociones($scope.fechaExhibicion).success(function(data) {
+			console.log(data)
+			$scope.listaPromociones=data;
+ 		}).error(function(data) {
+
+		});
+	}
+ 
+	$scope.eliminarPromocion =function( idPromocion){
+		promocionesTaquillaService.eliminarPromocion(idPromocion).success(function(data) {
+			 $scope.consultaPromociones();
+		}).error(function(data) {
+
+		});
+
 	 }
-	 
-	 
+	
+	$scope.crearPromocion =function( promocionVO){
+		
+		if ( $scope.formPromociones.$invalid) {
+            angular.forEach( $scope.formPromociones.$error, function (field) {
+              angular.forEach(field, function(errorField){
+            	  errorField.$setDirty();
+              })
+            });
+            $scope.showAviso("Es necesario llenar los campos obligatorios ");
+         }else{
+		promocionesTaquillaService.crearPromocion(promocionVO).success(function(data) {
+	            //$scope.showAviso("La programación fue registrada correctamente.");
+//				$scope.consultarProgramacion();
+			}).error(function(data) {
+	
+			});
+         }
+		
+	 }
 	
 	 $scope.init =function(){
-		 $scope.consultaConfigProgramaciones();
-	 }
-	
-	 $scope.seleccion =function(dato, tipo){
-		 if(tipo=='sala') 
-			 $scope.programacion.salaVO=dato;
-		 if(tipo=='dia') 
-			 $scope.programacion.diaVO=dato;
-		 if(tipo=='formato') 
-			 $scope.programacion.formatoVO=dato;
-		 if(tipo=='version')
-			 $scope.programacion.versionVO=dato;
+		 $scope.consultaConfigPromociones();
+		 $scope.consultaPromociones();
+
 	 }
 	 
 	 $scope.init();

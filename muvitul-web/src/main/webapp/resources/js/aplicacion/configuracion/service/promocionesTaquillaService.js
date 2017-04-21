@@ -7,6 +7,26 @@ angular.module('indexModule').service('promocionesTaquillaService', ['$http','Gl
 		return $http.get(config.baseUrl+"/configuracion/configPromociones");
 	}
 	
+	
+	this.consultarPromociones = function(fechaExhibicion){
+		 return $http.get(config.baseUrl+"/configuracion/promociones", {
+			 params : {
+				 "fechaExhibicion":fechaExhibicion
+				}
+		 });
+	}
+	
+	 this.crearPromocion = function(promocionVO ) {
+		 console.log("crear programacion");
+		 return $http.post(config.baseUrl + "/configuracion/promociones", promocionVO );
+	 }
+	
+	this.eliminarPromocion = function( id ) {
+ 	 		return $http.delete(config.baseUrl + "/configuracion/promociones", {
+	 				params : {	"id" : id	}
+	 			}
+	 		);
+	 }
  
 }]);
 
