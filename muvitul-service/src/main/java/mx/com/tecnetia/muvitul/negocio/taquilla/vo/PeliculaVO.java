@@ -6,8 +6,8 @@ import java.util.Set;
 public class PeliculaVO {
 	private Integer idPelicula;
 	private CineVO cineVO;
-//	private Distribuidora distribuidora;
-//	private Pais pais;
+	private DistribuidoraVO distribuidoraVO;
+	private PaisVO paisVO;
 	private String titulo;
 	private String clasificacion;
 	private int duracion;
@@ -60,6 +60,18 @@ public class PeliculaVO {
 	}
 	public void setCineVO(CineVO cineVO) {
 		this.cineVO = cineVO;
+	}
+	public DistribuidoraVO getDistribuidoraVO() {
+		return distribuidoraVO;
+	}
+	public void setDistribuidoraVO(DistribuidoraVO distribuidoraVO) {
+		this.distribuidoraVO = distribuidoraVO;
+	}
+	public PaisVO getPaisVO() {
+		return paisVO;
+	}
+	public void setPaisVO(PaisVO paisVO) {
+		this.paisVO = paisVO;
 	}
 	public String getTitulo() {
 		return titulo;

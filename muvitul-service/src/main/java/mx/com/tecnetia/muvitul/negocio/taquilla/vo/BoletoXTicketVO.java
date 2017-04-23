@@ -3,11 +3,14 @@ package mx.com.tecnetia.muvitul.negocio.taquilla.vo;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class BoletoXTicketVO {
 	private TipoClienteVO tipoClienteVO;
 	private int cantidad;
 	private BigDecimal importe;
 	private ProgramacionVO programacionVO;
+	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date fechaExhibicion;
 	
 	public TipoClienteVO getTipoClienteVO() {

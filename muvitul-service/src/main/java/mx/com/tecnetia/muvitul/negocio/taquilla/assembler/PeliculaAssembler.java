@@ -13,6 +13,8 @@ public class PeliculaAssembler {
 		PeliculaVO peliculaVO = new PeliculaVO();
 		peliculaVO.setIdPelicula(pelicula.getIdPelicula());
 		peliculaVO.setCineVO(CineAssembler.getCineVO(pelicula.getCine()));
+		peliculaVO.setDistribuidoraVO(DistribuidoraAssembler.getDistribuidoraVO(pelicula.getDistribuidora()));
+		peliculaVO.setPaisVO(PaisAssembler.getPaisVO(pelicula.getPais()));
 		peliculaVO.setTitulo(pelicula.getTitulo());
 		peliculaVO.setClasificacion(pelicula.getClasificacion());
 		peliculaVO.setDuracion(pelicula.getDuracion());
