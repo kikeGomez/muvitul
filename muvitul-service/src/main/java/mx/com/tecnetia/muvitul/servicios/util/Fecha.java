@@ -1,5 +1,7 @@
 package mx.com.tecnetia.muvitul.servicios.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -34,4 +36,17 @@ public class Fecha {
 		
 		return cal.getTime();
 	}
+	
+	public static Date formatddMMyyyy(Date date) {
+		Date output = null;
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			String dateStr = sdf.format(date);
+			output = sdf.parse(dateStr);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return output;
+	}
+	
 }
