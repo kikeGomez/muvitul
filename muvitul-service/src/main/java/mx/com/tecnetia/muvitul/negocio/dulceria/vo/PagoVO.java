@@ -10,7 +10,6 @@ public class PagoVO {
 	private EstatusPagoVO estatusPagoVO;
 	private Date fecha;
 	
-	
 	public FormaPagoVO getFormaPagoVO() {
 		return formaPagoVO;
 	}

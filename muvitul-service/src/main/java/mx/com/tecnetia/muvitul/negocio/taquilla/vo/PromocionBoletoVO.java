@@ -6,7 +6,6 @@ public class PromocionBoletoVO {
 	private PromocionVO promocionVO;
 	private List<BoletoXTicketVO> boletosXTicketVO;
 	
-	
 	public PromocionVO getPromocionVO() {
 		return promocionVO;
 	}

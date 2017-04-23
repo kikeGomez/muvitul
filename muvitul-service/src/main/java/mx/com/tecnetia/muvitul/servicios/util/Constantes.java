@@ -1,5 +1,7 @@
 package mx.com.tecnetia.muvitul.servicios.util;
 
+import java.math.BigDecimal;
+
 public final class Constantes {
 	public static final int ID_PROMOCION_PARA_BOLETOS = 1;
 	
@@ -15,4 +17,8 @@ public final class Constantes {
 	public static final String COLON=":";
 	public static final String PM="PM";
 
+	public static final int IMPUESTO_PAQUETE = 16;
+	public static final int CIEN = 100;
+	public static final int UNO = 1;
+	
 }

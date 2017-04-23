@@ -12,7 +12,7 @@ public class ProgramacionVO {
 	private VersionVO versionVO;
 	private String diaSemana;
 	private String horario;
-	@JsonFormat(pattern="dd/MM/yyyy")
+	@JsonFormat(pattern="dd/MM/yyyy", timezone="America/Mexico_City")
 	private Date fechaVigencia;
 	private boolean activo;
 	

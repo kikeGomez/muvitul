@@ -9,9 +9,9 @@ import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.TicketVent
 
 public class ImpuestosXTicketProductoAssembler {
 
-	public static ImpuestosXTicketProducto getImpuestosXTicketProducto(ImpuestoXProducto impuestoXProducto, TicketVenta ticketVenta, BigDecimal importe){
+	public static ImpuestosXTicketProducto getImpuestosXTicketProducto(TicketVenta ticketVenta, ImpuestoXProducto impuestoXProducto, BigDecimal importeImpProducto){
 
-		if(impuestoXProducto==null || ticketVenta==null)
+		if(impuestoXProducto==null || ticketVenta==null || importeImpProducto==null )
 			return null;
 		
 		ImpuestosXTicketProductoId id= new ImpuestosXTicketProductoId();
@@ -21,7 +21,7 @@ public class ImpuestosXTicketProductoAssembler {
 		impuestoXTicketProducto.setId(id);
 		impuestoXTicketProducto.setImpuestoXProducto(impuestoXProducto);
 		impuestoXTicketProducto.setTicketVenta(ticketVenta);
-		impuestoXTicketProducto.setImporte(importe);
+		impuestoXTicketProducto.setImporte(importeImpProducto);
 
 		return impuestoXTicketProducto;
 	}

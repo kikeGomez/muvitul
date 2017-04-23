@@ -1,7 +1,8 @@
 package mx.com.tecnetia.muvitul.negocio.taquilla.vo;
 
 import java.util.Date;
-import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class PromocionVO {
 	private Integer idPromocion;
@@ -10,7 +11,9 @@ public class PromocionVO {
 	private TipoPromocionVO tipoPromocionVO;
 	private String nombre;
 	private String descripcion;
+	@JsonFormat(pattern="dd/MM/yyyy", timezone="America/Mexico_City")
 	private Date fechaInicio;
+	@JsonFormat(pattern="dd/MM/yyyy", timezone="America/Mexico_City")
 	private Date fechaFin;
 	private boolean activo;
 	private DetallePromocionVO detallePromocionVO;
