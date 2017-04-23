@@ -160,7 +160,7 @@
 								<label>Vigencia <span class="required">*</span>
 								</label>
 								<div class="input-group">
-									<span class="input-group-addon"><i
+									<span class="input-calendar"><i
 										class="glyphicon glyphicon-th"></i></span> <input type="text"
 										calendar required name="fechaVigencia"
 										ng-model="programacion.fechaVigencia" id="fechaVigencia"

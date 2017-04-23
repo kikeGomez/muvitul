@@ -68,8 +68,10 @@ var VentaBoletosPaso3Controller = angular.module('indexModule').controller("Vent
 	  		$scope.pago.subtotal  =0;
 
  			angular.forEach($scope.boletos, function(value, key){
-	  			if(value.tipoCliente ==="Promocion")
+	  			if(value.tipoCliente ==="Promocion"){
 	  				value.subtotal =data;
+	  				$scope.promocion.subtotal=data;
+	  			}
 	  			else {
 	  				value.subtotal =calculosFactory.calcularSubtotal(value.cantidad,value.precio);
 		  			value.importe = calculosFactory.calcularSubtotal(value.cantidad,value.precio);

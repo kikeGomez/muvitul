@@ -126,7 +126,7 @@
 								</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="fa fa-long-arrow-up"></i></span><select class="form-control"
+										class="fa fa-gift"></i></span><select class="form-control"
 										name="tipoPromocion" required
 										ng-options="regalo as regalo.nombre for regalo  in listaRegalos"
 										ng-model="promocion.detallePromocionVO.regaloVO">
@@ -185,8 +185,8 @@
 								</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="fa fa-long-arrow-up"></i></span> <input type='text'
-										class="form-control" required name="precio"
+										class="fa fa-usd"></i></span> <input type='text'
+										class="form-control"   name="precio"
 										ng-model="promocion.detallePromocionVO.precio" />
 								</div>
 								<div
@@ -202,8 +202,8 @@
 								</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="fa fa-long-arrow-up"></i></span> <input type='text'
-										class="form-control" required name="porcentaje"
+										class="fa fa-percent"></i></span> <input type='text'
+										class="form-control"   name="porcentaje"
 										ng-model="promocion.detallePromocionVO.porcentaje" />
 								</div>
 								<div
@@ -220,7 +220,7 @@
 								<label>Fecha Inicio<span class="required">*</span>
 								</label>
 								<div class="input-group">
-									<span class="input-group-addon"><i
+									<span class="input-calendar"><i
 										class="glyphicon glyphicon-th"></i></span> <input type="text"
 										calendar ng-model="promocion.fechaInicio" id="fechaInicio"  name="fechaInicio" 
 										required="required" class="form-control col-md-7 col-xs-12">
@@ -237,7 +237,7 @@
 								<label>Fecha Fin <span class="required">*</span>
 								</label>
 								<div class="input-group">
-									<span class="input-group-addon"><i
+									<span class="input-calendar"><i
 										class="glyphicon glyphicon-th"></i></span> <input type="text"
 										calendar ng-model="promocion.fechaFin" id="fechaFin" name="fechaFin"
 										required class="form-control col-md-7 col-xs-12">

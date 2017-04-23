@@ -24,7 +24,6 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
  		$scope.statusVenta.numeroPaso		= 2;
 		$scope.statusVenta.elegirPelicula	= "done";
     	$scope.statusVenta.elegirPromocion  = "selected";
-    	
 		$scope.objetosVenta.programacion	= programacion;
 		$scope.objetosVenta.pelicula		= pelicula;
 		$scope.objetosVenta.fechaExhibicion		= $scope.fechaExhibicion;
@@ -39,8 +38,7 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 			value.check = false;
 		});
 		promocion.check = true;
-		$scope.objetosVenta.promocion	= promocion;
-
+ 		$scope.objetosVenta.promocion	= promocion;
 		$scope.promocionBoletoVO.promocionVO = promocion;
 		
 		$scope.promocion={ cantidad:1, tipoCliente:"Promocion", subtotal:0, precio:0,promocionVO :promocion, importe:0 };
@@ -58,16 +56,18 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 		$scope.reservarBoleto($scope.asientosDisponibles);
  		boleto.cantidad = boleto.cantidad-1;
  		$scope.pago.subtotal =0;
- 		if($scope.promocion==null){
+// 		if($scope.promocion==null){
 	 		angular.forEach($scope.boletos, function(value, key){
 	  			value.subtotal =calculosFactory.calcularSubtotal(value.cantidad,value.precio);
 	  			value.importe = calculosFactory.calcularSubtotal(value.cantidad,value.precio);
 	  			$scope.pago.subtotal += value.subtotal;
 	  		}); 
- 		}
+// 		}
 		angular.forEach($scope.listaPreciosXFormato, function(value, key){
 			if(value.tipoClienteVO.nombre ===boleto.tipoCliente) 
 				value.boletosSeleccionados =value.boletosSeleccionados-1;
+  			value.importe = calculosFactory.calcularSubtotal(value.cantidad,value.precio);
+
 		});
    			$scope.consultarDescuentos ($scope.promocionBoletoVO);
  	}
@@ -86,6 +86,7 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 
 		tipoClienteVO.boletosSeleccionados = tipoClienteVO.boletosSeleccionados +1;
   		angular.forEach($scope.boletos, function(value, key){
+  				value.fechaExhibicion =$scope.fechaExhibicion ;
   			if(tipoClienteVO.tipoClienteVO.nombre ===value.tipoCliente)
   				value.cantidad =value.cantidad + 1;
 	  		
@@ -107,11 +108,10 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
  
 	//Consulta de programacion de peliculas
 	$scope.consultarPeliculas =function(fechaExhibicion){
- 		taquillaService.consultarPeliculas(fechaExhibicion).success(function(data) {	
+  		taquillaService.consultarPeliculas(fechaExhibicion).success(function(data) {	
  			$scope.listaPeliculas=data;
 			$scope.errorPeliculas=false;
-			console.log($scope.listaPeliculas)
- 		  }).error(function(data) {
+  		  }).error(function(data) {
  			 $scope.listaPeliculas={};
  			 $scope.errorPeliculas=true;
  		  });

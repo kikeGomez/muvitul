@@ -29,11 +29,7 @@
 						<select class="select2_multiple form-control" multiple="multiple"
 							ng-options="producto as producto.nombre for producto  in listaProductos"
 							ng-model="paquete.productos">
-							<!-- 							<option>Palomitas CH</option> -->
-							<!-- 							<option>Palomitas M</option> -->
-							<!-- 							<option>Refresco CH</option> -->
-							<!-- 							<option>Refresco M</option> -->
-							<!-- 							<option>Nachos</option> -->
+
 						</select>
 						<script>
 							$(".select2_multiple").select2({
@@ -57,14 +53,15 @@
 						for="icono">Icono <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-						<input id="icono_file" type="file" class="file" on-change="onChange"
-							ng-model="file" data-show-preview="false">
+						<input id="icono_file" type="file" class="file"
+							on-change="onChange" ng-model="file" data-show-preview="false">
 						<script>
 							$("#icono_file").fileinput(
 									{
 										language : "es",
 										showUpload : false,
-										allowedFileExtensions : [ "jpg", "png",	"gif", "ico" ]
+										allowedFileExtensions : [ "jpg", "png",
+												"gif", "ico" ]
 									});
 						</script>
 					</div>
