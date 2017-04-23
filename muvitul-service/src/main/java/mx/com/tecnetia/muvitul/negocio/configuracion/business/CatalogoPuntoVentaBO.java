@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dao.PuntoVentaDAOI;
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
+import mx.com.tecnetia.muvitul.negocio.configuracion.assembler.PuntoVentaAssembler;
 import mx.com.tecnetia.muvitul.negocio.configuracion.vo.PuntoVentaVO;
 
 @Service
@@ -17,8 +18,7 @@ public class CatalogoPuntoVentaBO {
 	private PuntoVentaDAOI puntoVentaDAO;
 
 	public List<PuntoVentaVO> findByCine(Integer idCine) throws BusinessGlobalException  {
-		puntoVentaDAO.findByIdCine(idCine);
-		return null;
+		return PuntoVentaAssembler.getPuntosVentaVO(puntoVentaDAO.findByIdCine(idCine));
 	}
 
 }

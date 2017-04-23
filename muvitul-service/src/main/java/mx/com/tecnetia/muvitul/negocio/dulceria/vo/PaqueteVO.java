@@ -10,8 +10,9 @@ public class PaqueteVO {
 	private String nombre;
 	private byte[] icono;
 	private boolean activo;
+	private BigDecimal precio;
 	private List<ProductoXPaqueteVO> productosXPaqueteVO;
-	private List<PrecioXPaqueteVO> preciosXPaqueteVO;
+
 
 	//Adicionales
 	private String color;
@@ -56,17 +57,17 @@ public class PaqueteVO {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
+	public BigDecimal getPrecio() {
+		return precio;
+	}
+	public void setPrecio(BigDecimal precio) {
+		this.precio = precio;
+	}
 	public List<ProductoXPaqueteVO> getProductosXPaqueteVO() {
 		return productosXPaqueteVO;
 	}
 	public void setProductosXPaqueteVO(List<ProductoXPaqueteVO> productosXPaqueteVO) {
 		this.productosXPaqueteVO = productosXPaqueteVO;
-	}
-	public List<PrecioXPaqueteVO> getPreciosXPaqueteVO() {
-		return preciosXPaqueteVO;
-	}
-	public void setPreciosXPaqueteVO(List<PrecioXPaqueteVO> preciosXPaqueteVO) {
-		this.preciosXPaqueteVO = preciosXPaqueteVO;
 	}
 	public String getColor() {
 		return color;

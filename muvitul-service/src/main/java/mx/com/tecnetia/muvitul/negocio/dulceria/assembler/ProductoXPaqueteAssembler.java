@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Producto;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ProductosXPaquete;
 import mx.com.tecnetia.muvitul.negocio.dulceria.vo.ProductoXPaqueteVO;
 
@@ -36,4 +37,27 @@ public class ProductoXPaqueteAssembler {
 		return productosXPaqueteVO;
 	}
 	
+	public static ProductoXPaqueteVO getProductoXPaqueteVO(Producto producto){
+		
+		if(producto==null)
+			return null;
+		
+		ProductoXPaqueteVO productoXPaqueteVO = new ProductoXPaqueteVO();
+		productoXPaqueteVO.setProductoVO(ProductoAssembler.getProductoVO(producto));
+		productoXPaqueteVO.setCantidad(1);
+		
+		return productoXPaqueteVO;
+	}
+	
+	
+	public static List<ProductoXPaqueteVO> getProductosXPaqueteVO(Producto producto) {
+
+		if (producto == null )
+			return null;
+
+		List<ProductoXPaqueteVO>  productosPaqueteVO = new ArrayList<ProductoXPaqueteVO>();
+		productosPaqueteVO.add(ProductoXPaqueteAssembler.getProductoXPaqueteVO(producto));
+
+		return productosPaqueteVO;
+	}
 }

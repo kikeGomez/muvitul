@@ -24,6 +24,7 @@ public class PaqueteAssembler {
 		paqueteVO.setNombre(paquete.getNombre());
 		paqueteVO.setIcono(paquete.getIcono());
 		paqueteVO.setActivo(paquete.isActivo());
+		paqueteVO.setPrecio(paquete.getPrecio());
 		paqueteVO.setProductosXPaqueteVO(ProductoXPaqueteAssembler.getProductoXPaqueteVO(paquete.getProductosXPaquetes()));
 		//paqueteVO.setPreciosXPaqueteVO(PrecioXPaqueteAssembler.getPreciosXPaqueteVO(paquete.getPrecioXPaquetes()));
 
@@ -57,7 +58,8 @@ public class PaqueteAssembler {
 		paqueteVO.setNombre(producto.getNombre());
 		paqueteVO.setIcono(producto.getIcono());
 		paqueteVO.setActivo(producto.isActivo());
-		//paqueteVO.setProductosXPaquete(productosXPaquete);
+		paqueteVO.setPrecio(producto.getPrecio());
+		paqueteVO.setProductosXPaqueteVO(ProductoXPaqueteAssembler.getProductosXPaqueteVO(producto));
 		//paqueteVO.setPreciosXPaqueteVO(PrecioXPaqueteAssembler.getPreciosXPaqueteVOXProducto(producto.getPrecioXProductos()));
 
 		return paqueteVO;
