@@ -129,10 +129,10 @@
 				</value>
 				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PrecioXFormato
 				</value>
-				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PrecioXPaquete
-				</value>
-				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PrecioXProducto
-				</value>
+<!-- 				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PrecioXPaquete -->
+<!-- 				</value> -->
+<!-- 				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PrecioXProducto -->
+<!-- 				</value> -->
 				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Producto
 				</value>
 				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ProductosXPaquete

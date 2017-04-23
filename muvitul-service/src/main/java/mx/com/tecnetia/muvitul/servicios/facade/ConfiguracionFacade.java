@@ -1,5 +1,7 @@
 package mx.com.tecnetia.muvitul.servicios.facade;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -54,14 +56,16 @@ public class ConfiguracionFacade implements ConfiguracionFacadeI {
 
 	@Override
 	public ResponseEntity<List<SalaProgramacionVO>> getProgramacionOfSala(HttpServletRequest request,
-			Date fechaExhibicion) throws BusinessGlobalException, NotFoundException {
+			String fechaExhibicion) throws BusinessGlobalException, NotFoundException, ParseException {
 		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
 		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
 
 		logger.info("GetProgramacionOfSala:::IdCine[{}]:::Fecha[{}]", idCine, fechaExhibicion);
 
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date fecha = formatter.parse(fechaExhibicion);
 		List<SalaProgramacionVO> salaProgramacionVO = configuracionController.findProgramacionOfSala(idCine,
-				fechaExhibicion);
+				fecha);
 
 		if (salaProgramacionVO == null || salaProgramacionVO.isEmpty()) {
 			throw new NotFoundException("No encontrado");
@@ -118,14 +122,15 @@ public class ConfiguracionFacade implements ConfiguracionFacadeI {
 	}
 
 	@Override
-	public ResponseEntity<List<PromocionVO>> getPromociones(HttpServletRequest request, Date fechaExhibicion)
-			throws BusinessGlobalException, NotFoundException {
+	public ResponseEntity<List<PromocionVO>> getPromociones(HttpServletRequest request, String fechaExhibicion)
+			throws BusinessGlobalException, NotFoundException,ParseException {
 		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
 		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
 
 		logger.info("GetPromociones:::IdCine[{}]:::Fecha[{}]", idCine, fechaExhibicion);
-
-		List<PromocionVO> promocionVO = configuracionController.findPromocionByCineAndDate(idCine, fechaExhibicion);
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date fecha = formatter.parse(fechaExhibicion);
+		List<PromocionVO> promocionVO = configuracionController.findPromocionByCineAndDate(idCine, fecha);
 
 		if (promocionVO == null || promocionVO.isEmpty()) {
 			throw new NotFoundException("No encontrado");

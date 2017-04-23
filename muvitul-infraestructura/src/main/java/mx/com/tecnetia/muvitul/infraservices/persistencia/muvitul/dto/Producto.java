@@ -1,6 +1,7 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 14-abr-2017 14:25:39 by Hibernate Tools 4.3.1.Final
+// Generated 22-abr-2017 21:26:04 by Hibernate Tools 4.3.1.Final
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -26,8 +27,8 @@ public class Producto implements java.io.Serializable {
 	private String nombre;
 	private byte[] icono;
 	private boolean activo;
+	private BigDecimal precio;
 	private Set<ProductosXPaquete> productosXPaquetes = new HashSet<ProductosXPaquete>(0);
-	private Set<PrecioXProducto> precioXProductos = new HashSet<PrecioXProducto>(0);
 	private Set<ProductosXTicket> productosXTickets = new HashSet<ProductosXTicket>(0);
 	private Set<DetallePromocion> detallePromocions = new HashSet<DetallePromocion>(0);
 	private Set<ProductosXPuntoVenta> productosXPuntoVentas = new HashSet<ProductosXPuntoVenta>(0);
@@ -37,23 +38,24 @@ public class Producto implements java.io.Serializable {
 	public Producto() {
 	}
 
-	public Producto(Cine cine, String nombre, byte[] icono, boolean activo) {
+	public Producto(Cine cine, String nombre, byte[] icono, boolean activo, BigDecimal precio) {
 		this.cine = cine;
 		this.nombre = nombre;
 		this.icono = icono;
 		this.activo = activo;
+		this.precio = precio;
 	}
 
-	public Producto(Cine cine, String nombre, byte[] icono, boolean activo, Set<ProductosXPaquete> productosXPaquetes,
-			Set<PrecioXProducto> precioXProductos, Set<ProductosXTicket> productosXTickets,
+	public Producto(Cine cine, String nombre, byte[] icono, boolean activo, BigDecimal precio,
+			Set<ProductosXPaquete> productosXPaquetes, Set<ProductosXTicket> productosXTickets,
 			Set<DetallePromocion> detallePromocions, Set<ProductosXPuntoVenta> productosXPuntoVentas,
 			Set<ArticulosXProducto> articulosXProductos, Set<ImpuestoXProducto> impuestoXProductos) {
 		this.cine = cine;
 		this.nombre = nombre;
 		this.icono = icono;
 		this.activo = activo;
+		this.precio = precio;
 		this.productosXPaquetes = productosXPaquetes;
-		this.precioXProductos = precioXProductos;
 		this.productosXTickets = productosXTickets;
 		this.detallePromocions = detallePromocions;
 		this.productosXPuntoVentas = productosXPuntoVentas;
@@ -110,6 +112,15 @@ public class Producto implements java.io.Serializable {
 		this.activo = activo;
 	}
 
+	@Column(name = "precio", nullable = false, precision = 15)
+	public BigDecimal getPrecio() {
+		return this.precio;
+	}
+
+	public void setPrecio(BigDecimal precio) {
+		this.precio = precio;
+	}
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "producto")
 	public Set<ProductosXPaquete> getProductosXPaquetes() {
 		return this.productosXPaquetes;
@@ -117,15 +128,6 @@ public class Producto implements java.io.Serializable {
 
 	public void setProductosXPaquetes(Set<ProductosXPaquete> productosXPaquetes) {
 		this.productosXPaquetes = productosXPaquetes;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "producto")
-	public Set<PrecioXProducto> getPrecioXProductos() {
-		return this.precioXProductos;
-	}
-
-	public void setPrecioXProductos(Set<PrecioXProducto> precioXProductos) {
-		this.precioXProductos = precioXProductos;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "producto")

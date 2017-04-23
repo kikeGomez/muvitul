@@ -48,15 +48,16 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 
 	@Override
 	@Transactional(readOnly = true)
-	public ResponseEntity<List<PeliculaVO>> getPeliculasByCine(HttpServletRequest request, Date fechaExhibicion)
+	public ResponseEntity<List<PeliculaVO>> getPeliculasByCine(HttpServletRequest request, String fechaExhibicion)
 			throws BusinessGlobalException, NotFoundException, ParseException {
-		
+
 		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
 		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
 
-		logger.info("GetPeliculasByCine:::IdCine[{}]:::FechaExhibicion[{}]",idCine, fechaExhibicion);
-
-		List<PeliculaVO> peliculas = ventaBoletoController.getPeliculasByCine(idCine,Fecha.getDayOfWeek(fechaExhibicion),fechaExhibicion);
+		logger.info("GetPeliculasByCine:::IdCine[{}]:::FechaExhibicion[{}]", idCine, fechaExhibicion);
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date fecha = formatter.parse(fechaExhibicion);
+		List<PeliculaVO> peliculas = ventaBoletoController.getPeliculasByCine(idCine, Fecha.getDayOfWeek(fecha), fecha);
 
 		if (peliculas == null || peliculas.isEmpty()) {
 			throw new NotFoundException("No encontrado");
@@ -68,16 +69,18 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 
 	@Override
 	@Transactional(readOnly = true)
-	public ResponseEntity<List<PromocionVO>> getPromocionesByCine(HttpServletRequest request, Date fechaExhibicion)
-			throws BusinessGlobalException, NotFoundException {
-		
+	public ResponseEntity<List<PromocionVO>> getPromocionesByCine(HttpServletRequest request, String fechaExhibicion)
+			throws BusinessGlobalException, NotFoundException, ParseException {
+
 		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
 		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
 
-		logger.info("GetPromocionesByCine:::IdCine[{}]:::FechaExhibicion[{}]",idCine, fechaExhibicion);
-		
-		List<PromocionVO> promociones = ventaBoletoController.getPromocionesByCine(idCine,Constantes.ID_PROMOCION_PARA_BOLETOS,
-				fechaExhibicion);
+		logger.info("GetPromocionesByCine:::IdCine[{}]:::FechaExhibicion[{}]", idCine, fechaExhibicion);
+
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date fecha = formatter.parse(fechaExhibicion);
+		List<PromocionVO> promociones = ventaBoletoController.getPromocionesByCine(idCine,
+				Constantes.ID_PROMOCION_PARA_BOLETOS, fecha);
 
 		if (promociones == null || promociones.isEmpty()) {
 			throw new NotFoundException("No encontrado");
@@ -90,16 +93,19 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 	@Override
 	public ResponseEntity<BigDecimal> getDescuentoByPromocion(HttpServletRequest request,
 			@RequestBody PromocionBoletoVO promocionBoletoVO) throws BusinessGlobalException, NotFoundException {
-		
-		if (promocionBoletoVO==null || promocionBoletoVO.getBoletosXTicketVO()==null || promocionBoletoVO.getPromocionVO()==null)
+
+		if (promocionBoletoVO == null || promocionBoletoVO.getBoletosXTicketVO() == null
+				|| promocionBoletoVO.getPromocionVO() == null)
 			throw new NotFoundException("Parametros invalidos");
-		
+
 		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
 		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
 
-		logger.info("GetDescuentoByPromocion:::IdCine[{}]:::Promocion[{}]",idCine, promocionBoletoVO.getPromocionVO().getDescripcion());
-		
-		return new ResponseEntity<BigDecimal>(ventaBoletoController.getDescuentoByPromocion(promocionBoletoVO),HttpStatus.OK);
+		logger.info("GetDescuentoByPromocion:::IdCine[{}]:::Promocion[{}]", idCine,
+				promocionBoletoVO.getPromocionVO().getDescripcion());
+
+		return new ResponseEntity<BigDecimal>(ventaBoletoController.getDescuentoByPromocion(promocionBoletoVO),
+				HttpStatus.OK);
 
 	}
 
@@ -110,7 +116,7 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
 		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
 
-		logger.info("GetPreciosByFormato:::IdCine[{}]:::IdFormato[{}]",idCine,idFormato);
+		logger.info("GetPreciosByFormato:::IdCine[{}]:::IdFormato[{}]", idCine, idFormato);
 
 		List<PrecioXFormatoVO> precios = ventaBoletoController.getPreciosByFormato(idCine, idFormato);
 
@@ -119,65 +125,67 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 		}
 
 		return new ResponseEntity<List<PrecioXFormatoVO>>(precios, HttpStatus.OK);
-		
+
 	}
 
 	@Override
 	public ResponseEntity<ExistenciaBoletoVO> getExistenciaBoleto(HttpServletRequest request, Integer idProgramacion,
-			Integer idSala, Date fechaExhibicion) throws BusinessGlobalException, NotFoundException, ParseException {
-		
+			Integer idSala, String fechaExhibicion) throws BusinessGlobalException, NotFoundException, ParseException {
+
 		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
 		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
 
-		logger.info("GetExistenciaBoleto:::IdCine[{}]:::IdProgramacion[{}]:::Idsala[{}]:::FechaExhibicion[{}]",
-				idCine,idProgramacion,idSala,fechaExhibicion);
-		
-		ExistenciaBoletoVO existenciaBoletoVO = ventaBoletoController.getExistenciaBoleto(idProgramacion,idSala,fechaExhibicion);
+		logger.info("GetExistenciaBoleto:::IdCine[{}]:::IdProgramacion[{}]:::Idsala[{}]:::FechaExhibicion[{}]", idCine,
+				idProgramacion, idSala, fechaExhibicion);
+
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date fecha = formatter.parse(fechaExhibicion);
+		ExistenciaBoletoVO existenciaBoletoVO = ventaBoletoController.getExistenciaBoleto(idProgramacion, idSala,
+				fecha);
 
 		if (existenciaBoletoVO == null) {
 			throw new NotFoundException("No encontrado");
 		}
 
 		return new ResponseEntity<ExistenciaBoletoVO>(existenciaBoletoVO, HttpStatus.OK);
-		
+
 	}
 
 	@Override
 	public ResponseEntity<ExistenciaBoletoVO> updateExistenciaBoleto(HttpServletRequest request,
 			@RequestBody ExistenciaBoletoVO existenciaBoletoVO) throws BusinessGlobalException, NotFoundException {
-		
+
 		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
 		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
 
-		logger.info("UpdateExistenciaBoleto:::IdCine[{}]:::IdProgramacion[{}]:::FechaExhibicion[{}]",
-				idCine,existenciaBoletoVO.getProgramacionVO().getIdProgramacion(),existenciaBoletoVO.getFechaExhibicion());
+		logger.info("UpdateExistenciaBoleto:::IdCine[{}]:::IdProgramacion[{}]:::FechaExhibicion[{}]", idCine,
+				existenciaBoletoVO.getProgramacionVO().getIdProgramacion(), existenciaBoletoVO.getFechaExhibicion());
 
 		return new ResponseEntity<ExistenciaBoletoVO>(ventaBoletoController.updateExistenciaBoleto(existenciaBoletoVO),
 				HttpStatus.OK);
 
 	}
-	
+
 	@Override
 	public ResponseEntity<TicketVentaVO> createVenta(HttpServletRequest request, @RequestBody VentaVO ventaVO)
 			throws BusinessGlobalException, NotFoundException {
-		
+
 		Claims claims = (Claims) request.getAttribute(ClaimsEnum.CLAIMS_ID);
-		Integer idUsuario=(Integer) claims.get(ClaimsEnum.USUARIO);
+		Integer idUsuario = (Integer) claims.get(ClaimsEnum.USUARIO);
 		Integer idCine = (Integer) claims.get(ClaimsEnum.CINE);
-		Integer idPuntoVenta=(Integer) claims.get(ClaimsEnum.PUNTO_VENTA);
+		Integer idPuntoVenta = (Integer) claims.get(ClaimsEnum.PUNTO_VENTA);
 		ventaVO.setIdUsuario(idUsuario);
 		ventaVO.setIdCine(idCine);
 		ventaVO.setIdPuntoVenta(idPuntoVenta);
-		
-		logger.info("CreateVenta:::IdUsuario[{}]:::IdCine[{}]:::IdPuntoVenta[{}]",idUsuario,idCine,idPuntoVenta);
-		
+
+		logger.info("CreateVenta:::IdUsuario[{}]:::IdCine[{}]:::IdPuntoVenta[{}]", idUsuario, idCine, idPuntoVenta);
+
 		TicketVentaVO ticketVentaVO = ventaBoletoController.createVenta(ventaVO);
 		return new ResponseEntity<TicketVentaVO>(ticketVentaVO, HttpStatus.CREATED);
-		
+
 	}
-	
-	
-	/***********************TEST**************************************/
+
+	/*********************** TEST **************************************/
 	@Override
 	public ResponseEntity<PromocionBoletoVO> getPromocionBoletos(HttpServletRequest request)
 			throws BusinessGlobalException, NotFoundException {
@@ -241,7 +249,7 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 		return new ResponseEntity<PromocionBoletoVO>(promocionBoletoVO, HttpStatus.OK);
 
 	}
-	
+
 	@Override
 	public ResponseEntity<VentaVO> getVenta(HttpServletRequest request)
 			throws BusinessGlobalException, NotFoundException {

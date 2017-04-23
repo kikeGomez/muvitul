@@ -31,12 +31,12 @@ import mx.com.tecnetia.muvitul.negocio.taquilla.vo.VentaVO;
 public interface VentaBoletoFacadeI {
 
 	@RequestMapping(value = "/peliculas", method = RequestMethod.GET)
-	public ResponseEntity<List<PeliculaVO>> getPeliculasByCine(HttpServletRequest request, Date fechaExhibicion)
+	public ResponseEntity<List<PeliculaVO>> getPeliculasByCine(HttpServletRequest request, String fechaExhibicion)
 			throws BusinessGlobalException, NotFoundException, ParseException;
 
 	@RequestMapping(value = "/promociones", method = RequestMethod.GET)
-	public ResponseEntity<List<PromocionVO>> getPromocionesByCine(HttpServletRequest request, Date fechaExhibicion)
-			throws BusinessGlobalException, NotFoundException;
+	public ResponseEntity<List<PromocionVO>> getPromocionesByCine(HttpServletRequest request, String fechaExhibicion)
+			throws BusinessGlobalException, NotFoundException,ParseException;
 
 	@RequestMapping(value = "/descuentos", method = RequestMethod.POST)
 	public ResponseEntity<BigDecimal> getDescuentoByPromocion(HttpServletRequest request,
@@ -50,7 +50,7 @@ public interface VentaBoletoFacadeI {
 	public ResponseEntity<ExistenciaBoletoVO> getExistenciaBoleto(HttpServletRequest request,
 			@RequestParam(value = "idProgramacion") Integer idProgramacion,
 			@RequestParam(value = "idSala") Integer idSala,
-			@RequestParam(value = "fechaExhibicion") Date fechaExhibicion)
+			@RequestParam(value = "fechaExhibicion") String fechaExhibicion)
 			throws BusinessGlobalException, NotFoundException, ParseException;
 
 	@RequestMapping(value = "/existencias", method = RequestMethod.PUT)

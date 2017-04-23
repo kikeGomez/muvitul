@@ -16,7 +16,7 @@ public class PromocionAssembler {
 		
 		Promocion promocion = new Promocion();
 		promocion.setCine(CineAssembler.getCine(promocionVO.getCineVO().getIdCine()));
-		promocion.setPromocionPara(PromocionParaAssembler.getPromocionPara(promocionVO.getIdPromocion()));
+		promocion.setPromocionPara(PromocionParaAssembler.getPromocionPara(promocionVO.getPromocionParaVO().getIdPromocionPara()));
 		promocion.setTipoPromocion(TipoPromocionAssembler.getTipoPromocion(promocionVO.getTipoPromocionVO().getIdTipoPromocion()));
 		promocion.setNombre(promocionVO.getNombre());
 		promocion.setDescripcion(promocionVO.getDescripcion());

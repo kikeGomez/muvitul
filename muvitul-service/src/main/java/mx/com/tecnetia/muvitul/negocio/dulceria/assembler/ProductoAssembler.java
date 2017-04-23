@@ -21,7 +21,7 @@ public class ProductoAssembler {
 		productoVO.setNombre(producto.getNombre());
 		productoVO.setIcono(producto.getIcono());
 		productoVO.setActivo(producto.isActivo());
-		productoVO.setPreciosXProductoVO(PrecioXProductoAssembler.getPreciosXProductoVO(producto.getPrecioXProductos()));
+		//productoVO.setPreciosXProductoVO(PrecioXProductoAssembler.getPreciosXProductoVO(producto.getPrecioXProductos()));
 
 		return productoVO;
 	}

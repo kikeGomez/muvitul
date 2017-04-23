@@ -1,6 +1,6 @@
 package mx.com.tecnetia.muvitul.servicios.facade;
 
-import java.util.Date;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +34,7 @@ public interface ConfiguracionFacadeI {
 
 	@RequestMapping(value = "/programaciones", method = RequestMethod.GET)
 	public ResponseEntity<List<SalaProgramacionVO>> getProgramacionOfSala(HttpServletRequest request,
-			Date fechaExhibicion) throws BusinessGlobalException, NotFoundException;
+			String fechaExhibicion) throws BusinessGlobalException, NotFoundException, ParseException;
 
 	// @RequestMapping(value = "/programaciones", method = RequestMethod.GET)
 	// public ResponseEntity<ProgramacionVO> getProgramacion(HttpServletRequest
@@ -54,8 +54,8 @@ public interface ConfiguracionFacadeI {
 			throws BusinessGlobalException, NotFoundException;
 
 	@RequestMapping(value = "/promociones", method = RequestMethod.GET)
-	public ResponseEntity<List<PromocionVO>> getPromociones(HttpServletRequest request, Date fechaExhibicion)
-			throws BusinessGlobalException, NotFoundException;
+	public ResponseEntity<List<PromocionVO>> getPromociones(HttpServletRequest request, String fechaExhibicion)
+			throws BusinessGlobalException, NotFoundException,ParseException;
 
 	@RequestMapping(value = "/promociones", method = RequestMethod.POST)
 	public ResponseEntity<PromocionVO> createPromocion(HttpServletRequest request, @RequestBody PromocionVO promocionVO)
@@ -64,7 +64,6 @@ public interface ConfiguracionFacadeI {
 	@RequestMapping(value = "/promociones", method = RequestMethod.DELETE)
 	public ResponseEntity<Integer> deletePromocion(HttpServletRequest request, @RequestParam(value = "id") Integer id)
 			throws BusinessGlobalException, NotFoundException;
-
 
 	@RequestMapping(value = "/productos", method = RequestMethod.GET)
 	public ResponseEntity<List<ProductoVO>> getProductos(HttpServletRequest request)
@@ -82,5 +81,4 @@ public interface ConfiguracionFacadeI {
 	public ResponseEntity<Integer> deletePaquete(HttpServletRequest request, @RequestParam(value = "id") Integer id)
 			throws BusinessGlobalException, NotFoundException;
 
-	
 }
