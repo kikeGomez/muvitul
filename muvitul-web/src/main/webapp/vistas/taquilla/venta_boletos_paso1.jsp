@@ -19,11 +19,16 @@
 				<div class="col-md-2 col-md-offset-9">
 					<label>Fecha Función:</label>
 
-					<div class="input-group date" id='horario-pelicula'>
-						<input type="text" class="form-control" ng-model="fechaExhibicion"
-							ng-change="buscarPeliculasXFecha()"><span
-							class="input-group-addon"><i
-							class="glyphicon glyphicon-th"></i></span>
+					<div class="input-group" id='horario-pelicula'>
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-th"></i></span> <input type="text" calendar
+							id="fechaInicio" ng-change="buscarPeliculasXFecha()"
+							ng-model="fechaExhibicion" required="required"
+							class="form-control col-md-7 col-xs-12">
+						<!-- 						<input type="text" class="form-control" ng-model="fechaExhibicion" -->
+						<!-- 							ng-change="buscarPeliculasXFecha()"><span -->
+						<!-- 							class="input-group-addon"><i -->
+						<!-- 							class="glyphicon glyphicon-th"></i></span> -->
 					</div>
 				</div>
 
@@ -81,11 +86,10 @@
 													</p>
 
 													<div class="row col-md-12">
-														<p ng-if="pelicula.esp2d.length > 0">
-															ESP 2D
-
-															<ul id="1" class="col-md-2 col-xs-6"
-															ng-repeat="esp2d in pelicula.esp2d"><button type="button"
+														<p ng-if="pelicula.esp2d.length > 0">ESP 2D
+														<ul id="1" class="col-md-2 col-xs-6"
+															ng-repeat="esp2d in pelicula.esp2d">
+															<button type="button"
 																ng-click="seleccionarPelicula(pelicula,esp2d)"
 																ng-class="esp2d.existenciaBoletoVO.color"
 																ng-disabled="esp2d.existenciaBoletoVO.disponibles ==0"
@@ -94,11 +98,10 @@
 														</p>
 													</div>
 													<div class="row col-md-12">
-														<p ng-if="pelicula.esp3d.length > 0">
-															ESP 3D
-
-															<ul id="2" class="col-md-2 col-xs-6"
-															ng-repeat="esp3d in pelicula.esp3d"><button type="button"
+														<p ng-if="pelicula.esp3d.length > 0">ESP 3D
+														<ul id="2" class="col-md-2 col-xs-6"
+															ng-repeat="esp3d in pelicula.esp3d">
+															<button type="button"
 																ng-click="seleccionarPelicula(pelicula,esp3d)"
 																ng-class="esp3d.existenciaBoletoVO.color"
 																ng-disabled="esp3d.existenciaBoletoVO.disponibles ==0"
@@ -152,7 +155,7 @@
 															<button type="button"
 																ng-click="seleccionarPelicula(pelicula,sub4d)"
 																ng-class="sub4d.existenciaBoletoVO.color"
-																ng-disabled ="sub4d.existenciaBoletoVO.disponibles ==0"
+																ng-disabled="sub4d.existenciaBoletoVO.disponibles ==0"
 																title="Disponibles: {{sub4d.existenciaBoletoVO.disponibles}}">{{sub4d.horario}}</button>
 														</ul>
 														</p>

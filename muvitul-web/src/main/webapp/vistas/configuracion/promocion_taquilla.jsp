@@ -100,6 +100,50 @@
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group"
+								ng-class="{'has-error': formPromociones.producto.$invalid && formPromociones.producto.$dirty}">
+								<label>Productos<span class="required">*</span>
+								</label>
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="fa fa-long-arrow-up"></i></span><select class="form-control"
+										name="producto" required
+										ng-options="producto  as producto.nombre for producto  in listaProductos"
+										ng-model="promocion.detallePromocionVO.productoVO">
+										<option value="" selected="selected">Selecciona
+											Producto</option>
+									</select>
+								</div>
+								<div
+									ng-show="formPromociones.producto.$invalid && formPromociones.producto.$dirty"
+									ng-style="{color:'red'}">El campo es requerido.</div>
+							</div>
+						</div>
+
+						<div class="col-sm-6">
+							<div class="form-group"
+								ng-class="{'has-error': formPromociones.regalo.$invalid && formPromociones.regalo.$dirty}">
+								<label>Regalos<span class="required">*</span>
+								</label>
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="fa fa-long-arrow-up"></i></span><select class="form-control"
+										name="tipoPromocion" required
+										ng-options="regalo as regalo.nombre for regalo  in listaRegalos"
+										ng-model="promocion.detallePromocionVO.regaloVO">
+										<option value="" selected="selected">Selecciona Tipo
+											Regalo</option>
+									</select>
+								</div>
+								<div
+									ng-show="formPromociones.regalo.$invalid && formPromociones.regalo.$dirty"
+									ng-style="{color:'red'}">El campo es requerido.</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group"
 								ng-class="{'has-error': formPromociones.varN.$invalid && formPromociones.varN.$dirty}">
 								<label for="varN">Variable N <span class="required">*</span>
 								</label>
@@ -143,7 +187,7 @@
 									<span class="input-group-addon"><i
 										class="fa fa-long-arrow-up"></i></span> <input type='text'
 										class="form-control" required name="precio"
-										ng-model="promocion.detallePromocionVO.precio" /> </span>
+										ng-model="promocion.detallePromocionVO.precio" />
 								</div>
 								<div
 									ng-show="formPromociones.precio.$invalid && formPromociones.precio.$dirty"
@@ -160,10 +204,46 @@
 									<span class="input-group-addon"><i
 										class="fa fa-long-arrow-up"></i></span> <input type='text'
 										class="form-control" required name="porcentaje"
-										ng-model="promocion.detallePromocionVO.porcentaje" /> </span>
+										ng-model="promocion.detallePromocionVO.porcentaje" />
 								</div>
 								<div
 									ng-show="formPromociones.porcentaje.$invalid && formPromociones.porcentaje.$dirty"
+									ng-style="{color:'red'}">El campo es requerido.</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group"
+								ng-class="{'has-error': formPromociones.fechaInicio.$invalid && formPromociones.fechaInicio.$dirty}">
+								<label>Fecha Inicio<span class="required">*</span>
+								</label>
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-th"></i></span> <input type="text"
+										calendar ng-model="promocion.fechaInicio" id="fechaInicio"  name="fechaInicio" 
+										required="required" class="form-control col-md-7 col-xs-12">
+								</div>
+								<div
+									ng-show="formPromociones.fechaInicio.$invalid && formPromociones.fechaInicio.$dirty"
+									ng-style="{color:'red'}">El campo es requerido.</div>
+							</div>
+						</div>
+
+						<div class="col-sm-6">
+							<div class="form-group"
+								ng-class="{'has-error': formPromociones.fechaFin.$invalid && formPromociones.fechaFin.$dirty}">
+								<label>Fecha Fin <span class="required">*</span>
+								</label>
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-th"></i></span> <input type="text"
+										calendar ng-model="promocion.fechaFin" id="fechaFin" name="fechaFin"
+										required class="form-control col-md-7 col-xs-12">
+								</div>
+								<div
+									ng-show="formPromociones.fechaFin.$invalid && formPromociones.fechaFin.$dirty"
 									ng-style="{color:'red'}">El campo es requerido.</div>
 							</div>
 						</div>

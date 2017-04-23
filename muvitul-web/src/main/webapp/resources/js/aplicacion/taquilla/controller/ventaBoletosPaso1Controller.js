@@ -4,7 +4,7 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 
 	$scope.statusVenta			= { elegirPelicula	:"selected", elegirPromocion :"", elegirCantidad	:"", 
 						 		   registrarPago	:"", confirmarVenta  :"", numeroPaso:1	}
-	$scope.fechaExhibicion 		= moment(new Date()).format('YYYY/MM/DD');
+	$scope.fechaExhibicion 		= moment(new Date()).format('DD/MM/YYYY');
 	$scope.listaPeliculas		={};
 	$scope.boletos			    =[];
 	$scope.objetosVenta			={};
