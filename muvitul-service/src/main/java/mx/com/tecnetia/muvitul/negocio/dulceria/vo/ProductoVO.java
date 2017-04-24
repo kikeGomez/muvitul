@@ -1,5 +1,6 @@
 package mx.com.tecnetia.muvitul.negocio.dulceria.vo;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class ProductoVO {
@@ -8,15 +9,15 @@ public class ProductoVO {
 	private String nombre;
 	private byte[] icono;
 	private boolean activo;
-	private List<PrecioXProductoVO> preciosXProductoVO;
+	private BigDecimal precio;
+	private List<ArticuloXProductoVO> articulosXProductosVO;
 	
 //	private Set<ProductosXPaquete> productosXPaquetes = new HashSet<ProductosXPaquete>(0);
 //	private Set<ProductosXTicket> productosXTickets = new HashSet<ProductosXTicket>(0);
 //	private Set<DetallePromocion> detallePromocions = new HashSet<DetallePromocion>(0);
 //	private Set<PuntoVenta> puntoVentas = new HashSet<PuntoVenta>(0);
-//	private Set<ArticulosXProducto> articulosXProductos = new HashSet<ArticulosXProducto>(0);
+
 //	private Set<ImpuestoXProducto> impuestoXProductos = new HashSet<ImpuestoXProducto>(0);
-	
 	
 	public Integer getIdProducto() {
 		return idProducto;
@@ -48,11 +49,16 @@ public class ProductoVO {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-	public List<PrecioXProductoVO> getPreciosXProductoVO() {
-		return preciosXProductoVO;
+	public BigDecimal getPrecio() {
+		return precio;
 	}
-	public void setPreciosXProductoVO(List<PrecioXProductoVO> preciosXProductoVO) {
-		this.preciosXProductoVO = preciosXProductoVO;
+	public void setPrecio(BigDecimal precio) {
+		this.precio = precio;
 	}
-
+	public List<ArticuloXProductoVO> getArticulosXProductosVO() {
+		return articulosXProductosVO;
+	}
+	public void setArticulosXProductosVO(List<ArticuloXProductoVO> articulosXProductosVO) {
+		this.articulosXProductosVO = articulosXProductosVO;
+	}
 }

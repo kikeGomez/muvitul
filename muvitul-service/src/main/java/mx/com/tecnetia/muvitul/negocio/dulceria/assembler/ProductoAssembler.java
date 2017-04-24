@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Paquete;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Producto;
 import mx.com.tecnetia.muvitul.negocio.dulceria.vo.ProductoVO;
 
@@ -21,6 +20,7 @@ public class ProductoAssembler {
 		productoVO.setNombre(producto.getNombre());
 		productoVO.setIcono(producto.getIcono());
 		productoVO.setActivo(producto.isActivo());
+		productoVO.setArticulosXProductosVO(ArticuloXProductosAssembler.getArticulosXProductoVO(producto.getArticulosXProductos()));
 		//productoVO.setPreciosXProductoVO(PrecioXProductoAssembler.getPreciosXProductoVO(producto.getPrecioXProductos()));
 
 		return productoVO;
