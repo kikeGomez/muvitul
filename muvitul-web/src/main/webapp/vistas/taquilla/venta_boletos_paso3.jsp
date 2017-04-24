@@ -87,6 +87,16 @@
 										<label>SALA:  {{objetosVenta.programacion.salaVO.nombre}}</label>
 									</div>
 								</div>
+								<div class="row">
+									<div class="col-md-12 col-sm-12 col-xs-12">
+										<label>DISTRIBUIDORA:  {{objetosVenta.pelicula.distribuidoraVO.nombre}}</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12 col-sm-12 col-xs-12">
+										<label>PAIS:  {{objetosVenta.pelicula.paisVO.nombre}}</label>
+									</div>
+								</div>
 							</div>
 							<!-- /col md 6 -->
 							<div class="col-md-8 col-sm-8 col-xs-8">

@@ -19,7 +19,7 @@ var MenusDulceriaController = angular.module('indexModule').controller("Promocio
 	}
 	
 	$scope.consultaPromociones=function(){
-		$scope.fechaExhibicion = moment(new Date()).format('YYYY/MM/DD');
+		$scope.fechaExhibicion = moment(new Date()).format('DD/MM/YYYY');
 		promocionesTaquillaService.consultarPromociones($scope.fechaExhibicion).success(function(data) {
 			console.log(data)
 			$scope.listaPromociones=data;
@@ -45,8 +45,8 @@ var MenusDulceriaController = angular.module('indexModule').controller("Promocio
             $scope.showAviso("Es necesario llenar los campos obligatorios ");
          }else{
 		promocionesTaquillaService.crearPromocion(promocionVO).success(function(data) {
-	            //$scope.showAviso("La programación fue registrada correctamente.");
-//				$scope.consultarProgramacion();
+	            $scope.showAviso("La programación fue registrada correctamente.");
+	   		    $scope.consultaPromociones();
 			}).error(function(data) {
 			});
          }

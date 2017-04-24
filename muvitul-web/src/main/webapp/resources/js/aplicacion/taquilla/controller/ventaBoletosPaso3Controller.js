@@ -1,6 +1,7 @@
 'use strict';
 
 var VentaBoletosPaso3Controller = angular.module('indexModule').controller("VentaBoletosPaso3Controller", function(taquillaService,$scope, $interval,$filter,$controller,calculosFactory){
+
 	$scope.listaPreciosXFormato	={};
 	$scope.totalDescuento ={};
 	$scope.Timer = null;
@@ -9,13 +10,11 @@ var VentaBoletosPaso3Controller = angular.module('indexModule').controller("Vent
 	$controller('VentaBoletosPaso2Controller',{$scope : $scope });
 	
      $scope.StartTimer = function (paramsExistenciaBoleto) {
-    	 console.log("Iniciando Cron...");
  		$scope.consultarExistenciaBoletos(paramsExistenciaBoleto);
         $scope.Timer = $interval(function () {	 $scope.consultarExistenciaBoletos(paramsExistenciaBoleto)  }, 10000);
      };
 
      $scope.StopTimer = function () {
-    	 console.log("Deteniendo Cron...");
          if (angular.isDefined($scope.Timer)) {
              $interval.cancel($scope.Timer);
          }
@@ -25,7 +24,6 @@ var VentaBoletosPaso3Controller = angular.module('indexModule').controller("Vent
 	$scope.consultarExistenciaBoletos = function(paramsExistenciaBoleto) {
  		taquillaService.consultarExistenciaBoletos( paramsExistenciaBoleto ).success(function(data) {
 			$scope.asientosDisponibles =data;
-//			console.log(data);
 		}).error(function(data) {
  	 	 
 	 	});
@@ -33,12 +31,9 @@ var VentaBoletosPaso3Controller = angular.module('indexModule').controller("Vent
 	
  	//Actualiza los boletos disponibles
 	$scope.reservarBoleto = function(existenciaBoletoVO) {
-		//console.log(existenciaBoletoVO);
  		taquillaService.updateExistenciaBoleto( existenciaBoletoVO ).success(function(data) {
 			$scope.asientosDisponibles =data;
-			//console.log(data);
 	 	}).error(function(data) {
- 	 	 
 	 	});
 	 }
 	
@@ -53,7 +48,6 @@ var VentaBoletosPaso3Controller = angular.module('indexModule').controller("Vent
  			});
  			$scope.listaPreciosXFormato.boletos=$scope.boletos;
  	  		$scope.promocionBoletoVO.boletosXTicketVO=$scope.boletos
-
   		  }).error(function(data) {
 		  });
 	}

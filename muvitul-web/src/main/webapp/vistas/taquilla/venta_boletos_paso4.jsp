@@ -1,4 +1,4 @@
- 
+
 <!-- bloque de PASO 4 de wizard - CANTIDAD -->
 <div id="step-2">
 	<div class="x_panel">
@@ -12,7 +12,8 @@
 					<i class="fa fa-calculator"></i> Modificar Cantidades
 				</button>
 				<button type="button" class="btn btn-success"
-					ng-click="confirmacionVenta(objetosVenta)" ng-disabled="pago.porPagar > 0">
+					ng-click="confirmacionVenta(objetosVenta)"
+					ng-disabled="pago.porPagar > 0">
 					Confirmar la Venta <i class="fa fa-thumbs-o-up"></i>
 				</button>
 			</div>
@@ -68,8 +69,21 @@
 							</table>
 						</div>
 						<!-- table-responsive -->
+						
+						<div ng-if="pago.cambio > 0 "
+							class="animated flipInY col-lg-4 col-md-12 col-sm-12 col-xs12">
+
+							<div class="tile-stats">
+								<h2 class="text-center">Cambio</h2>
+								<br />
+								<h3>{{pago.cambio}}</h3>
+ 							</div>
+
+						</div>
 					</div>
 					<!-- row -->
+
+					 
 				</div>
 				<!-- xpanel -->
 				<div class="x_panel">
@@ -128,7 +142,8 @@
 								ng-show="formPagos.pagoCon.$invalid && formPagos.pagoCon.$dirty"
 								ng-style="{color:'red'}">El campo es requerido.</div>
 						</div>
-						<div class="form-group" ng-if="!pago.formaPagoVO.requiereNumCuenta ">
+						<div class="form-group"
+							ng-if="!pago.formaPagoVO.requiereNumCuenta ">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12"
 								for="monto">Cambio <span class="required">*</span></label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
@@ -137,7 +152,8 @@
 									placeholder="  ">
 							</div>
 						</div>
-						<div class="form-group" ng-if="pago.formaPagoVO.requiereNumCuenta "
+						<div class="form-group"
+							ng-if="pago.formaPagoVO.requiereNumCuenta "
 							ng-class="{'has-error': formPagos.noCuenta.$invalid && formPagos.noCuenta.$dirty}">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12"
 								for="numero-cuenta">N&uacute;mero de Cuenta <span
@@ -169,4 +185,4 @@
 		<!-- /xcontent -->
 	</div>
 	<!-- /xpanel MODULO -->
-</div> 
+</div>

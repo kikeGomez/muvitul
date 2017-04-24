@@ -160,9 +160,9 @@
 								<label>Vigencia <span class="required">*</span>
 								</label>
 								<div class="input-group">
-									<span class="input-calendar"><i
-										class="glyphicon glyphicon-th"></i></span> <input type="text"
-										calendar required name="fechaVigencia"
+									<span class="input-group-addon"><i
+										class="fa fa-calendar"></i></span><input type="text" calendar
+										required name="fechaVigencia"
 										ng-model="programacion.fechaVigencia" id="fechaVigencia"
 										class="form-control col-md-7 col-xs-12">
 								</div>
@@ -177,19 +177,21 @@
 								ng-class="{'has-error': formProgramaciones.horario.$invalid && formProgramaciones.horario.$dirty}">
 								<label>Horario <span class="required">*</span>
 								</label>
-								<div class="input-group bootstrap-timepicker timepicker">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-time"></i></span> <input id="horario"
-										type="text" ng-model="programacion.horario" requiered
-										name="horario" class="form-control input-small">
+								<div class="input-group">
+									<div class="input-group bootstrap-timepicker timepicker">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-calendar"></i></span> <input id="horario"
+											type="text" ng-model="programacion.horario" requiered
+											name="horario" class="form-control input-small">
+									</div>
 								</div>
+								<script type="text/javascript">
+									$('#horario').timepicker();
+								</script>
+								<div
+									ng-show="formProgramaciones.horario.$invalid && formProgramaciones.horario.$dirty"
+									ng-style="{color:'red'}">El campo es requerido.</div>
 							</div>
-							<script type="text/javascript">
-								$('#horario').timepicker();
-							</script>
-							<div
-								ng-show="formProgramaciones.horario.$invalid && formProgramaciones.horario.$dirty"
-								ng-style="{color:'red'}">El campo es requerido.</div>
 						</div>
 					</div>
 					<div class="row">
@@ -204,7 +206,6 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</form>
 		</div>

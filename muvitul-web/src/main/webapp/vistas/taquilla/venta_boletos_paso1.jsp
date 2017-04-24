@@ -179,6 +179,10 @@
 											</div>
 										</div>
 										<div class="col-md-6 col-xs-12">
+											<p>
+												<button type="button" class="btn btn-round btn-info">{{pelicula.distribuidoraVO.nombre}}</button>
+												<button type="button" class="btn btn-round btn-info">{{pelicula.paisVO.nombre}}</button>
+											</p>
 											<br /> <br />
 											<p>{{pelicula.sinopsis}}</p>
 										</div>

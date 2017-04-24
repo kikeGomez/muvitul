@@ -125,9 +125,8 @@
 								<label>Regalos<span class="required">*</span>
 								</label>
 								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="fa fa-gift"></i></span><select class="form-control"
-										name="tipoPromocion" required
+									<span class="input-group-addon"><i class="fa fa-gift"></i></span><select
+										class="form-control" name="tipoPromocion" required
 										ng-options="regalo as regalo.nombre for regalo  in listaRegalos"
 										ng-model="promocion.detallePromocionVO.regaloVO">
 										<option value="" selected="selected">Selecciona Tipo
@@ -184,9 +183,8 @@
 								<label>Precio<span class="required">*</span>
 								</label>
 								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="fa fa-usd"></i></span> <input type='text'
-										class="form-control"   name="precio"
+									<span class="input-group-addon"><i class="fa fa-usd"></i></span>
+									<input type='text' class="form-control" name="precio"
 										ng-model="promocion.detallePromocionVO.precio" />
 								</div>
 								<div
@@ -201,9 +199,8 @@
 								<label>Porcentaje <span class="required">*</span>
 								</label>
 								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="fa fa-percent"></i></span> <input type='text'
-										class="form-control"   name="porcentaje"
+									<span class="input-group-addon"><i class="fa fa-percent"></i></span>
+									<input type='text' class="form-control" name="porcentaje"
 										ng-model="promocion.detallePromocionVO.porcentaje" />
 								</div>
 								<div
@@ -220,34 +217,36 @@
 								<label>Fecha Inicio<span class="required">*</span>
 								</label>
 								<div class="input-group">
-									<span class="input-calendar"><i
-										class="glyphicon glyphicon-th"></i></span> <input type="text"
-										calendar ng-model="promocion.fechaInicio" id="fechaInicio"  name="fechaInicio" 
-										required="required" class="form-control col-md-7 col-xs-12">
+									<span class="input-group-addon"><i class="fa fa-calendar"></i></span><input
+										type="text" calendar ng-model="promocion.fechaInicio"
+										id="fechaInicio" name="fechaInicio" required="required"
+										class="form-control col-md-7 col-xs-12">
 								</div>
+
 								<div
 									ng-show="formPromociones.fechaInicio.$invalid && formPromociones.fechaInicio.$dirty"
 									ng-style="{color:'red'}">El campo es requerido.</div>
 							</div>
 						</div>
-
 						<div class="col-sm-6">
 							<div class="form-group"
 								ng-class="{'has-error': formPromociones.fechaFin.$invalid && formPromociones.fechaFin.$dirty}">
 								<label>Fecha Fin <span class="required">*</span>
 								</label>
 								<div class="input-group">
-									<span class="input-calendar"><i
-										class="glyphicon glyphicon-th"></i></span> <input type="text"
-										calendar ng-model="promocion.fechaFin" id="fechaFin" name="fechaFin"
-										required class="form-control col-md-7 col-xs-12">
+									<span class="input-group-addon"><i class="fa fa-calendar"></i></span><input
+										type="text" calendar ng-model="promocion.fechaFin"
+										id="fechaFin" name="fechaFin" required
+										class="form-control col-md-7 col-xs-12">
 								</div>
 								<div
 									ng-show="formPromociones.fechaFin.$invalid && formPromociones.fechaFin.$dirty"
 									ng-style="{color:'red'}">El campo es requerido.</div>
 							</div>
+
 						</div>
 					</div>
+
 
 					<br />
 					<div class="form-group">

@@ -10,17 +10,14 @@ var VentaBoletosPaso2Controller = angular.module('indexModule').controller("Vent
  		taquillaService.consultarPromociones(fechaExhibicion).success(function(data) {	
  			$scope.listaPromociones=data;
   		  }).error(function(data) {
-  			  
 		  });
 	}
 	
 	//Configura Parametros de ejecucion de cron Para existenciaBoletos
 	$scope.configParamsCron =function(programacion,fechaExhibicion){
-
 		$scope.paramsExistenciaBoleto.fechaExhibicion=fechaExhibicion;
 		$scope.paramsExistenciaBoleto.idProgramacion=programacion.idProgramacion;
 		$scope.paramsExistenciaBoleto.idSala=programacion.salaVO.idSala;
 	}
 	
- 
 });

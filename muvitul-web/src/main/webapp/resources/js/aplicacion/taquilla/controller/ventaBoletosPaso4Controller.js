@@ -10,8 +10,6 @@ var VentaBoletosPaso4Controller = angular.module('indexModule').controller("Vent
     $controller('modalController',{$scope : $scope });
  
 	$scope.guardarPago =function(pago,formPagos){
-//		 
-		
 		if ( formPagos.$invalid) {
             angular.forEach( formPagos.$error, function (field) {
               angular.forEach(field, function(errorField){
@@ -27,9 +25,8 @@ var VentaBoletosPaso4Controller = angular.module('indexModule').controller("Vent
         	 if($scope.pago.subtotal < $scope.pago.pagado){
         		 $scope.listaPagos.pop();
   			     $scope.calcularTotalPagado($scope.listaPagos);
-  	            $scope.showAviso("El monto por pagar es menor");
+  	            $scope.showAviso("El monto que quieres pagar es menor al restante por pagar.");
         	 }
-        	 
         	 $scope.resetObjetoPago();
         }
 	}
@@ -74,8 +71,7 @@ var VentaBoletosPaso4Controller = angular.module('indexModule').controller("Vent
 			        }); 
 			    });
 			};
-		 
-			$scope.showConfirmacion ("¿Est\u00e1 seguro de terminar la compra ?");
+			$scope.showConfirmacion ("¿Est\u00e1 seguro de cerrar la venta ?");
 		 
 	};
 	
@@ -86,26 +82,22 @@ var VentaBoletosPaso4Controller = angular.module('indexModule').controller("Vent
  		  }).error(function(data) {
 		  });
 	}
+	
 	$scope.complementarDatosPago =function(   ){
-		
 		$scope.listaBoletosFilter = $filter('filter')($scope.boletos, {'tipoCliente': '!Promocion'});
  		$scope.objetosVenta.boletosXTicketVO=$scope.listaBoletosFilter;
  		$scope.promocion={ promocionVO:$scope.objetosVenta.promocion, cantidad:1, importe : ($scope.promocion ==null   ) ? 0: $scope.promocion.subtotal}
  		$scope.promo = [];
 		$scope.promo.push($scope.promocion);
 		$scope.objetosVenta.promocionesXTicketVO=$scope.promo;
-		
   	}
 	
 	//ProcesarVenta
 	$scope.procesarVenta =function( venta ){
 		venta.pagosVO=$scope.listaPagos;
-
 		taquillaService.procesarVenta(venta).success(function(data) {	
-			console.log(data);
 			$scope.asignarPaso(5);
  		  }).error(function(data) {
- 				console.log(data);
 		  });
 	}
 	

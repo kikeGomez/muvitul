@@ -111,6 +111,7 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
   		taquillaService.consultarPeliculas(fechaExhibicion).success(function(data) {	
  			$scope.listaPeliculas=data;
 			$scope.errorPeliculas=false;
+			console.log(data)
   		  }).error(function(data) {
  			 $scope.listaPeliculas={};
  			 $scope.errorPeliculas=true;
