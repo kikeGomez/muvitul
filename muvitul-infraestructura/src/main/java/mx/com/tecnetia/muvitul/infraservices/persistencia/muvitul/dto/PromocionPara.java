@@ -1,5 +1,5 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto;
-// Generated 14-abr-2017 14:25:39 by Hibernate Tools 4.3.1.Final
+// Generated 24-abr-2017 22:02:25 by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,17 +21,20 @@ public class PromocionPara implements java.io.Serializable {
 
 	private Integer idPromocionPara;
 	private String nombre;
+	private String clave;
 	private Set<Promocion> promocions = new HashSet<Promocion>(0);
 
 	public PromocionPara() {
 	}
 
-	public PromocionPara(String nombre) {
+	public PromocionPara(String nombre, String clave) {
 		this.nombre = nombre;
+		this.clave = clave;
 	}
 
-	public PromocionPara(String nombre, Set<Promocion> promocions) {
+	public PromocionPara(String nombre, String clave, Set<Promocion> promocions) {
 		this.nombre = nombre;
+		this.clave = clave;
 		this.promocions = promocions;
 	}
 
@@ -54,6 +57,15 @@ public class PromocionPara implements java.io.Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	@Column(name = "clave", nullable = false, length = 25)
+	public String getClave() {
+		return this.clave;
+	}
+
+	public void setClave(String clave) {
+		this.clave = clave;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "promocionPara")

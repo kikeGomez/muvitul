@@ -23,7 +23,7 @@ public class DetallePromocionAssembler {
 		detallePromocionVO.setVarN(detallePromocion.getVarN());
 		detallePromocionVO.setVarM(detallePromocion.getVarM());
 		detallePromocionVO.setPrecio(detallePromocion.getPrecio());
-		detallePromocion.setPorcentaje(detallePromocion.getPorcentaje());
+		detallePromocionVO.setPorcentaje(detallePromocion.getPorcentaje());
 		
 		return detallePromocionVO;
 	}

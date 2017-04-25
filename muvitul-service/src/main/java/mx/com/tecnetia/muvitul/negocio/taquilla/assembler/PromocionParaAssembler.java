@@ -13,6 +13,7 @@ public class PromocionParaAssembler {
 		PromocionParaVO promocionParaVO = new PromocionParaVO();
 		promocionParaVO.setIdPromocionPara(promocionPara.getIdPromocionPara());
 		promocionParaVO.setNombre(promocionPara.getNombre());
+		promocionParaVO.setClave(promocionPara.getClave());
 		
 		return promocionParaVO;
 	}
