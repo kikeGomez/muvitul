@@ -4,10 +4,14 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
+import mx.com.tecnetia.muvitul.infraservices.servicios.NotFoundException;
 import mx.com.tecnetia.muvitul.negocio.taquilla.business.ExistenciaBoletoBO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.business.PeliculaBO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.business.PrecioXFormatoBO;
@@ -64,5 +68,9 @@ public class VentaBoletoController {
 	public TicketVentaVO createVenta(VentaVO ventaVO) throws BusinessGlobalException {
 		return ventaBoletoBO.createVenta(ventaVO);
 	}
-
+	
+	public  List<byte[]> getTicketsBoletos(Integer idTicket)throws BusinessGlobalException{
+		return ventaBoletoBO.generaTicketsBoletos(idTicket);
+		
+	}
 }

@@ -2,7 +2,6 @@ package mx.com.tecnetia.muvitul.servicios.facade;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +35,7 @@ public interface VentaBoletoFacadeI {
 
 	@RequestMapping(value = "/promociones", method = RequestMethod.GET)
 	public ResponseEntity<List<PromocionVO>> getPromocionesByCine(HttpServletRequest request, String fechaExhibicion)
-			throws BusinessGlobalException, NotFoundException,ParseException;
+			throws BusinessGlobalException, NotFoundException, ParseException;
 
 	@RequestMapping(value = "/descuentos", method = RequestMethod.POST)
 	public ResponseEntity<BigDecimal> getDescuentoByPromocion(HttpServletRequest request,
@@ -60,8 +59,8 @@ public interface VentaBoletoFacadeI {
 	@RequestMapping(value = "/ventas", method = RequestMethod.POST)
 	public ResponseEntity<TicketVentaVO> createVenta(HttpServletRequest request, @RequestBody VentaVO ventaVO)
 			throws BusinessGlobalException, NotFoundException;
-	
-	/***********************TEST**************************************/
+
+	/*********************** TEST **************************************/
 	@RequestMapping(value = "/descuentos", method = RequestMethod.GET)
 	public ResponseEntity<PromocionBoletoVO> getPromocionBoletos(HttpServletRequest request)
 			throws BusinessGlobalException, NotFoundException;
@@ -69,5 +68,13 @@ public interface VentaBoletoFacadeI {
 	@RequestMapping(value = "/ventas", method = RequestMethod.GET)
 	public ResponseEntity<VentaVO> getVenta(HttpServletRequest request)
 			throws BusinessGlobalException, NotFoundException;
+
+	/***********************
+	 * BOLETOS TICKET
+	 **************************************/
+
+	@RequestMapping(value = "/tickets", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> getTicketsBoletos(HttpServletRequest request,
+			@RequestParam(value = "idTicket") Integer idTicket) throws BusinessGlobalException, NotFoundException;
 
 }

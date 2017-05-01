@@ -6,5 +6,11 @@ var VentaBoletosPaso5Controller = angular.module('indexModule').controller("Vent
 	//Impresion de Boleto
 	$scope.imprimirBoleto =function(){
 		$scope.showAviso("Imprimiendo Boletos... ");
+
+		taquillaService.imprimirTickets(100).success(function(data) {	
+			console.log(data);
+			
+		}).error(function(data) {
+		  });
 	}
 });

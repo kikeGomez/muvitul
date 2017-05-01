@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -345,6 +347,21 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 		ventaVO.setPagosVO(pagosVO);
 
 		return new ResponseEntity<VentaVO>(ventaVO, HttpStatus.OK);
+	}
+
+	@Override
+	public ResponseEntity<byte[]> getTicketsBoletos(HttpServletRequest request, Integer idTicket)
+			throws BusinessGlobalException, NotFoundException {
+
+		byte[] tickets = ventaBoletoController.getTicketsBoletos(idTicket).get(0);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.parseMediaType("application/pdf"));
+		headers.add("Content-Disposition", "attachmnt; filename ='test'");
+		 headers.add("filename", "prueba");
+		headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+		headers.setContentLength(tickets.length);
+		return new ResponseEntity<byte[]>(tickets, headers, HttpStatus.OK);
 	}
 
 }

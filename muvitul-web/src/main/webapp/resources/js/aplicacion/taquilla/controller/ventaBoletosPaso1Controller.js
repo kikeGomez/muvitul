@@ -126,6 +126,37 @@ var VentaBoletosPaso1Controller = angular.module('indexModule').controller('vent
 		$scope.consultarPeliculas($scope.fechaExhibicion);
 	}
 
+	
+	//Impresion de Boleto
+	$scope.imprimirBoleto =function(){
+		$scope.showAviso("Imprimiendo Boletos... ");
+
+		taquillaService.imprimirTickets(100).success(function(data,status,headers) {	
+			console.log(data);
+			var filename ="prueba";
+			var contentType = headers('content-type');
+			var file = new Blob([ data ], {
+				type : 'application/pdf;base64,'
+			});
+			taquillaService.downloadfile(file, filename);
+			
+		}).error(function(data) {
+		  });
+	}
+	
+	
+	function save(file, fileName) {
+		var url = window.URL || window.webkitURL;
+		var blobUrl = url.createObjectURL(file);
+		var a = document.createElement('a');
+		a.href = blobUrl;
+		a.target = '_blank';
+		a.download = fileName;
+		document.body.appendChild(a);
+		a.click();
+	}
+
+	
 	$scope.consultarPeliculas($scope.fechaExhibicion);
  });
  

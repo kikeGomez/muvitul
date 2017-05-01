@@ -45,5 +45,29 @@ angular.module('indexModule').service('taquillaService', ['$http','GlobalFactory
 	 this.procesarVenta = function(ventaVO ){
 		 return $http.post(config.baseUrl + "/ventaBoleto/ventas",ventaVO  );
 	 }
+	 this.imprimirTickets = function(idTicket){
+		 
+		 return $http({     
+		        method: 'GET',
+		        url: config.baseUrl + "/ventaBoleto/tickets",
+		        params: {"idTicket" : idTicket},
+		        dataType: "json",
+		        header :{ "Content-type": "application/json",
+		        			"Accept"    : "pdf"
+		        },
+		        responseType: 'arraybuffer'
+		    });
+	 }
 	  
+	 /*UTILITIES*/
+		this.downloadfile = function(file, fileName) {
+			var url = window.URL || window.webkitURL;
+			var blobUrl = url.createObjectURL(file);
+			var a = document.createElement('a');
+			a.href = blobUrl;
+			a.target = '_blank';
+			a.download = fileName;
+			document.body.appendChild(a);
+			a.click();
+		}
 }]);
