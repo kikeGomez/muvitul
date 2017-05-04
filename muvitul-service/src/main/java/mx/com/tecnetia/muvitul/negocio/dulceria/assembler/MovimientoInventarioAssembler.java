@@ -1,26 +1,35 @@
 package mx.com.tecnetia.muvitul.negocio.dulceria.assembler;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.MovimientoInventario;
+import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Proveedor;
+import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.TipoMovimientoInv;
 
 public class MovimientoInventarioAssembler {
 
-	public static MovimientoInventario getMovimientoInventario() {
+	public static MovimientoInventario getMovimientoInventario(Integer idArticulo, Proveedor provedor,
+			TipoMovimientoInv tipoMovimientoInv, Integer idUsuario ,  long cantidad, BigDecimal importe, long existenciaActual ) {
 		
-//		if(pagoVO==null )
-//			return null;
+		if(idArticulo==null  || provedor == null || tipoMovimientoInv==null || idUsuario==null )
+			return null;
 
 		MovimientoInventario movimientoInventario= new MovimientoInventario();
-//		movimientoInventario.setArticulo(articulo);
-//		movimientoInventario.setProveedor(proveedor);
-//		movimientoInventario.setTipoMovimientoInv(tipoMovimientoInv);
-//		movimientoInventario.setUsuario(usuario);
-//		movimientoInventario.setCantidad(cantidad);
-//		movimientoInventario.setFecha(fecha);
-//		movimientoInventario.setImporte(importe);
-//		movimientoInventario.setDocumentoRespaldo(documentoRespaldo);
-//		movimientoInventario.setExistenciaActual(existenciaActual);
-//		
+		movimientoInventario.setArticulo(ArticuloAssembler.getArticulo(idArticulo));
+		movimientoInventario.setProveedor(provedor);
+		movimientoInventario.setTipoMovimientoInv(tipoMovimientoInv);
+		movimientoInventario.setUsuario(UsuarioAssembler.getUsuario(idUsuario));
+		movimientoInventario.setCantidad(cantidad);
+		movimientoInventario.setFecha(new Date());
+		movimientoInventario.setImporte(importe);
+		movimientoInventario.setDocumentoRespaldo(null);
+		movimientoInventario.setExistenciaActual(existenciaActual);
+
 		return movimientoInventario;
 	}
 
+
+
+	
 }

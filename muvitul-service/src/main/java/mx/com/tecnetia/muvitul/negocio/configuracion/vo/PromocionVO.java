@@ -2,7 +2,11 @@ package mx.com.tecnetia.muvitul.negocio.configuracion.vo;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import mx.com.tecnetia.muvitul.servicios.util.DateStringToDateDeserializer;
+import mx.com.tecnetia.muvitul.servicios.util.DateToDateStringSerializer;
 
 public class PromocionVO {
 	private Integer idPromocion;
@@ -11,9 +15,11 @@ public class PromocionVO {
 	private TipoPromocionVO tipoPromocionVO;
 	private String nombre;
 	private String descripcion;
-	@JsonFormat(pattern="dd/MM/yyyy", timezone="America/Mexico_City")
+	@JsonDeserialize(using = DateStringToDateDeserializer.class)
+	@JsonSerialize(using = DateToDateStringSerializer.class)
 	private Date fechaInicio;
-	@JsonFormat(pattern="dd/MM/yyyy", timezone="America/Mexico_City")
+	@JsonDeserialize(using = DateStringToDateDeserializer.class)
+	@JsonSerialize(using = DateToDateStringSerializer.class)
 	private Date fechaFin;
 	private boolean activo;
 	private DetallePromocionVO detallePromocionVO;

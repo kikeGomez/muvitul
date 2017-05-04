@@ -47,7 +47,7 @@ var ProgramacionController = angular.module('indexModule').controller("Programac
 	 
 	 
 	 $scope.consultarProgramacion = function() {
-		 $scope.fechaExhibicion = moment(new Date()).format('YYYY/MM/DD');
+		 $scope.fechaExhibicion = moment(new Date()).format('DD/MM/YYYY');
 		 programacionesTaquillaService.consultarProgramaciones($scope.fechaExhibicion).success(function(data) {
 			 $scope.listaSalasProgramaciones=data;	 
 			}).error(function(data) {

@@ -40,7 +40,7 @@ public class Fecha {
 	public static Date formatddMMyyyy(Date date) {
 		Date output = null;
 		try {
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			SimpleDateFormat sdf = new SimpleDateFormat(Constantes.FORMAT_DD_MM_YYYY);
 			String dateStr = sdf.format(date);
 			output = sdf.parse(dateStr);
 		} catch (ParseException e) {

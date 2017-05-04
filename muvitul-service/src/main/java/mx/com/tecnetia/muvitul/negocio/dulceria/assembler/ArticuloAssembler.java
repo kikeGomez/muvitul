@@ -23,5 +23,17 @@ public class ArticuloAssembler {
 	}
 	
 
+	public static Articulo getArticulo(Integer idArticulo){
+
+		if(idArticulo==null )
+			return null;
+		
+		Articulo  articulo = new Articulo();
+		articulo.setIdArticulo(idArticulo);
+	
+
+		return articulo;
+	}
+	
 	
 }

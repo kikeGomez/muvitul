@@ -2,7 +2,10 @@ package mx.com.tecnetia.muvitul.negocio.dulceria.business;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -20,15 +23,18 @@ import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dao.PaqueteXTi
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dao.ProductoXPuntoVentaDAOI;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dao.ProductoXTicketDAOI;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dao.TicketVentaDAOI;
+import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dao.TipoMovimientoInvDAOI;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ImpuestoXProducto;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ImpuestosXTicketPaquete;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ImpuestosXTicketProducto;
+import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.MovimientoInventario;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Pago;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PaquetesXPuntoVenta;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.PaquetesXTicket;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ProductosXPuntoVenta;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.ProductosXTicket;
 import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.TicketVenta;
+import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.TipoMovimientoInv;
 import mx.com.tecnetia.muvitul.infraservices.servicios.BusinessGlobalException;
 import mx.com.tecnetia.muvitul.negocio.dulceria.assembler.ImpuestoXTicketPaqueteAssembler;
 import mx.com.tecnetia.muvitul.negocio.dulceria.assembler.ImpuestosXTicketProductoAssembler;
@@ -38,7 +44,9 @@ import mx.com.tecnetia.muvitul.negocio.dulceria.assembler.PaqueteAssembler;
 import mx.com.tecnetia.muvitul.negocio.dulceria.assembler.PaqueteXTicketAssembler;
 import mx.com.tecnetia.muvitul.negocio.dulceria.assembler.ProductoXTicketAssembler;
 import mx.com.tecnetia.muvitul.negocio.dulceria.assembler.TicketVentaAssembler;
+import mx.com.tecnetia.muvitul.negocio.dulceria.vo.ArticuloXProductoVO;
 import mx.com.tecnetia.muvitul.negocio.dulceria.vo.PaqueteVO;
+import mx.com.tecnetia.muvitul.negocio.dulceria.vo.ProductoXPaqueteVO;
 import mx.com.tecnetia.muvitul.negocio.dulceria.vo.TicketVentaVO;
 import mx.com.tecnetia.muvitul.negocio.dulceria.vo.VentaVO;
 import mx.com.tecnetia.muvitul.servicios.util.Constantes;
@@ -53,7 +61,7 @@ public class VentaProductoBO {
 
 	@Autowired
 	private ProductoXPuntoVentaDAOI productoXPuntoVentaDAO;
-	
+
 	@Autowired
 	private TicketVentaDAOI ticketVentaDAO;
 
@@ -68,42 +76,63 @@ public class VentaProductoBO {
 
 	@Autowired
 	private ImpuestosXTicketProductoDAOI impuestosXTicketProductoDAO;
-	
+
 	@Autowired
 	private ImpuestosXTicketPaqueteDAOI impuestosXTicketPaqueteDAO;
-	
-	@Autowired
-	private MovimientoInventarioDAOI movimientoInventarioDAO;
-	
+
 	@Autowired
 	private PagoDAOI pagoDAO;
-	
-	public List<PaqueteVO> getPaquetes(Integer idPuntoVenta)  throws BusinessGlobalException {
-		
-		List<PaqueteVO> paquetesVO=new ArrayList<PaqueteVO>();
-		List<PaquetesXPuntoVenta> paquetesXPuntoVenta= paqueteXPuntoVentaDAO.findByPuntoVenta(idPuntoVenta);
+
+	@Autowired
+	private MovimientoInventarioDAOI movimientoInventarioDAO;
+
+	@Autowired
+	private TipoMovimientoInvDAOI tipoMovimientoInvDAO;
+
+	public List<PaqueteVO> getPaquetes(Integer idPuntoVenta) throws BusinessGlobalException {
+
+		List<PaqueteVO> paquetesVO = new ArrayList<PaqueteVO>();
+		List<PaquetesXPuntoVenta> paquetesXPuntoVenta = paqueteXPuntoVentaDAO.findByPuntoVenta(idPuntoVenta);
 		List<ProductosXPuntoVenta> productosXPuntoVenta = productoXPuntoVentaDAO.findByPuntoVenta(idPuntoVenta);
-		
-		if(paquetesXPuntoVenta!=null && !paquetesXPuntoVenta.isEmpty()){
+
+		if (paquetesXPuntoVenta != null && !paquetesXPuntoVenta.isEmpty()) {
 			paquetesVO.addAll(PaqueteAssembler.getPaquetesVO(paquetesXPuntoVenta));
 		}
 
-		if(productosXPuntoVenta!=null && !productosXPuntoVenta.isEmpty()){
+		if (productosXPuntoVenta != null && !productosXPuntoVenta.isEmpty()) {
 			paquetesVO.addAll(PaqueteAssembler.getPaquetesVOXProducto(productosXPuntoVenta));
 		}
-		
-		return paquetesVO ;
-		
+
+		return paquetesVO;
+
 	}
-	
-	
+
 	public TicketVentaVO createVenta(VentaVO ventaVO) throws BusinessGlobalException {
 		BigDecimal total = new BigDecimal(0);
 		BigDecimal subtotal = new BigDecimal(0);
 		BigDecimal importeImpuestos = new BigDecimal(0);
-		
+		Map<Integer, MovimientoInventario> mapMovimientoInventario = new HashMap<Integer, MovimientoInventario>();
+
 		for (PaqueteVO paqueteVO : ventaVO.getPaquetesVO()) {
 			total = total.add(paqueteVO.getImporte());
+			for (ProductoXPaqueteVO productoXPaqueteVO : paqueteVO.getProductosXPaqueteVO()) {
+				for (ArticuloXProductoVO articuloXProductoVO : productoXPaqueteVO.getProductoVO()
+						.getArticulosXProductosVO()) {
+
+					if (!mapMovimientoInventario.containsKey(articuloXProductoVO.getArticuloVO().getIdArticulo())) {
+
+						MovimientoInventario movimientoInventario = new MovimientoInventario();
+						mapMovimientoInventario.put(articuloXProductoVO.getArticuloVO().getIdArticulo(),
+								movimientoInventario);
+
+					}
+					MovimientoInventario movimientoInventario = mapMovimientoInventario
+							.get(articuloXProductoVO.getArticuloVO().getIdArticulo());
+					movimientoInventario.setCantidad(movimientoInventario.getCantidad() + 1);
+
+				}
+			}
+
 		}
 
 		TicketVenta ticketVenta = ticketVentaDAO.save(TicketVentaAssembler.getTicketVenta(ventaVO.getIdUsuario(),
@@ -116,73 +145,86 @@ public class VentaProductoBO {
 				ticketVenta);
 
 		for (ProductosXTicket productoXTicket : productosXTicket) {
-			
+
 			List<ImpuestoXProducto> impuestosXProducto = impuestoXProductoDAO
 					.findByIdCineAndIdProducto(ventaVO.getIdCine(), productoXTicket.getProducto().getIdProducto());
 
 			for (ImpuestoXProducto impuestoXProducto : impuestosXProducto) {
-				
-				BigDecimal xcientoImpProducto= new BigDecimal(0);
+
+				BigDecimal xcientoImpProducto = new BigDecimal(0);
 				xcientoImpProducto.add(impuestoXProducto.getPorcentaje());
-				xcientoImpProducto= xcientoImpProducto.divide(new BigDecimal(Constantes.CIEN));
+				xcientoImpProducto = xcientoImpProducto.divide(new BigDecimal(Constantes.CIEN));
 				xcientoImpProducto = xcientoImpProducto.add(new BigDecimal(Constantes.UNO));
-				
-				
-				BigDecimal subtotalProducto= new BigDecimal(0);
-				subtotalProducto= subtotalProducto.add(productoXTicket.getImporte());
+
+				BigDecimal subtotalProducto = new BigDecimal(0);
+				subtotalProducto = subtotalProducto.add(productoXTicket.getImporte());
 				subtotalProducto = subtotalProducto.divide(xcientoImpProducto, 3, BigDecimal.ROUND_HALF_EVEN);
-				
+
 				BigDecimal importeImpProducto = new BigDecimal(0);
-				importeImpProducto= importeImpProducto.add(productoXTicket.getImporte());
+				importeImpProducto = importeImpProducto.add(productoXTicket.getImporte());
 				importeImpProducto.subtract(subtotalProducto);
-				
+
 				importeImpuestos.add(importeImpProducto);
-				
-				ImpuestosXTicketProducto impuestoXTicketProducto = 
-						ImpuestosXTicketProductoAssembler.getImpuestosXTicketProducto(ticketVenta, impuestoXProducto, importeImpProducto);
-				
+
+				ImpuestosXTicketProducto impuestoXTicketProducto = ImpuestosXTicketProductoAssembler
+						.getImpuestosXTicketProducto(ticketVenta, impuestoXProducto, importeImpProducto);
+
 				impuestosXTicketProductoDAO.save(impuestoXTicketProducto);
 			}
-			
+
 			productoXTicketDAO.save(productoXTicket);
 		}
 
 		for (PaquetesXTicket paqueteXTicket : paquetesXTicket) {
-			BigDecimal xcientoImpPaquete= new BigDecimal(Constantes.IMPUESTO_PAQUETE);
-			xcientoImpPaquete= xcientoImpPaquete.divide(new BigDecimal(Constantes.CIEN));
+			BigDecimal xcientoImpPaquete = new BigDecimal(Constantes.IMPUESTO_PAQUETE);
+			xcientoImpPaquete = xcientoImpPaquete.divide(new BigDecimal(Constantes.CIEN));
 			xcientoImpPaquete = xcientoImpPaquete.add(new BigDecimal(Constantes.UNO));
-			
+
 			BigDecimal subtotalPaquete = new BigDecimal(0);
-			subtotalPaquete= subtotalPaquete.add(paqueteXTicket.getImporte());
+			subtotalPaquete = subtotalPaquete.add(paqueteXTicket.getImporte());
 			subtotalPaquete = subtotalPaquete.divide(xcientoImpPaquete, 3, BigDecimal.ROUND_HALF_EVEN);
-			
+
 			BigDecimal importeImpPaquete = new BigDecimal(0);
-			importeImpPaquete= importeImpPaquete.add(paqueteXTicket.getImporte());
+			importeImpPaquete = importeImpPaquete.add(paqueteXTicket.getImporte());
 			importeImpPaquete.subtract(subtotalPaquete);
-			
+
 			importeImpuestos.add(importeImpPaquete);
-			
-			ImpuestosXTicketPaquete impuestosXTicketPaquete =
-					ImpuestoXTicketPaqueteAssembler.getImpuestoXTicketPaquete(ticketVenta, importeImpPaquete, new BigDecimal(Constantes.IMPUESTO_PAQUETE));
+
+			ImpuestosXTicketPaquete impuestosXTicketPaquete = ImpuestoXTicketPaqueteAssembler.getImpuestoXTicketPaquete(
+					ticketVenta, importeImpPaquete, new BigDecimal(Constantes.IMPUESTO_PAQUETE));
 			impuestosXTicketPaqueteDAO.save(impuestosXTicketPaquete);
-			
+
 			paqueteXTicketDAO.save(paqueteXTicket);
 		}
-		
+
 		List<Pago> pagos = PagoAssembler.getPagos(ventaVO.getPagosVO(), ticketVenta);
 		for (Pago pago : pagos) {
 			pagoDAO.save(pago);
+		}
+
+
+		TipoMovimientoInv tipoMovimientoInv = tipoMovimientoInvDAO.findByClave("compra");
+
+		for (Entry<Integer, MovimientoInventario> entryMovInventario : mapMovimientoInventario.entrySet()) {
+			
+			MovimientoInventario movInventarioActual = movimientoInventarioDAO.findByCineArticuloAndTipoMov(
+					ventaVO.getIdCine(), entryMovInventario.getKey(),tipoMovimientoInv.getIdTipoMovimientoInv());
+
+			BigDecimal importe = new BigDecimal(0);
+			importe = importe.add(movInventarioActual.getImporte());
+			importe = importe.divide(new BigDecimal(movInventarioActual.getCantidad()), 3, BigDecimal.ROUND_HALF_EVEN);
+			importe = importe.multiply(new BigDecimal(entryMovInventario.getValue().getCantidad()));
+			
+			long existenciaActual=movInventarioActual.getExistenciaActual()-entryMovInventario.getValue().getCantidad();
+
+			movimientoInventarioDAO.save(MovimientoInventarioAssembler.getMovimientoInventario(entryMovInventario.getKey(), movInventarioActual.getProveedor(),
+					tipoMovimientoInv, ventaVO.getIdUsuario(), entryMovInventario.getValue().getCantidad(), importe, existenciaActual));
 		}
 
 		subtotal.add(total);
 		subtotal.subtract(importeImpuestos);
 		ticketVenta.setImporte(subtotal);
 		ticketVentaDAO.update(ticketVenta);
-		
-		movimientoInventarioDAO.save(MovimientoInventarioAssembler.getMovimientoInventario());
-		
-		
-		
 		
 		return TicketVentaAssembler.getTicketVentaVO(ticketVenta);
 	}

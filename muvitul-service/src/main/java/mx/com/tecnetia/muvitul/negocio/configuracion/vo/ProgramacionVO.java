@@ -2,7 +2,11 @@ package mx.com.tecnetia.muvitul.negocio.configuracion.vo;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import mx.com.tecnetia.muvitul.servicios.util.DateStringToDateDeserializer;
+import mx.com.tecnetia.muvitul.servicios.util.DateToDateStringSerializer;
 
 public class ProgramacionVO {
 	private Integer idProgramacion;
@@ -12,7 +16,8 @@ public class ProgramacionVO {
 	private VersionVO versionVO;
 	private String diaSemana;
 	private String horario;
-	@JsonFormat(pattern="dd/MM/yyyy", timezone="America/Mexico_City")
+	@JsonDeserialize(using = DateStringToDateDeserializer.class)
+	@JsonSerialize(using = DateToDateStringSerializer.class)
 	private Date fechaVigencia;
 	private boolean activo;
 	

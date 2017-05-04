@@ -69,8 +69,8 @@ public class VentaBoletoController {
 		return ventaBoletoBO.createVenta(ventaVO);
 	}
 	
-	public  List<byte[]> getTicketsBoletos(Integer idTicket)throws BusinessGlobalException{
-		return ventaBoletoBO.generaTicketsBoletos(idTicket);
+	public  List<byte[]> getTicketsPdf(Integer idTicket)throws BusinessGlobalException{
+		return ventaBoletoBO.generarTicketsPdf(idTicket);
 		
 	}
 }

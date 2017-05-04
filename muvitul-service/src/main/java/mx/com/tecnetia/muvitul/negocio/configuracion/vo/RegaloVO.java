@@ -1,7 +1,5 @@
 package mx.com.tecnetia.muvitul.negocio.configuracion.vo;
 
-import mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.Cine;
-
 public class RegaloVO {
 	private Integer idRegalo;
 	private CineVO cineVO;

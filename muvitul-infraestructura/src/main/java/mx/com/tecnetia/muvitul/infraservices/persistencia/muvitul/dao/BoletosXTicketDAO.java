@@ -1,6 +1,7 @@
 package mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dao;
 
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
@@ -26,6 +27,18 @@ public class BoletosXTicketDAO extends GlobalHibernateDAO<BoletosXTicket> implem
 		}
 		return result ;
 			
+	}
+
+	@Override
+	public List<BoletosXTicket> findByTicket(Integer idTicket) {
+		StringBuilder hql = new StringBuilder();
+		hql.append("select bxt from BoletosXTicket bxt join bxt.tipoCliente tdc ");
+		hql.append("where bxt.ticketVenta.idTicket=:idTicket " );
+		hql.append("order by tdc.idTipoCliente asc ");
+
+		Query query = getSession().createQuery(hql.toString());
+		query.setParameter("idTicket", idTicket);
+		return  query.list();
 	}
 
 

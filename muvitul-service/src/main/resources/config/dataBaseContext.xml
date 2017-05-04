@@ -45,6 +45,8 @@
 				</value>
 				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.AutorizacionMovimiento
 				</value>
+				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.AutorizacionTaquilla
+				</value>
 				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.BoletosXTicketId
 				</value>
 				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.BoletosXTicket
@@ -173,7 +175,9 @@
 				</value>
 				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.TicketVenta
 				</value>
-				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.TipoAutorizacionMov
+<!-- 				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.TipoAutorizacionMov -->
+<!-- 				</value> -->
+				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.TipoAutorizacion
 				</value>
 				<value>mx.com.tecnetia.muvitul.infraservices.persistencia.muvitul.dto.TipoCliente
 				</value>

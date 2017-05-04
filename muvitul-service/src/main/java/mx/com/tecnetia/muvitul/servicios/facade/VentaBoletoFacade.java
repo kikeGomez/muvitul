@@ -142,8 +142,7 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		Date fecha = formatter.parse(fechaExhibicion);
-		ExistenciaBoletoVO existenciaBoletoVO = ventaBoletoController.getExistenciaBoleto(idProgramacion, idSala,
-				fecha);
+		ExistenciaBoletoVO existenciaBoletoVO = ventaBoletoController.getExistenciaBoleto(idProgramacion, idSala,fecha);
 
 		if (existenciaBoletoVO == null) {
 			throw new NotFoundException("No encontrado");
@@ -185,6 +184,28 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 		TicketVentaVO ticketVentaVO = ventaBoletoController.createVenta(ventaVO);
 		return new ResponseEntity<TicketVentaVO>(ticketVentaVO, HttpStatus.CREATED);
 
+	}
+
+	@Override
+	public ResponseEntity<byte[]> getTicketsPdf(HttpServletRequest request, Integer idTicket)
+			throws BusinessGlobalException, NotFoundException {
+
+		List<byte[]> ticketsPdf = ventaBoletoController.getTicketsPdf(idTicket);
+		
+		if (ticketsPdf == null || ticketsPdf.isEmpty()) {
+			throw new NotFoundException("No encontrado");
+		}
+
+		byte[] ticketPdf = ventaBoletoController.getTicketsPdf(idTicket).get(0);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.parseMediaType("application/pdf"));
+		headers.add("Content-Disposition", "attachmnt; filename ='test'");
+		headers.add("filename", "s");
+		headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+		headers.setContentLength(ticketPdf.length);
+		
+		return new ResponseEntity<byte[]>(ticketPdf, headers, HttpStatus.OK);
 	}
 
 	/*********************** TEST **************************************/
@@ -347,21 +368,6 @@ public class VentaBoletoFacade implements VentaBoletoFacadeI {
 		ventaVO.setPagosVO(pagosVO);
 
 		return new ResponseEntity<VentaVO>(ventaVO, HttpStatus.OK);
-	}
-
-	@Override
-	public ResponseEntity<byte[]> getTicketsBoletos(HttpServletRequest request, Integer idTicket)
-			throws BusinessGlobalException, NotFoundException {
-
-		byte[] tickets = ventaBoletoController.getTicketsBoletos(idTicket).get(0);
-
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.parseMediaType("application/pdf"));
-		headers.add("Content-Disposition", "attachmnt; filename ='test'");
-		 headers.add("filename", "prueba");
-		headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
-		headers.setContentLength(tickets.length);
-		return new ResponseEntity<byte[]>(tickets, headers, HttpStatus.OK);
 	}
 
 }

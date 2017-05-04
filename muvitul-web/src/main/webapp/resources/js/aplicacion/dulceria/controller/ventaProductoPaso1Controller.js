@@ -1,99 +1,106 @@
 'use strict';
 
-var VentaProductoPaso1Controller = angular.module('indexModule').controller("VentaProductoPaso1Controller", function(){
-
-	$scope.consultarPeliculas = function(fechaExhibicion) {
-		dulceriaService.consultarPeliculas(fechaExhibicion).success(function(data) {
-			console.log(data);
-		}).error(function(data) {
-			
-		});
+var VentaProductoPaso1Controller = angular.module('indexModule').controller("ventaProductoController", function($scope,$filter,dulceriaService){
+	$scope.statusVenta = {
+		elegirProducto : "selected",
+		registrarPago : "",
+		confirmarVenta : "",
+		numeroPaso : 1
 	}
-		 
-	$scope.consultarPromociones = function(fechaExhibicion) {
-		dulceriaService.consultarPromociones(fechaExhibicion).success(function(data) {
-			console.log(data);
-		}).error(function(data) {
-
-		});
+	$scope.fechaActual = moment(new Date()).format('DD/MM/YYYY');
+	$scope.paquetes= {};
+	$scope.paquetesSeleccionados= [];
+	$scope.ventaVo;
+	$scope.total=0;
+	
+	$scope.asignarPaso = function(paso) {
+		$scope.statusVenta=estatusPaso(paso);
+		$scope.statusVenta.numeroPaso = paso;
 	}
 	
-	$scope.consultarDescuentos = function(idPromocion, boletosXTicketVO) {
-		dulceriaService.consultarDescuentos(idPromocion, boletosXTicketVO).success(function(data) {
-			console.log(data);
-		}).error(function(data) {
+	function estatusPaso(paso) {
+  		var status = {};
+		switch (paso) {
 
-		});
-	}
-	
-	$scope.consultarPrecios = function(idFormato) {
-		dulceriaService.consultarPrecios(idFormato).success(function(data) {
-			console.log(data);
-		}).error(function(data) {
-
-		});
-	}
-	
-	$scope.consultarFormasPago = function() {
-		dulceriaService.consultarFormasPago().success(function(data) {
-			console.log(data);
-		}).error(function(data) {
-
-		});
-	}
-
-	$scope.consultarExistencias = function(idProgramacion, idSala, fechaExhibicion) {
-		dulceriaService.consultarExistencias(idProgramacion,idSala,fechaExhibicion).success(function(data) {
-			console.log(data);
-			$scope.existenciaBoletoVo=data;
-			$scope.existenciaBoletoVo.reservar=1;
-			console.log($scope.existenciaBoletoVo.fechaExhibicion);
-			$scope.actualizarExistencias($scope.existenciaBoletoVo);
-		}).error(function(data) {
-
-		});
-	}
-
-	$scope.actualizarExistencias = function(existenciaBoletoVo) {
-		dulceriaService.actualizarExistencias(existenciaBoletoVo).success(function(data) {
-			console.log(data);
-		}).error(function(data) {
-
-		});
-	}
-	
-	$scope.consultarVentas = function() {
-		dulceriaService.consultarVentas().success(function(data) {
-			console.log(data);
-			$scope.ventaVo=data;
-			dulceriaService.crearVentas($scope.ventaVo);
-		}).error(function(data) {
-
-		});
-	}
-	
-	$scope.consultarDescuentos = function() {
-		dulceriaService.consultarDescuentos().success(function(data) {
-			console.log(data);
-			dulceriaService.crearDescuentos(data).success(function(data) {
-				console.log(data);
-				
-			}).error(function(data) {
-
-			});
-			
-		}).error(function(data) {
-
-		});
+		case 1:
+			status.elegirProducto = "selected";
+			status.registrarPago = "";
+			status.confirmarVenta = "";
+			break;
+		case 2:
+			status.elegirProducto = "done";
+			status.registrarPago = "selected";
+			status.confirmarVenta = "";
+			break;
+		case 3:
+			status.elegirProducto = "done";
+			status.registrarPago = "done";
+			status.confirmarVenta = "selected";
+			break;
+		}
+		
+		return status;
 	}
 	
 	
-//	$scope.consultarPeliculas($scope.fechaExhibicion);
-//	$scope.consultarPromociones($scope.fechaExhibicion);
-//	$scope.consultarPrecios(1);
-//	$scope.consultarFormasPago();
-//	$scope.consultarExistencias(1,1,$scope.fechaExhibicion);
-//	$scope.consultarDescuentos();
-//	$scope.consultarVentas();
+	$scope.consultarPaquetes = function() {
+		dulceriaService.consultarPaquetes().success(function(data) {
+			$scope.paquetes =data;
+			 $scope.errorPaquetes=false;
+			console.log(data);
+		}).error(function(data) {
+			 $scope.paquetes={};
+ 			 $scope.errorPaquetes=true;
+		});
+	}
+
+	$scope.agregarPaquete = function(paquete) {
+		//paquete.cantidad=paquete.cantidad+1;
+		console.log("Agregar paquete");
+//        angular.forEach($scope.paquetes, function(value, key){
+//        	if(value.idPaquete ==  paquete.idPaquete && value.nombre ==  paquete.nombre ){
+//        		value.cantidad=value.cantidad+1;
+//        		value.importe=value.cantidad * value.precio;
+//            	$scope.total=$scope.total + value.importe;
+//        	}
+//		});
+        
+		paquete.cantidad=paquete.cantidad+1;
+		paquete.importe=paquete.importe + paquete.precio;
+
+    	$scope.total=$scope.total + paquete.precio;
+    	
+    	
+        $scope.found=false;
+        angular.forEach($scope.paquetesSeleccionados, function(value, key){
+        	if(value.idPaquete ==  paquete.idPaquete && value.nombre ==  paquete.nombre){
+        		$scope.found=true;
+        	}
+		});
+        
+        if ($scope.found==false){
+        	$scope.paquetesSeleccionados.push(paquete);
+        }
+	}
+		   
+	$scope.eliminarPaquete = function(paquete) {
+		paquete.cantidad=paquete.cantidad-1;
+		paquete.importe=paquete.importe - paquete.precio;
+    	$scope.total=$scope.total - paquete.precio;
+    	
+        angular.forEach($scope.paquetesSeleccionados, function(value, key){
+        	if(value.cantidad == 0 ){
+        		$scope.paquetesSeleccionados.splice(key, 1);
+        	}
+		});
+        
+//        for (var i = $scope.paquetesSeleccionados.length - 1; i >= 0; i--) {
+//            if (!$scope.paquetesSeleccionados[i].cantidad == 0) {
+//                $scope.paquetesSeleccionados.splice(i, 1);
+//            }
+//        }
+	}
 	
+	$scope.consultarPaquetes();
+
 });

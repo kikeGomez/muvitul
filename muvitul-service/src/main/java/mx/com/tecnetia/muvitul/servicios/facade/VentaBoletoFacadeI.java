@@ -60,6 +60,10 @@ public interface VentaBoletoFacadeI {
 	public ResponseEntity<TicketVentaVO> createVenta(HttpServletRequest request, @RequestBody VentaVO ventaVO)
 			throws BusinessGlobalException, NotFoundException;
 
+	@RequestMapping(value = "/tickets", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> getTicketsPdf(HttpServletRequest request, Integer idTicket)
+			throws BusinessGlobalException, NotFoundException;
+
 	/*********************** TEST **************************************/
 	@RequestMapping(value = "/descuentos", method = RequestMethod.GET)
 	public ResponseEntity<PromocionBoletoVO> getPromocionBoletos(HttpServletRequest request)
@@ -68,13 +72,5 @@ public interface VentaBoletoFacadeI {
 	@RequestMapping(value = "/ventas", method = RequestMethod.GET)
 	public ResponseEntity<VentaVO> getVenta(HttpServletRequest request)
 			throws BusinessGlobalException, NotFoundException;
-
-	/***********************
-	 * BOLETOS TICKET
-	 **************************************/
-
-	@RequestMapping(value = "/tickets", method = RequestMethod.GET)
-	public ResponseEntity<byte[]> getTicketsBoletos(HttpServletRequest request,
-			@RequestParam(value = "idTicket") Integer idTicket) throws BusinessGlobalException, NotFoundException;
 
 }

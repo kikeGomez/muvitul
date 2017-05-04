@@ -1,5 +1,6 @@
 package mx.com.tecnetia.muvitul.negocio.dulceria.vo;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class VentaVO {
@@ -8,7 +9,14 @@ public class VentaVO {
 	private Integer idCine;
 	private List<PaqueteVO> paquetesVO;
 	private List<PagoVO> pagosVO;
+	private BigDecimal total;
 	
+	public BigDecimal getTotal() {
+		return total;
+	}
+	public void setTotal(BigDecimal total) {
+		this.total = total;
+	}
 	public Integer getIdUsuario() {
 		return idUsuario;
 	}

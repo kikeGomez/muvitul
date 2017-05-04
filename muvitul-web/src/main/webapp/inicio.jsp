@@ -294,7 +294,6 @@
 	<script	src="<c:url value='/resources/js/comun/directivas/directivasVentaBoleto.js' />"></script>
 	<!-- Controller del modulo de dulceria -->
 	<script	src="<c:url value='/resources/js/aplicacion/dulceria/service/dulceriaAngularService.js'/>"></script>
-	<script	src="<c:url value='/resources/js/aplicacion/dulceria/controller/ventaProductoController.js' />"></script>
 	<script	src="<c:url value='/resources/js/aplicacion/dulceria/controller/ventaProductoPaso1Controller.js' />"></script>
 	<script	src="<c:url value='/resources/js/aplicacion/dulceria/controller/ventaProductoPaso2Controller.js' />"></script>
 	<script	src="<c:url value='/resources/js/aplicacion/dulceria/controller/ventaProductoPaso3Controller.js' />"></script>

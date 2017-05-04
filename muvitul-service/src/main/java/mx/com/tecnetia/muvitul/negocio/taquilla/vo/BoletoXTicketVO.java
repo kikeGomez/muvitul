@@ -3,14 +3,19 @@ package mx.com.tecnetia.muvitul.negocio.taquilla.vo;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import mx.com.tecnetia.muvitul.servicios.util.DateStringToDateDeserializer;
+import mx.com.tecnetia.muvitul.servicios.util.DateToDateStringSerializer;
 
 public class BoletoXTicketVO {
 	private TipoClienteVO tipoClienteVO;
 	private int cantidad;
 	private BigDecimal importe;
 	private ProgramacionVO programacionVO;
-	@JsonFormat(pattern="dd/MM/yyyy")
+	@JsonDeserialize(using = DateStringToDateDeserializer.class)
+	@JsonSerialize(using = DateToDateStringSerializer.class)
 	private Date fechaExhibicion;
 	
 	public TipoClienteVO getTipoClienteVO() {
