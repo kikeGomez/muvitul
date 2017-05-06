@@ -15,21 +15,7 @@
 		</div>
 		<div class="x_content">
 			<div class="row">
-				<div class="x_panel">
-					<div class="row">
-						<h5 class="text-center">Al imprimir los boletos se
-							cerrar&aacute; la venta. Val&iacute;da que todos los datos sean
-							correctos.</h5>
-						<div
-							class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-lg-offset-5 col-md-offset-5 col-sm-offset-5">
-							<a class="btn btn-app" title="Cerrar venta e imprimir boletos"
-								ng-click="imprimirBoleto()"> <i class="fa fa-print"></i>
-								Imprimir Boletos
-							</a>
-						</div>
-					</div>
-				</div>
-
+				 
 				<div class="col-md-2 col-md-offset-9">
 					<label>Fecha Función:</label>
 

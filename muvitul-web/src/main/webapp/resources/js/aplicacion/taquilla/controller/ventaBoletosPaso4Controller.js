@@ -7,6 +7,8 @@ var VentaBoletosPaso4Controller = angular.module('indexModule').controller("Vent
 	$scope.estatusPagoVO ={idEstatus:'1',nombre:'PAGADO'}
  	$scope.pago				    ={subtotalAux:0,subtotal:0, porPagar:0, pagado:0,estatusPagoVO:$scope.estatusPagoVO};
  	$controller('VentaBoletosPaso3Controller',{$scope : $scope });
+ 	$controller('VentaBoletosPaso5Controller',{$scope : $scope });
+
     $controller('modalController',{$scope : $scope });
  
 	$scope.guardarPago =function(pago,formPagos){
@@ -97,6 +99,8 @@ var VentaBoletosPaso4Controller = angular.module('indexModule').controller("Vent
 		venta.pagosVO=$scope.listaPagos;
 		taquillaService.procesarVenta(venta).success(function(data) {	
 			$scope.asignarPaso(5);
+			$scope.ticketVenta=data;
+			 
  		  }).error(function(data) {
 		  });
 	}

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Tiket" pageWidth="198" pageHeight="992" columnWidth="198" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="7c1bdacc-8bc4-4274-bca6-c26dbb4debea">
-	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.zoom" value="3.415067276825353"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="345"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -107,32 +107,32 @@
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="94" splitType="Stretch">
+		<band height="78" splitType="Stretch">
 			<textField>
 				<reportElement x="30" y="0" width="142" height="14" uuid="98f56e80-7acb-4f51-8d9c-d2fea6a3aed1"/>
 				<textElement textAlignment="Center">
-					<font fontName="Courier New" size="8"/>
+					<font fontName="Courier New" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{razonSocial}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="16" y="13" width="167" height="40" uuid="87935743-73c9-414d-b458-c7fea6d10135"/>
+				<reportElement x="16" y="13" width="167" height="25" uuid="87935743-73c9-414d-b458-c7fea6d10135"/>
 				<textElement textAlignment="Center">
-					<font fontName="Courier New" size="8"/>
+					<font fontName="Courier New" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{direccionCine}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="30" y="53" width="142" height="15" uuid="d789f586-0a36-4b04-a465-561fff7cdebc"/>
+				<reportElement x="30" y="37" width="142" height="15" uuid="d789f586-0a36-4b04-a465-561fff7cdebc"/>
 				<textElement textAlignment="Center" markup="html">
-					<font fontName="Courier New" size="8"/>
+					<font fontName="Courier New" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA["RFC:"+  $P{rfc}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="21" y="67" width="94" height="14" uuid="fa7033b2-0b7c-4e25-8e26-a37890ef7452"/>
+				<reportElement x="21" y="51" width="94" height="14" uuid="fa7033b2-0b7c-4e25-8e26-a37890ef7452"/>
 				<textElement>
-					<font fontName="Courier New" size="8" isBold="false"/>
+					<font fontName="Courier New" size="9" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Fecha: "+$P{fechaHoraCompra}]]></textFieldExpression>
 			</textField>

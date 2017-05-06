@@ -53,16 +53,21 @@ public class TicketVentaAssembler {
 		iva=iva.subtract(ticketVenta.getDescuento());
 		iva=iva.subtract(ticketVenta.getImporte());
 		TicketVO ticketVO = new TicketVO();
-		ticketVO.setTituloTicket("The Movie Company");
-		ticketVO.setAvenidaEmpresa("Av. San Jeronimo Lidice No.777 ");
-		ticketVO.setNombreEmpresa("Tecnetia S.A de C.V");
-		ticketVO.setColoniaEmpresa("Col. San Jeronimo Lidice Del. Alvaro");
-		ticketVO.setRfcEmpresa("PPL-9765456-F55F");
+		ticketVO.setNombreCine("The Movie Company");
+		ticketVO.setDireccion("Av. San Jeronimo Lidice No.777,Col. San Jeronimo Lidice Del. Alvaro ,Ciudad de Mexico");
+		ticketVO.setRazonSocial("Tecnetia S.A de C.V");
+ 		ticketVO.setRfc ("PPL-9765456-F55F");
+ 		ticketVO.setTelefono("55-227-949-44");;
+ 		ticketVO.setFechaHoraCompra("05/05/2017");
 		ticketVO.setIva(iva);
 		ticketVO.setTotalPago(ticketVenta.getTotal());
-		//ticketVO.setFolioTicket((long)ticketVenta.getIdTicket());
-		ticketVO.setFolioTicket(new Long(1234567));
-		ticketVO.setLeyenda("Si requiere factura entre al siguente portal de facturacion www.tecnetia.com.mx o llame al numero : (55) 234536345");
+		ticketVO.setCambio(new BigDecimal("111.00"));
+		ticketVO.setRecibe(new BigDecimal("1000.00"));
+ 		//ticketVO.setFolioTicket((long)ticketVenta.getIdTicket());
+		ticketVO.setNumeroOrdenTicket(new Long(1234567));
+		ticketVO.setLeyenda("Aqui va la leyenda");
+		ticketVO.setSlogan("SIN CINE NO HAY SUEÑOS !");
+		ticketVO.setSugerencias("Si requiere factura entre al siguente portal de facturacion www.tecnetia.com.mx o llame al numero : (55) 234536345");
 
 		return ticketVO;
 	}

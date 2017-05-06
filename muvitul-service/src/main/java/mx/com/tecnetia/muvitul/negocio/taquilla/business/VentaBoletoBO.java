@@ -43,6 +43,10 @@ import mx.com.tecnetia.muvitul.negocio.taquilla.vo.TicketVentaVO;
 import mx.com.tecnetia.muvitul.negocio.taquilla.vo.VentaVO;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
@@ -179,24 +183,34 @@ public class VentaBoletoBO {
 		List<DetalleTicketVO> detallesTicketVO = BoletoXTicketAssembler.getDetallesTicketVO(boletosXTicket);
 
 		Map<String, Object> parametros = new HashMap<String, Object>();
-		parametros.put("tituloTicket", ticketVO.getTituloTicket());
-		parametros.put("nombreEmpresa", ticketVO.getNombreEmpresa());
-		parametros.put("avenidaEmpresa", ticketVO.getAvenidaEmpresa());
-		parametros.put("coloniaEmpresa", ticketVO.getColoniaEmpresa());
-		parametros.put("rfcEmpresa", ticketVO.getRfcEmpresa());
+		parametros.put("nombreCine", ticketVO.getNombreCine());
+		parametros.put("razonSocial", ticketVO.getRazonSocial());
+		parametros.put("direccionCine", ticketVO.getDireccion());
+		parametros.put("rfc", ticketVO.getRfc());
+		parametros.put("telefono", "55-55-55-55-55");
+		parametros.put("fechaHoraCompra", "03/03/2017");
+		parametros.put("ordenCompra", "324234324");
 		parametros.put("iva", ticketVO.getIva());
 		parametros.put("totalPago", ticketVO.getTotalPago());
-		parametros.put("folioTicket", ticketVO.getFolioTicket());
+		parametros.put("recibe", ticketVO.getRecibe());
+		parametros.put("cambio", ticketVO.getCambio());
+		parametros.put("slogan", ticketVO.getSlogan());
+		parametros.put("sugerencias", ticketVO.getSugerencias());
 		parametros.put("leyenda", ticketVO.getLeyenda());
 
 		JRBeanCollectionDataSource DS = new JRBeanCollectionDataSource(detallesTicketVO);
 		parametros.put("recordDataSource", DS);
 
 		try {
-			
+			JasperReport jasperReport;
+	        JasperPrint jasperPrint;  
 			String rutaArchivo = context.getRealPath(rutaJasper);
 			boletosTickets.add(JasperRunManager.runReportToPdf(rutaArchivo, parametros, new JREmptyDataSource()));
-			
+			 jasperPrint = JasperFillManager.fillReport(rutaArchivo, parametros,new JREmptyDataSource() );
+	          //se crea el archivo PDF
+	          JasperExportManager.exportReportToPdfFile( jasperPrint, "D:\\reporte.pdf");
+	       
+
 		} catch (JRException e) {
 			e.printStackTrace();
 			logger.error("Error al generar pdf para el ticket[{}]", idTicket);

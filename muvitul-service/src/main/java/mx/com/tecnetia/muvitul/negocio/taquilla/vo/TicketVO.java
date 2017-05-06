@@ -3,80 +3,145 @@ package mx.com.tecnetia.muvitul.negocio.taquilla.vo;
 import java.math.BigDecimal;
 
 public class TicketVO {
-	
-	private String tituloTicket;
-	private String  nombreEmpresa;
-	private String avenidaEmpresa;
-	private String coloniaEmpresa;
-	private String rfcEmpresa;
+
+	private String nombreCine;
+	private String razonSocial;
+	private String direccion;
+	private String rfc;
+	private String telefono ;
+	private Long numeroOrdenTicket;
+	private String fechaHoraCompra;
 	private BigDecimal iva;
 	private BigDecimal totalPago;
-	private Long folioTicket;
+	private BigDecimal recibe;
+	private BigDecimal cambio;
 	private String leyenda;
-	private DetalleTicketVO  detalleTicketVO;
-	
-	public String getTituloTicket() {
-		return tituloTicket;
+	private String slogan;
+	private String sugerencias;
+
+	private DetalleTicketVO detalleTicketVO;
+
+	public String getNombreCine() {
+		return nombreCine;
 	}
-	public void setTituloTicket(String tituloTicket) {
-		this.tituloTicket = tituloTicket;
+
+	public void setNombreCine(String nombreCine) {
+		this.nombreCine = nombreCine;
 	}
-	public String getNombreEmpresa() {
-		return nombreEmpresa;
+
+	public String getRazonSocial() {
+		return razonSocial;
 	}
-	public void setNombreEmpresa(String nombreEmpresa) {
-		this.nombreEmpresa = nombreEmpresa;
+
+	public void setRazonSocial(String razonSocial) {
+		this.razonSocial = razonSocial;
 	}
-	public String getAvenidaEmpresa() {
-		return avenidaEmpresa;
+
+	public String getDireccion() {
+		return direccion;
 	}
-	public void setAvenidaEmpresa(String avenidaEmpresa) {
-		this.avenidaEmpresa = avenidaEmpresa;
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
-	public String getColoniaEmpresa() {
-		return coloniaEmpresa;
+
+	 
+
+	public String getRfc() {
+		return rfc;
 	}
-	public void setColoniaEmpresa(String coloniaEmpresa) {
-		this.coloniaEmpresa = coloniaEmpresa;
+
+	public void setRfc(String rfc) {
+		this.rfc = rfc;
 	}
-	public String getRfcEmpresa() {
-		return rfcEmpresa;
+
+	public String getTelefono() {
+		return telefono;
 	}
-	public void setRfcEmpresa(String rfcEmpresa) {
-		this.rfcEmpresa = rfcEmpresa;
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
+
+	public Long getNumeroOrdenTicket() {
+		return numeroOrdenTicket;
+	}
+
+	public void setNumeroOrdenTicket(Long numeroOrdenTicket) {
+		this.numeroOrdenTicket = numeroOrdenTicket;
+	}
+
+	public String getFechaHoraCompra() {
+		return fechaHoraCompra;
+	}
+
+	public void setFechaHoraCompra(String fechaHoraCompra) {
+		this.fechaHoraCompra = fechaHoraCompra;
+	}
+
 	public BigDecimal getIva() {
 		return iva;
 	}
+
 	public void setIva(BigDecimal iva) {
 		this.iva = iva;
 	}
+
 	public BigDecimal getTotalPago() {
 		return totalPago;
 	}
+
 	public void setTotalPago(BigDecimal totalPago) {
 		this.totalPago = totalPago;
 	}
-	public Long getFolioTicket() {
-		return folioTicket;
+
+	public BigDecimal getRecibe() {
+		return recibe;
 	}
-	public void setFolioTicket(Long folioTicket) {
-		this.folioTicket = folioTicket;
+
+	public void setRecibe(BigDecimal recibe) {
+		this.recibe = recibe;
 	}
+
+	public BigDecimal getCambio() {
+		return cambio;
+	}
+
+	public void setCambio(BigDecimal cambio) {
+		this.cambio = cambio;
+	}
+
 	public String getLeyenda() {
 		return leyenda;
 	}
+
 	public void setLeyenda(String leyenda) {
 		this.leyenda = leyenda;
 	}
+
+	public String getSlogan() {
+		return slogan;
+	}
+
+	public void setSlogan(String slogan) {
+		this.slogan = slogan;
+	}
+
+	public String getSugerencias() {
+		return sugerencias;
+	}
+
+	public void setSugerencias(String sugerencias) {
+		this.sugerencias = sugerencias;
+	}
+
 	public DetalleTicketVO getDetalleTicketVO() {
 		return detalleTicketVO;
 	}
+
 	public void setDetalleTicketVO(DetalleTicketVO detalleTicketVO) {
 		this.detalleTicketVO = detalleTicketVO;
 	}
-	
-	
-	
-	 
+ 
+
 }
